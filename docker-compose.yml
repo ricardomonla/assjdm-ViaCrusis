@@ -1,0 +1,9 @@
+services:
+  app:
+    container_name: sitioPesebre
+    image: php:apache
+    ports:
+      - "32768:80"
+    volumes:
+      - ./:/var/www/html
+    restart: unless-stopped

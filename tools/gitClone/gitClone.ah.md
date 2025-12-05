@@ -1,0 +1,1 @@
+git clone https://github.com/rmonla/AssJDM-25-wwwViacrusis.git /data/data/com.termux/files/usr/share/apache2/default-site/htdocs
