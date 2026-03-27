@@ -1,5 +1,14 @@
 <?php
 $versionLogs = [
+    '26.1' => [
+        'date' => '2026-03-27',
+        'changes' => [
+            'Actualización de año 2025 a 2026 en todos los archivos.',
+            'Nueva key de acceso: VCV2026.',
+            'Acceso público sin key: muestra lista de audios sin botones de descarga.',
+            'Títulos de audio en color más oscuro (#2d2418).',
+        ]
+    ],
     '25.5' => [
         'date' => '2025-03-30', // Actualizar con fecha de hoy
         'changes' => [

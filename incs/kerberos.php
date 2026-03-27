@@ -1,6 +1,6 @@
 <?php
-// Verificar si se pasa el parámetro 'key' con el valor 'VCV2025'
-if (!isset($_GET['key']) || $_GET['key'] !== 'VCV2025') {
+// Verificar si se pasa el parámetro 'key' con el valor 'VCV2026'
+if (!isset($_GET['key']) || $_GET['key'] !== 'VCV2026') {
     header('Location: error.php');
     exit();
 }

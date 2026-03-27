@@ -5,7 +5,8 @@ require 'incs/versionLogs.php';
 // Configuración inicial
 $dirMEDIA = 'media';
 $id = $_GET['id'] ?? null;
-$hideNavButtons = isset($_GET['wa']) && $_GET['wa'] == '1'; // Definir la variable aquí
+$hasAccess = isset($_GET['key']) && $_GET['key'] === 'VCV2026';
+$hideNavButtons = (!$hasAccess) || (isset($_GET['wa']) && $_GET['wa'] == '1');
 $audioFiles = getAudioFiles($dirMEDIA);
 
 // Buscar el audio por ID
@@ -38,52 +39,61 @@ $audio_file = htmlspecialchars($audio['filename']);
 
 // Generación de botones de navegación
 $buttons = [];
-if (!$hideNavButtons) {
+$serveKey = $hasAccess ? '&key=VCV2026' : '';
+
+// Botón Volver siempre visible
+$backUrl = $hasAccess ? 'index.php?key=VCV2026' : 'index.php';
+$buttons[] = sprintf(
+    '<a href="%s" 
+        class="nav-button back-button" 
+        title="Volver a la lista completa">
+        ← Volver
+    </a>',
+    $backUrl
+);
+
+// Botones Anterior/Siguiente solo con acceso
+if ($hasAccess && !$hideNavButtons) {
     if ($prevAudio) {
         $buttons[] = sprintf(
-            '<a href="play.php?id=%s" 
+            '<a href="play.php?id=%s%s" 
                 class="nav-button prev-button">
                 ⟵ Anterior
             </a>',
-            htmlspecialchars($prevAudio['id'])
+            htmlspecialchars($prevAudio['id']),
+            $serveKey
         );
     }
 
-    $buttons[] = sprintf(
-        '<a href="index.php?key=VCV2025" 
-            class="nav-button back-button" 
-            title="Volver a la lista completa">
-            ← Volver
-        </a>'
-    );
-
     if ($nextAudio) {
         $buttons[] = sprintf(
-            '<a href="play.php?id=%s" 
+            '<a href="play.php?id=%s%s" 
                 class="nav-button next-button" 
                 data-is-last="%s" 
                 data-first-audio-id="%s">
                 Siguiente ⟶
             </a>',
             htmlspecialchars($nextAudio['id']),
+            $serveKey,
             $isLastAudio ? 'true' : 'false',
             htmlspecialchars($firstAudioId)
         );
     } else {
         $buttons[] = sprintf(
-            '<a href="play.php?id=%s" 
+            '<a href="play.php?id=%s%s" 
                 class="nav-button next-button" 
                 data-is-last="true" 
                 data-first-audio-id="%s">
                 Iniciar nuevamente
             </a>',
             htmlspecialchars($firstAudioId),
+            $serveKey,
             htmlspecialchars($firstAudioId)
         );
     }
 }
 
-$htmlBOTONEs = !$hideNavButtons ? sprintf('<div class="audio-navigation">%s</div>', implode('', $buttons)) : '';
+$htmlBOTONEs = sprintf('<div class="audio-navigation">%s</div>', implode('', $buttons));
 
 // Incluir el archivo JavaScript externo
 $javascriptCode = '';
@@ -115,7 +125,7 @@ $htmlMAIN = sprintf(
             <h2 class="audio-title">%s</h2>
             <div class="audio-player-container">
                 <audio id="audioPlayer" controls controlsList="nodownload">
-                    <source src="serve.php?file=%s" type="audio/mpeg">
+                    <source src="serve.php?file=%s%s" type="audio/mpeg">
                     Tu navegador no soporta el elemento de audio.
                 </audio>
                 %s
@@ -127,6 +137,7 @@ $htmlMAIN = sprintf(
     HTML,
     $audio_title,
     $audio_file,
+    $serveKey,
     (!$hideNavButtons ? '<div id="autoplayMessage" class="autoplay-message"><p>La reproducción automática está bloqueada. Por favor haz clic en el botón de play.</p></div>' : ''),
     $htmlBOTONEs,
     $javascriptCode

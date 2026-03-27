@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #fdf7e3, #e9d8b7);
-    color: #4a3e31;
+    color: #2d2418;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -81,7 +81,7 @@ body {
 
 .song-link {
     text-decoration: none;
-    color: #4a3e31;
+    color: #2d2418;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -125,6 +125,7 @@ body {
 }
 
 .audio-title {
+    color: #2d2418;
     margin-top: 5px;
     margin-bottom: 5px;
 }

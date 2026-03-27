@@ -3,6 +3,13 @@ require 'incs/functions.php';
 
 $dirMEDIA = 'media';
 $file = $_GET['file'] ?? '';
+$isDownload = isset($_GET['download']) && $_GET['download'] === '1';
+
+// Verificar key solo para descargas
+if ($isDownload && (!isset($_GET['key']) || $_GET['key'] !== 'VCV2026')) {
+    http_response_code(403);
+    die('Acceso denegado.');
+}
 
 // Validar estructura del nombre de archivo
 if (!preg_match('/^\d{3}_v\d{4}_.+\.mp3$/', $file)) {
