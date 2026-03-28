@@ -1,3 +1,8 @@
+/* ===== FORZAR MODO CLARO ===== */
+html {
+    color-scheme: light only;
+}
+
 /* ===== ESTILOS BASE ===== */
 body {
     font-family: 'Georgia', serif;
@@ -5,7 +10,7 @@ body {
     padding: 0;
     background: linear-gradient(to bottom, #fdf7e3, #e9d8b7);
     color: #2d2418;
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -24,6 +29,7 @@ body {
     flex-shrink: 0;
     width: 100%;
     box-sizing: border-box;
+    text-align: center;
 }
 
 .header h1 {
@@ -50,6 +56,12 @@ body {
     box-sizing: border-box;
 }
 
+.playlist h3 {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
 #song-list {
     list-style: none;
     padding: 0;
@@ -63,9 +75,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     transition: all 0.3s ease;
     background-color: #f9f4ef;
     box-sizing: border-box;
+    text-align: left;
 }
 
 .song-item:hover {
@@ -84,6 +98,9 @@ body {
     color: #2d2418;
     font-weight: bold;
     transition: color 0.3s ease;
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
 }
 
 .song-link:hover {
@@ -94,12 +111,15 @@ body {
 .song-actions {
     display: flex;
     gap: 10px;
+    flex-shrink: 0;
+    align-items: center;
 }
 
 .song-actions a {
     text-decoration: none;
     font-size: 1.2em;
 }
+
 .icon-whatsapp {
     width: 24px;
     height: 24px;
@@ -128,6 +148,7 @@ body {
     color: #2d2418;
     margin-top: 5px;
     margin-bottom: 5px;
+    text-align: center;
 }
 
 audio {
@@ -202,21 +223,142 @@ audio::-webkit-media-controls-time-remaining-display {
     font-size: 12px;
     text-align: center;
     flex-shrink: 0;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-/* ===== MODO OSCURO ===== */
-@media (prefers-color-scheme: dark) {
-    body {
-        background: linear-gradient(to bottom, #3a3229, #2a241e);
-        color: #f0e6d2;
-    }
-    .playlist,
-    audio::-webkit-media-controls-panel {
-        background-color: #2a241e;
-    }
-    .song-link {
-        color: #ac9f84;
-    }
+.footer-version {
+    display: inline;
+    cursor: default;
+}
+
+/* ===== ADMIN: MODAL DE LOGIN ===== */
+.admin-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-modal-overlay.active {
+    display: flex;
+}
+
+.admin-modal {
+    background: #f9f4ef;
+    border: 2px solid #806d5a;
+    border-radius: 12px;
+    padding: 25px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.admin-modal h3 {
+    margin: 0 0 15px;
+    color: #2d2418;
+    font-size: 1.1em;
+}
+
+.admin-modal input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #806d5a;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.admin-modal input[type="password"]:focus {
+    border-color: #4a3e31;
+}
+
+.admin-modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.admin-modal-buttons button {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1px solid #806d5a;
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-admin-ok {
+    background-color: #806d5a;
+    color: #fff;
+}
+
+.btn-admin-ok:hover {
+    background-color: #6b5a4a;
+}
+
+.btn-admin-cancel {
+    background-color: #e9d8b7;
+    color: #4a3e31;
+}
+
+.btn-admin-cancel:hover {
+    background-color: #f9f4ef;
+}
+
+.admin-error {
+    color: #c0392b;
+    font-size: 12px;
+    margin-top: 8px;
+    display: none;
+}
+
+/* ===== ADMIN: BOTÓN LOGOUT ===== */
+.admin-logout {
+    display: none;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+}
+
+.admin-logout:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* ===== ADMIN: Elementos visibles solo en modo admin ===== */
+.admin-only {
+    display: none !important;
+}
+
+body.admin-mode .admin-only {
+    display: flex !important;
+}
+
+body.admin-mode .admin-logout {
+    display: inline-block;
 }
 
 /* ===== RESPONSIVE ===== */

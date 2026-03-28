@@ -1,5 +1,17 @@
 <?php
 $versionLogs = [
+    '26.4' => [
+        'date' => '2026-03-28',
+        'changes' => [
+            'Fix: Forzar modo claro (color-scheme: light only) — colores consistentes entre dispositivos.',
+            'Fix: Alineación izquierda de items de audio — consistente en móvil y escritorio.',
+            'Feature: Botón admin oculto (5 taps en versión del footer).',
+            'Feature: Sesión admin con TTL 30 min + botón logout.',
+            'Feature: Modo admin controla descarga y navegación sin parámetro URL.',
+            'Nuevo: admin_check.php para validación de clave.',
+            'Refactor: index.php y play.php simplificados, sin dependencia de ?key.',
+        ]
+    ],
     '26.3' => [
         'date' => '2026-03-28',
         'changes' => [

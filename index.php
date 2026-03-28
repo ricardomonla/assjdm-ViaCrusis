@@ -2,8 +2,6 @@
 require 'incs/functions.php';
 require 'incs/versionLogs.php';
 
-$hasAccess = isset($_GET['key']) && $_GET['key'] === 'VCV2026';
-
 $audioFiles = getAudioFiles('media');
 $baseURL = getBaseURL();
 include 'incs/header.php';
@@ -15,22 +13,19 @@ include 'incs/header.php';
         <ul id="song-list">
             <?php foreach ($audioFiles as $audio): 
                 $isActive = (isset($_GET['id']) && $_GET['id'] === $audio['id']);
-                $shareKey = $hasAccess ? '&key=VCV2026' : '';
-                $audioURL = getBaseURL() . "/play.php?id=" . urlencode($audio['id']) . "&wa=1" . $shareKey;
+                $audioURL = getBaseURL() . "/play.php?id=" . urlencode($audio['id']) . "&wa=1";
             ?>
                 <li class="song-item <?= $isActive ? 'active' : '' ?>">
-                    <a href="play.php?id=<?= htmlspecialchars($audio['id']) . ($hasAccess ? '&key=VCV2026' : '') ?>" class="song-link">
+                    <a href="play.php?id=<?= htmlspecialchars($audio['id']) ?>" class="song-link">
                         <?= htmlspecialchars($audio['display_name']) ?>
                     </a>
                     
-                    <?php if ($hasAccess): ?>
-                    <div class="song-actions">
-                        <!-- Botón de descarga -->
+                    <!-- Descarga: solo visible en modo admin -->
+                    <div class="song-actions admin-only">
                         <a href="serve.php?file=<?= urlencode($audio['filename']) ?>&key=VCV2026&download=1" download="<?= htmlspecialchars($audio['filename']) ?>">
                             📥
                         </a>
                     </div>
-                    <?php endif; ?>
                     
                     <!-- WhatsApp siempre visible -->
                     <div class="song-actions">

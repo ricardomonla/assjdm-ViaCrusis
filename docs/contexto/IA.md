@@ -100,9 +100,109 @@ ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
 
 > `srv-pmox3` (10.0.10.203) acepta clave pública SSH sin contraseña.
 
+## Deploy Automático
+
+- **Método**: GitHub Webhook → `deploy.php` → `git pull`
+- **Tiempo**: ~2 seg tras cada `git push` a `main`
+- **Log**: `/var/log/vcby-deploy.log` en el servidor
+- **Plan**: `docs/plan/01_webhook-deploy-automatico.md`
+
 ## Pendientes
 
 - [ ] **Seguridad**: Configurar fail2ban y headers de seguridad en NGINX
 - [ ] **Backup**: Configurar vzdump para respaldos automáticos del LXC
 - [ ] **Monitorización**: Integrar sistema de monitoreo
 - [ ] **Diseño**: Modernizar la estética del sitio (actualmente funcional pero básico)
+
+---
+
+## Plantilla de Planes
+
+Los planes se guardan en `docs/plan/NN_nombre-del-plan.md` donde `NN` es un número secuencial.
+
+### Estructura obligatoria:
+
+```markdown
+# Plan NN: Título del Plan
+
+> **Estado**: 📋 Planificado | ⏳ En progreso | ✅ Completado
+> **Fecha**: YYYY-MM-DD
+> **Servidor**: (si aplica)
+
+---
+
+## Progreso General
+
+\```
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0% — PLANIFICADO
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░  50% — EN PROGRESO
+██████████████████████████████ 100% — COMPLETADO
+\```
+
+| Fase | Descripción | Estado |
+|:---|:---|:---|
+| 1 | Nombre de la fase | 📋 / ⏳ / ✅ |
+| 2 | Nombre de la fase | 📋 / ⏳ / ✅ |
+
+---
+
+## Objetivo
+
+Descripción clara de qué se quiere lograr.
+
+---
+
+## Fase 1: Nombre
+
+\```
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0%
+\```
+
+- [ ] Tarea 1
+- [ ] Tarea 2
+- [ ] Tarea 3
+
+**Notas/Hallazgos**: (documentar decisiones y descubrimientos)
+
+---
+
+## Fase N: Nombre
+
+(repetir estructura por cada fase)
+
+---
+
+## Resumen de archivos creados/modificados
+
+| Archivo | Ubicación | Estado |
+|:---|:---|:---|
+| `archivo` | Ruta | 📋 / ✅ |
+
+## Seguridad
+
+(si aplica — documentar medidas de seguridad)
+
+## Rollback
+
+(cómo revertir si algo sale mal)
+```
+
+### Convenciones:
+
+| Símbolo | Significado |
+|:---|:---|
+| `░░░` | No iniciado |
+| `▓▓▓` | En progreso |
+| `███` | Completado |
+| `📋` | Planificado |
+| `⏳` | En progreso |
+| `✅` | Completado |
+| `- [ ]` | Tarea pendiente |
+| `- [x]` | Tarea completada |
+
+### Reglas:
+
+1. **Al crear** un plan: estado `📋 Planificado`, barras en `░░░`, tareas `[ ]`
+2. **Al ejecutar** cada fase: actualizar barra a `▓▓▓`, tareas a `[x]` al completar
+3. **Al terminar**: estado `✅ Completado`, barras en `███`, documentar resultados reales
+4. **Siempre** documentar hallazgos, decisiones y problemas encontrados

@@ -5,8 +5,6 @@ require 'incs/versionLogs.php';
 // Configuración inicial
 $dirMEDIA = 'media';
 $id = $_GET['id'] ?? null;
-$hasAccess = isset($_GET['key']) && $_GET['key'] === 'VCV2026';
-$hideNavButtons = (!$hasAccess) || (isset($_GET['wa']) && $_GET['wa'] == '1');
 $audioFiles = getAudioFiles($dirMEDIA);
 
 // Buscar el audio por ID
@@ -37,114 +35,60 @@ $firstAudioId = $audioFiles[0]['id'] ?? '';
 $audio_title = htmlspecialchars($audio['display_name']);
 $audio_file = htmlspecialchars($audio['filename']);
 
-// Generación de botones de navegación
-$buttons = [];
-$serveKey = $hasAccess ? '&key=VCV2026' : '';
+include 'incs/header.php';
+?>
 
-// Botón Volver siempre visible
-$backUrl = $hasAccess ? 'index.php?key=VCV2026' : 'index.php';
-$buttons[] = sprintf(
-    '<a href="%s" 
-        class="nav-button back-button" 
-        title="Volver a la lista completa">
-        ← Volver
-    </a>',
-    $backUrl
-);
-
-// Botones Anterior/Siguiente solo con acceso
-if ($hasAccess && !$hideNavButtons) {
-    if ($prevAudio) {
-        $buttons[] = sprintf(
-            '<a href="play.php?id=%s%s" 
-                class="nav-button prev-button">
-                ⟵ Anterior
-            </a>',
-            htmlspecialchars($prevAudio['id']),
-            $serveKey
-        );
-    }
-
-    if ($nextAudio) {
-        $buttons[] = sprintf(
-            '<a href="play.php?id=%s%s" 
-                class="nav-button next-button" 
-                data-is-last="%s" 
-                data-first-audio-id="%s">
-                Siguiente ⟶
-            </a>',
-            htmlspecialchars($nextAudio['id']),
-            $serveKey,
-            $isLastAudio ? 'true' : 'false',
-            htmlspecialchars($firstAudioId)
-        );
-    } else {
-        $buttons[] = sprintf(
-            '<a href="play.php?id=%s%s" 
-                class="nav-button next-button" 
-                data-is-last="true" 
-                data-first-audio-id="%s">
-                Iniciar nuevamente
-            </a>',
-            htmlspecialchars($firstAudioId),
-            $serveKey,
-            htmlspecialchars($firstAudioId)
-        );
-    }
-}
-
-$htmlBOTONEs = sprintf('<div class="audio-navigation">%s</div>', implode('', $buttons));
-
-// Incluir el archivo JavaScript externo
-$javascriptCode = '';
-if (!$hideNavButtons) {
-    $javascriptCode = sprintf(
-        <<<'HTML'
-        <script>
-            // Variable global para controlar el autoNext
-            window.autoNextEnabled = true;
-            window.firstAudioId = '%s';
+<main class="main-content">
+    <section class="playlist">
+        <h2 class="audio-title"><?= $audio_title ?></h2>
+        <div class="audio-player-container">
+            <audio id="audioPlayer" controls controlsList="nodownload">
+                <source src="serve.php?file=<?= $audio_file ?>" type="audio/mpeg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
             
-            // Configurar volumen inicial
+            <div class="audio-navigation">
+                <a href="index.php" class="nav-button back-button" title="Volver a la lista completa">
+                    ← Volver
+                </a>
+                
+                <!-- Navegación: visible solo en modo admin -->
+                <?php if ($prevAudio): ?>
+                <a href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>" 
+                    class="nav-button prev-button admin-only">
+                    ⟵ Anterior
+                </a>
+                <?php endif; ?>
+                
+                <?php if ($nextAudio): ?>
+                <a href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>" 
+                    class="nav-button next-button admin-only"
+                    data-is-last="false"
+                    data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
+                    Siguiente ⟶
+                </a>
+                <?php else: ?>
+                <a href="play.php?id=<?= htmlspecialchars($firstAudioId) ?>" 
+                    class="nav-button next-button admin-only"
+                    data-is-last="true"
+                    data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
+                    Iniciar nuevamente
+                </a>
+                <?php endif; ?>
+            </div>
+        </div>
+        
+        <script>
+            window.autoNextEnabled = true;
+            window.firstAudioId = '<?= htmlspecialchars($firstAudioId) ?>';
+            
             document.addEventListener('DOMContentLoaded', function() {
-                const audio = document.getElementById('audioPlayer');
-                audio.volume = 1.0; // Volumen máximo al inicio
+                var audio = document.getElementById('audioPlayer');
+                audio.volume = 1.0;
             });
         </script>
         <script src="jss/js.js"></script>
-        HTML,
-        htmlspecialchars($firstAudioId)
-    );
-}
+    </section>
+</main>
 
-// Construcción del HTML final
-$htmlMAIN = sprintf(
-    <<<'HTML'
-    <main class="main-content">
-        <section class="playlist">
-            <h2 class="audio-title">%s</h2>
-            <div class="audio-player-container">
-                <audio id="audioPlayer" controls controlsList="nodownload">
-                    <source src="serve.php?file=%s%s" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-                %s
-            </div>
-            %s
-            %s
-        </section>
-    </main>
-    HTML,
-    $audio_title,
-    $audio_file,
-    $serveKey,
-    (!$hideNavButtons ? '<div id="autoplayMessage" class="autoplay-message"><p>La reproducción automática está bloqueada. Por favor haz clic en el botón de play.</p></div>' : ''),
-    $htmlBOTONEs,
-    $javascriptCode
-);
-
-// Salida final
-include 'incs/header.php';
-echo $htmlMAIN;
-include 'incs/footer.php';
-?>
+<?php include 'incs/footer.php'; ?>
