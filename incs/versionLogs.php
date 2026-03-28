@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.3' => [
+        'date' => '2026-03-28',
+        'changes' => [
+            'Deploy automático: webhook GitHub → deploy.php → git pull.',
+            'Seguridad: NGINX restringe deploy.php a IPs de GitHub.',
+            'Documentación: hallazgos de acceso al servidor en contexto IA.',
+        ]
+    ],
     '26.2' => [
         'date' => '2026-03-28',
         'changes' => [

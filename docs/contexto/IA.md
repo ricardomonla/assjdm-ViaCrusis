@@ -81,6 +81,25 @@ assjdm-ViaCrusis/
 | PHP-FPM operativo | ✅ |
 | Redirect HTTP→HTTPS | ✅ |
 
+## Acceso al Servidor (Hallazgos)
+
+> **Importante**: SSH directo al LXC con password **no funciona** desde fuera del host Proxmox.
+
+| Método | Funciona | Comando |
+|:---|:---|:---|
+| SSH directo (password) | ❌ | `ssh -p 7022 root@190.114.205.17` — "Permission denied" |
+| SSH directo (LAN) | ❌ | `ssh -p 7022 root@10.0.10.117` — "Permission denied" |
+| Consola Proxmox (web) | ✅ | Desde la interfaz web de Proxmox, contraseña `UTNlarioja00WEB` |
+| **Relay vía srv-pmox3** | ✅ | `ssh root@10.0.10.203 'pct exec 116 -- bash -c "COMANDO"'` |
+
+**Método operativo recomendado (IA/scripts):**
+```bash
+# Acceso con clave pública a srv-pmox3, luego pct exec al LXC
+ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
+```
+
+> `srv-pmox3` (10.0.10.203) acepta clave pública SSH sin contraseña.
+
 ## Pendientes
 
 - [ ] **Seguridad**: Configurar fail2ban y headers de seguridad en NGINX
