@@ -22,7 +22,7 @@ include 'incs/header.php';
                     
                     <!-- Descarga: solo visible en modo admin -->
                     <div class="song-actions admin-only">
-                        <a href="serve.php?file=<?= urlencode($audio['filename']) ?>&key=VCV2026&download=1" download="<?= htmlspecialchars($audio['filename']) ?>">
+                        <a href="serve.php?file=<?= urlencode($audio['filename']) ?>&key=VCBY2026&download=1" download="<?= htmlspecialchars($audio['filename']) ?>">
                             📥
                         </a>
                     </div>

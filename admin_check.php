@@ -12,6 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $key = $_POST['key'] ?? '';
-$valid = ($key === 'VCV2026');
+$valid = ($key === 'VCBY2026');
 
 echo json_encode(['ok' => $valid]);
