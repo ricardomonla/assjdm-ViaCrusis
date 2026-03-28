@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.2' => [
+        'date' => '2026-03-28',
+        'changes' => [
+            'Documentación del proyecto: archivo de contexto IA (docs/contexto/IA.md).',
+            'Ficha de nodo del servidor (docs/hosting/srvv-nginx-rm.md).',
+            'Despliegue en servidor NGINX propio con HTTPS (rmonla.duckdns.org/vcby/).',
+        ]
+    ],
     '26.1' => [
         'date' => '2026-03-27',
         'changes' => [
