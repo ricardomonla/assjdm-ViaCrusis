@@ -47,3 +47,21 @@ function getAudioById($id, $audioFiles) {
     }
     return null;
 }
+
+function getAudioGroups($audioFiles) {
+    $groups = [
+        '0' => ['name' => 'Desfile', 'icon' => '🎭', 'audios' => []],
+        '1' => ['name' => 'La Pasión', 'icon' => '⛪', 'audios' => []],
+        '2' => ['name' => 'Calvario', 'icon' => '✝️', 'audios' => []],
+        '3' => ['name' => 'Crucifixión', 'icon' => '🕊️', 'audios' => []],
+    ];
+    
+    foreach ($audioFiles as $audio) {
+        $prefix = substr($audio['order'], 0, 1);
+        if (isset($groups[$prefix])) {
+            $groups[$prefix]['audios'][] = $audio;
+        }
+    }
+    
+    return $groups;
+}

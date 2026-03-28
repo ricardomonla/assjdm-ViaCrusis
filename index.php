@@ -3,6 +3,7 @@ require 'incs/functions.php';
 require 'incs/versionLogs.php';
 
 $audioFiles = getAudioFiles('media');
+$groups = getAudioGroups($audioFiles);
 $baseURL = getBaseURL();
 include 'incs/header.php';
 ?>
@@ -10,24 +11,31 @@ include 'incs/header.php';
 <main class="main-content">
     <section class="playlist">
         <h3>Lista de Audios</h3>
-        <ul id="song-list">
-            <?php foreach ($audioFiles as $audio): 
-                $isActive = (isset($_GET['id']) && $_GET['id'] === $audio['id']);
-                $audioURL = getBaseURL() . "/play.php?id=" . urlencode($audio['id']) . "&wa=1";
-            ?>
-                <li class="song-item <?= $isActive ? 'active' : '' ?>">
+        
+        <?php foreach ($groups as $key => $group): 
+            if (empty($group['audios'])) continue;
+        ?>
+        <details class="audio-group" <?= $key === '0' ? 'open' : '' ?>>
+            <summary class="group-header">
+                <span class="group-icon"><?= $group['icon'] ?></span>
+                <span class="group-name"><?= htmlspecialchars($group['name']) ?></span>
+                <span class="group-count"><?= count($group['audios']) ?></span>
+            </summary>
+            <ul class="group-list">
+                <?php foreach ($group['audios'] as $audio): 
+                    $audioURL = $baseURL . "/play.php?id=" . urlencode($audio['id']) . "&wa=1";
+                ?>
+                <li class="song-item">
                     <a href="play.php?id=<?= htmlspecialchars($audio['id']) ?>" class="song-link">
                         <?= htmlspecialchars($audio['display_name']) ?>
                     </a>
                     
-                    <!-- Descarga: solo visible en modo admin -->
                     <div class="song-actions admin-only">
                         <a href="serve.php?file=<?= urlencode($audio['filename']) ?>&key=VCBY2026&download=1" download="<?= htmlspecialchars($audio['filename']) ?>">
                             📥
                         </a>
                     </div>
                     
-                    <!-- WhatsApp siempre visible -->
                     <div class="song-actions">
                         <a href="https://wa.me/?text=<?= urlencode($audio['display_name'] . "\n" . $audioURL) ?>" target="_blank">
                             <svg class="icon-whatsapp" viewBox="0 0 24 24" fill="#25D366">
@@ -36,10 +44,11 @@ include 'incs/header.php';
                         </a>
                     </div>
                 </li>
-            <?php endforeach; ?>
-        </ul>
+                <?php endforeach; ?>
+            </ul>
+        </details>
+        <?php endforeach; ?>
     </section>
 </main>
-
 
 <?php include 'incs/footer.php'; ?>
