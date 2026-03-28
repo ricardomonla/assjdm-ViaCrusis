@@ -67,8 +67,8 @@ assjdm-ViaCrusis/
 
 ## Versión Actual
 
-- **Versión**: 26.1 (2026-03-27)
-- **Cambios**: Actualización año 2025→2026, nueva key VCV2026, acceso público sin key
+- **Versión**: 26.4 (2026-03-28)
+- **Cambios**: Fix visual cross-browser, botón admin oculto (5 taps), sesión 30 min
 
 ## Estado del Sitio (2026-03-28)
 
@@ -109,10 +109,12 @@ ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
 
 ## Pendientes
 
+- [x] ~~**Deploy automático**: Webhook GitHub~~ → Plan 01 ✅
+- [x] ~~**Consistencia visual**: Fix cross-browser + admin oculto~~ → Plan 02 ✅
 - [ ] **Seguridad**: Configurar fail2ban y headers de seguridad en NGINX
 - [ ] **Backup**: Configurar vzdump para respaldos automáticos del LXC
 - [ ] **Monitorización**: Integrar sistema de monitoreo
-- [ ] **Diseño**: Modernizar la estética del sitio (actualmente funcional pero básico)
+- [ ] **Diseño**: Modernizar la estética del sitio
 
 ---
 

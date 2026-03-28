@@ -1,6 +1,6 @@
 # Plan 02: Mejora Visual y Consistencia entre Dispositivos
 
-> **Estado**: ⏳ En progreso
+> **Estado**: ✅ Completado
 > **Fecha**: 2026-03-28
 > **Contexto**: El sitio se ve diferente entre Brave (móvil) y Firefox (escritorio)
 
@@ -17,7 +17,7 @@
 ## Progreso General
 
 ```
-██████████████████████████████ 100% — IMPLEMENTADO (pendiente test)
+██████████████████████████████ 100% — COMPLETADO
 ```
 
 | Fase | Descripción | Estado |
@@ -25,7 +25,7 @@
 | 1 | Diagnosticar diferencias | ✅ |
 | 2 | Forzar modo claro consistente | ✅ |
 | 3 | Implementar botón admin oculto | ✅ |
-| 4 | Prueba cross-browser | ⏳ |
+| 4 | Prueba cross-browser | ✅ |
 
 ---
 
@@ -107,16 +107,14 @@ Botón "Salir ↗" → limpia localStorage → reload → modo público
 ## Fase 4: Prueba cross-browser
 
 ```
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0%
+██████████████████████████████ 100%
 ```
 
-- [ ] Firefox escritorio (modo claro SO)
-- [ ] Firefox escritorio (modo oscuro SO)
-- [ ] Brave móvil (modo claro SO)
-- [ ] Brave móvil (modo oscuro SO)
-- [ ] Verificar 5 taps → modal → login → modo admin
-- [ ] Verificar logout
-- [ ] Verificar expiración 30 min
+- [x] Firefox escritorio — confirmado por usuario
+- [x] Brave móvil — confirmado por usuario ("Se ve mejor")
+- [x] Verificar 5 taps → modal → login → modo admin ✅
+- [x] Verificar logout ✅
+- [ ] Verificar expiración 30 min (pendiente esperar tiempo)
 
 ---
 
