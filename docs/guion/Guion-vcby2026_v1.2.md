@@ -1,52 +1,52 @@
 # Guion Teatral — Vía Crucis 2026
-Versión 1.1
+Versión 1.2
 
 > **Nota**: Este guion fue transcrito y etiquetado automáticamente. Los tiempos (timestamps) pertenecen al track de audio original.
 
 
-## Track 000: Desfile Reflección Final
+## Audio 000: Desfile Reflección Final
 
 > No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
 
 ---
 
-## Track 001: Desfile Pueblo
+## Audio 001: Desfile Pueblo
 
 > No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
 
 ---
 
-## Track 002: Desfile Apóstoles
+## Audio 002: Desfile Apóstoles
 
 > No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
 
 ---
 
-## Track 003: Desfile Pilatos y Soldados
+## Audio 003: Desfile Pilatos y Soldados
 
 > No hay texto para transcribir. Por favor, proporciona el texto del audio del Via Crucis para que pueda reescribirlo según las reglas establecidas.
 
 ---
 
-## Track 004: Desfile Curas
+## Audio 004: Desfile Curas
 
 > No hay texto que transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
 
 ---
 
-## Track 005: Desfile Herodes y Bailarinas
+## Audio 005: Desfile Herodes y Bailarinas
 
 > No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
 
 ---
 
-## Track 006: Desfile Diablo Suspenso
+## Audio 006: Desfile Diablo Suspenso
 
 > No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
 
 ---
 
-## Track 101: La entrada de Jesús en Jerusalén
+## Audio 101: La entrada de Jesús en Jerusalén
 
 
 **NARRADOR** `[00:00]`
@@ -84,7 +84,7 @@ Gracias por ver el video.
 
 ---
 
-## Track 102: El Trato de Judas y Caifás
+## Audio 102: El Trato de Judas y Caifás
 
 
 **CAIFÁS** `[00:00]`
@@ -129,7 +129,7 @@ Y si no lo es, habrás contribuido a salvar a Israel de un falso profeta más.
 
 ---
 
-## Track 103: La Última Cena Adeje16-Aguas-Monedas
+## Audio 103: La Última Cena Adeje16-Aguas-Monedas
 
 
 **NARRADOR** `[00:00]`
@@ -277,7 +277,7 @@ Gracias por ver el video.
 
 ---
 
-## Track 104: La oración en el Monte de los Olivos
+## Audio 104: La oración en el Monte de los Olivos
 
 
 **NARRADOR** `[00:00]`
@@ -338,7 +338,7 @@ Dame fuerza Señor
 
 ---
 
-## Track 105: La Entrega-MúsicaFinal
+## Audio 105: La Entrega-MúsicaFinal
 
 
 **JESÚS** `[00:00]`
@@ -362,7 +362,7 @@ la hora del poder de las tinieblas
 
 ---
 
-## Track 106: Las negaciones de Pedro-MusicaAlInicio
+## Audio 106: Las negaciones de Pedro-MusicaAlInicio
 
 
 **PUEBLO** `[00:00]`
@@ -402,7 +402,7 @@ Llora amargamente
 
 ---
 
-## Track 107: El juicio en el Sanedrín
+## Audio 107: El juicio en el Sanedrín
 
 
 **NARRADOR** `[00:00]`
@@ -469,7 +469,7 @@ en cuyas manos está la suprema autoridad de juzgar y condenar
 
 ---
 
-## Track 108: La Culpa de Judas
+## Audio 108: La Culpa de Judas
 
 
 **JUDAS** `[00:00]`
@@ -500,7 +500,7 @@ No tengo valor para seguir.
 
 ---
 
-## Track 109: El lavado de las manos de Pilatos
+## Audio 109: El lavado de las manos de Pilatos
 
 
 **SOLDADO** `[00:00]`
@@ -643,7 +643,7 @@ Esa es la única verdad que conozco.
 
 ---
 
-## Track 110: Jesús Ante Herodes
+## Audio 110: Jesús Ante Herodes
 
 
 **NARRADOR** `[00:30]` ---???---
@@ -735,7 +735,7 @@ comiendo. ¡Óyelo bien, maldito nazareno!
 
 ---
 
-## Track 111: 1ºE Jesús es condenado a muerte
+## Audio 111: 1ºE Jesús es condenado a muerte
 
 
 **NARRADOR** `[00:00]`
@@ -844,7 +844,7 @@ Gracias por ver el video.
 
 ---
 
-## Track 201: 2ºE Jesús carga con la cruz
+## Audio 201: 2ºE Jesús carga con la cruz
 
 
 **NARRADOR** `[00:00]`
@@ -859,7 +859,7 @@ la gente lo insultaba y sus captores lo maltrataban.
 
 ---
 
-## Track 202: 3ºE Jesús cae por primera vez
+## Audio 202: 3ºE Jesús cae por primera vez
 
 
 **NARRADOR** `[00:00]`
@@ -875,7 +875,7 @@ Más cuando la humanidad representada en la cruz quería aplastar y querer hacer
 
 ---
 
-## Track 203: 4ºE Jesús se encuentra con su madre
+## Audio 203: 4ºE Jesús se encuentra con su madre
 
 
 **NARRADOR** `[00:00]`
@@ -899,7 +899,7 @@ est
 
 ---
 
-## Track 204: 5ºE Simón de Cirene ayuda a Jesús a llevar la cruz
+## Audio 204: 5ºE Simón de Cirene ayuda a Jesús a llevar la cruz
 
 
 **NARRADOR** `[00:00]`
@@ -913,7 +913,7 @@ así que echaron mano de un hombre que se encontraron en el camino.
 
 ---
 
-## Track 205: 6ºE La Verónica enjuga el rostro de Jesús
+## Audio 205: 6ºE La Verónica enjuga el rostro de Jesús
 
 
 **NARRADOR** `[00:00]`
@@ -937,7 +937,7 @@ Más que el rostro que has plasmado en esta sábana, tus palabras han quedado en
 
 ---
 
-## Track 206: 7ºE Jesús cae por segunda vez
+## Audio 206: 7ºE Jesús cae por segunda vez
 
 
 **NARRADOR** `[00:00]`
@@ -951,7 +951,7 @@ hicieron que éste tomara de nuevo su cruz y cargara con su propia culpa.
 
 ---
 
-## Track 207: 8ºE Jesús consuela a las mujeres de Jerusalén
+## Audio 207: 8ºE Jesús consuela a las mujeres de Jerusalén
 
 
 **NARRADOR** `[00:00]`
@@ -979,7 +979,7 @@ Gracias por ver el video.
 
 ---
 
-## Track 301: 9ºE Jesús cae por tercera vez
+## Audio 301: 9ºE Jesús cae por tercera vez
 
 
 **SOLDADO** `[00:00]`
@@ -998,7 +998,7 @@ Mira cómo está
 
 ---
 
-## Track 302: 10ºE Jesús es despojado de sus vestiduras
+## Audio 302: 10ºE Jesús es despojado de sus vestiduras
 
 
 **NARRADOR** `[00:00]`
@@ -1011,7 +1011,7 @@ Vamos, vamos
 
 ---
 
-## Track 303: 11ºE Jesús es clavado en la cruz
+## Audio 303: 11ºE Jesús es clavado en la cruz
 
 
 **NARRADOR** `[00:00]`
@@ -1107,7 +1107,7 @@ Padre, en tus manos encomiendo mi espíritu.
 
 ---
 
-## Track 304: 12ºE Jesús muere en la cruz
+## Audio 304: 12ºE Jesús muere en la cruz
 
 
 **NARRADOR** `[00:00]` --???--
@@ -1119,7 +1119,7 @@ Gracias por ver el video.
 
 ---
 
-## Track 305: 13ºE Jesús es bajado de la cruz y entregado a su madre
+## Audio 305: 13ºE Jesús es bajado de la cruz y entregado a su madre
 
 
 **NARRADOR** `[00:00]`
@@ -1152,7 +1152,7 @@ hijo mío
 
 ---
 
-## Track 306: Jesús es llevado por las calles
+## Audio 306: Jesús es llevado por las calles
 
 
 **MUSICA SAETA** `[00:00]` --???--
@@ -1161,7 +1161,7 @@ Oh, la saeta al cantar ...
 
 ---
 
-## Track 401: 14ºE Jesús es colocado en el sepulcro
+## Audio 401: 14ºE Jesús es colocado en el sepulcro
 
 
 **NARRADOR** `[00:00]`
@@ -1176,7 +1176,7 @@ Gracias por ver el video.
 
 ---
 
-## Track 402: El Sepulcro
+## Audio 402: El Sepulcro
 
 
 **NARRADOR** `[00:00]`
@@ -1205,7 +1205,7 @@ Y dijeron, ¿por qué buscan a los vivos entre los muertos?
 
 ---
 
-## Track 403: La Resurrección
+## Audio 403: La Resurrección
 
 
 **NARRADOR** `[00:00]` --???--

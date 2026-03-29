@@ -96,12 +96,12 @@ function parseMarkdownToVellum(markdown) {
             continue;
         }
 
-        // --- Tracks (Escenas) ---
+        // --- Audio Tracks (Escenas) ---
         if (line.startsWith('## ')) {
             closeTrackBlock();
             
-            // Expected '## Track 000: Desfile...'
-            let trackMatch = line.match(/Track\s+(\d{3})/i);
+            // Expected '## Audio 000: Desfile...'
+            let trackMatch = line.match(/Audio\s+(\d{3})/i);
             let trackId = trackMatch ? trackMatch[1] : null;
             
             // Detectar cambio de grupo principal
@@ -113,7 +113,7 @@ function parseMarkdownToVellum(markdown) {
                     let groupDef = GROUPS[groupPrefix] || {name: 'Otros', icon: '📁'};
                     
                     html += `
-                    <details class="group-details mb-6" ${groupPrefix === '0' || groupPrefix === '1' ? 'open' : ''}>
+                    <details class="group-details mb-6">
                         <summary class="group-summary flex items-center gap-3 p-3 bg-[#e2e3d9] font-bold text-lg uppercase tracking-wider cursor-pointer rounded-t hover:bg-[#d9dbcf] transition-all">
                             <span>${groupDef.icon}</span> ${groupDef.name}
                         </summary>
@@ -128,7 +128,7 @@ function parseMarkdownToVellum(markdown) {
             // Iniciar Acordeón de Track
             let trackName = line.replace(/^##\s*/, '').trim();
             html += `
-            <details class="track-details mb-4 border border-[#e2e3d9] rounded" open>
+            <details class="track-details mb-4 border border-[#e2e3d9] rounded">
                 <summary class="scene-heading bg-white font-bold uppercase tracking-wide cursor-pointer p-3 hover:bg-gray-50 transition-colors flex items-center gap-2">
                     <span class="material-symbols-outlined text-sm opacity-50">movie</span>
                     ${trackName}
@@ -189,5 +189,6 @@ function parseMarkdownToVellum(markdown) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadScript('Guion-vcby2026_v1.1.md');
+    // Cargar versión 1.2
+    loadScript('Guion-vcby2026_v1.2.md');
 });
