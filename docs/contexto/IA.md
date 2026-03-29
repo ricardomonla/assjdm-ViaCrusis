@@ -11,6 +11,13 @@ Aplicación web PHP para la gestión y reproducción de audios del Via Crucis de
 - **Sitio**: `https://rmonla.duckdns.org/vcby/`
 - **Repositorio**: `ricardomonla/assjdm-ViaCrusis`
 
+## 3. Normas de Interfaz (Frontend y Herramientas UI)
+
+- **Estética Global**: El sitio web principal y los paneles paralelos deben mantener coherencia visual (Colores cálidos, tipografía legible).
+- **Formatos Ligeros**: Priorizar Vanilla Script y CSS Grid/Flexbox sin anclarse estrictamente a compilaciones pesadas para herramientas internas. El uso de `Tailwind CDN` se permite para herramientas veloces.
+- **Jerarquización del Audio/Guion**: Los audios o bloques de guion se estructuran en Grupos según su primer dígito (0 = Desfile, 1 = La Pasión, 2 = Calvario, 3 = Crucifixión, 4 = Resurrección). Siempre usar la etiqueta nativa `<details>` o acordeones para evitar el cansancio visual masivo.
+- **Edición Rápida (In-Place)**: Aplicaciones de texto intensivo usan atributos `contenteditable` y escucha vía JavaScript en lugar de formularios tradicionales si es posible.
+
 ## Infraestructura de Hosting
 
 | Atributo | Valor |

@@ -72,10 +72,11 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 - [x] Mapear los nombres en mayúscula a los bordes y márgenes definidos para personajes en formato de guion.
 - [x] Parsear `> ` o notas de bloque como *Direction Blocks* o *Action Blocks*.
 - [x] Procesar metadatos (ej: IDs `[L1]`, timestamps `[01:10]`) para renderizarlos en un color atenuado (opacity) o como "parenthetical notes" debajo del nombre del personaje.
+- [x] **Agrupación en Acordeones**: Detectar estructuras como `## Track XXX` para agrupar visualmente el contenido en menús desplegables (`<details>`), replicando la estructura organizativa (Desfile, Pasión, Calvario, etc.) del sitio principal `index.php`.
 
 **Notas/Hallazgos**:
 - Se creó `js/parser.js` integrando Vanilla JS con `fetch` para procesar nativamente en el navegador. 
-- Filtra eficientemente delimitadores como `---???---`, procesa Timestamps transformándolos en notas parentéticas `(00:10)`, y gestiona las jerarquías asumiendo que el texto huérfano es "Acción" y el texto dentro de tags de presencias `**` es Diálogo.
+- Filtra eficientemente delimitadores, anida dinámicamente Escenas (Tracks) dentro de Grupos Padre mediante extracción del primer dígito (`0` = Desfile, `1` = Pasión), e implementa HTML5 `<details>` para organizar scripts gigantes sin sobrecargar visualmente el Vellum canvas.
 
 ---
 
