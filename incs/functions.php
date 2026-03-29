@@ -54,6 +54,7 @@ function getAudioGroups($audioFiles) {
         '1' => ['name' => 'La Pasión', 'icon' => '⛪', 'audios' => []],
         '2' => ['name' => 'Calvario', 'icon' => '✝️', 'audios' => []],
         '3' => ['name' => 'Crucifixión', 'icon' => '🕊️', 'audios' => []],
+        '4' => ['name' => 'La Resurrección', 'icon' => '🌅', 'audios' => []],
     ];
     
     foreach ($audioFiles as $audio) {

@@ -47,7 +47,7 @@ assjdm-ViaCrusis/
 │   └── kerberos.php   # Protección de directorio
 ├── jss/
 │   └── js.js          # JavaScript (autoplay, navegación)
-├── media/             # 34 archivos MP3 (000-309)
+├── media/             # 34 archivos MP3 (000-403)
 ├── tools/             # Scripts de mantenimiento e Inteligencia Artificial
 │   ├── api_key_rotator/ # Gestor Ruby de encriptación (LLMs y candados)
 │   ├── etiquetar_personajes.py # IA local
@@ -80,7 +80,7 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Funcionalidades
 
-1. **Lista de audios** — Muestra los 34 tracks ordenados por número (000-309)
+1. **Lista de audios** — Muestra los 34 tracks ordenados por número (000-403)
 2. **Reproductor** — Página individual por track con controles HTML5
 3. **Compartir WhatsApp** — Botón en cada track para enviar enlace + título
 4. **Acceso con clave** — `?key=VCV2026` habilita descarga y navegación entre tracks

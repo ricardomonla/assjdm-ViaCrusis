@@ -81,9 +81,13 @@
 | 304 | 12ºE Jesús muere en la cruz | |
 | 305 | 13ºE Jesús bajado de la cruz | |
 | 306 | Jesús es llevado por las calles | |
-| 307 | 14ºE Jesús en el sepulcro | |
-| 308 | El Sepulcro | |
-| 309 | La Resurrección | |
+
+### La Resurrección — 4XX
+| # | Archivo | Escena |
+|:---|:---|:---|
+| 401 | 14ºE Jesús en el sepulcro | |
+| 402 | El Sepulcro | |
+| 403 | La Resurrección | |
 
 ---
 
