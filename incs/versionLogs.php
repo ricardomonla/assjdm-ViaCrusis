@@ -5,9 +5,9 @@ $versionLogs = [
         'changes' => [
             'IA: Transcripción automática de 34 audios y etiquetado de 18 personajes con Groq (Llama 3.3).',
             'Gestor: Nuevo sistema `api_key_rotator` con encriptación AES-256 rotativo para evitar límites de API.',
-            'Guion: Compilación de `docs/guion/Guion-vcby2026_v1.1.md` primera versión unificada.',
+            'Guion: Generación de v1.0 por la IA, seguida de revisión y corrección humana para publicar `Guion-vcby2026_v1.1.md`.',
             'Documentación: Creación del `personajes.md` detallando las intervenciones por escena.',
-            'Update: Reorganización del README y limpieza del repositorio.'
+            'Update: Inclusión de nuevo borrador y reorganización en el README principal.'
         ]
     ],
     '26.4' => [
