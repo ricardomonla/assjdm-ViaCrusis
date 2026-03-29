@@ -103,10 +103,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function visualFlash(el) {
-        // Expand details if closed so user sees the change
-        const parentDetail = el.closest('details');
-        if (parentDetail && !parentDetail.open) parentDetail.open = true;
+        // Expandir TODOS los acordeones padre (Escena y Grupo) si están cerrados
+        let currentElement = el.parentElement;
+        while(currentElement) {
+            if (currentElement.tagName === 'DETAILS' && !currentElement.open) {
+                currentElement.open = true;
+            }
+            currentElement = currentElement.parentElement;
+        }
 
+        // Centralizar la pantalla en el cambio
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Ejecutar destello amarillo
         el.classList.add('bg-yellow-200', 'transition-colors', 'duration-300');
         setTimeout(() => el.classList.remove('bg-yellow-200'), 500);
     }
