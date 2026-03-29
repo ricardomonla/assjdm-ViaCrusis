@@ -6,43 +6,43 @@ Versión 1.2
 
 ## Audio 000: Desfile Reflección Final
 
-> No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
+> No hay texto para transcribir. Toca 2 veces para escribir uno.
 
 ---
 
 ## Audio 001: Desfile Pueblo
 
-> No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
+> No hay texto para transcribir. Toca 2 veces para escribir uno.
 
 ---
 
 ## Audio 002: Desfile Apóstoles
 
-> No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
+> No hay texto para transcribir. Toca 2 veces para escribir uno.
 
 ---
 
 ## Audio 003: Desfile Pilatos y Soldados
 
-> No hay texto para transcribir. Por favor, proporciona el texto del audio del Via Crucis para que pueda reescribirlo según las reglas establecidas.
+> No hay texto para transcribir. Toca 2 veces para escribir uno.
 
 ---
 
 ## Audio 004: Desfile Curas
 
-> No hay texto que transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
+> No hay texto para transcribir. Toca 2 veces para escribir uno.
 
 ---
 
 ## Audio 005: Desfile Herodes y Bailarinas
 
-> No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
+> No hay texto para transcribir. Toca 2 veces para escribir uno.
 
 ---
 
 ## Audio 006: Desfile Diablo Suspenso
 
-> No hay texto para transcribir. Por favor, proporciona la transcripción del audio del Via Crucis para que pueda asignar cada línea de texto al personaje correspondiente.
+> No hay texto para transcribir. Toca 2 veces para escribir uno.
 
 ---
 
