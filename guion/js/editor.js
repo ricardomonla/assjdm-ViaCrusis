@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
             mdParts.push("");
             
             // Reconstruir Título
-            const sceneHeadingSpan = track.querySelector('span.scene-heading');
+            const sceneHeadingSpan = track.querySelector('span.track-title-text');
             mdParts.push(`## ${sceneHeadingSpan.innerText.trim()}`);
             mdParts.push("");
             
