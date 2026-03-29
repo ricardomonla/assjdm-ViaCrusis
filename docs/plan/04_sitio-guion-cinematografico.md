@@ -19,6 +19,7 @@
 | 3 | Parseo de Datos (Consumir Guion del Plan 03) | ✅ |
 | 4 | Persistencia y Exportación Inversa (DOM to MD) | ✅ |
 | 5 | Memoria de Edición (Deshacer/Rehacer Global) | ✅ |
+| 6 | Bitácora de Versiones y ChangeLogs Aislados | ✅ |
 
 ---
 
@@ -107,6 +108,18 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 
 **Notas/Hallazgos**:
 - Añadido con éxito. El motor ahora se comporta como una verdadera herramienta robusta de guionística. Permite rectificar borrados accidentales de grandes bloques de monólogos y volver atrás o adelante ilimitadamente mientras dure la sesión.
+
+## Fase 6: Bitácora de Versiones
+
+```text
+██████████████████████████████ 100%
+```
+
+- [x] Crear un equivalente a `incs/versionLogs.php` pero aislado en `docs/guion/incs/versionLogs.php`.
+- [x] Injectar y renderizar dinámicamente el hash local (`$latestGuionVersion`) junto al título en el nav superior de `index.php`.
+
+**Notas/Hallazgos**:
+- Añadido con éxito. Protege el ecosistema del Reproductor Web original manteniéndolos como submódulos lógicamente separados (El Main corre en versión `26.x` y el Guión Cinematográfico escala semánticamente desde `1.x`).
 
 ---
 

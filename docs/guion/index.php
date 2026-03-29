@@ -1,5 +1,6 @@
+<?php require_once 'incs/versionLogs.php'; ?>
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html class="light" lang="es">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -42,7 +43,7 @@
     <header class="fixed top-0 w-full z-50 bg-[#fbf9f4]/80 backdrop-blur-md flex justify-between items-center px-6 h-16 w-full border-b border-[#f5f4ed]">
         <div class="flex items-center gap-4">
             <h1 class="font-headline font-bold text-lg text-[#2D2D2D] uppercase tracking-widest">
-                Via Crucis - Editor Guion
+                Via Crucis - Editor Guion <span class="text-xs text-gray-400 font-normal normal-case tracking-normal ml-2 hover:text-blue-500 cursor-pointer" title="Ver Historial de Cambios">v<?= htmlspecialchars($latestGuionVersion) ?></span>
             </h1>
         </div>
         <div class="flex items-center gap-4">
