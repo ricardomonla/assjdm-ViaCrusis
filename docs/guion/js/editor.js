@@ -104,20 +104,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function visualFlash(el) {
         // Expandir TODOS los acordeones padre (Escena y Grupo) si están cerrados
-        let currentElement = el.parentElement;
-        while(currentElement) {
-            if (currentElement.tagName === 'DETAILS' && !currentElement.open) {
-                currentElement.open = true;
+        let currentElement = el;
+        while (currentElement) {
+            const parentDetail = currentElement.closest('details');
+            if (parentDetail) {
+                if (!parentDetail.open) {
+                    parentDetail.open = true;
+                }
+                currentElement = parentDetail.parentElement; // Subir al siguiente ancestro
+            } else {
+                break;
             }
-            currentElement = currentElement.parentElement;
         }
 
-        // Centralizar la pantalla en el cambio
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Centralizar la pantalla en el cambio (con un leve delay para permitir al DOM renderizar la apertura)
+        setTimeout(() => {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.classList.add('bg-yellow-200', 'transition-colors', 'duration-300');
+        }, 50);
 
-        // Ejecutar destello amarillo
-        el.classList.add('bg-yellow-200', 'transition-colors', 'duration-300');
-        setTimeout(() => el.classList.remove('bg-yellow-200'), 500);
+        setTimeout(() => el.classList.remove('bg-yellow-200'), 550);
     }
 
     // Teclas Globales
