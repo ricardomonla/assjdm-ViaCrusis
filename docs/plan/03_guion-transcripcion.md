@@ -121,7 +121,7 @@
 - [x] Transcribir La Pasión — 1XX (11 audios)
 - [x] Transcribir Calvario — 2XX (7 audios)
 - [x] Transcribir Crucifixión — 3XX (9 audios)
-- [x] Guardar transcripciones en `docs/guion/transcripciones/NNN_nombre.txt`
+- [x] Guardar transcripciones en `guion/transcripciones/NNN_nombre.txt`
 
 **Output esperado por archivo**:
 ```
@@ -130,7 +130,7 @@
 
 **Notas/Hallazgos**:
 - Se toparon límites de Rate Limit (HTTP 429) tras ~30 archivos. 
-- Se solventó usando pausas automáticas, tras lo cual se lograron las 34 transcripciones satisfactoriamente con 0 errores en `docs/guion/transcripciones/`.
+- Se solventó usando pausas automáticas, tras lo cual se lograron las 34 transcripciones satisfactoriamente con 0 errores en `guion/transcripciones/`.
 
 ---
 
@@ -143,13 +143,13 @@
 - [x] Revisar transcripciones y etiquetar personajes
 - [x] Crear lista de personajes con sus apariciones
 - [x] Verificar continuidad de escenas entre audios
-- [x] Generar `docs/guion/personajes.md`
+- [x] Generar `guion/personajes.md`
 
 **Personajes esperados**:
 Narrador, Jesús, María, Pedro, Judas, Pilatos, Herodes, Caifás, Simón de Cirene, Verónica...
 
 **Notas/Hallazgos**:
-- Se generaron con éxito los 34 txt etiquetados en `docs/guion/etiquetados/`.
+- Se generaron con éxito los 34 txt etiquetados en `guion/etiquetados/`.
 - Se compiló con un script unificado las apariciones de cada personaje, listando exitosamente 18 entidades en la tabla de personajes final.
 
 **Herramienta de Automatización**: Se utilizará `tools/etiquetar_personajes.py` el cual delega la petición a la IA usando el gestor transversal de APIs seguro del repositorio (Llama3-70b con rotación automática).
@@ -165,7 +165,7 @@ Narrador, Jesús, María, Pedro, Judas, Pilatos, Herodes, Caifás, Simón de Cir
 - [x] Compilar todas las transcripciones en orden
 - [x] Formatear como guion teatral (personaje: diálogo)
 - [x] Agregar acotaciones de escena (música, efectos, acciones)
-- [x] Generar `docs/guion/guion-viacrusis-2026.md`
+- [x] Generar `guion/guion-viacrusis-2026.md`
 - [x] Revisión final
 
 **Formato del guion**:
@@ -192,10 +192,10 @@ La paz sea con ustedes...
 
 | Archivo | Descripción |
 |:---|:---:|
-| `docs/guion/transcripciones/*.txt` | 34 transcripciones individuales (crudo) |
-| `docs/guion/etiquetados/*.txt` | 34 transcripciones (etiquetado IA) |
-| `docs/guion/personajes.md` | Lista de personajes y apariciones |
-| `docs/guion/guion-viacrusis-2026.md` | Guion final completo |
+| `guion/transcripciones/*.txt` | 34 transcripciones individuales (crudo) |
+| `guion/etiquetados/*.txt` | 34 transcripciones (etiquetado IA) |
+| `guion/personajes.md` | Lista de personajes y apariciones |
+| `guion/guion-viacrusis-2026.md` | Guion final completo |
 
 ## Requisitos
 

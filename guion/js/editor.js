@@ -1,4 +1,4 @@
-// docs/guion/js/editor.js
+// guion/js/editor.js
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("script-canvas");

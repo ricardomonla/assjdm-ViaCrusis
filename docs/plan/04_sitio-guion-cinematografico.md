@@ -2,7 +2,7 @@
 
 > **Estado**: ⏳ En progreso
 > **Fecha**: 2026-03-29
-> **Servidor**: srvv-nginx-rm (Ruta: `/vcby/docs/guion`)
+> **Servidor**: srvv-nginx-rm (Ruta: `/vcby/guion`)
 
 ---
 
@@ -25,7 +25,7 @@
 
 ## Objetivo
 
-Desarrollar un sub-sitio ligero alojado en el directorio `docs/guion/` que consuma e interprete los guiones transcritos producidos durante el Plan 03 (`docs/guion/guion-viacrusis-2026.md` o similares). 
+Desarrollar un sub-sitio ligero alojado en el directorio `guion/` que consuma e interprete los guiones transcritos producidos durante el Plan 03 (`guion/guion-viacrusis-2026.md` o similares). 
 Este sub-sitio debe renderizar el texto con el formato visual clásico de un **guion cinematográfico o teatral** (fuente monospace, nombres de personajes centrados, diálogos con sangrías estrictas). 
 
 Debe incorporar características avanzadas y muy rápidas de edición in-place (WYSIWYG): al hacer doble clic en cualquier bloque de parlamento, escena o personaje, dicho bloque se vuelve editable inmediatamente sin cambiar de pantalla. Esto permite corregir el texto "en tiempo real" apreciando exactamente cómo se ve en el producto final. Al salir del bloque (perder el foco), retorna de forma transparente a su modo únicamente visual.
@@ -53,13 +53,13 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 ██████████████████████████████ 100%
 ```
 
-- [x] Construir los archivos base (`docs/guion/index.html` o `.php`).
+- [x] Construir los archivos base (`guion/index.html` o `.php`).
 - [x] Implementar lógica Vanilla JS para interceptar eventos `dblclick` en los contenedores del guion.
 - [x] Habilitar el atributo `contenteditable="true"` dinámicamente, asignando el foco al texto seleccionado.
 - [x] Capturar el evento `blur` (o la tecla `Escape`) para terminar la edición, repintando el cambio y removiendo el modo editable.
 
 **Notas/Hallazgos**:
-- Se generaron `docs/guion/index.php`, `docs/guion/css/style.css` y `docs/guion/js/editor.js`. 
+- Se generaron `guion/index.php`, `guion/css/style.css` y `guion/js/editor.js`. 
 - El sistema de In-Place Editing rastrea elementos válidos (scene-heading, dialogue, etc), manipula the Selection Range para enfocar al final de la línea sutilmente al hacer doble-click, y soporta guardado por "Blur" y cancelación por "Escape".
 
 ---
@@ -70,7 +70,7 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 ██████████████████████████████ 100%
 ```
 
-- [x] Crear el parser (vía `parser.js`) para captar el Markdown del resultado del Plan 03 (ej. `docs/guion/guion-viacrusis-2026.md`).
+- [x] Crear el parser (vía `parser.js`) para captar el Markdown del resultado del Plan 03 (ej. `guion/guion-viacrusis-2026.md`).
 - [x] Mapear los nombres en mayúscula a los bordes y márgenes definidos para personajes en formato de guion.
 - [x] Parsear `> ` o notas de bloque como *Direction Blocks* o *Action Blocks*.
 - [x] Procesar metadatos (ej: IDs `[L1]`, timestamps `[01:10]`) para renderizarlos en un color atenuado (opacity) o como "parenthetical notes" debajo del nombre del personaje.
@@ -115,7 +115,7 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 ██████████████████████████████ 100%
 ```
 
-- [x] Crear un equivalente a `incs/versionLogs.php` pero aislado en `docs/guion/incs/versionLogs.php`.
+- [x] Crear un equivalente a `incs/versionLogs.php` pero aislado en `guion/incs/versionLogs.php`.
 - [x] Injectar y renderizar dinámicamente el hash local (`$latestGuionVersion`) junto al título en el nav superior de `index.php`.
 
 **Notas/Hallazgos**:
@@ -128,14 +128,14 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 | Archivo | Ubicación | Estado |
 |:---|:---|:---|
 | `docs/plan/04_sitio-guion-cinematografico.md` | `docs/plan/` | ⏳ |
-| `index.html` / `index.php` | `docs/guion/` | ✅ |
-| `editor.js` | `docs/guion/js/` | ✅ |
-| `parser.js` | `docs/guion/js/` | ✅ |
-| `script_style.css` | `docs/guion/css/` | ✅ |
+| `index.html` / `index.php` | `guion/` | ✅ |
+| `editor.js` | `guion/js/` | ✅ |
+| `parser.js` | `guion/js/` | ✅ |
+| `script_style.css` | `guion/css/` | ✅ |
 
 ## Seguridad
 - Proteger con Kerberos/sesión en caso de estar expuesto en NGINX, limitando quién puede sobrescribir el guion madre si se habilita el autoguardado PHP.
 
 ## Rollback
-- Eliminar el cliente HTML/JS de `docs/guion/` para restaurar.
+- Eliminar el cliente HTML/JS de `guion/` para restaurar.
 - Reestablecer el `guion-viacrusis-2026.md` desde una versión anterior del git commit si el autoguardado fue destructivo.

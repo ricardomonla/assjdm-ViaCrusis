@@ -55,7 +55,7 @@ Los archivos están nombrados de la siguiente manera:
 
 ### Guiones
 
-Los guiones están en formato Markdown y se encuentran en la carpeta `docs/guion/`.
+Los guiones están en formato Markdown y se encuentran en la carpeta `guion/`.
 - `Guion-vcby2026_v1.1.md`: Versión 1.1 del guion.
 - `Guion-vcby2026_v1.2.md`: Versión 1.2 del guion.
 

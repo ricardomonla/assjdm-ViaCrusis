@@ -17,7 +17,7 @@ Aplicación web PHP para la gestión y reproducción de audios del Via Crucis de
 - **Formatos Ligeros**: Priorizar Vanilla Script y CSS Grid/Flexbox sin anclarse estrictamente a compilaciones pesadas para herramientas internas. El uso de `Tailwind CDN` se permite para herramientas veloces.
 - **Jerarquización del Audio/Guion**: Los audios o bloques de guion se estructuran en Grupos según su primer dígito (0 = Desfile, 1 = La Pasión, 2 = Calvario, 3 = Crucifixión, 4 = Resurrección). Siempre usar la etiqueta nativa `<details>` o acordeones para evitar el cansancio visual masivo.
 - **Edición Rápida (In-Place)**: Aplicaciones de texto intensivo usan atributos `contenteditable` y escucha vía JavaScript en lugar de formularios tradicionales si es posible.
-- **Versionado Múltiple y Aislado**: Los sub-sitios internos (como `/docs/guion`) deben manejar su propia bitácora de versiones cronológicas (`incs/versionLogs.php` local), evolucionando su semántica independientemente del sitio principal para proteger la estabilidad.
+- **Versionado Múltiple y Aislado**: Los sub-sitios internos (como `/guion`) deben manejar su propia bitácora de versiones cronológicas (`incs/versionLogs.php` local), evolucionando su semántica independientemente del sitio principal para proteger la estabilidad.
 
 ## Infraestructura de Hosting
 

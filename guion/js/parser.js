@@ -1,4 +1,4 @@
-// docs/guion/js/parser.js
+// guion/js/parser.js
 
 const GROUPS = {
     '0': { name: 'Desfile', icon: '🎭' },
