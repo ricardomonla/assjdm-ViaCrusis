@@ -1161,7 +1161,7 @@ Oh, la saeta al cantar ...
 
 ---
 
-## Track 307: 14ºE Jesús es colocado en el sepulcro
+## Track 401: 14ºE Jesús es colocado en el sepulcro
 
 
 **NARRADOR** `[00:00]`
@@ -1176,7 +1176,7 @@ Gracias por ver el video.
 
 ---
 
-## Track 308: El Sepulcro
+## Track 402: El Sepulcro
 
 
 **NARRADOR** `[00:00]`
@@ -1205,7 +1205,7 @@ Y dijeron, ¿por qué buscan a los vivos entre los muertos?
 
 ---
 
-## Track 309: La Resurección
+## Track 403: La Resurrección
 
 
 **NARRADOR** `[00:00]` --???--
