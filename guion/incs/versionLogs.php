@@ -1,5 +1,12 @@
 <?php
 $guionVersionLogs = [
+    '1.3' => [
+        'date' => '2026-03-29',
+        'changes' => [
+            'feat(UX): Títulos de pistas (Audio Tracks) ahora son editables in-place.',
+            'feat(API): Integradada API Web Share nativa permitiendo enviar el archivo .md final exportado directamente por WhatsApp en el móvil.',
+        ]
+    ],
     '1.2' => [
         'date' => '2026-03-29',
         'changes' => [

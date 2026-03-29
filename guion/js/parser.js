@@ -129,9 +129,9 @@ function parseMarkdownToVellum(markdown) {
             let trackName = line.replace(/^##\s*/, '').trim();
             html += `
             <details class="track-details mb-4 border border-[#e2e3d9] rounded">
-                <summary class="scene-heading bg-white font-bold uppercase tracking-wide cursor-pointer p-3 hover:bg-gray-50 transition-colors flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm opacity-50">movie</span>
-                    ${trackName}
+                <summary class="bg-white font-bold uppercase tracking-wide cursor-pointer p-3 hover:bg-gray-50 transition-colors flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm opacity-50" contenteditable="false">movie</span>
+                    <span class="scene-heading inline-block flex-grow">${trackName}</span>
                 </summary>
                 <div class="track-inner-content p-4 bg-white/60">
             `;

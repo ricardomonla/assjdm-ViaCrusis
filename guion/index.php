@@ -54,8 +54,8 @@
             <button id="btn-redo" title="Rehacer (Ctrl+Y)" disabled class="disabled:opacity-30 disabled:cursor-not-allowed px-3 py-2 bg-[#e2e3d9] text-[#5f5e5e] rounded hover:bg-[#d0d1c4] transition-all shadow-sm mr-2">
                 <span class="material-symbols-outlined text-sm align-middle">redo</span>
             </button>
-            <button id="btn-export" class="px-4 py-2 bg-primary text-on-primary font-label text-xs uppercase tracking-widest font-bold hover:bg-primary-dim transition-all shadow-sm rounded">
-                Guardar / Exportar
+            <button id="btn-export" title="Compartir a WhatsApp / Exportar" class="px-4 py-2 bg-primary text-on-primary font-label text-xs uppercase tracking-widest font-bold hover:bg-primary-dim transition-all shadow-sm rounded flex items-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">share</span> Compartir (.md)
             </button>
         </div>
     </header>

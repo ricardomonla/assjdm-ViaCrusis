@@ -20,6 +20,7 @@
 | 4 | Persistencia y Exportación Inversa (DOM to MD) | ✅ |
 | 5 | Memoria de Edición (Deshacer/Rehacer Global) | ✅ |
 | 6 | Bitácora de Versiones y ChangeLogs Aislados | ✅ |
+| 7 | API Web Share a WhatsApp y Nombres Editables | ✅ |
 
 ---
 
@@ -120,6 +121,19 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 
 **Notas/Hallazgos**:
 - Añadido con éxito. Protege el ecosistema del Reproductor Web original manteniéndolos como submódulos lógicamente separados (El Main corre en versión `26.x` y el Guión Cinematográfico escala semánticamente desde `1.x`).
+
+## Fase 7: API Web Share (WhatsApp) y Títulos Editables
+
+```text
+██████████████████████████████ 100%
+```
+
+- [x] Aislar los Span HTML en `parser.js` de los iconos Material Design para hacer compatibles los nombres de Escena (ej. "Audio 000") con el WYSIWYG del editor in-place.
+- [x] Cambiar diseño y botones de Exportación plana hacia Exportación OS Nivel (`navigator.share()`).
+- [x] Transmitir vía intent (Android/IOS) el documento generado `.md` como archivo adjunto directamente a la App de WhatsApp del usuario.
+
+**Notas/Hallazgos**:
+- Añadido con éxito. El navegador del móvil del cliente ahora asume todo el peso social, abriendo automáticamente WhatsApp si pulsan "Compartir (.md)" usando las herramientas nativas de su smartphone. En PC viejas aplica un Fallback tradicional de autodescarga.
 
 ---
 

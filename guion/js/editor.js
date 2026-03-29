@@ -151,11 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
             mdParts.push("");
             
             // Reconstruir Título
-            const summaryClone = track.querySelector('summary.scene-heading').cloneNode(true);
-            const icon = summaryClone.querySelector('span.material-symbols-outlined');
-            if (icon) icon.remove();
-            
-            mdParts.push(`## ${summaryClone.innerText.trim()}`);
+            const sceneHeadingSpan = track.querySelector('span.scene-heading');
+            mdParts.push(`## ${sceneHeadingSpan.innerText.trim()}`);
             mdParts.push("");
             
             // Reconstruir Contenido Dinámico
@@ -197,22 +194,49 @@ document.addEventListener("DOMContentLoaded", () => {
         return mdParts.join("\n");
     }
 
-    document.getElementById("btn-export").addEventListener("click", () => {
-        const markdownBlob = new Blob([extractScriptMarkdown()], { type: "text/markdown" });
-        const url = URL.createObjectURL(markdownBlob);
+    document.getElementById("btn-export").addEventListener("click", async () => {
+        const timestamp = new Date().getTime();
+        const filename = `Guion-vcby2026_Editado_${timestamp}.md`;
+        const markdownContent = extractScriptMarkdown();
+        const markdownBlob = new Blob([markdownContent], { type: "text/markdown" });
         
+        const file = new File([markdownBlob], filename, { type: 'text/markdown' });
+
+        // Intentar compartir por WhatsApp / App nativa si es posible
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            try {
+                await navigator.share({
+                    title: 'Guion Editado Vía Crucis 2026',
+                    text: 'Te envío la versión editada del guion.',
+                    files: [file]
+                });
+                statusText.innerText = "Sincronizado y Compartido.";
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error("Error compartmentiendo:", err);
+                    triggerDownloadFallback(URL.createObjectURL(markdownBlob), filename);
+                } else {
+                    statusText.innerText = "Envío cancelado.";
+                }
+            }
+        } else {
+            // Fallback en PC antiguos sin Web Share API
+            triggerDownloadFallback(URL.createObjectURL(markdownBlob), filename);
+        }
+        
+        // Reset state
+        statusText.classList.remove("text-orange-500");
+        document.getElementById('btn-export').classList.remove('bg-black', 'pulse-animation');
+    });
+
+    function triggerDownloadFallback(url, filename) {
         const a = document.createElement("a");
         a.href = url;
-        a.download = `Guion-vcby2026_Editado_${new Date().getTime()}.md`;
-        
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        
-        // Reset state
-        statusText.innerText = "Sincronizado. Descarga Iniciada.";
-        statusText.classList.remove("text-orange-500");
-        document.getElementById('btn-export').classList.remove('bg-black', 'pulse-animation');
-    });
+        statusText.innerText = "Descarga Directa (Fallback).";
+    }
 });
