@@ -144,6 +144,14 @@ document.addEventListener("DOMContentLoaded", () => {
         mdParts.push("Versión 1.2 (Exportada desde Script Editor WYSIWYG)");
         mdParts.push("");
 
+        // Snapshot states and recursively Open every branch to unlock .innerText API
+        const allDetails = canvas.querySelectorAll('details');
+        const originalStates = [];
+        allDetails.forEach((d, i) => {
+            originalStates[i] = d.open;
+            d.open = true;
+        });
+
         const tracks = canvas.querySelectorAll('details.track-details');
         
         tracks.forEach(track => {
@@ -191,6 +199,11 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
         
+        // Restore DOM states cleanly
+        allDetails.forEach((d, i) => {
+            d.open = originalStates[i];
+        });
+
         return mdParts.join("\n");
     }
 
