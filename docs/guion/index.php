@@ -47,7 +47,13 @@
         </div>
         <div class="flex items-center gap-4">
             <span id="save-status" class="text-xs text-gray-500 font-label mr-2">Modo Visual...</span>
-            <button id="btn-export" class="px-4 py-2 bg-primary text-on-primary font-label text-xs uppercase tracking-widest font-bold hover:bg-primary-dim transition-all shadow-sm">
+            <button id="btn-undo" title="Deshacer (Ctrl+Z)" disabled class="disabled:opacity-30 disabled:cursor-not-allowed px-3 py-2 bg-[#e2e3d9] text-[#5f5e5e] rounded hover:bg-[#d0d1c4] transition-all shadow-sm">
+                <span class="material-symbols-outlined text-sm align-middle">undo</span>
+            </button>
+            <button id="btn-redo" title="Rehacer (Ctrl+Y)" disabled class="disabled:opacity-30 disabled:cursor-not-allowed px-3 py-2 bg-[#e2e3d9] text-[#5f5e5e] rounded hover:bg-[#d0d1c4] transition-all shadow-sm mr-2">
+                <span class="material-symbols-outlined text-sm align-middle">redo</span>
+            </button>
+            <button id="btn-export" class="px-4 py-2 bg-primary text-on-primary font-label text-xs uppercase tracking-widest font-bold hover:bg-primary-dim transition-all shadow-sm rounded">
                 Guardar / Exportar
             </button>
         </div>

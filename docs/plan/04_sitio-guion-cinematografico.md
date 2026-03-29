@@ -18,6 +18,7 @@
 | 2 | Desarrollo del motor Frontend (Vanilla JS + In-place edit) | ✅ |
 | 3 | Parseo de Datos (Consumir Guion del Plan 03) | ✅ |
 | 4 | Persistencia y Exportación Inversa (DOM to MD) | ✅ |
+| 5 | Memoria de Edición (Deshacer/Rehacer Global) | ✅ |
 
 ---
 
@@ -92,6 +93,22 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 **Notas/Hallazgos**:
 - En lugar de sobrescribir peligrosamente de manera directa el servidor vía PHP en esta primera versión (arriesgando corrupciones del documento base `V1.2`), se desarrolló una arquitectura inversa en `editor.js` (`extractScriptMarkdown`).
 - La función de persistencia "lee" el DOM de `contenteditable` y genera on-the-fly un archivo Markdown plano sin corromper el AST subyacente. Descarga local activada tras clic.
+
+## Fase 5: Memoria de Edición (Undo/Redo)
+
+```text
+██████████████████████████████ 100%
+```
+
+- [x] Agregar variables de entorno locales `undoStack` y `redoStack` al editor JS.
+- [x] Capturar estados transitorios antes (on focus) y después (on blur) de cada intervención. Si los nodos diff varían sustancialmente, inyectar el cambio en la pila lógica.
+- [x] Habilitar Botones visuales en AppBar (`undo`, `redo`) con estados `disabled` dinámicos.
+- [x] Escuchar eventos globales `Ctrl+Z` y `Ctrl+Y` para accionar sobre la pila, haciendo que el nodo implicado parpadee al retroceder en el tiempo.
+
+**Notas/Hallazgos**:
+- Añadido con éxito. El motor ahora se comporta como una verdadera herramienta robusta de guionística. Permite rectificar borrados accidentales de grandes bloques de monólogos y volver atrás o adelante ilimitadamente mientras dure la sesión.
+
+---
 
 ## Resumen de archivos a crear/modificar
 

@@ -3,7 +3,16 @@
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("script-canvas");
     const statusText = document.getElementById("save-status");
+    let undoStack = [];
+    let redoStack = [];
     let isEditing = false;
+
+    function updateActionButtons() {
+        const btnUndo = document.getElementById("btn-undo");
+        const btnRedo = document.getElementById("btn-redo");
+        if (btnUndo) btnUndo.disabled = undoStack.length === 0;
+        if (btnRedo) btnRedo.disabled = redoStack.length === 0;
+    }
 
     // Phase 2: Interceptar Double Clicks para Edición In-Place (WYSIWYG Ligero)
     canvas.addEventListener("dblclick", (e) => {
@@ -16,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function enterEditMode(el) {
-        if(isEditing) return; // Prevent multiple concurrent edits easily
+        if(isEditing) return; // Prevent multiple concurrent edits fácilmente
         isEditing = true;
         
         const originalText = el.innerHTML;
@@ -33,37 +42,85 @@ document.addEventListener("DOMContentLoaded", () => {
         sel.addRange(range);
         el.focus();
 
-        // Salir al perder el foco
-        el.addEventListener("blur", function onBlur() {
+        const onBlur = function() {
+            // Guardar en la pila SI hubo cambio visual sustancial (ignora 'Escape')
+            if (el.innerHTML !== originalText) {
+                undoStack.push({ element: el, oldHtml: originalText, newHtml: el.innerHTML });
+                redoStack = []; // El árbol temporal colapsa ante una nueva rama
+                updateActionButtons();
+            }
             exitEditMode(el);
             el.removeEventListener("blur", onBlur);
-        });
+            el.removeEventListener("keydown", onKeyDown);
+        };
 
-        // Manejar teclas rápidas de salida
-        el.addEventListener("keydown", function onKeyDown(evt) {
-            // Escape = Abortar
+        const onKeyDown = function(evt) {
+            // Escape = Abortar (devuelve texto original y desencadena blur)
             if (evt.key === "Escape") {
                 el.innerHTML = originalText;
-                el.blur(); // Triggers blur which calls exit
+                el.blur(); 
             }
-            // Enter = Guardar si no es un bloque de Acción/Díalogo muy extenso
+            // Enter = Guardar si no es un bloque gigantesco (Action/Díalogo)
             if (evt.key === "Enter" && !el.classList.contains("action-block") && !el.classList.contains("dialogue")) {
                 evt.preventDefault();
                 el.blur();
             }
-        });
+        };
+
+        // Escuchadores
+        el.addEventListener("blur", onBlur);
+        el.addEventListener("keydown", onKeyDown);
     }
 
     function exitEditMode(el) {
         el.setAttribute("contenteditable", "false");
-        statusText.innerText = "Cambios Locales Retenidos (Sin exportar)";
+        statusText.innerText = undoStack.length > 0 ? "Cambios Locales Retenidos" : "Sincronizado. Modo Visual.";
         statusText.classList.remove("text-blue-600");
-        statusText.classList.add("text-orange-500");
+        statusText.classList.add(undoStack.length > 0 ? "text-orange-500" : "text-gray-500");
         isEditing = false;
         
-        // Fase 4 simulación (marcar que el DOM está sucio y debe guardarse)
-        document.getElementById('btn-export').classList.add('bg-black', 'pulse-animation');
+        if (undoStack.length > 0) {
+            document.getElementById('btn-export').classList.add('bg-black', 'pulse-animation');
+        }
     }
+
+    function undo() {
+        if (undoStack.length === 0 || isEditing) return;
+        const action = undoStack.pop();
+        action.element.innerHTML = action.oldHtml;
+        redoStack.push(action);
+        updateActionButtons();
+        visualFlash(action.element);
+    }
+
+    function redo() {
+        if (redoStack.length === 0 || isEditing) return;
+        const action = redoStack.pop();
+        action.element.innerHTML = action.newHtml;
+        undoStack.push(action);
+        updateActionButtons();
+        visualFlash(action.element);
+    }
+
+    function visualFlash(el) {
+        // Expand details if closed so user sees the change
+        const parentDetail = el.closest('details');
+        if (parentDetail && !parentDetail.open) parentDetail.open = true;
+
+        el.classList.add('bg-yellow-200', 'transition-colors', 'duration-300');
+        setTimeout(() => el.classList.remove('bg-yellow-200'), 500);
+    }
+
+    // Teclas Globales
+    document.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key.toLowerCase() === 'z') { e.preventDefault(); undo(); }
+        if (e.ctrlKey && e.key.toLowerCase() === 'y') { e.preventDefault(); redo(); }
+    });
+
+    const btnUndoBtn = document.getElementById("btn-undo");
+    const btnRedoBtn = document.getElementById("btn-redo");
+    if(btnUndoBtn) btnUndoBtn.addEventListener("click", undo);
+    if(btnRedoBtn) btnRedoBtn.addEventListener("click", redo);
 
     // Fase 4: Conversor de AST a Markdown y Descarga Local
     function extractScriptMarkdown() {
