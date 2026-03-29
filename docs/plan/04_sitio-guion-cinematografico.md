@@ -9,14 +9,14 @@
 ## Progreso General
 
 ```text
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░  50% — EN PROGRESO
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░  75% — EN PROGRESO
 ```
 
 | Fase | Descripción | Estado |
 |:---|:---|:---|
 | 1 | Prototipado visual con Stitch (Aspecto Cinematográfico) | ✅ |
 | 2 | Desarrollo del motor Frontend (Vanilla JS + In-place edit) | ✅ |
-| 3 | Parseo de Datos (Consumir Guion del Plan 03) | 📋 |
+| 3 | Parseo de Datos (Consumir Guion del Plan 03) | ✅ |
 | 4 | Persistencia / Guardado de Cambios | 📋 |
 
 ---
@@ -62,20 +62,20 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 
 ---
 
-## Fase 3: Parseo de Datos (Consumir Guion del Plan 03)
+## Fase 3: Parseo de Datos 
 
 ```text
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0%
+██████████████████████████████ 100%
 ```
 
-- [ ] Leer el documento markdown base (por ejemplo `guion-viacrusis-2026.md`) que fue generado por el Plan 03.
-- [ ] Programar un parser (en Vanilla JS del lado del cliente o en PHP si conviene) que traduzca la sintaxis del MD:
-  - Nombres: MAYÚSCULAS o negritas → Div *Personaje*.
-  - Texto entre paréntesis → Div *Acotación*.
-  - Texto restante → Div *Diálogo*.
-- [ ] Montar el DOM aplicando las respectivas clases de diseño a cada nodo de texto.
+- [x] Crear el parser (vía `parser.js`) para captar el Markdown del resultado del Plan 03 (ej. `docs/guion/guion-viacrusis-2026.md`).
+- [x] Mapear los nombres en mayúscula a los bordes y márgenes definidos para personajes en formato de guion.
+- [x] Parsear `> ` o notas de bloque como *Direction Blocks* o *Action Blocks*.
+- [x] Procesar metadatos (ej: IDs `[L1]`, timestamps `[01:10]`) para renderizarlos en un color atenuado (opacity) o como "parenthetical notes" debajo del nombre del personaje.
 
 **Notas/Hallazgos**:
+- Se creó `js/parser.js` integrando Vanilla JS con `fetch` para procesar nativamente en el navegador. 
+- Filtra eficientemente delimitadores como `---???---`, procesa Timestamps transformándolos en notas parentéticas `(00:10)`, y gestiona las jerarquías asumiendo que el texto huérfano es "Acción" y el texto dentro de tags de presencias `**` es Diálogo.
 
 ---
 
@@ -99,6 +99,7 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 | `docs/plan/04_sitio-guion-cinematografico.md` | `docs/plan/` | ⏳ |
 | `index.html` / `index.php` | `docs/guion/` | ✅ |
 | `editor.js` | `docs/guion/js/` | ✅ |
+| `parser.js` | `docs/guion/js/` | ✅ |
 | `script_style.css` | `docs/guion/css/` | ✅ |
 
 ## Seguridad

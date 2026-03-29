@@ -56,30 +56,15 @@
     <!-- Lienzo Papel (Vellum) -->
     <main class="pt-24 pb-32 px-4 md:px-0 flex flex-col items-center min-h-screen">
         <article class="w-full max-w-[850px] bg-white digital-vellum-shadow min-h-[1100px] py-20 px-8 md:px-24 mb-12">
-            <!-- El contenido dinámico va aquí, renderizado en script.js -->
-            <div id="script-canvas" class="font-script text-[14px] leading-relaxed text-on-surface">
-                <!-- Data Placeholder temporal -->
-                <div class="scene-heading mt-8 mb-6 font-bold uppercase tracking-wide cursor-text p-1 hover:bg-gray-50 transition-colors">
-                    EXT. CALVARIO - TARDE
-                </div>
-                <div class="action-block mb-6 cursor-text p-1 hover:bg-gray-50 transition-colors">
-                    El viento sopla fuerte, levantando polvo sobre las cabezas de la muchedumbre.
-                </div>
-                
-                <div class="character-block flex flex-col items-center mt-6">
-                    <div class="w-full flex flex-col items-center group cursor-text p-1 hover:bg-gray-50 transition-colors">
-                        <span class="character-name font-bold uppercase mb-1">NARRADOR</span>
-                        <span class="parenthetical italic text-[13px] mb-1">(con voz sollozante)</span>
-                        <p class="dialogue text-center w-[85%] md:w-[70%]">
-                            Aquí es donde el rey de los Judíos encontraría su destino, en la cima más árida...
-                        </p>
-                    </div>
-                </div>
+            <!-- El contenido dinámico se carga vía parser.js (Markdown) -->
+            <div id="script-canvas" class="font-script text-[14px] leading-relaxed text-on-surface pb-32">
+                <!-- Se inyectará el contenido aquí -->
             </div>
         </article>
     </main>
 
     <!-- Motor JavaScript In-Place -->
     <script src="js/editor.js"></script>
+    <script src="js/parser.js"></script>
 </body>
 </html>
