@@ -65,10 +65,82 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('btn-export').classList.add('bg-black', 'pulse-animation');
     }
 
-    // Botón de exportar
+    // Fase 4: Conversor de AST a Markdown y Descarga Local
+    function extractScriptMarkdown() {
+        let mdParts = [];
+        mdParts.push("# Guion Teatral — Vía Crucis 2026");
+        mdParts.push("Versión 1.2 (Exportada desde Script Editor WYSIWYG)");
+        mdParts.push("");
+
+        const tracks = canvas.querySelectorAll('details.track-details');
+        
+        tracks.forEach(track => {
+            mdParts.push("---");
+            mdParts.push("");
+            
+            // Reconstruir Título
+            const summaryClone = track.querySelector('summary.scene-heading').cloneNode(true);
+            const icon = summaryClone.querySelector('span.material-symbols-outlined');
+            if (icon) icon.remove();
+            
+            mdParts.push(`## ${summaryClone.innerText.trim()}`);
+            mdParts.push("");
+            
+            // Reconstruir Contenido Dinámico
+            const innerContent = track.querySelector('.track-inner-content');
+            innerContent.childNodes.forEach(node => {
+                if (node.nodeType === 1) { // Element Node
+                    if (node.classList.contains('action-block')) {
+                        let text = node.innerText.trim();
+                        // Revertir a nota direction block (>) si era itálica/gris
+                        if (node.classList.contains('italic') && node.classList.contains('text-gray-500')) {
+                            mdParts.push(`> ${text}\n`);
+                        } else {
+                            mdParts.push(`${text}\n`);
+                        }
+                    } else if (node.classList.contains('character-block')) {
+                        const charName = node.querySelector('.character-name')?.innerText.trim() || '';
+                        
+                        // Parsear Parenthetical (00:00) a Metadata `[00:00]`
+                        const parenthSpan = node.querySelector('.parenthetical');
+                        let timestampStr = '';
+                        if (parenthSpan) {
+                             let textParen = parenthSpan.innerText.trim().replace(/^\(|\)$/g, ''); 
+                             timestampStr = ` \`[${textParen}]\``;
+                        }
+                        
+                        const dialogueP = node.querySelector('.dialogue');
+                        let dialogueTxt = dialogueP ? dialogueP.innerText.trim() : '';
+                        
+                        if (charName) {
+                            mdParts.push(`**${charName}**${timestampStr}`);
+                            if (dialogueTxt) mdParts.push(dialogueTxt);
+                            mdParts.push("");
+                        }
+                    }
+                }
+            });
+        });
+        
+        return mdParts.join("\n");
+    }
+
     document.getElementById("btn-export").addEventListener("click", () => {
-        alert("Integración del Guardado / Re-escritura (Fase 4) en cola...");
-        statusText.innerText = "Sincronizado. Modo Visual.";
+        const markdownBlob = new Blob([extractScriptMarkdown()], { type: "text/markdown" });
+        const url = URL.createObjectURL(markdownBlob);
+        
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `Guion-vcby2026_Editado_${new Date().getTime()}.md`;
+        
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        // Reset state
+        statusText.innerText = "Sincronizado. Descarga Iniciada.";
         statusText.classList.remove("text-orange-500");
+        document.getElementById('btn-export').classList.remove('bg-black', 'pulse-animation');
     });
 });

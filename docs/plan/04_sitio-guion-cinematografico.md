@@ -9,7 +9,7 @@
 ## Progreso General
 
 ```text
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░  75% — EN PROGRESO
+██████████████████████████████ 100% — FINALIZADO
 ```
 
 | Fase | Descripción | Estado |
@@ -17,7 +17,7 @@
 | 1 | Prototipado visual con Stitch (Aspecto Cinematográfico) | ✅ |
 | 2 | Desarrollo del motor Frontend (Vanilla JS + In-place edit) | ✅ |
 | 3 | Parseo de Datos (Consumir Guion del Plan 03) | ✅ |
-| 4 | Persistencia / Guardado de Cambios | 📋 |
+| 4 | Persistencia y Exportación Inversa (DOM to MD) | ✅ |
 
 ---
 
@@ -83,15 +83,15 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 ## Fase 4: Persistencia y Exportación
 
 ```text
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0%
+██████████████████████████████ 100%
 ```
 
-- [ ] Permitir que los arreglos realizados "in-place" afecten a un objeto global en JavaScript.
-- [ ] Añadir botón de guardar/descargar (`#export-btn`) que empaquete las correciones para que no se pierdan. (Descarga como un nuevo .md limpio, o envía via AJAX a un micro script PHP de guardado).
+- [x] Permitir que los arreglos realizados "in-place" afecten a un objeto global en JavaScript o el AST.
+- [x] Añadir botón de guardar/descargar (`#export-btn`) que empaqueta las correcciones. (Descarga vía `Blob` el nuevo documento .md limpio listo para guardarse versionado).
 
 **Notas/Hallazgos**:
-
----
+- En lugar de sobrescribir peligrosamente de manera directa el servidor vía PHP en esta primera versión (arriesgando corrupciones del documento base `V1.2`), se desarrolló una arquitectura inversa en `editor.js` (`extractScriptMarkdown`).
+- La función de persistencia "lee" el DOM de `contenteditable` y genera on-the-fly un archivo Markdown plano sin corromper el AST subyacente. Descarga local activada tras clic.
 
 ## Resumen de archivos a crear/modificar
 
