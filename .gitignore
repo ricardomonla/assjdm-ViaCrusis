@@ -1,1 +1,3 @@
 .venv/
+tools/api_key_rotator/.secret.key
+tools/api_key_rotator/.candado.key

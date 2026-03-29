@@ -1,0 +1,11 @@
+# 304 — 12ºE Jesús muere en la cruz
+# Duración: 85.9s
+# Idioma reportado: Spanish
+# Archivo: 304_v2505_12ºE_Jesús_muere_en_la_cruz.mp3
+# Transcripción vía Groq API
+#
+
+[00:00] Décima segunda estación, Jesús muere en la cruz.
+[00:06] Desde el mediodía hasta las tres de la tarde, toda la tierra quedó en oscuridad.
+[00:30] El velo del templo se rasgó por la mitad.
+[01:00] Gracias por ver el video.

@@ -1,0 +1,70 @@
+[00:00] NARRADOR: Señor, señor, hay de vuelta a la...
+[00:03] PILATOS: No te atreves a molestarme a medianoche.
+[00:05] SOLDADO: Pero señor, es urgente.
+[00:06] PILATOS: ¿Cuál es el problema?
+[00:07] SOLDADO: Las chusmas se agolpan en las calles.
+[00:09] SOLDADO: Caifás ha prendido a cierto profeta.
+[00:11] PILATOS: ¿A quién?
+[00:12] SOLDADO: A un galileo, Jesús de Nazaret.
+[00:15] SOLDADO: Se llama a sí mismo rey de los judíos.
+[00:17] SOLDADO: Está aquí, en palacio.
+[00:30] PILATOS: ¿Quiénes son ustedes y qué quieren?
+[00:35] CAIFÁS: Necesitamos ver inmediatamente al gobernador. El asunto es muy grave.
+[00:40] PILATOS: Está bien, pasen ustedes los magistrados. ¡Pero todo este chusma fuera!
+[00:45] SOLDADO: ¡Silencio! ¡Silencio!
+[00:48] CAIFÁS: Ellos no vienen con nosotros.
+[00:50] CAIFÁS: De todos modos, tampoco nosotros podríamos penetrar hoy en la fortaleza.
+[00:54] CAIFÁS: Es la víspera del gran sábado de Pascua y nuestras leyes lo prohíben
+[01:00] SOLDADO: Anda, ve y dile al gobernador que se digne salir un momento
+[01:03] SOLDADO: pasa con este hombre Es un delincuente qui no tiene delitos en este pa de bandidos y rameras J ustedes
+[01:19] PILATOS: Yo no tengo nada que ver con vuestro enfrentamiento religioso.
+[01:22] CAIFÁS: No, gobernador.
+[01:24] CAIFÁS: Te lo traemos a ti porque se trata de un asunto político.
+[01:29] CAIFÁS: Este Galileo se ha rebelado contra Roma
+[01:31] CAIFÁS: y a Roma corresponde juzgarlo.
+[01:35] CAIFÁS: Además,
+[01:35] CAIFÁS: Nosotros tampoco tenemos facultades para imponer la pena capital
+[01:40] CAIFÁS: Que es el castigo que se merece
+[01:43] PILATOS: Está bien
+[01:45] PILATOS: Centurión, suba al detenido
+[01:48] PILATOS: Voy a interrogarlo
+[01:49] SOLDADO: Tú, súbelo
+[01:59] PILATOS: ¿Es este vuestro peligroso aspirante, rey?
+[02:03] PILATOS: Andrajoso, demacrado
+[02:05] PILATOS: ¿Eres tú el rey de los judíos?
+[02:09] JESÚS: Dices eso por ti mismo.
+[02:11] JESÚS: Te lo han dicho otros de mí.
+[02:13] PILATOS: ¿Acaso soy yo judío?
+[02:15] JESÚS: Son los de tu propia nación y los jefes de los sacerdotes
+[02:18] JESÚS: los que te han entregado a mí.
+[02:20] PILATOS: ¿Qué has hecho?
+[02:23] JESÚS: Mi reino no es de este mundo Si lo fuera mi gente habr luchado para impedir que yo cayese en manos de los judíos. Pero no
+[02:35] JESÚS: Mi reino no es de este mundo.
+[02:37] PILATOS: Entonces, ¿tú eres rey?
+[02:41] JESÚS: Tú lo dices.
+[02:44] JESÚS: Soy rey.
+[02:46] JESÚS: Precisamente para eso nací y para eso vine al mundo.
+[02:50] JESÚS: Para dar testimonio de la verdad.
+[02:53] JESÚS: Todo el que pertenece a la verdad, escucha mi voz.
+[02:59] PILATOS: ¿Y qué es la verdad?
+[03:07] PILATOS: Este hombre es Galileo, ¿no?
+[03:10] PILATOS: Pues llévenselo a Herodes y que sea él quien decida sobre su vida.
+[03:23] PILATOS: Es la verdad Claudia
+[03:49] CLAUDIA: ¿Puedes reconocerla con tan solo oírla?
+[03:52] PILATOS: Sí, Poncio.
+[03:54] CLAUDIA: ¿Cómo lo haces? ¿Cuál es el secreto?
+[03:57] PILATOS: Es fácil. Nadie puede decirte la verdad si no quieres escucharla.
+[04:03] CLAUDIA: Ayer soñé con él.
+[04:05] CLAUDIA: Fue una pesadilla horrible
+[04:09] PILATOS: No, Poncio
+[04:14] CLAUDIA: No te manches tú las manos con la sangre de ese hombre
+[04:17] CLAUDIA: Estoy segura de que dice la verdad
+[04:19] PILATOS: Verdad
+[04:21] PILATOS: Mi verdad es que he contenido revueltas en esta tierra durante once largos años, Claudia
+[04:27] PILATOS: Y ahora me encuentro atado
+[04:29] PILATOS: Si no condeno al profeta, Caifás comenzará una rebelión
+[04:34] PILATOS: y si lo hago la comenzarán sus seguidores.
+[04:38] PILATOS: Habrá sangre, decida lo que decida.
+[04:42] PILATOS: El César me lo advirtió, Claudia.
+[04:44] PILATOS: Si hay una nueva revolución, la primera sangre derramada será la mía.
+[04:50] PILATOS: Esa es la única verdad que conozco.

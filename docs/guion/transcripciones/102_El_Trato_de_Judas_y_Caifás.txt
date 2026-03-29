@@ -1,0 +1,33 @@
+# 102 — El Trato de Judas y Caifás
+# Duración: 106.6s
+# Idioma reportado: Spanish
+# Archivo: 102_v2504_El_Trato_de_Judas_y_Caifás.mp3
+# Transcripción vía Groq API
+#
+
+[00:00] ¡Hombre! ¡Judas! ¡Dichosos los ojos!
+[00:08] ¿Cuánto tiempo? ¿Dónde te habías metido? Hace días que no se te ve con Jesús de Nazaret.
+[00:14] Acércate.
+[00:18] Estaba reflexionando, decidiendo qué hacer.
+[00:22] ¿Qué hacer? Parecía saber muy bien lo que debías hacer la última vez que nos vimos.
+[00:27] ¿Qué ha cambiado desde entonces?
+[00:29] No lo sé. Estoy confuso.
+[00:33] Siempre había creído en la acción política, que eso lo resolvía todo.
+[00:40] Creía que era suficiente compensar detenidamente y actuar con contundencia.
+[00:44] Pero me temo que mi maestro no está de acuerdo.
+[00:48] No comparte mi visión.
+[00:50] Dice que es más importante el corazón.
+[00:54] Me he endurecido.
+[00:56] No soy digno de ser uno de ellos.
+[00:58] Será mejor que me vaya.
+[00:59] Judas, ¿por qué te empeñas en engañarte?
+[01:04] Reconoce que hace tiempo que has dejado de creer que Jesús de Nazaret sea verdaderamente el Mesías.
+[01:11] Pero hay una forma de averiguar la verdad.
+[01:14] Y lo sabías la primera vez que viniste a verme.
+[01:17] Deja que Jesús declare ante el Sanedrín.
+[01:21] Demasiado tarde. Nunca lo aceptará.
+[01:24] ¿Pero por qué?
+[01:25] Hay muchos sacerdotes que admiran a Jesús.
+[01:28] Tendrá un juicio justo.
+[01:30] Y si de verdad es el Mesías, Dios Padre no le abandonará.
+[01:35] Y si no lo es, habrás contribuido a salvar a Israel de un falso profeta más.

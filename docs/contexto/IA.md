@@ -48,11 +48,35 @@ assjdm-ViaCrusis/
 ├── jss/
 │   └── js.js          # JavaScript (autoplay, navegación)
 ├── media/             # 34 archivos MP3 (000-309)
-├── tools/             # Scripts de mantenimiento (renombrado, conversión)
+├── tools/             # Scripts de mantenimiento e Inteligencia Artificial
+│   ├── api_key_rotator/ # Gestor Ruby de encriptación (LLMs y candados)
+│   ├── etiquetar_personajes.py # IA local
+│   ├── transcribir_groq.py     # Transcripción API
+│   └── renamer.py
 └── docs/
     ├── hosting/       # Fichas de nodo
     └── contexto/      # Este archivo
 ```
+
+## Gestión Transversal de APIs y Seguridad (Candados)
+
+El repositorio incorpora con un sistema global y modular para consumir APIs de inteligencia artificial (Groq) protegiendo las credenciales mediante encriptación local y un "Candado de sesión".
+
+**Archivo principal**: `tools/api_key_rotator/api_key_rotator.rb`
+
+**Características**:
+1. **Encriptación AES-256**: Los tokens se guardan ofuscados en un archivo versionado `apis.json`. Solo se descifran en memoria derivados de una "Frase Secreta" que solo conoce el autor.
+2. **Candado de Sesión Temporal**: Al ingresar la frase por primera vez, el sistema abre un "Candado" local (`.candado.key`, exluido en gitignore). Esto permite que el usuario y los scripts interactuen con la API sin requerir contraseña constantemente.
+3. **Auto-cierre**: Por seguridad, el Candado expira y se auto-destruye **exactamente a los 60 minutos** (3600s) de su apertura.
+4. **Rotación Automática (Rate Limits)**: Si un llamado LLM choca contra el límite _Rate Limit (HTTP 429)_, el script intercepta el error y cicla el prompt simultáneamente hacia la siguiente cuenta encriptada en la lista.
+
+**Uso desde la Consola (CLI)**:
+- Establecer una frase pista: `./api_key_rotator.rb set_hint "Mi pista"`
+- Cifrar y agregar llave: `./api_key_rotator.rb add "API_KEY" "Nombre de Referencia"`
+- Listar llaves seguras: `./api_key_rotator.rb list`
+- Cerrar candado manual: `./api_key_rotator.rb lock`
+
+Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede ser implementado delegando el payload por *STDIN* hacia este subsistema.
 
 ## Funcionalidades
 
@@ -111,6 +135,7 @@ ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
 
 - [x] ~~**Deploy automático**: Webhook GitHub~~ → Plan 01 ✅
 - [x] ~~**Consistencia visual**: Fix cross-browser + admin oculto~~ → Plan 02 ✅
+- [ ] **Guion Transcrito**: Identificar y formatear las transcripciones de 34 archivos → Plan 03 ⏳
 - [ ] **Seguridad**: Configurar fail2ban y headers de seguridad en NGINX
 - [ ] **Backup**: Configurar vzdump para respaldos automáticos del LXC
 - [ ] **Monitorización**: Integrar sistema de monitoreo

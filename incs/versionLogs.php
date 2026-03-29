@@ -1,5 +1,15 @@
 <?php
 $versionLogs = [
+    '26.5' => [
+        'date' => '2026-03-29',
+        'changes' => [
+            'IA: Transcripción automática de 34 audios y etiquetado de 18 personajes con Groq (Llama 3.3).',
+            'Gestor: Nuevo sistema `api_key_rotator` con encriptación AES-256 rotativo para evitar límites de API.',
+            'Guion: Compilación de `docs/guion/Guion-vcby2026_v1.1.md` primera versión unificada.',
+            'Documentación: Creación del `personajes.md` detallando las intervenciones por escena.',
+            'Update: Reorganización del README y limpieza del repositorio.'
+        ]
+    ],
     '26.4' => [
         'date' => '2026-03-28',
         'changes' => [
