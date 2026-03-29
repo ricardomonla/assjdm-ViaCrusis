@@ -199,10 +199,10 @@ La paz sea con ustedes...
 
 ## Requisitos
 
-- Python 3.x con `whisper` o `faster-whisper`
-- Modelo `large-v3` (~3 GB) para mejor precisión en español
+- Python 3.x con librería `requests`
+- Claves de Groq API activas gestionadas vía `api_key_rotator`
 - ~120 MB de audio total a procesar
-- Estimado: ~30-60 min de procesamiento total
+- Estimado: ~10-15 min de procesamiento total (vía API)
 
 ## Rollback
 
