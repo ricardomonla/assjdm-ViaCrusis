@@ -26,7 +26,7 @@ async function loadScript(filename) {
         statusText.innerText = "Sincronizado. Modo Visual.";
     } catch (error) {
         console.error("Error loading script:", error);
-        canvas.innerHTML = `<p class='text-red-500 text-center mt-10'>Error al cargar ${filename} (Asegúrate de estar en un servidor web).</p>`;
+        canvas.innerHTML = `<p class='text-red-500 text-center mt-10'>${error.message}</p>`;
         statusText.innerText = "Error Lectura";
     }
 }
@@ -188,7 +188,6 @@ function parseMarkdownToVellum(markdown) {
     return html;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Cargar versión 1.2
-    loadScript('Guion-vcby2026_v1.2.md');
+document.addEventListener('DOMContentLoaded', () => {
+    loadScript('Guion-vcby.md');
 });
