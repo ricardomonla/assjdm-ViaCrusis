@@ -13,6 +13,7 @@
 require 'net/http'
 require 'json'
 require 'uri'
+require 'uri'
 require 'openssl'
 require 'base64'
 require 'fileutils'
@@ -115,49 +116,30 @@ def add_key(api_key, reference)
   puts "✅ Llave (Ref: '#{reference}') encriptada AES-256-CBC y guardada exitosamente en apis.json."
 end
 
-def call_groq(system_prompt, user_prompt)
+def execute_with_rotation
   apis = load_apis
   if apis.empty?
     raise "No hay llaves configuradas. Usa: ./api_key_rotator.rb add <API_KEY> <REFERENCIA>"
   end
   
-  # Desciframos todas las llaves temporales a variables en RAM
   api_keys = apis.values.map { |enc| decrypt(enc) }
   api_refs = apis.keys
   
-  uri = URI("https://api.groq.com/openai/v1/chat/completions")
   current_idx = 0
   intentos = 0
 
   while intentos < api_keys.length
     key = api_keys[current_idx]
+    ref_name = api_refs[current_idx]
     
-    req = Net::HTTP::Post.new(uri)
-    req["Authorization"] = "Bearer #{key}"
-    req["Content-Type"] = "application/json"
-    req.body = {
-      model: "llama-3.3-70b-versatile",
-      messages: [
-        { role: "system", content: system_prompt },
-        { role: "user", content: user_prompt }
-      ],
-      temperature: 0.2
-    }.to_json
-
-    res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(req)
-    end
+    # Yield la llave y obtener la respuesta de Net::HTTP
+    res = yield(key)
     
     if res.code == "200"
-      data = JSON.parse(res.body)
-      return data.dig("choices", 0, "message", "content")
+      return JSON.parse(res.body)
     elsif res.code == "429"
-      ref_name = api_refs[current_idx]
-      
-      # 1. Intentamos leer la cabecera estándar HTTP
       retry_after = res["retry-after"]
       
-      # 2. Por si Groq lo pone dentro del mensaje JSON (ej: Please try again in 14.5s)
       begin
         err_json = JSON.parse(res.body)
         msg = err_json.dig("error", "message")
@@ -172,12 +154,10 @@ def call_groq(system_prompt, user_prompt)
       
       STDERR.puts "\n   ⚠️ [Rotator] Saturación (HTTP 429) en [#{ref_name}]. #{wait_msg}. Rotando..."
       
-      # Lógica Definitiva anti-caída: 
-      # Si estamos a punto de descartar la última cuenta posible y tenemos un tiempo de espera
       if intentos >= api_keys.length - 1 && segundos
-        STDERR.puts "   ⏳ ¡Todas las llaves agotadas! Pausando script #{segundos + 1} segundos para recargar la primera cuenta..."
+        STDERR.puts "   ⏳ ¡Todas las llaves agotadas! Pausando script #{segundos + 1} segundos para recargar..."
         sleep(segundos + 1)
-        intentos = 0 # Reseteamos el contador para re-intentar todo el loop de cuentas.
+        intentos = 0
         current_idx = (current_idx + 1) % api_keys.length
         next
       end
@@ -191,6 +171,55 @@ def call_groq(system_prompt, user_prompt)
     end
   end
   raise "❌ Se agotaron todas las #{api_keys.length} llaves API disponibles (Limites 429)."
+end
+
+def call_groq(system_prompt, user_prompt, model="llama-3.3-70b-versatile")
+  uri = URI("https://api.groq.com/openai/v1/chat/completions")
+  data = execute_with_rotation do |key|
+    req = Net::HTTP::Post.new(uri)
+    req["Authorization"] = "Bearer #{key}"
+    req["Content-Type"] = "application/json"
+    req.body = {
+      model: model,
+      messages: [
+        { role: "system", content: system_prompt },
+        { role: "user", content: user_prompt }
+      ],
+      temperature: 0.2
+    }.to_json
+
+    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+      http.request(req)
+    end
+  end
+  data.dig("choices", 0, "message", "content")
+end
+
+def call_groq_transcribe(file_path, prompt="", model="whisper-large-v3")
+  uri = URI("https://api.groq.com/openai/v1/audio/transcriptions")
+  
+  unless File.exist?(file_path)
+    raise "Archivo de audio no encontrado: #{file_path}"
+  end
+
+  data = execute_with_rotation do |key|
+    req = Net::HTTP::Post.new(uri)
+    req["Authorization"] = "Bearer #{key}"
+    
+    # Multipart form-data wrapper natively in Ruby
+    form_data = [
+      ['model', model],
+      ['prompt', prompt],
+      ['response_format', 'verbose_json'],
+      ['file', File.open(file_path, 'rb'), { filename: File.basename(file_path) }]
+    ]
+    req.set_form(form_data, 'multipart/form-data')
+
+    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+      http.request(req)
+    end
+  end
+  data
 end
 
 # Control de Comandos 
