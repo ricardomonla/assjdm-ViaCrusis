@@ -1,0 +1,74 @@
+[
+  {
+    "character": "NARRADOR",
+    "startTime": 0,
+    "endTime": 8,
+    "text": "Primera estación<br>Jesús es condenado a muerte"
+  },
+  {
+    "character": "SOLDADO",
+    "startTime": 8,
+    "endTime": 15,
+    "text": "Señor, Señor"
+  },
+  {
+    "character": "PILATOS** `[00:11]` ---???---\nHerodes ratifica cualquier decisión que tome\nLo hemos traído aquí de nuevo\n\n**SOLDADO",
+    "startTime": 15,
+    "endTime": 16,
+    "text": "Necesitaremos refuerzos"
+  },
+  {
+    "character": "PILATOS",
+    "startTime": 16,
+    "endTime": 19,
+    "text": "No, lo último que quiero es una rebelión"
+  },
+  {
+    "character": "SOLDADO",
+    "startTime": 19,
+    "endTime": 20,
+    "text": "Ya hay una rebelión"
+  },
+  {
+    "character": "PILATOS",
+    "startTime": 20,
+    "endTime": 35.0,
+    "text": "No encuentro delito alguno en este hombre<br>¿Tenéis la costumbre que os ponga en libertad un prisionero por fiesta de Pascua?<br>Tenemos dos presos.<br>Uno es Jesús de Nazaret, acusado de traición por proclamarse el mismo rey de los judíos.<br>Y otro, Barrabás, acusado de sedición y de asesinato de un soldado romano.<br>¿A cuál de estos dos hombres queréis que os suelte?<br>¿Al asesino Barrabás o a Jesús de Nazaret llamado Mesías?"
+  },
+  {
+    "character": "CAIFÁS",
+    "startTime": 69,
+    "endTime": 84.0,
+    "text": "¿Mesías? ¿Ese?<br>Ese no es el enviado de nadie.<br>Es solo un impostor y un blasfemo.<br>Anda, deja libre a Barrabás."
+  },
+  {
+    "character": "PILATOS",
+    "startTime": 86,
+    "endTime": 101.0,
+    "text": "Os pregunto de nuevo, ¿a cuál de estos dos hombres queréis que os suelte?"
+  },
+  {
+    "character": "PILATOS** `[01:40]` ---???---\nCalma calma hago entonces con Jes el llamado Mes\n\n**PILATOS",
+    "startTime": 109,
+    "endTime": 124.0,
+    "text": "Pues qué mal ha hecho este hombre.<br>No he encontrado nada en él que me lesca su castigo.<br>No me hago responsable de esta muerte<br>Allá vosotros<br>Está bien<br>Soltaré a Barrabás<br>y os entregaré a Jesús después de azotarlo para que sea crucificado."
+  },
+  {
+    "character": "SOLDADO",
+    "startTime": 149,
+    "endTime": 164.0,
+    "text": "¡Azotadlo!"
+  },
+  {
+    "character": "NARRADOR** `[02:35]` ---???---\nMirad mi siervo.\nDesfigurado, no parecía hombre ni tenía aspecto humano.\nPreció en su presencia como brote, como raíz en tierra ánima,\nsin figura, sin belleza.\nLo vimos sin aspecto atrayente, despreciado y evitado de los hombres,\ncomo un hombre de dolores, acostumbrado a los sufrimientos\nante el cual se ocultan los rostros, despreciado y desestimado.\nÉl soportó nuestros sufrimientos y aguantó nuestros dolores.\nNosotros lo veíamos herido de Dios y humillado,\ntriturado por nuestros crímenes.\nNuestro castigo cayó sobre sus cicatrices nos curó Maltratado voluntariamente se humillaba y no abr la boca\nComo cordero llevado al matadero, como oveja ante el esquilador,\nenmudecía y no abría la boca.\nSin defensa, sin justicia se lo llevaron.\n¿Quién meditó en su destino?\nLo arrancaron de la tierra de los vivos, le dieron sepultura con los malvados\nY una tumba con los malhechores\nAunque no había cometido crímenes, ni hubo engaño en su boca\nEl Señor hizo triturarlo con el sufrimiento\nVerá su descendencia, prolongará sus años\n\n**PUEBLO",
+    "startTime": 256,
+    "endTime": 271.0,
+    "text": "¡No!"
+  },
+  {
+    "character": "SOLDADO",
+    "startTime": 273,
+    "endTime": 283.0,
+    "text": "¡No vienes a ver a Jerusalén como un rey!<br>¡Miradlo ahora!<br>¡Ahí está el rey!<br>¡El rey de los judíos!<br>¡Tenemos que vestirlo como un rey!<br>¡Con un trapo de suerte!<br>¡Tiene razón!<br>Esto servirá.<br>¡Muélvete para ponerte el manto real!<br>Mirad, si es un rey, necesito una corona.<br>Sí.<br>rey y poderos majestad Aqu traigo la corona real Alc Una corona de oro puro con la corona<br>¡Solem de coronación!<br>Necesito el centro.<br>¡Majestad!<br>¡Qué bien le sienta!<br>¡Maravilloso!<br>Nadie tuvo una corona igual.<br>¡Salve, rey de los judíos!<br>¡Gracias, carácter! ¡Levanten la cruz!"
+  }
+]

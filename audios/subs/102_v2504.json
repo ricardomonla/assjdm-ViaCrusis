@@ -1,0 +1,44 @@
+[
+  {
+    "character": "CAIFÁS",
+    "startTime": 0,
+    "endTime": 15.0,
+    "text": "¡Hombre! ¡Judas! ¡Dichosos los ojos!<br>¿Cuánto tiempo? ¿Dónde te habías metido? Hace días que no se te ve con Jesús de Nazaret.<br>Acércate."
+  },
+  {
+    "character": "JUDAS",
+    "startTime": 18,
+    "endTime": 22,
+    "text": "Estaba reflexionando, decidiendo qué hacer."
+  },
+  {
+    "character": "CAIFÁS",
+    "startTime": 22,
+    "endTime": 29,
+    "text": "¿Qué hacer? Parecía saber muy bien lo que debías hacer la última vez que nos vimos.<br>¿Qué ha cambiado desde entonces?"
+  },
+  {
+    "character": "JUDAS",
+    "startTime": 29,
+    "endTime": 44.0,
+    "text": "No lo sé. Estoy confuso.<br>Siempre había creído en la acción política, que eso lo resolvía todo.<br>Creía que era suficiente compensar detenidamente y actuar con contundencia.<br>Pero me temo que mi maestro no está de acuerdo.<br>No comparte mi visión.<br>Dice que es más importante el corazón.<br>Me he endurecido.<br>No soy digno de ser uno de ellos.<br>Será mejor que me vaya."
+  },
+  {
+    "character": "CAIFÁS",
+    "startTime": 59,
+    "endTime": 74.0,
+    "text": "Judas, ¿por qué te empeñas en engañarte?<br>Reconoce que hace tiempo que has dejado de creer que Jesús de Nazaret sea verdaderamente el Mesías.<br>Pero hay una forma de averiguar la verdad.<br>Y lo sabías la primera vez que viniste a verme.<br>Deja que Jesús declare ante el Sanedrín."
+  },
+  {
+    "character": "JUDAS",
+    "startTime": 81,
+    "endTime": 84,
+    "text": "Demasiado tarde. Nunca lo aceptará."
+  },
+  {
+    "character": "CAIFÁS",
+    "startTime": 84,
+    "endTime": 94.0,
+    "text": "¿Pero por qué?<br>Hay muchos sacerdotes que admiran a Jesús.<br>Tendrá un juicio justo.<br>Y si de verdad es el Mesías, Dios Padre no le abandonará.<br>Y si no lo es, habrás contribuido a salvar a Israel de un falso profeta más."
+  }
+]

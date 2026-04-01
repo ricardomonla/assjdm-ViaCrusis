@@ -428,6 +428,67 @@ body.admin-mode .admin-only {
     display: flex !important;
 }
 
+/* ===== SCRIPT / KARAOKE ===== */
+.script-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fdfaf4;
+    border: 1px solid #dcd0bc;
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+}
+
+.script-placeholder {
+    text-align: center;
+    color: #806d5a;
+    font-style: italic;
+    padding: 20px;
+}
+
+.cue-block {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+}
+
+.cue-block:hover {
+    background-color: rgba(0,0,0,0.03);
+}
+
+.cue-inactive {
+    opacity: 0.6;
+}
+
+/* El bloque toma relevancia y resalta como guion activo */
+.cue-active {
+    opacity: 1;
+    background-color: #fff;
+    border-left: 3px solid #8b0000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.cue-character {
+    font-weight: bold;
+    color: #4a3e31;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+.cue-text {
+    color: #333;
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+
 body.admin-mode .admin-logout {
     display: inline-block;
 }

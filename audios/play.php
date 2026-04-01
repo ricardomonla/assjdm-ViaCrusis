@@ -80,17 +80,24 @@ include '../incs/header.php';
             </div>
         </div>
         
+        <!-- Contenedor del Guion / Karaoke -->
+        <div id="script-container" class="script-container">
+            <div class="script-placeholder">Verificando guion...</div>
+        </div>
+        
         <script>
             window.autoNextEnabled = true;
             window.firstAudioId = '<?= htmlspecialchars($firstAudioId) ?>';
             window.appVersion = '<?= htmlspecialchars($latestVersion) ?>';
+            window.audioFileBase = '<?= htmlspecialchars(pathinfo($audio_file, PATHINFO_FILENAME)) ?>';
             
             document.addEventListener('DOMContentLoaded', function() {
                 var audio = document.getElementById('audioPlayer');
                 audio.volume = 1.0;
             });
         </script>
-        <script src="../jss/js.js"></script>
+        <script src="../jss/js.js?v=<?= urlencode($latestVersion) ?>"></script>
+        <script src="../jss/karaoke.js?v=<?= urlencode($latestVersion) ?>"></script>
     </section>
 </main>
 

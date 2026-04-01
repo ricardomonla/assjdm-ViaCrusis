@@ -1,0 +1,20 @@
+[
+  {
+    "character": "NARRADOR",
+    "startTime": 0,
+    "endTime": 6,
+    "text": "Cuarta estación. Jesús encuentra a su madre."
+  },
+  {
+    "character": "JESÚS",
+    "startTime": 6,
+    "endTime": 21.0,
+    "text": "Madre."
+  },
+  {
+    "character": "MARÍA",
+    "startTime": 30,
+    "endTime": 40.0,
+    "text": "Aquí estoy, hijo<br>Aquí estoy, hijo<br>Hijo mío<br>Jesús"
+  }
+]

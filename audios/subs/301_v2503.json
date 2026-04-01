@@ -1,0 +1,14 @@
+[
+  {
+    "character": "SOLDADO",
+    "startTime": 0,
+    "endTime": 15.0,
+    "text": "¡Fuera! ¡Atrás! ¡Atrás!"
+  },
+  {
+    "character": "NARRADOR",
+    "startTime": 30,
+    "endTime": 40.0,
+    "text": "Novena estación.<br>Jesús cae por tercera vez."
+  }
+]
