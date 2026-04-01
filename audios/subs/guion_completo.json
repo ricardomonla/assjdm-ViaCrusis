@@ -1,144 +1,312 @@
 {
   "101": [
     {
-      "startTime": 0,
-      "endTime": 17.86,
+      "character": "Música / Ambiente",
+      "startTime": 0.0,
+      "endTime": 14.0,
+      "text": ""
+    },
+    {
       "character": "NARRADOR",
+      "startTime": 14.0,
+      "endTime": 23.0,
       "text": "La Pascua es la mayor festividad judía del año."
     },
     {
-      "startTime": 23.24,
-      "endTime": 29.96,
       "character": "NARRADOR",
-      "text": "Miles acuden a Jerusalén para dar gracias a Dios por liberar a sus antepasados de la esclavitud de los egipcios."
+      "startTime": 23.0,
+      "endTime": 26.0,
+      "text": "Miles acuden a Jerusalén para dar gracias a Dios"
     },
     {
-      "startTime": 30,
-      "endTime": 47.4,
       "character": "NARRADOR",
+      "startTime": 26.0,
+      "endTime": 30.0,
+      "text": "por liberar a sus antepasados de la esclavitud de los egipcios."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 30.0,
+      "endTime": 56.0,
       "text": "La entrada de Jesús provoca un aluvión."
     },
     {
-      "startTime": 60,
-      "endTime": 65.94,
+      "character": "PUEBLO",
+      "startTime": 56.0,
+      "endTime": 58.0,
+      "text": "¡Es el Mesías!"
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 58.0,
+      "endTime": 59.0,
+      "text": "¡Es el Mesías!"
+    },
+    {
       "character": "NARRADOR",
+      "startTime": 58.0,
+      "endTime": 88.0,
       "text": "El profeta Zacarías predijo que un nuevo rey de los judíos entraría en la ciudad a lomos de Unasno."
     },
     {
-      "startTime": 90,
-      "endTime": 107.33,
-      "character": "PUEBLO",
-      "text": "El reino est cerca"
+      "character": "Música / Ambiente",
+      "startTime": 88.0,
+      "endTime": 104.0,
+      "text": ""
     },
     {
-      "startTime": 108.09,
-      "endTime": 110.19,
-      "character": "PUEBLO",
-      "text": "El reino está cerca."
+      "character": "BARRABÁS",
+      "startTime": 104.0,
+      "endTime": 108.0,
+      "text": "¡El reino está cerca!"
     },
     {
-      "startTime": 110.53,
-      "endTime": 111.73,
-      "character": "PUEBLO",
-      "text": "El mesías."
+      "character": "BARRABÁS",
+      "startTime": 108.0,
+      "endTime": 110.0,
+      "text": "¡El reino está cerca!"
     },
     {
-      "startTime": 112.49,
-      "endTime": 113.29,
-      "character": "PUEBLO",
-      "text": "Es Barrabás."
+      "character": "BARRABÁS",
+      "startTime": 110.0,
+      "endTime": 112.0,
+      "text": "¡El Mesías!"
     },
     {
-      "startTime": 114.01,
-      "endTime": 114.93,
-      "character": "PUEBLO",
+      "character": "PEDRO",
+      "startTime": 112.0,
+      "endTime": 113.0,
+      "text": "Es Barrabás"
+    },
+    {
+      "character": "BARRABÁS",
+      "startTime": 113.0,
+      "endTime": 115.0,
       "text": "¡Mesías!"
     },
     {
-      "startTime": 115.81,
-      "endTime": 119.89,
-      "character": "PUEBLO",
+      "character": "BARRABÁS",
+      "startTime": 115.0,
+      "endTime": 120.0,
       "text": "Rey de Israel, ¿por qué no nos vienes a liberar?"
     },
     {
-      "startTime": 120.45,
-      "endTime": 123.03,
-      "character": "PUEBLO",
+      "character": "BARRABÁS",
+      "startTime": 120.0,
+      "endTime": 134.0,
       "text": "¡Sálvanos de la ley de los romanos!"
     },
     {
-      "startTime": 134.13,
-      "endTime": 135.79,
       "character": "JESÚS",
+      "startTime": 134.0,
+      "endTime": 145.0,
       "text": "Venimos en paz, Barrabás."
     },
     {
-      "startTime": 145.81,
-      "endTime": 156.11,
       "character": "JESÚS",
-      "text": "Dejad que los niños se acerquen a mí,"
+      "startTime": 145.0,
+      "endTime": 156.0,
+      "text": "Dejad que los niños se acerquen a mí"
     },
     {
-      "startTime": 157.83,
-      "endTime": 162.57,
       "character": "JESÚS",
-      "text": "porque de los que son como ellos, es el reino de los cielos."
+      "startTime": 156.0,
+      "endTime": 159.0,
+      "text": "Porque de los que son como ellos"
     },
     {
-      "startTime": 164.13,
-      "endTime": 164.47,
       "character": "JESÚS",
-      "text": "Venid."
+      "startTime": 159.0,
+      "endTime": 162.0,
+      "text": "Es el reino de los cielos"
     },
     {
-      "startTime": 175.81,
-      "endTime": 181.45,
-      "character": "NARRADOR",
-      "text": "La Iglesia de Jesucristo de los Santos de los Últimos Días"
+      "character": "JESÚS",
+      "startTime": 162.0,
+      "endTime": 167.0,
+      "text": "Venid"
     }
   ],
   "102": [
     {
-      "character": "CAIFÁS",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "¡Hombre! ¡Judas! ¡Dichosos los ojos!<br>¿Cuánto tiempo? ¿Dónde te habías metido? Hace días que no se te ve con Jesús de Nazaret.<br>Acércate."
+      "character": "Música / Ambiente",
+      "startTime": 0.0,
+      "endTime": 6.0,
+      "text": "(Ambiente callejero / Pasos)"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 6.0,
+      "endTime": 9.0,
+      "text": "¡Hombre! ¡Judas! ¡Dichosos los ojos!"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 9.0,
+      "endTime": 11.0,
+      "text": "¿Cuánto tiempo? ¿Dónde te habías metido?"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 11.0,
+      "endTime": 18.0,
+      "text": "Hace días que no se te ve con Jesús de Nazaret. Acércate."
     },
     {
       "character": "JUDAS",
-      "startTime": 18,
-      "endTime": 22,
+      "startTime": 18.0,
+      "endTime": 22.0,
       "text": "Estaba reflexionando, decidiendo qué hacer."
     },
     {
-      "character": "CAIFÁS",
-      "startTime": 22,
-      "endTime": 29,
-      "text": "¿Qué hacer? Parecía saber muy bien lo que debías hacer la última vez que nos vimos.<br>¿Qué ha cambiado desde entonces?"
+      "character": "ZÉRA",
+      "startTime": 22.0,
+      "endTime": 26.0,
+      "text": "¿Qué hacer? Parecía saber muy bien lo que debías hacer la última vez que nos vimos."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 26.0,
+      "endTime": 30.0,
+      "text": "¿Qué ha cambiado desde entonces?"
     },
     {
       "character": "JUDAS",
-      "startTime": 29,
+      "startTime": 30.0,
+      "endTime": 33.0,
+      "text": "No lo sé, estoy confuso."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 33.0,
+      "endTime": 40.0,
+      "text": "Siempre había creído en la acción política, que eso lo resolvía todo."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 40.0,
       "endTime": 44.0,
-      "text": "No lo sé. Estoy confuso.<br>Siempre había creído en la acción política, que eso lo resolvía todo.<br>Creía que era suficiente compensar detenidamente y actuar con contundencia.<br>Pero me temo que mi maestro no está de acuerdo.<br>No comparte mi visión.<br>Dice que es más importante el corazón.<br>Me he endurecido.<br>No soy digno de ser uno de ellos.<br>Será mejor que me vaya."
-    },
-    {
-      "character": "CAIFÁS",
-      "startTime": 59,
-      "endTime": 74.0,
-      "text": "Judas, ¿por qué te empeñas en engañarte?<br>Reconoce que hace tiempo que has dejado de creer que Jesús de Nazaret sea verdaderamente el Mesías.<br>Pero hay una forma de averiguar la verdad.<br>Y lo sabías la primera vez que viniste a verme.<br>Deja que Jesús declare ante el Sanedrín."
+      "text": "Creía que era suficiente compensar detenidamente y actuar con contundencia."
     },
     {
       "character": "JUDAS",
-      "startTime": 81,
-      "endTime": 84,
-      "text": "Demasiado tarde. Nunca lo aceptará."
+      "startTime": 44.0,
+      "endTime": 48.0,
+      "text": "Pero me temo que mi maestro no está de acuerdo."
     },
     {
-      "character": "CAIFÁS",
-      "startTime": 84,
+      "character": "JUDAS",
+      "startTime": 48.0,
+      "endTime": 51.0,
+      "text": "No comparte mi visión."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 51.0,
+      "endTime": 54.0,
+      "text": "Dice que es más importante el corazón."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 54.0,
+      "endTime": 56.0,
+      "text": "Me he endurecido."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 56.0,
+      "endTime": 57.0,
+      "text": "No soy digno de ser uno de ellos."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 57.0,
+      "endTime": 59.0,
+      "text": "Será mejor que me vaya."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 59.0,
+      "endTime": 64.0,
+      "text": "Judas, ¿por qué te empeñas en engañarte?"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 64.0,
+      "endTime": 70.0,
+      "text": "Reconoce que hace tiempo que has dejado de creer que Jesús de Nazaret sea verdaderamente el Mesías"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 70.0,
+      "endTime": 73.0,
+      "text": "Pero hay una forma de averiguar la verdad"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 73.0,
+      "endTime": 76.0,
+      "text": "Y lo sabías la primera vez que viniste a verme"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 76.0,
+      "endTime": 79.0,
+      "text": "Deja que Jesús declare ante el Sanedrín"
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 79.0,
+      "endTime": 84.0,
+      "text": "Demasiado tarde, nunca lo aceptará"
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 84.0,
+      "endTime": 85.0,
+      "text": "¿Pero por qué?"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 85.0,
+      "endTime": 87.0,
+      "text": "Hay muchos sacerdotes que admiran a Jesús"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 87.0,
+      "endTime": 89.0,
+      "text": "tendrá un juicio justo"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 89.0,
+      "endTime": 92.0,
+      "text": "y si de verdad es el Mesías"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 92.0,
       "endTime": 94.0,
-      "text": "¿Pero por qué?<br>Hay muchos sacerdotes que admiran a Jesús.<br>Tendrá un juicio justo.<br>Y si de verdad es el Mesías, Dios Padre no le abandonará.<br>Y si no lo es, habrás contribuido a salvar a Israel de un falso profeta más."
+      "text": "Dios Padre no le abandonará"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 94.0,
+      "endTime": 96.0,
+      "text": "y si no lo es"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 96.0,
+      "endTime": 100.0,
+      "text": "habrás contribuido a salvar a Israel"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 100.0,
+      "endTime": 105.0,
+      "text": "de un falso profeta más"
     }
   ],
   "103": [

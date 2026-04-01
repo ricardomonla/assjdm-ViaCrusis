@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.6.15` (Gestión Escénica + UI) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.6.16` (Gestión Escénica + UI) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -103,11 +103,11 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.6.15 (2026-04-01)
-- **Cambios**: Incorporación estricta de regla Zero-Gap para compensaciones al vacío musical en el flujo LLaMA 3.3.
+- **Versión**: 26.6.16 (2026-04-01)
+- **Cambios**: Creación del script Ruby Compilador que inyecta los `v1.1.md` al `guion_completo.json`.
 
 > **Estado del Repositorio:** Limpio (sin logs temporales basura).  
-> **Versión Actual:** 26.6.15 (Incorporada heurística Zero-Gap a Groq LLaMA).
+> **Versión Actual:** 26.6.16 (Compilador Automático `v1.1.md` -> Json Final construido y validado).
 
 ## Estado del Sitio (2026-03-28)
 

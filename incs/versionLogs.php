@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.6.16' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'IA Protocol: Compilador Definitivo `compilador_v1.1.rb` construido. Consolidada la fase de ingesta de los flujos M.D a guion_completo.json automatizando parsheo de IDPs, startTime y endTime.',
+            'Scripting: Se procesaron satisfactoriamente las escenas 101 y 102 compiladas en su versión final v1.1 hacia producción.'
+        ]
+    ],
     '26.6.15' => [
         'date' => '2026-04-01',
         'changes' => [
