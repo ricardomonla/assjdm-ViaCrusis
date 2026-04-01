@@ -59,19 +59,20 @@ module GeneradorSubsV1
     
     system_prompt = <<~PROMPT
       Eres un asistente experto de dirección teatral. Se te entregarán dos elementos:
-      1. Un ARCHIVO MARKDOWN inicial (`v0.1.md`) con una Tabla de Personajes detallada y una Tabla de Subtítulos VACÍA.
-      2. Una TRANSCRIPCIÓN CON MARCAS EXACTAS DE TIEMPO extraídas del audio real.
+      1. Un ARCHIVO MARKDOWN inicial (`v0.1.md`) con una Tabla de Personajes y una Tabla de Subtítulos VACÍA.
+      2. Una TRANSCRIPCIÓN CON MARCAS EXACTAS DE TIEMPO extraídas del audio real por Whisper.
       
       Tu objetivo es reescribir EXCLUSIVAMENTE el ARCHIVO MARKDOWN completo rellenando la Tabla 2 (Subtítulos).
-      Para cada línea de la TRANSCRIPCION, debes colocar:
-      - MARCA: El tag de tiempo provisto.
-      - IP: El ID de personaje (P01, P02, etc.) que deduzcas leyendo el contexto de la transcripción y emparejándolo con la Tabla 1.
-      - SUBTITULO: El texto transcrito sin alterar.
-
-      IMPERATIVO:
+      
+      REGLAS ESTRICTAS PARA LA TABLA 2:
+      - Para cada línea de la TRANSCRIPCION, debes colocar:
+        - MARCA: El tag de tiempo exacto provisto.
+        - IDP: El ID de personaje (P01, P02, etc.) deducido leyendo el contexto de transcripción y cruzándolo con la Tabla 1.
+        - SUBTITULO: El texto transcrito sin alterar.
+      - **REGLA CRÍTICA DE GAPS Y MÚSICA**: El audio SIEMPRE arranca en 00.00.00. Si la primera línea de la "TRANSCRIPCION CON MARCAS" NO empieza en X.00.00.00, DEBES CREAR E INYECTAR COMO PRIMERA FILA de la tabla un tiempo inicial `[XXX.00.00.00] | P00 | (Música / Ambiente)`. La IDP será `P00`.
       - DEBES devolver exactamente el archivo Markdown completo con las dos tablas.
-      - DEBES añadir todas y cada una de las líneas transcritas a la Tabla 2. Ninguna transcripción puede quedar afuera.
-      - No agregues explicaciones fuera de la tabla, devuelve solo el crudo markdown formateado. No uses el bloque delimitador ```markdown ni ```json.
+      - DEBES añadir TODAS las líneas transcritas. Ninguna puede quedar afuera.
+      - Solo devuelve el crudo markdown formateado. No uses el bloque delimitador de lenguaje ```markdown.
     PROMPT
 
     user_prompt = "--- ARCHIVO MARKDOWN (`v0.1.md`) ---\n#{md_content}\n\n--- TRANSCRIPCIÓN CON MARCAS EXACTAS ---\n#{whisper_texto}"
@@ -83,7 +84,7 @@ module GeneradorSubsV1
       respuesta = respuesta.gsub(/^```markdown/, "").gsub(/^```/, "").gsub(/```$/, "").strip
       
       # Verificar que devolvió una tabla
-      if respuesta.include?("IP") && respuesta.include?("MARCA")
+      if respuesta.include?("IDP") && respuesta.include?("MARCA")
         File.write(md_v1_path, respuesta)
         puts "✅ Intervención IA exitosa! Borrador v1.0 generado de forma nativa: #{md_v1_path}"
         puts "   ¡Listo para que el director haga la revisión humana (v1.1)!"

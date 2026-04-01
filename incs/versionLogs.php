@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.6.15' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'IA Protocol: Refinada regla de sintaxis para Tabla MD, introduciendo `IDP` en lugar del ambiguo `IP`.',
+            'IA Protocol: Incorporación estricta de regla Zero-Gap para LLaMA 3.3. Si Whisper reporta primer diálogo después de 00:00, LLaMA inyectará matemáticamente la fila inicial de P00 (Música/Ambiente) preservando la interactividad del DOM al milisegundo.'
+        ]
+    ],
     '26.6.14' => [
         'date' => '2026-04-01',
         'changes' => [
