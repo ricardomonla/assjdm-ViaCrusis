@@ -43,28 +43,17 @@ Transformar la experiencia de reproducción de audios del ViaCrucis (actualmente
 
 ---
 
-## Fase 4: Transcripción Cruda de Audios con Groq (EN PROCESO)
+## Fase 4: Flujo H.I.T.L. (Human In The Loop) Groq a Markdown
 
 ```text
 ████░░░░░░░░░░░░░░░░░░░░░░░░░░  10%
 ```
 
-- [x] (A) Procesar el primer audio (`101_v2503.mp3`) utilizando un script conectado a **Groq** (`whisper-large-v3`).
-- [x] (B) Extraer el texto crudo en segmentos JSON indicando exactamente su parámetro `start` y `end`.
-- [ ] Extraer iterativamente el raw json de los 33 audios que restan a sus archivos `*_raw.json`.
-
----
-
-## Fase 5: Flujo H.I.T.L. (Human In The Loop) con Mapeador Semántico MD
-
-```text
-████░░░░░░░░░░░░░░░░░░░░░░░░░░  10%
-```
-
-- [x] 1. Crear el borrador `v0.1.md` de cada pista. Incluirá **Tabla Personajes** con ID (`P01...`) y **Tabla Subtítulos** (Tiempos + Texto extraído) con la celda `IDPERSONAJE` vacía. (Ej: `101_v0.1.md`).
-- [ ] 2. Pasar a Llama 3.3 (Groq) este borrador + Guión Original para que deduzca por contexto y relle las celdas vacías (`101_v1.0.md`).
-- [ ] 3. **Intervención Humana Diaria**: El director revisa `101_v1.0.md`, corrige ID asignados erróneos (e.g. `P05` en vez de `P03`), elimina transcripciones fallidas o edita los subtítulos. Guarda como `101_v1.1.md`.
-- [ ] 4. Escribir script compilador definitivo que trague el `.md` final aprobado (`v1.1`) y lo empaquete nativamente en el `guion_completo.json`.
+- [x] 1. Crear script conversacional MVP (`genera_subs_v0.1.rb`) que envía el MP3 a Whisper y escupe **directamente** el MD con **Tabla Personajes** con ID (`P01...`) y **Tabla Subtítulos** (Tiempos + Texto extraído) con la celda `IDPERSONAJE` vacía. (Ej probado con: `101_v0.1.md`).
+- [ ] 2. Pasar a Llama 3.3 (Groq) este MD `v0.1.md` + Guión Original para que deduzca por contexto y relle las celdas vacías (`101_v1.0.md`).
+- [ ] 3. **Intervención Humana Diaria**: Revisar `101_v1.0.md`, corregir IDs erróneos (e.g. `P05` en vez de `P03`), afinar transcripciones o agregar acotaciones. Guardar como `101_v1.1.md`.
+- [ ] 4. Escribir script compilador definitivo que trague los `.md` finales aprobados (`v1.1`) y los empaquete nativamente en el `guion_completo.json`.
+- [ ] 5. Procesar el bloque entero de los 34 audios y completar el repositorio de subtítulos exactos.
 
 ---
 
