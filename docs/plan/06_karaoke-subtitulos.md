@@ -49,11 +49,11 @@ Transformar la experiencia de reproducción de audios del ViaCrucis (actualmente
 ████░░░░░░░░░░░░░░░░░░░░░░░░░░  10%
 ```
 
-- [x] 1. Crear script conversacional MVP (`genera_subs_v0.1.rb`) que envía el MP3 a Whisper y escupe **directamente** el MD con **Tabla Personajes** con ID (`P01...`) y **Tabla Subtítulos** (Tiempos + Texto extraído) con la celda `IDPERSONAJE` vacía. (Ej probado con: `101_v0.1.md`).
-- [ ] 2. Pasar a Llama 3.3 (Groq) este MD `v0.1.md` + Guión Original para que deduzca por contexto y relle las celdas vacías (`101_v1.0.md`).
-- [ ] 3. **Intervención Humana Diaria**: Revisar `101_v1.0.md`, corregir IDs erróneos (e.g. `P05` en vez de `P03`), afinar transcripciones o agregar acotaciones. Guardar como `101_v1.1.md`.
-- [ ] 4. Escribir script compilador definitivo que trague los `.md` finales aprobados (`v1.1`) y los empaquete nativamente en el `guion_completo.json`.
-- [ ] 5. Procesar el bloque entero de los 34 audios y completar el repositorio de subtítulos exactos.
+- [x] 1. (Antigravity AI): Generar documento `v0.1.md` para cada pista, que incluye una tabla "Personajes" completa con su `IP` y `System_Synopsis`,  dejando una tabla vacía llamada "Subtítulos" con cabecera `MARCA | IP | SUBTITULO`.
+- [x] 2. (Ruby + APIs Groq): Ejecutar `genera_subs_v1.0.rb [ID]`. Este script lee `v0.1.md`, sube el audio a Whisper-Large-v3, obtiene tiempos exactos, y se los pasa a LLaMA 3.3 70B para que complete el markdown devolviendo el archivo lleno como `v1.0.md`.
+- [ ] 3. (Director / Humano): Revisar y auditar la tabla en `v1.0.md`, ajustar `IP` incorrectos deducidos por la máquina, corregir tildes, comas o palabras, y finalmente grabar el progreso con el nombre `v1.1.md` (Ready for prod).
+- [ ] 4. (Compilador Automático): Script final que trague todos los `.md` aprobados (`v1.1`) y los parsee inyectando los arrays definitivos en `guion_completo.json`.
+- [ ] 5. Procesar los 34 audios y completar el repositorio con calidad humana del 100%.
 
 ---
 

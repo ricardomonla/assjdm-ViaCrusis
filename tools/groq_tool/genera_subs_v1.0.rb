@@ -1,37 +1,81 @@
 #!/usr/bin/env ruby
 # Archivo: tools/groq_tool/genera_subs_v1.0.rb
-# Ingesta el archivo v0.1.md vacío y utiliza LLaMA 3.3 para deducir y rellenar
-# la columna IDPERSONAJE de la tabla de subtítulos creando el archivo v1.0.md.
+# Ingesta el archivo v0.1.md (hecho por AI inicial) y el audio MP3.
+# Llama a Whisper (para transcripción/tiempos) y luego a LLaMA 3.3
+# para combinar y deducir los personajes, generando el borrador v1.0.md.
 
 require_relative 'groq_client'
+require 'json'
 
 module GeneradorSubsV1
   def self.procesar(id_pista)
+    audio_path = "../../audios/media/#{id_pista}.mp3"
+    # Si no existe con ese nombre simple, buscar el más largo (ej. 101_v2503.mp3)
+    unless File.exist?(audio_path)
+      matches = Dir.glob("../../audios/media/#{id_pista}_*.mp3")
+      if matches.any?
+        audio_path = matches.first
+      else
+        puts "❌ Faltan el archivo mp3 para la pista #{id_pista}"
+        return
+      end
+    end
+
     md_v0_path = "../../audios/subs/#{id_pista}_v0.1.md"
     md_v1_path = "../../audios/subs/#{id_pista}_v1.0.md"
     
     unless File.exist?(md_v0_path)
-      puts "❌ Falta el archivo borrador: #{md_v0_path}"
+      puts "❌ Falta el archivo borrador inicial: #{md_v0_path}"
       return
     end
 
     md_content = File.read(md_v0_path)
 
+    puts "🎙️  1. Transcribiendo #{audio_path} con Groq Whisper (Límite 25MB)..."
+    begin
+      data_audio = GroqClient.transcribe(audio_path, "Vía Crucis, diálogos, teatro")
+      raw_segments = data_audio["segments"]
+      
+      if raw_segments.nil? || raw_segments.empty?
+        puts "❌ No se obtuvieron segmentos de Whisper."
+        return
+      end
+    rescue => e
+      puts "❌ Error con Whisper: #{e.message}"
+      return
+    end
+
+    # Pre-formatear marcas de tiempo para Llama
+    whisper_texto = raw_segments.map do |row|
+      total_sec = row["start"].round(2)
+      h = (total_sec / 3600).floor
+      m = ((total_sec / 60) % 60).floor
+      s = (total_sec % 60).floor
+      marca = format("[%s.%02d.%02d.%02d]", id_pista, h, m, s)
+      "MARCA: #{marca} | TEXTO: #{row["text"].strip}"
+    end.join("\n")
+
+    puts "🧠 2. Pasando Transcripción y MD a LLaMA 3.3 (Groq) para deducción..."
+    
     system_prompt = <<~PROMPT
-      Eres un asistente experto de dirección teatral. Se te entregará el archivo markdown de un Guion.
-      Este guion tiene dos tablas:
-      1. Tabla de Personajes (IDPERSONAJE y NOMBRE)
-      2. Tabla de Subtítulos (donde la celda de IDPERSONAJE está vacía).
+      Eres un asistente experto de dirección teatral. Se te entregarán dos elementos:
+      1. Un ARCHIVO MARKDOWN inicial (`v0.1.md`) con una Tabla de Personajes detallada y una Tabla de Subtítulos VACÍA.
+      2. Una TRANSCRIPCIÓN CON MARCAS EXACTAS DE TIEMPO extraídas del audio real.
       
-      Tu objetivo es leer el SUBTITULO, deducir de qué personaje proviene basándote en un contexto bíblico y escénico de la obra "Via Crucis", y COMPLETAR las celdas vacías con el IDPERSONAJE correspondiente de la Tabla 1.
-      
-      DEBES DEVOLVER EXACTAMENTE EL MISMO MARKDOWN con las celdas llenas. Ni una palabra más ni una menos fuera del Markdown. No uses bloques ```markdown, simplemente devuelve el texto estructurado como Markdown válido.
+      Tu objetivo es reescribir EXCLUSIVAMENTE el ARCHIVO MARKDOWN completo rellenando la Tabla 2 (Subtítulos).
+      Para cada línea de la TRANSCRIPCION, debes colocar:
+      - MARCA: El tag de tiempo provisto.
+      - IP: El ID de personaje (P01, P02, etc.) que deduzcas leyendo el contexto de la transcripción y emparejándolo con la Tabla 1.
+      - SUBTITULO: El texto transcrito sin alterar.
+
+      IMPERATIVO:
+      - DEBES devolver exactamente el archivo Markdown completo con las dos tablas.
+      - DEBES añadir todas y cada una de las líneas transcritas a la Tabla 2. Ninguna transcripción puede quedar afuera.
+      - No agregues explicaciones fuera de la tabla, devuelve solo el crudo markdown formateado. No uses el bloque delimitador ```markdown ni ```json.
     PROMPT
 
-    user_prompt = "Aquí tienes el archivo a rellenar:\n\n#{md_content}"
+    user_prompt = "--- ARCHIVO MARKDOWN (`v0.1.md`) ---\n#{md_content}\n\n--- TRANSCRIPCIÓN CON MARCAS EXACTAS ---\n#{whisper_texto}"
 
-    puts "🧠 Enviando #{id_pista}.md a Llama 3.3 70B (Groq) para deducción de personajes..."
-    
     begin
       respuesta = GroqClient.chat(system_prompt, user_prompt)
       
@@ -39,10 +83,10 @@ module GeneradorSubsV1
       respuesta = respuesta.gsub(/^```markdown/, "").gsub(/^```/, "").gsub(/```$/, "").strip
       
       # Verificar que devolvió una tabla
-      if respuesta.include?("IDPERSONAJE") && respuesta.include?("MARCA")
+      if respuesta.include?("IP") && respuesta.include?("MARCA")
         File.write(md_v1_path, respuesta)
-        puts "✅ Intervención IA exitosa! Borrador v1.0 generado: #{md_v1_path}"
-        puts "   Listo para revisión humana (v1.1)."
+        puts "✅ Intervención IA exitosa! Borrador v1.0 generado de forma nativa: #{md_v1_path}"
+        puts "   ¡Listo para que el director haga la revisión humana (v1.1)!"
       else
         puts "❌ El LLM no devolvió el formato esperado."
       end
