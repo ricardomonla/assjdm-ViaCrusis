@@ -33,6 +33,7 @@ module GroqClient
       }.to_json
 
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+        http.read_timeout = 180
         http.request(req)
       end
     end
@@ -58,11 +59,13 @@ module GroqClient
         ['model', model],
         ['prompt', prompt],
         ['response_format', 'verbose_json'],
+        ['language', 'es'],
         ['file', File.open(file_path, 'rb'), { filename: File.basename(file_path) }]
       ]
       req.set_form(form_data, 'multipart/form-data')
 
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+        http.read_timeout = 180
         http.request(req)
       end
     end
