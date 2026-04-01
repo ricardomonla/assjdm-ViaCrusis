@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(masterData => {
-            const currentAudioId = window.audioId;
-            const nextAudioId = window.nextAudioId;
+            const currentAudioId = window.audioId.split('_')[0];
+            const nextAudioId = window.nextAudioId ? window.nextAudioId.split('_')[0] : "";
             
             // Extraer guion actual
             let currentScript = masterData[currentAudioId] || [];
