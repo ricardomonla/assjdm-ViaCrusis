@@ -101,8 +101,8 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.4 (2026-03-28)
-- **Cambios**: Fix visual cross-browser, botón admin oculto (5 taps), sesión 30 min
+- **Versión**: 26.5 (2026-04-01)
+- **Cambios**: Módulo de audios a /audios/, cache-buster nativo de PHP, UI iconos de navegación
 
 ## Estado del Sitio (2026-03-28)
 
@@ -151,6 +151,7 @@ ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
 - [ ] **Monitorización**: Integrar sistema de monitoreo
 - [ ] **Diseño**: Modernizar la estética del sitio
 - [x] **Mover Sitio de Audios**: Reubicar catálogo principal a `/audios/` → Plan 05 ✅
+- [ ] **Karaoke Subtítulos**: Sincronizar texto de diálogos a los audios estilo karaoke → Plan 06 📋
 
 ---
 
