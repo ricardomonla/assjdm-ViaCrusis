@@ -45,33 +45,34 @@ module GeneradorSubsV1
       return
     end
 
-    # Pre-formatear marcas de tiempo para Llama
-    whisper_texto = raw_segments.map do |row|
+    whisper_texto_array = raw_segments.map do |row|
       total_sec = row["start"].round(2)
       h = (total_sec / 3600).floor
       m = ((total_sec / 60) % 60).floor
       s = (total_sec % 60).floor
       marca = format("[%s.%02d.%02d.%02d]", id_pista, h, m, s)
       "MARCA: #{marca} | TEXTO: #{row["text"].strip}"
-    end.join("\n")
+    end
+
+    whisper_texto = whisper_texto_array.join("\n")
 
     puts "🧠 2. Pasando Transcripción y MD a LLaMA 3.3 (Groq) para deducción..."
     
     system_prompt = <<~PROMPT
       Eres un asistente experto de dirección teatral. Se te entregarán dos elementos:
-      1. Un ARCHIVO MARKDOWN inicial (`v0.1.md`) con una Tabla de Personajes y una Tabla de Subtítulos VACÍA.
+      1. Un ARCHIVO MARKDOWN inicial (`v0.1.md`) con una Tabla de Personajes y una Tabla de Subtítulos que puede tener la primera fila pre-cargada.
       2. Una TRANSCRIPCIÓN CON MARCAS EXACTAS DE TIEMPO extraídas del audio real por Whisper.
       
-      Tu objetivo es reescribir EXCLUSIVAMENTE el ARCHIVO MARKDOWN completo rellenando la Tabla 2 (Subtítulos).
+      Tu objetivo es reescribir EXCLUSIVAMENTE el ARCHIVO MARKDOWN completo completando la Tabla 2 (Subtítulos).
       
       REGLAS ESTRICTAS PARA LA TABLA 2:
+      - Si la tabla de Subtítulos del archivo original arranca con una fila inicial de P00 pre-cargada por el humano, DEBES MANTENERLA como la fila número 1.
       - Para cada línea de la TRANSCRIPCION, debes colocar:
-        - MARCA: El tag de tiempo exacto provisto.
-        - IDP: El ID de personaje (P01, P02, etc.) deducido leyendo el contexto de transcripción y cruzándolo con la Tabla 1.
+        - MARCA: El tag de tiempo exacto provisto en la entrada (ej. `[101.00.00.00]`).
+        - IDP: El ID de personaje (P01, P02, etc.) deducido leyendo el contexto de transcripción y cruzándolo con la Tabla 1. (Usa `P00` si el texto indica Música o Efectos).
         - SUBTITULO: El texto transcrito sin alterar.
-      - **REGLA CRÍTICA DE GAPS Y MÚSICA**: El audio SIEMPRE arranca en 00.00.00. Si la primera línea de la "TRANSCRIPCION CON MARCAS" NO empieza en X.00.00.00, DEBES CREAR E INYECTAR COMO PRIMERA FILA de la tabla un tiempo inicial `[XXX.00.00.00] | P00 | (Música / Ambiente)`. La IDP será `P00`.
       - DEBES devolver exactamente el archivo Markdown completo con las dos tablas.
-      - DEBES añadir TODAS las líneas transcritas. Ninguna puede quedar afuera.
+      - DEBES añadir TODAS las líneas transcritas a la Tabla 2. Ninguna puede quedar afuera.
       - Solo devuelve el crudo markdown formateado. No uses el bloque delimitador de lenguaje ```markdown.
     PROMPT
 
