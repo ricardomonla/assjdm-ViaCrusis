@@ -1,5 +1,17 @@
 <?php
 $versionLogs = [
+    '26.6.29' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Proceso H.I.T.L Transcripción 105: Se inyectó gramática poética en `105_v1.1.md`. Se recompiló master incorporando la pista 105 a la capa de UI.'
+        ]
+    ],
+    '26.6.28' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Proceso H.I.T.L Transcripción 104: Se pulió ortográfica y gramaticalmente `104_v1.1.md` de acuerdo al "Guion-vcby2026_Editado". Se recompiló exitosamente el maestro y se insertó la cuarta pista completa (Audio 104) en el sistema.'
+        ]
+    ],
     '26.6.27' => [
         'date' => '2026-04-01',
         'changes' => [

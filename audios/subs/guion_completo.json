@@ -770,71 +770,341 @@
   "104": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "El Semaní es un huerto de los muchos que se extendían por las fértiles laderas del Monte de los Olivos.<br>Allí, viendo muy cercana y muy posible una muerte violenta, Jesús experimenta un sinfín de sentimientos contradictorios.<br>Es un momento decisivo en el compromiso de fe de Jesús.<br>Nunca se había sentido tan vulnerable<br>Y nunca su fidelidad sería más dolorosamente firme que entonces"
-    },
-    {
-      "character": "PEDRO",
-      "startTime": 31,
-      "endTime": 35,
-      "text": "¿Qué te ha ocurrido, señor?<br>Aviso a los demás"
-    },
-    {
-      "character": "JESÚS",
-      "startTime": 35,
-      "endTime": 41,
-      "text": "No, Pedro<br>No quiero que me vean así"
-    },
-    {
-      "character": "PEDRO",
-      "startTime": 41,
-      "endTime": 45,
-      "text": "Estás en peligro, no deberíamos huir"
-    },
-    {
-      "character": "JESÚS",
-      "startTime": 45,
-      "endTime": 50,
-      "text": "Permaneced aquí<br>Velad y orad"
+      "startTime": 0.0,
+      "endTime": 9.0,
+      "text": "El Semaní es un huerto de los muchos que se extendían por las fértiles laderas del Monte de los Olivos."
     },
     {
       "character": "NARRADOR",
-      "startTime": 50,
-      "endTime": 65.0,
-      "text": "<br>La Biblia  M"
+      "startTime": 9.0,
+      "endTime": 18.0,
+      "text": "Allí, viendo muy cercana y muy posible una muerte violenta, Jesús experimenta un sinfín de sentimientos contradictorios."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 18.0,
+      "endTime": 21.0,
+      "text": "Es un momento decisivo en el compromiso de fe de Jesús."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 21.0,
+      "endTime": 25.0,
+      "text": "Nunca se había sentido tan vulnerable."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 25.0,
+      "endTime": 31.0,
+      "text": "Y nunca su fidelidad sería más dolorosamente firme que entonces."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 31.0,
+      "endTime": 34.0,
+      "text": "¿Qué te ha ocurrido, Señor?"
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 34.0,
+      "endTime": 35.0,
+      "text": "Aviso a los demás..."
     },
     {
       "character": "JESÚS",
-      "startTime": 104,
-      "endTime": 114.0,
-      "text": "Mi alma está triste hasta la muerte<br>Si es posible pase de mí este cáliz<br>Pero que no se haga mi voluntad<br>sino la tuya<br>ahora se acerca el momento de volver a tus manos de agradecerte este regalo de ser hombre que me diste durante 33 años<br>Ha sido hermoso, ¿sabes?<br>Hermoso.<br>Y doloroso.<br>Yo conozco la fría violencia del hombre, el egoísmo sucio que respiran sus almas y sus pulmones.<br>He visto la serpiente del odio enroscándose en torno a mi vida, pero también he medido su ignorancia.<br>Padre mío<br>no me asusta morir<br>porque sé que cumplo con tu voluntad<br>Padre me asusta el dolor<br>el sufrimiento<br>y tanta maldad que tengo que cargar sobre mí<br>y me siento solo<br>solo<br>y aquí tú y yo solos en la hora crucial de mi vida Padre Y no me hablas<br>Yo sé que tú me escuchas<br>Tú lo haces siempre, Padre<br>Pero ahora, ¿por qué te callas?<br>Oh, Padre<br>Yo soy despreciable<br>Padre mío<br>Hace de tu voluntad<br>Señor<br>Dame fuerza<br>Dame fuerza Señor"
+      "startTime": 35.0,
+      "endTime": 38.0,
+      "text": "No, Pedro."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 38.0,
+      "endTime": 41.0,
+      "text": "No quiero que me vean así."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 41.0,
+      "endTime": 45.0,
+      "text": "Estás en peligro, no deberíamos huir."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 45.0,
+      "endTime": 46.0,
+      "text": "Permaneced aquí."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 46.0,
+      "endTime": 50.0,
+      "text": "Velad y orad."
+    },
+    {
+      "character": "Música / Ambiente",
+      "startTime": 50.0,
+      "endTime": 104.0,
+      "text": "(Música de tensión profunda)"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 104.0,
+      "endTime": 126.0,
+      "text": "Mi alma está triste hasta la muerte."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 126.0,
+      "endTime": 128.0,
+      "text": "Si es posible, pase de mí este cáliz."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 128.0,
+      "endTime": 133.0,
+      "text": "Pero que no se haga mi voluntad,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 133.0,
+      "endTime": 153.0,
+      "text": "sino la tuya."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 153.0,
+      "endTime": 171.0,
+      "text": "Ahora se acerca el momento de volver a tus manos, de agradecerte este regalo de ser hombre que me diste durante 33 años... ¿Ha sido hermoso, sabes?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 171.0,
+      "endTime": 172.0,
+      "text": "Hermoso."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 171.0,
+      "endTime": 184.0,
+      "text": "Y doloroso."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 184.0,
+      "endTime": 188.0,
+      "text": "Yo conozco la fría violencia del hombre,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 188.0,
+      "endTime": 193.0,
+      "text": "el egoísmo sucio que respiran sus almas y sus pulmones."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 193.0,
+      "endTime": 199.0,
+      "text": "He visto la serpiente del odio enroscándose en torno a mi vida,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 199.0,
+      "endTime": 204.0,
+      "text": "pero también he medido su ignorancia."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 204.0,
+      "endTime": 209.0,
+      "text": "Padre mío..."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 209.0,
+      "endTime": 212.0,
+      "text": "No me asusta morir,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 212.0,
+      "endTime": 215.0,
+      "text": "porque sé que cumplo con tu voluntad."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 215.0,
+      "endTime": 219.0,
+      "text": "Padre, me asusta el dolor,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 219.0,
+      "endTime": 221.0,
+      "text": "el sufrimiento,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 221.0,
+      "endTime": 225.0,
+      "text": "y tanta maldad que tengo que cargar sobre mí."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 225.0,
+      "endTime": 229.0,
+      "text": "Y me siento solo..."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 229.0,
+      "endTime": 233.0,
+      "text": "solo."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 233.0,
+      "endTime": 246.0,
+      "text": "Y aquí tú y yo solos en la hora crucial de mi vida, Padre. ¡Y no me hablas!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 246.0,
+      "endTime": 250.0,
+      "text": "¡Yo sé que tú me escuchas!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 250.0,
+      "endTime": 253.0,
+      "text": "Tú lo haces siempre, Padre."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 253.0,
+      "endTime": 255.0,
+      "text": "Pero ahora, ¿por qué te callas?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 255.0,
+      "endTime": 260.0,
+      "text": "¡Oh, Padre!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 260.0,
+      "endTime": 264.0,
+      "text": "¡Yo soy despreciable!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 264.0,
+      "endTime": 285.0,
+      "text": "¡Padre mío!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 285.0,
+      "endTime": 294.0,
+      "text": "Hágase tu voluntad..."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 294.0,
+      "endTime": 301.0,
+      "text": "Señor..."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 301.0,
+      "endTime": 304.0,
+      "text": "Dame fuerza."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 304.0,
+      "endTime": 309.0,
+      "text": "Dame fuerza, Señor."
     }
   ],
   "105": [
     {
       "character": "JESÚS",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "Con que no habéis podido estar en con pela conmigo ni siquiera una hora<br>de la diorad para que podáis hacer frente a la prueba que el espíritu está bien dispuesto<br>pero la carne esté bien levantaos vamos que ya está cerca el que me entrega"
-    },
-    {
-      "character": "PEDRO",
-      "startTime": 30,
-      "endTime": 33,
-      "text": "Maestro"
-    },
-    {
-      "character": "NARRADOR",
-      "startTime": 33,
-      "endTime": 36,
-      "text": "<br>Judas"
+      "startTime": 0.0,
+      "endTime": 7.0,
+      "text": "¿Con que no habéis podido estar en vela conmigo ni siquiera una hora?"
     },
     {
       "character": "JESÚS",
-      "startTime": 36,
-      "endTime": 46.0,
-      "text": "Amigo que yo eleje<br>Con un beso entregas al hijo del hombre<br>Habéis venido a prenderme con espadas y palos como si fuera un vulgar ladrón<br>Estaba todos los días con vosotros en el templo y no me pusisteis la mano encima<br>pero esta es vuestra hora<br>la hora del poder de las tinieblas"
+      "startTime": 7.0,
+      "endTime": 12.0,
+      "text": "Velad y orad para que podáis hacer frente a la prueba,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 12.0,
+      "endTime": 14.0,
+      "text": "que el espíritu está bien dispuesto,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 14.0,
+      "endTime": 17.0,
+      "text": "pero la carne es débil..."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 17.0,
+      "endTime": 21.0,
+      "text": "Levantaos, vamos,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 21.0,
+      "endTime": 30.0,
+      "text": "que ya está cerca el que me entrega."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 30.0,
+      "endTime": 33.0,
+      "text": "¡Maestro!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 33.0,
+      "endTime": 38.0,
+      "text": "Judas, ¿amigo que yo elegí?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 38.0,
+      "endTime": 51.0,
+      "text": "¿Con un beso entregas al Hijo del Hombre?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 51.0,
+      "endTime": 55.0,
+      "text": "¿Habéis venido a prenderme con espadas y palos como si fuera un vulgar ladrón?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 55.0,
+      "endTime": 59.0,
+      "text": "Estaba todos los días con vosotros en el Templo y no me pusisteis la mano encima..."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 59.0,
+      "endTime": 61.0,
+      "text": "Pero esta es vuestra hora,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 61.0,
+      "endTime": 66.0,
+      "text": "la hora del poder de las tinieblas."
     }
   ],
   "106": [

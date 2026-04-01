@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.6.27` (Gestión Escénica + UI) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.6.29` (Gestión Escénica + UI) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -101,13 +101,23 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 7. **Modo oscuro** — Automático vía `prefers-color-scheme`
 8. **Responsive** — Diseño adaptable a móvil/tablet/desktop
 
+## Flujo de Trabajo de Transcripción (Workflow)
+
+Para mantener la calidad y agilizar la integración de nuevas pistas de audio al JSON del Karaoke, el equipo respeta estrictamente el siguiente ciclo iterativo H.I.T.L. (Human-In-The-Loop):
+
+1. **`v0.1.md` (Plantilla Base / Input IA):** El asistente de IA recibe (o genera) un archivo temporal con la estructura mínima y se apoya en esto para despachar el audio al modelo de voz a texto (Groq/Whisper).
+2. **`v1.0.md` (Transcripción Cruda H.I.T.L.):** La IA devuelve los resultados con marcas de tiempo `[xxx.mm.ss.ms]` y asignaciones de personajes automáticas (`Pxx`). La IA **guarda este resultado crudo** en `audios/subs/xxx_v1.0.md` y pausa el proceso.
+3. **Pausa y Edición Humana:** El desarrollador (Humano) edita manualmente el `v1.0.md` corrigiendo pisadas de audio, ajustando o reasignando las marcas temporales e identificadores (`Pxx`) que requieren contexto fílmico real. **(Carga de trabajo principal humana)**.
+4. **`v1.1.md` (Refinado Filológico):** Una vez que el usuario indica que "ya está editado el archivo v1.0", el asistente de IA retoma el trabajo. Lee el `v1.0.md` validado, y le inyecta la **redacción gramatical y puntuación teatral perfecta** proveniente del guion maestro semiótico (`docs/Guion-vcby2026_Editado...md`). La IA lo guarda como `v1.1.md`.
+5. **Compilación y Cierre (`guion_completo.json`):** Finalmente, la IA ejecuta el motor `tools/groq_tool/compilador_v1.1.rb` inyectando la nueva pista `v1.1.md` depurada, pulida y temporalmente precisa dentro del Karaoke interactivo y termina el ciclo.
+
 ## Versión Actual
 
-- **Versión**: 26.6.27 (2026-04-01)
-- **Cambios**: Mejora visual UX solicitada de anclar el scrolling del Karaoke a la parte superior del visor para mantener el foco en la línea actual. Se ha implementado también la clase CSS `cue-past` en `style.css` y la lógica de repintado en `karaoke.js` para aplicar opacidad (0.15) y filtro "blur" (difuminado) a los bloques que ya han sido sobrepasados por la marca temporal de reproducción. Así lo pasado se disipa hacia arriba de forma elegante.
+- **Versión**: 26.6.29 (2026-04-01)
+- **Cambios**: Se inyectó con éxito todo el archivo gramatical referenciado a `105_v1.1.md` cerrando el ciclo H.I.T.L de la pista 105 (La Entrega). El compilador generó el master incorporando el audio 105 al sistema.
 
 > **Estado del Repositorio:** Limpio (sin logs temporales basura).  
-> **Versión Actual:** 26.6.27 (UX: Karaoke Focus and Blur).
+> **Versión Actual:** 26.6.29 (Inyectado track 105).
 
 ## Estado del Sitio (2026-03-28)
 
