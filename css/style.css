@@ -465,6 +465,7 @@ body.admin-mode .admin-only {
 
 .cue-inactive {
     opacity: 0.6;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* El bloque toma relevancia y resalta como guion activo */
@@ -511,16 +512,16 @@ body.admin-mode .admin-only {
 
 /* Audios anterior y siguiente (Preview) */
 .cue-external-audio {
-    background-color: transparent;
-    opacity: 0.45;
+    opacity: 0.6;
 }
 
 .cue-external-audio:hover {
-    opacity: 0.85;
+    opacity: 0.9;
 }
 
 .cue-prev-audio {
-    border-left: 3px dashed #dcd0bc;
+    border-left: 3px dashed #b0c4de;
+    background-color: rgba(180, 200, 220, 0.15); /* Azul/Gris tenue */
     margin-bottom: 10px;
 }
 .cue-prev-audio:last-of-type {
@@ -528,7 +529,8 @@ body.admin-mode .admin-only {
 }
 
 .cue-next-audio {
-    border-left: 3px dashed #dcd0bc;
+    border-left: 3px dashed #e6cba8;
+    background-color: rgba(230, 210, 180, 0.2); /* Naranja/Tierra tenue */
     margin-top: 10px;
 }
 .cue-next-audio:first-of-type {
