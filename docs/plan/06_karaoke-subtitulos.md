@@ -43,17 +43,28 @@ Transformar la experiencia de reproducción de audios del ViaCrucis (actualmente
 
 ---
 
-## Fase 4: Transcripción IA de Audios con Groq (EN PROCESO)
+## Fase 4: Transcripción Cruda de Audios con Groq (EN PROCESO)
 
 ```text
 ████░░░░░░░░░░░░░░░░░░░░░░░░░░  10%
 ```
 
-- [ ] (A) Procesar el primer audio (`101_v2503.mp3`) utilizando un script de Python conectado a la API de **Groq** (`whisper-large-v3`).
-- [ ] (B) Extraer el texto crudo en segmentos JSON indicando exactamente su parámetro `start` y `end`.
-- [ ] (C) Mapear los tiempos obtenidos a los personajes del guion teatral original.
-- [ ] (D) Ajustar y reescribir `guion_completo.json` para reflejar el ID 101 perfectamente segmentado.
-- [ ] Procesar iterativamente el resto de los 33 audios replicando el método exitoso.
+- [x] (A) Procesar el primer audio (`101_v2503.mp3`) utilizando un script conectado a **Groq** (`whisper-large-v3`).
+- [x] (B) Extraer el texto crudo en segmentos JSON indicando exactamente su parámetro `start` y `end`.
+- [ ] Extraer iterativamente el raw json de los 33 audios que restan a sus archivos `*_raw.json`.
+
+---
+
+## Fase 5: Flujo H.I.T.L. (Human In The Loop) con Mapeador Semántico MD
+
+```text
+████░░░░░░░░░░░░░░░░░░░░░░░░░░  10%
+```
+
+- [x] 1. Crear el borrador `v0.1.md` de cada pista. Incluirá **Tabla Personajes** con ID (`P01...`) y **Tabla Subtítulos** (Tiempos + Texto extraído) con la celda `IDPERSONAJE` vacía. (Ej: `101_v0.1.md`).
+- [ ] 2. Pasar a Llama 3.3 (Groq) este borrador + Guión Original para que deduzca por contexto y relle las celdas vacías (`101_v1.0.md`).
+- [ ] 3. **Intervención Humana Diaria**: El director revisa `101_v1.0.md`, corrige ID asignados erróneos (e.g. `P05` en vez de `P03`), elimina transcripciones fallidas o edita los subtítulos. Guarda como `101_v1.1.md`.
+- [ ] 4. Escribir script compilador definitivo que trague el `.md` final aprobado (`v1.1`) y lo empaquete nativamente en el `guion_completo.json`.
 
 ---
 
