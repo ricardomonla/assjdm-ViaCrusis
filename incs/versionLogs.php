@@ -1,6 +1,16 @@
 <?php
 $versionLogs = [
-    '26.5' => [
+    '26.5.1' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'MVP Karaoke: Implementación del Script Container con auto-scroll dinámico.',
+            'Optimizacion: Doble tap en pantalla para pausar/reproducir, tap simple para saltar al tiempo exacto.',
+            'Refactor: Unificación de 34 archivos de guión en un único maestro guion_completo.json.',
+            'UI: Modo continuo (preview visual del siguiente audio vinculado automáticamente).',
+            'Tooling: Creación de scripts en Python para convertir Markdown a JSON.'
+        ]
+    ],
+    '26.5.0' => [
         'date' => '2026-03-29',
         'changes' => [
             'IA: Transcripción automática de 34 audios y etiquetado de 18 personajes con Groq (Llama 3.3).',
@@ -10,7 +20,7 @@ $versionLogs = [
             'Update: Inclusión de nuevo borrador y reorganización en el README principal.'
         ]
     ],
-    '26.4' => [
+    '26.4.0' => [
         'date' => '2026-03-28',
         'changes' => [
             'Fix: Forzar modo claro (color-scheme: light only) — colores consistentes entre dispositivos.',

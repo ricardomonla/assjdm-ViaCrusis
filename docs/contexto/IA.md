@@ -101,8 +101,8 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.5 (2026-04-01)
-- **Cambios**: Módulo de audios a /audios/, cache-buster nativo de PHP, UI iconos de navegación
+- **Versión**: 26.5.1 (2026-04-01)
+- **Cambios**: Módulo Karaoke interactivo y unificación de guion maestro.
 
 ## Estado del Sitio (2026-03-28)
 
