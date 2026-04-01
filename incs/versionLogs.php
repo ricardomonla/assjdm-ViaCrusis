@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.23' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Scripts Globales (`jss/js.js`): Se retiró a nivel nuclear la función legacy `fadeOutAudio`. Este script reducía interactivamente el canal del volumen a `0.0` antes de redirigir, lo que entraba en grave conflicto con la persistencia `localStorage`, obligando al código a hardcodear en el último mili-segundo `audio.volume = 1.0` pisando por ende los ajustes del usuario y causando explosiones auditivas en la pista subsecuente.'
+        ]
+    ],
     '26.6.22' => [
         'date' => '2026-04-01',
         'changes' => [

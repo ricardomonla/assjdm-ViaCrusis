@@ -1,34 +1,4 @@
-// Función de fade out (se mantiene igual)
-function fadeOutAudio(audioElement, callback) {
-    const fadeDuration = 800;
-    const fadeSteps = 20;
-    const stepTime = fadeDuration / fadeSteps;
-    const initialVolume = audioElement.volume;
-    const stepDecrease = initialVolume / fadeSteps;
-    
-    const originalValues = {
-        volume: audioElement.volume,
-        playbackRate: audioElement.playbackRate
-    };
-
-    let stepsCompleted = 0;
-    
-    const fadeInterval = setInterval(() => {
-        if (stepsCompleted < fadeSteps) {
-            audioElement.volume = Math.max(0, audioElement.volume - stepDecrease);
-            stepsCompleted++;
-        } else {
-            clearInterval(fadeInterval);
-            audioElement.pause();
-            audioElement.volume = originalValues.volume;
-            audioElement.playbackRate = originalValues.playbackRate;
-            
-            if (typeof callback === 'function') {
-                setTimeout(callback, 100);
-            }
-        }
-    }, stepTime);
-}
+// Función de fade out eliminada a petición del usuario para no reiniciar volumen.
 
 function initAudioPlayer() {
     const audio = document.getElementById('audioPlayer');
@@ -42,10 +12,8 @@ function initAudioPlayer() {
             e.preventDefault();
             const targetUrl = this.href;
             
-            // Aplicar fade out solo para navegación manual
-            fadeOutAudio(audio, () => {
-                window.location.href = targetUrl;
-            });
+            // Navegación directa sin desvanecimiento (fade out)
+            window.location.href = targetUrl;
         });
     });
 
@@ -80,8 +48,7 @@ function initAudioPlayer() {
         }, 500);
     });
     
-    // Inicializar volumen
-    audio.volume = 1.0;
+    // El volumen inicial es manejado nativamente en play.php mediante localStorage
 }
 
 document.addEventListener('DOMContentLoaded', initAudioPlayer);
