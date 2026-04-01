@@ -90,6 +90,8 @@ include '../incs/header.php';
             window.firstAudioId = '<?= htmlspecialchars($firstAudioId) ?>';
             window.appVersion = '<?= htmlspecialchars($latestVersion) ?>';
             window.audioFileBase = '<?= htmlspecialchars(pathinfo($audio_file, PATHINFO_FILENAME)) ?>';
+            window.nextAudioId = '<?= $nextAudio ? htmlspecialchars($nextAudio['id']) : "" ?>';
+            window.nextAudioFileBase = '<?= $nextAudio ? htmlspecialchars(pathinfo($nextAudio['filename'], PATHINFO_FILENAME)) : "" ?>';
             
             document.addEventListener('DOMContentLoaded', function() {
                 var audio = document.getElementById('audioPlayer');

@@ -13,40 +13,75 @@ document.addEventListener('DOMContentLoaded', function() {
     let isUserScrolling = false;
     let scrollTimeout;
 
-    // Detectar si el usuario está scrolleando manualmente para no forzar el auto-scroll todo el tiempo
+    // Detectar si el usuario está scrolleando manualmente
     scriptContainer.addEventListener('scroll', () => {
         isUserScrolling = true;
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             isUserScrolling = false;
-        }, 3000); // Vuelve al auto-scroll si afloja el scroll por 3 seg
+        }, 3000); // Vuelve al auto-scroll tras 3s de inactividad de scroll
     });
 
-    // Cargar el JSON del guion
+    // Carga principal del guion actual
     fetch(`../audios/subs/${window.audioFileBase}.json?v=${window.appVersion || Date.now()}`)
         .then(response => {
-            if (!response.ok) {
-                throw new Error('No hay guion disponible para este audio.');
-            }
+            if (!response.ok) throw new Error('No hay guion disponible para este audio.');
             return response.json();
         })
         .then(data => {
-            if (data.length === 0) {
-                throw new Error('El guion está vacío.');
+            if (data.length === 0) throw new Error('El guion está vacío.');
+            
+            // Marcar items como de este track
+            scriptData = data.map(cue => ({...cue, isNextAudio: false}));
+            
+            // Si hay un script siguiente, traerlo también para mostrarlo pegado abajo (preview continuo)
+            if (window.nextAudioFileBase) {
+                fetch(`../audios/subs/${window.nextAudioFileBase}.json?v=${window.appVersion || Date.now()}`)
+                    .then(res => res.ok ? res.json() : [])
+                    .then(nextData => {
+                        const nextDataMapped = nextData.map(cue => ({...cue, isNextAudio: true}));
+                        scriptData = scriptData.concat(nextDataMapped);
+                        renderScript(scriptData);
+                    })
+                    .catch(() => renderScript(scriptData)); // Si falla el 2do, rinde el 1ro nomás
+            } else {
+                renderScript(scriptData);
             }
-            scriptData = data;
-            renderScript(scriptData);
         })
         .catch(error => {
             scriptContainer.innerHTML = `<div class="script-placeholder">${error.message}</div>`;
         });
+
+    let lastTap = 0;
+    let pendingClickTimeout = null;
+
+    // Listener global en el contenedor para detectar 'doble tap'
+    scriptContainer.addEventListener('click', function(e) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+        
+        if (tapLength < 400 && tapLength > 0) {
+            // DOBLE TAP DETECTADO
+            // Cancelar salto individual si existiera
+            if (pendingClickTimeout) clearTimeout(pendingClickTimeout);
+            
+            e.preventDefault();
+            
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        }
+        lastTap = currentTime;
+    });
 
     function renderScript(data) {
         scriptContainer.innerHTML = ''; // Limpiar
         
         data.forEach((cue, index) => {
             const block = document.createElement('div');
-            block.className = 'cue-block cue-inactive';
+            block.className = 'cue-block cue-inactive ' + (cue.isNextAudio ? 'cue-next-audio' : '');
             block.id = `cue-${index}`;
             
             const characterSpan = document.createElement('span');
@@ -55,19 +90,33 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const textSpan = document.createElement('span');
             textSpan.className = 'cue-text';
-            textSpan.innerHTML = cue.text; // Soporta <br> si los hay
+            textSpan.innerHTML = cue.text;
             
             block.appendChild(characterSpan);
             block.appendChild(textSpan);
             
-            // Hacer la linea clickeable
-            block.addEventListener('click', () => {
-                audioPlayer.currentTime = cue.startTime;
-                if(audioPlayer.paused) {
-                    audioPlayer.play();
-                }
-                // Hacemos que la proxima vez sí se auto-centre forzado
-                isUserScrolling = false; 
+            block.addEventListener('click', (e) => {
+                // Prevenir que el click bubble up e interfiera (opcional, dejamos que suba para doble tap general)
+                
+                // En lugar de ejecutar inmediato, agendamos el single_click para despues de 400ms.
+                // Si ocurre otro tap antes de 400ms, el global del scriptContainer cancelará este timeout.
+                if (pendingClickTimeout) clearTimeout(pendingClickTimeout);
+                
+                pendingClickTimeout = setTimeout(() => {
+                    // Acción de click normal:
+                    if (cue.isNextAudio) {
+                        // Es un texto del próximo audio. Redirigimos sin asco.
+                        window.location.href = `play.php?id=${window.nextAudioId}&v=${window.appVersion || Date.now()}`;
+                        return;
+                    }
+                    
+                    // Salto temporal dentro del audio actual
+                    audioPlayer.currentTime = cue.startTime;
+                    if(audioPlayer.paused) {
+                        audioPlayer.play();
+                    }
+                    isUserScrolling = false; 
+                }, 400); 
             });
             
             scriptContainer.appendChild(block);
@@ -84,9 +133,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Buscar cual es el cue correspondiente
         for (let i = 0; i < scriptData.length; i++) {
             const cue = scriptData[i];
-            // Entramos en la ventana de tiempo del cue
-            // Permitimos que el cue permanezca activo hasta que inicie el siguiente
-            const nextStartTime = (i + 1 < scriptData.length) ? scriptData[i + 1].startTime : Infinity;
+            
+            if (cue.isNextAudio) continue; 
+            
+            const nextStartTime = (i + 1 < scriptData.length && !scriptData[i+1].isNextAudio) 
+                                    ? scriptData[i + 1].startTime 
+                                    : Infinity;
             
             if (currentTime >= cue.startTime && currentTime < nextStartTime) {
                 foundIdx = i;
@@ -96,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Si cambió el index activo
         if (foundIdx !== currentActiveIdx && foundIdx !== -1) {
-            // Desmarcar anterior
             if (currentActiveIdx !== -1) {
                 const oldBlock = document.getElementById(`cue-${currentActiveIdx}`);
                 if (oldBlock) {
@@ -105,15 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Marcar nuevo
             const newBlock = document.getElementById(`cue-${foundIdx}`);
             if (newBlock) {
                 newBlock.classList.remove('cue-inactive');
                 newBlock.classList.add('cue-active');
                 
-                // Hacer auto-scroll si el usuario no esta interactuando de forma manual
+                // Auto-scroll
                 if (!isUserScrolling) {
-                    // Calculamos la posición para centrar el bloque en el contenedor
                     const containerHeight = scriptContainer.clientHeight;
                     const blockTop = newBlock.offsetTop;
                     const blockHeight = newBlock.clientHeight;

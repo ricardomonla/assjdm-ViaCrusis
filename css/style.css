@@ -439,6 +439,8 @@ body.admin-mode .admin-only {
     overflow-y: auto;
     scroll-behavior: smooth;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+    -webkit-user-select: none; /* Prevenir seleccion de texto al hacer doble tap en celular */
+    user-select: none;
 }
 
 .script-placeholder {
@@ -487,6 +489,16 @@ body.admin-mode .admin-only {
     color: #333;
     font-size: 1.1em;
     line-height: 1.4;
+}
+
+.cue-next-audio {
+    background-color: transparent;
+    border-left: 3px dashed #dcd0bc;
+    opacity: 0.5;
+}
+
+.cue-next-audio:hover {
+    opacity: 0.8;
 }
 
 body.admin-mode .admin-logout {
