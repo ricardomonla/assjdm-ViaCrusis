@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const audioPlayer = document.getElementById('audioPlayer');
     const scriptContainer = document.getElementById('script-container');
     
-    if (!audioPlayer || !scriptContainer || !window.audioFileBase) {
+    if (!audioPlayer || !scriptContainer || !window.audioId) {
         return;
     }
 
