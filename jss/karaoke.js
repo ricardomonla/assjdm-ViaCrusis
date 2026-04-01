@@ -37,18 +37,18 @@ document.addEventListener('DOMContentLoaded', function() {
             let currentScript = masterData[currentAudioId] || [];
             scriptData = currentScript.map(cue => ({...cue, isNextAudio: false, isPrevAudio: false}));
             
-            // Si hay un script anterior, traer los últimos 3 para mostrar en el tope
+            // Si hay un script anterior, traer SOLO el último para mostrar en el tope
             if (prevAudioId && masterData[prevAudioId]) {
                 const prevData = masterData[prevAudioId];
-                const lastItems = prevData.slice(-3);
+                const lastItems = prevData.slice(-1);
                 const prevDataMapped = lastItems.map(cue => ({...cue, isPrevAudio: true, isNextAudio: false}));
                 scriptData = prevDataMapped.concat(scriptData);
             }
             
-            // Si hay un script siguiente, traer los primeros 3 para mostrarlo pegado abajo
+            // Si hay un script siguiente, traer SOLO el primero para mostrarlo pegado abajo
             if (nextAudioId && masterData[nextAudioId]) {
                 const nextData = masterData[nextAudioId];
-                const firstItems = nextData.slice(0, 3);
+                const firstItems = nextData.slice(0, 1);
                 const nextDataMapped = firstItems.map(cue => ({...cue, isNextAudio: true, isPrevAudio: false}));
                 scriptData = scriptData.concat(nextDataMapped);
             }
