@@ -31,14 +31,25 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(masterData => {
             const currentAudioId = window.audioId.split('_')[0];
             const nextAudioId = window.nextAudioId ? window.nextAudioId.split('_')[0] : "";
+            const prevAudioId = window.prevAudioId ? window.prevAudioId.split('_')[0] : "";
             
             // Extraer guion actual
             let currentScript = masterData[currentAudioId] || [];
-            scriptData = currentScript.map(cue => ({...cue, isNextAudio: false}));
+            scriptData = currentScript.map(cue => ({...cue, isNextAudio: false, isPrevAudio: false}));
             
-            // Si hay un script siguiente, traerlo también para mostrarlo pegado abajo (preview continuo)
+            // Si hay un script anterior, traer los últimos 3 para mostrar en el tope
+            if (prevAudioId && masterData[prevAudioId]) {
+                const prevData = masterData[prevAudioId];
+                const lastItems = prevData.slice(-3);
+                const prevDataMapped = lastItems.map(cue => ({...cue, isPrevAudio: true, isNextAudio: false}));
+                scriptData = prevDataMapped.concat(scriptData);
+            }
+            
+            // Si hay un script siguiente, traer los primeros 3 para mostrarlo pegado abajo
             if (nextAudioId && masterData[nextAudioId]) {
-                const nextDataMapped = masterData[nextAudioId].map(cue => ({...cue, isNextAudio: true}));
+                const nextData = masterData[nextAudioId];
+                const firstItems = nextData.slice(0, 3);
+                const nextDataMapped = firstItems.map(cue => ({...cue, isNextAudio: true, isPrevAudio: false}));
                 scriptData = scriptData.concat(nextDataMapped);
             }
             
@@ -81,7 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         data.forEach((cue, index) => {
             const block = document.createElement('div');
-            block.className = 'cue-block cue-inactive ' + (cue.isNextAudio ? 'cue-next-audio' : '');
+            let extraClass = '';
+            if (cue.isNextAudio) extraClass = 'cue-external-audio cue-next-audio';
+            if (cue.isPrevAudio) extraClass = 'cue-external-audio cue-prev-audio';
+            block.className = 'cue-block cue-inactive ' + extraClass;
             block.id = `cue-${index}`;
             
             const headerDiv = document.createElement('div');
@@ -117,8 +131,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 pendingClickTimeout = setTimeout(() => {
                     // Acción de click normal:
                     if (cue.isNextAudio) {
-                        // Es un texto del próximo audio. Redirigimos sin asco.
                         window.location.href = `play.php?id=${window.nextAudioId}&v=${window.appVersion || Date.now()}`;
+                        return;
+                    }
+                    if (cue.isPrevAudio) {
+                        window.location.href = `play.php?id=${window.prevAudioId}&v=${window.appVersion || Date.now()}`;
                         return;
                     }
                     
@@ -146,9 +163,9 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < scriptData.length; i++) {
             const cue = scriptData[i];
             
-            if (cue.isNextAudio) continue; 
+            if (cue.isNextAudio || cue.isPrevAudio) continue; 
             
-            const nextStartTime = (i + 1 < scriptData.length && !scriptData[i+1].isNextAudio) 
+            const nextStartTime = (i + 1 < scriptData.length && !scriptData[i+1].isNextAudio && !scriptData[i+1].isPrevAudio) 
                                     ? scriptData[i + 1].startTime 
                                     : Infinity;
             

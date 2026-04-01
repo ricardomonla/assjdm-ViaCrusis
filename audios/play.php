@@ -91,6 +91,7 @@ include '../incs/header.php';
             window.appVersion = '<?= htmlspecialchars($latestVersion) ?>';
             window.audioId = '<?= htmlspecialchars($audio['id']) ?>';
             window.nextAudioId = '<?= $nextAudio ? htmlspecialchars($nextAudio['id']) : "" ?>';
+            window.prevAudioId = '<?= $prevAudio ? htmlspecialchars($prevAudio['id']) : "" ?>';
             
             document.addEventListener('DOMContentLoaded', function() {
                 var audio = document.getElementById('audioPlayer');

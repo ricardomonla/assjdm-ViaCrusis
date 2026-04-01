@@ -509,14 +509,30 @@ body.admin-mode .admin-only {
     border-left: 2px solid rgba(0,0,0,0.05); /* Barra muy sutil a la izquierda */
 }
 
-.cue-next-audio {
+/* Audios anterior y siguiente (Preview) */
+.cue-external-audio {
     background-color: transparent;
-    border-left: 3px dashed #dcd0bc;
-    opacity: 0.5;
+    opacity: 0.45;
 }
 
-.cue-next-audio:hover {
-    opacity: 0.8;
+.cue-external-audio:hover {
+    opacity: 0.85;
+}
+
+.cue-prev-audio {
+    border-left: 3px dashed #dcd0bc;
+    margin-bottom: 10px;
+}
+.cue-prev-audio:last-of-type {
+    margin-bottom: 25px; /* Separación más grande con el comienzo real */
+}
+
+.cue-next-audio {
+    border-left: 3px dashed #dcd0bc;
+    margin-top: 10px;
+}
+.cue-next-audio:first-of-type {
+    margin-top: 25px; /* Separación más grande con el final real */
 }
 
 body.admin-mode .admin-logout {
