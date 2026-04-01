@@ -1,0 +1,1208 @@
+{
+  "101": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "La Pascua es la mayor festividad judía del año.<br>Miles acuden a Jerusalén para dar gracias a Dios<br>por liberar a sus antepasados de la esclavitud de los egipcios.<br>La entrada de Jesús provoca un aluvión"
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 56,
+      "endTime": 57,
+      "text": "Jesús es el Mesías"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 57,
+      "endTime": 72.0,
+      "text": "El profeta Zacarías predijo que un nuevo rey de los judíos entraría en la ciudad a lomos de un asno."
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 100,
+      "endTime": 115.0,
+      "text": "¡Mesías! ¡Mesías!<br>¡El reino está cerca!<br>¡El reino está cerca!<br>¡El Mesías!<br>Es Barrabás.<br>¡Mesías!<br>¡Rey de Israel!<br>¿Por qué no nos vienes a liberar?<br>¡Sálvanos de la ley de los romanos!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 134,
+      "endTime": 149.0,
+      "text": "Venimos en paz, Barrabás.<br>Dejad que los niños se acerquen a mí<br>Porque de los que son como ellos<br>Es el reino de los cielos<br>Venid"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 175,
+      "endTime": 185.0,
+      "text": "<br>"
+    }
+  ],
+  "102": [
+    {
+      "character": "CAIFÁS",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "¡Hombre! ¡Judas! ¡Dichosos los ojos!<br>¿Cuánto tiempo? ¿Dónde te habías metido? Hace días que no se te ve con Jesús de Nazaret.<br>Acércate."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 18,
+      "endTime": 22,
+      "text": "Estaba reflexionando, decidiendo qué hacer."
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 22,
+      "endTime": 29,
+      "text": "¿Qué hacer? Parecía saber muy bien lo que debías hacer la última vez que nos vimos.<br>¿Qué ha cambiado desde entonces?"
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 29,
+      "endTime": 44.0,
+      "text": "No lo sé. Estoy confuso.<br>Siempre había creído en la acción política, que eso lo resolvía todo.<br>Creía que era suficiente compensar detenidamente y actuar con contundencia.<br>Pero me temo que mi maestro no está de acuerdo.<br>No comparte mi visión.<br>Dice que es más importante el corazón.<br>Me he endurecido.<br>No soy digno de ser uno de ellos.<br>Será mejor que me vaya."
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 59,
+      "endTime": 74.0,
+      "text": "Judas, ¿por qué te empeñas en engañarte?<br>Reconoce que hace tiempo que has dejado de creer que Jesús de Nazaret sea verdaderamente el Mesías.<br>Pero hay una forma de averiguar la verdad.<br>Y lo sabías la primera vez que viniste a verme.<br>Deja que Jesús declare ante el Sanedrín."
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 81,
+      "endTime": 84,
+      "text": "Demasiado tarde. Nunca lo aceptará."
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 84,
+      "endTime": 94.0,
+      "text": "¿Pero por qué?<br>Hay muchos sacerdotes que admiran a Jesús.<br>Tendrá un juicio justo.<br>Y si de verdad es el Mesías, Dios Padre no le abandonará.<br>Y si no lo es, habrás contribuido a salvar a Israel de un falso profeta más."
+    }
+  ],
+  "103": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "Osana, Osana, Osana, a los días de Israel.<br>¡Gracias!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 40,
+      "endTime": 55.0,
+      "text": "bendito sea Señor<br>Dios nuestro<br>Rey del mundo<br>que das a Israel<br>esta fiesta para alegría y memoria<br>Cuanto he deseado comer esta Pascua con vosotros<br>Antes de padecer<br>Porque os digo que no volveré a comerla<br>Hasta que se cumpla en el reino de mi Pascua"
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 94,
+      "endTime": 107,
+      "text": "¡No se nos termina esta vida, hombre!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 107,
+      "endTime": 122.0,
+      "text": "Sois testigos<br>de que los poderosos de la tierra dominan a sus súbditos.<br>Que no sea así entre vosotros.<br>El que quiera ser el primero,<br>que sea el último y servidor de todos,<br>Pues yo estoy entre vosotros, como el que sirvo."
+    },
+    {
+      "character": "DISCÍPULOS",
+      "startTime": 150,
+      "endTime": 165.0,
+      "text": "Amén"
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 171,
+      "endTime": 183,
+      "text": "Pues, ¿cómo me vas a lavar los pies?<br>No lo harás."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 183,
+      "endTime": 190,
+      "text": "Pedro, ahora no entiendes lo que voy a hacer.<br>Lo entenderás más adelante."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 190,
+      "endTime": 193,
+      "text": "Jamás permitiré que me laves los pies."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 193,
+      "endTime": 198,
+      "text": "Pedro, si no te lavo, no tendrás parte conmigo."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 198,
+      "endTime": 213.0,
+      "text": "Entonces, Señor, no solo los pies<br>Lávame también las manos y la cabeza"
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 228,
+      "endTime": 243.0,
+      "text": "Amén."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 258,
+      "endTime": 273.0,
+      "text": "¿Quién será el maestro de vosotros?<br>Me llamáis el maestro, el señor, y lo soy.<br>Pero si yo he hecho esto con vosotros, también debéis hacer lo mismo con los demás.<br>Quiero que sepáis que uno de vosotros me va a entregar."
+    },
+    {
+      "character": "DISCÍPULOS",
+      "startTime": 285,
+      "endTime": 298,
+      "text": "Es imposible que alguno de vosotros haga eso ser el traidor No puedo creer semejante cosa Soy yo se Yo maestro Ser yo Jes no Yo se Quiz yo maestro Tal vez yo Jes Pudiera ser yo maestro"
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 298,
+      "endTime": 299,
+      "text": "A lo mejor yo, señor."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 299,
+      "endTime": 300,
+      "text": "¿Acaso yo, Jesús?"
+    },
+    {
+      "character": "OTRO DISCÍPULO",
+      "startTime": 300,
+      "endTime": 306,
+      "text": "¿Acaso soy yo, señor?<br>Maestro, ¿quién te traicionará?"
+    },
+    {
+      "character": "JUDAS",
+      "startTime": 306,
+      "endTime": 308,
+      "text": "Seré yo."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 308,
+      "endTime": 323.0,
+      "text": "Aquel que moje su pan cuando yo moje el mío.<br>Ese es.<br>Judas<br>lo que has de hacer<br>hazlo cuanto antes"
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 345,
+      "endTime": 347,
+      "text": "¿Dónde vas?<br>¡Judas!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 347,
+      "endTime": 362.0,
+      "text": "Tomad y comed.<br>Esto es mi cuerpo que se entrega por vosotros.<br>Este es el cáliz de mi sangre<br>derramada por vosotros como símbolo de una nueva alianza.<br>Bebé todos de él.<br>Lo que acabo de hacer,<br>hacedlo también vosotros para recordarme.<br>Todos fallaréis por mi causa.<br>Pero después de resucitar,<br>iré delante de vosotros a Galilea."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 430,
+      "endTime": 445,
+      "text": "Maestro te seguir donde quiera que vayas Si hiciera falta dar mi vida por ti"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 445,
+      "endTime": 450,
+      "text": "Pedro esta noche<br>antes de que el gallo cante,<br>me habrás negado tres veces."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 450,
+      "endTime": 457,
+      "text": "Oh, Señor,<br>yo nunca te fallaré.<br>Aunque todos pierdan<br>la fe, yo no, yo nunca."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 457,
+      "endTime": 468,
+      "text": "Pedro,<br>he rezado<br>por ti.<br>Y tú cuando te hayas recuperado, a cambio tendrás que dar fuerza a tus hermanos."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 468,
+      "endTime": 471,
+      "text": "Maestro."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 471,
+      "endTime": 486.0,
+      "text": "Que no esté triste vuestro corazón.<br>Creed en Dios y creed también en mí.<br>Yo soy el camino, la verdad y la vida.<br>Nadie va al Padre sino por mí.<br>Esto es lo que os mando.<br>que os améis los unos a los otros<br>como yo os he amado<br>nadie tiene mayor amor<br>que el que da la vida por sus amigos<br>a vosotros ya no os llamo siervos<br>porque el siervo no sabe lo que hace su señor<br>a vosotros<br>os llamo amigos<br>porque todo lo que he oído decir a mi padre<br>os lo he dado a conocer<br>amados los unos a los otros<br>como yo os he amado.<br>Vamos.<br>Se hace tarde."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 550,
+      "endTime": 560.0,
+      "text": "<br>La Iglesia de Jesucristo de los Santos de los Últimos Días<br>"
+    }
+  ],
+  "104": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "El Semaní es un huerto de los muchos que se extendían por las fértiles laderas del Monte de los Olivos.<br>Allí, viendo muy cercana y muy posible una muerte violenta, Jesús experimenta un sinfín de sentimientos contradictorios.<br>Es un momento decisivo en el compromiso de fe de Jesús.<br>Nunca se había sentido tan vulnerable<br>Y nunca su fidelidad sería más dolorosamente firme que entonces"
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 31,
+      "endTime": 35,
+      "text": "¿Qué te ha ocurrido, señor?<br>Aviso a los demás"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 35,
+      "endTime": 41,
+      "text": "No, Pedro<br>No quiero que me vean así"
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 41,
+      "endTime": 45,
+      "text": "Estás en peligro, no deberíamos huir"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 45,
+      "endTime": 50,
+      "text": "Permaneced aquí<br>Velad y orad"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 50,
+      "endTime": 65.0,
+      "text": "<br>La Biblia  M"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 104,
+      "endTime": 114.0,
+      "text": "Mi alma está triste hasta la muerte<br>Si es posible pase de mí este cáliz<br>Pero que no se haga mi voluntad<br>sino la tuya<br>ahora se acerca el momento de volver a tus manos de agradecerte este regalo de ser hombre que me diste durante 33 años<br>Ha sido hermoso, ¿sabes?<br>Hermoso.<br>Y doloroso.<br>Yo conozco la fría violencia del hombre, el egoísmo sucio que respiran sus almas y sus pulmones.<br>He visto la serpiente del odio enroscándose en torno a mi vida, pero también he medido su ignorancia.<br>Padre mío<br>no me asusta morir<br>porque sé que cumplo con tu voluntad<br>Padre me asusta el dolor<br>el sufrimiento<br>y tanta maldad que tengo que cargar sobre mí<br>y me siento solo<br>solo<br>y aquí tú y yo solos en la hora crucial de mi vida Padre Y no me hablas<br>Yo sé que tú me escuchas<br>Tú lo haces siempre, Padre<br>Pero ahora, ¿por qué te callas?<br>Oh, Padre<br>Yo soy despreciable<br>Padre mío<br>Hace de tu voluntad<br>Señor<br>Dame fuerza<br>Dame fuerza Señor"
+    }
+  ],
+  "105": [
+    {
+      "character": "JESÚS",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "Con que no habéis podido estar en con pela conmigo ni siquiera una hora<br>de la diorad para que podáis hacer frente a la prueba que el espíritu está bien dispuesto<br>pero la carne esté bien levantaos vamos que ya está cerca el que me entrega"
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 30,
+      "endTime": 33,
+      "text": "Maestro"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 33,
+      "endTime": 36,
+      "text": "<br>Judas"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 36,
+      "endTime": 46.0,
+      "text": "Amigo que yo eleje<br>Con un beso entregas al hijo del hombre<br>Habéis venido a prenderme con espadas y palos como si fuera un vulgar ladrón<br>Estaba todos los días con vosotros en el templo y no me pusisteis la mano encima<br>pero esta es vuestra hora<br>la hora del poder de las tinieblas"
+    }
+  ],
+  "106": [
+    {
+      "character": "PUEBLO",
+      "startTime": 0,
+      "endTime": 8,
+      "text": "Aquí, aquí."
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 8,
+      "endTime": 20,
+      "text": "¡Ay!<br>¡José! ¡José!<br>¡Aquí te conozco!<br>¡Conozco a ese hombre!<br>¡Mirad, amigos! También está enredado con ese Jesús de Nazaret."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 20,
+      "endTime": 23,
+      "text": "No sé de quién me hablas, mujer. Yo no conozco a ese hombre."
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 23,
+      "endTime": 26,
+      "text": "Sí, tú también eres uno de ellos."
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 26,
+      "endTime": 28,
+      "text": "Seguro que no soy yo. Te confundes con otro."
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 28,
+      "endTime": 31,
+      "text": "Es verdad, esta andaba con él, porque es Galileo"
+    },
+    {
+      "character": "PEDRO",
+      "startTime": 31,
+      "endTime": 32,
+      "text": "No sé de qué me hablas"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 32,
+      "endTime": 45,
+      "text": "Pedro se acuerda de lo que el señor le había dicho"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 45,
+      "endTime": 52,
+      "text": "Pedro, esta noche, antes de que el gallo cante, me habrás negado tres veces"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 52,
+      "endTime": 62.0,
+      "text": "Entonces se marcha rápidamente y apartándose un poco de la gente<br>Llora amargamente"
+    }
+  ],
+  "107": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "Mientras Pedro llora su culpa, Jesús es llevado secretamente al Sanedrín,<br>el tribunal religioso encargado de velar por la pureza del judaísmo,<br>y que en aquel tiempo estaba presidido por Caifás,<br>sumo sacerdote del Templo de Jerusalén.<br>La Iglesia de Jesucristo de los Santos de los Últimos Días"
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 60,
+      "endTime": 75.0,
+      "text": "David, te hemos traído aquí para que puedas responder por ti mismo<br>Mira de cuántas cosas te acusan<br>Queremos que reflexiones antes de responder a nuestras preguntas<br>Dinos, ¿de qué naturaleza es la doctrina que tú y tus discípulos habéis estado predicando en Judea?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 84,
+      "endTime": 99.0,
+      "text": "He hablado abiertamente para todos los que quisieran oírme<br>oírme. He enseñado todos los días en el templo. Preguntad a ellos.<br>**OTRO SACERDOTE** <br>¿Hay testigos dispuestos a<br>repetir su afirmación de que destruir el templo y luego lo reconstruir en tres días?<br>**OTRO SACERDOTE** <br>Hermanos hermanos Caifás le han atado como un vulgar ladrón y no tienen derecho yo le he oído predicar y no he encontrado en su doctrina nada"
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 111,
+      "endTime": 125,
+      "text": "contra los preceptos de nuestra fe<br>y como se atreve a afirmar<br>que puede destruir el templo<br>y en tan solo tres días<br>construir otro no edificado por hombres<br>nadie puede reconstruir el templo en tres días"
+    },
+    {
+      "character": "OTRO SACERDOTE",
+      "startTime": 125,
+      "endTime": 131,
+      "text": "<br>lo que dijo debe de tener un significado simbólico<br>yo le he oído decir<br>que podía hacerlo en dos días"
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 131,
+      "endTime": 146.0,
+      "text": "Dos días, tres días, ¿os dais cuenta? Ni los testigos están de acuerdo.<br>No responde nada. ¿Qué significan estas acusaciones?<br>Óyeme, se ha dicho que tú mismo te has proclamado el Hijo de Dios.<br>Yo te conjuro en el nombre de Dios<br>A que responda<br>¿Eres tú el Mesías?<br>¿El Hijo de Dios?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 167,
+      "endTime": 177,
+      "text": "Yo soy<br>Y veréis al Hijo del Hombre<br>Sentado a la derecha del Todopoderoso<br>Y venir entre las nubes del cielo"
+    },
+    {
+      "character": "OTRO SACERDOTE",
+      "startTime": 177,
+      "endTime": 192.0,
+      "text": "<br>¡Escucha!<br>¡Oh Israel!<br>El Señor es nuestro Dios. El Señor es único."
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 198,
+      "endTime": 208.0,
+      "text": "¿Qué necesidad tenemos ya de testigos? Acabáis de oír todos la blasfemia.<br>vamos a llevarlo ante el procurador Poncio Pilato<br>en cuyas manos está la suprema autoridad de juzgar y condenar"
+    }
+  ],
+  "108": [
+    {
+      "character": "JUDAS",
+      "startTime": 0,
+      "endTime": 10.0,
+      "text": "¡Jesús!<br>Ojalá no te vuelvas, Jesús.<br>Ojalá no me mires.<br>¡No te atrevas a mirarme!<br>Yo no merezco una mirada tuya.<br>No podría soportarla.<br>Tengo las manos manchadas de sangre.<br>Nunca pensé que cuando decías que en Jerusalén ibas a ser entregado, sería yo quien lo haría.<br>Y ahora todos me miran<br>Y me señalan con el dedo<br>Piensan<br>Piensan que nací siendo traidor<br>Pero no<br>¡Traidor!<br>he vuelto con el tiempo<br>Nunca nadie me había querido.<br>¿Por qué ibas a hacerlo tú?<br>¡Dime!<br>¿Por qué ibas a hacerlo tú?<br>¿Por qué tuviste que hacerlo tú?<br>No merezco vivir.<br>No puedo vivir con esta culpa.<br>Lo siento, Jesús.<br>No tengo valor para seguir."
+    }
+  ],
+  "109": [
+    {
+      "character": "SOLDADO",
+      "startTime": 0,
+      "endTime": 3,
+      "text": "Señor, señor, hay de vuelta a la..."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 3,
+      "endTime": 5,
+      "text": "No te atreves a molestarme a medianoche."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 5,
+      "endTime": 6,
+      "text": "Pero señor, es urgente."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 6,
+      "endTime": 7,
+      "text": "¿Cuál es el problema?"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 7,
+      "endTime": 11,
+      "text": "Las chusmas se agolpan en las calles.<br>Caifás ha prendido a cierto profeta."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 11,
+      "endTime": 12,
+      "text": "¿A quién?"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 12,
+      "endTime": 27.0,
+      "text": "A un galileo, Jesús de Nazaret.<br>Se llama a sí mismo rey de los judíos.<br>Está aquí, en palacio."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 30,
+      "endTime": 35,
+      "text": "¿Quiénes son ustedes y qué quieren?"
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 35,
+      "endTime": 40,
+      "text": "Necesitamos ver inmediatamente al gobernador. El asunto es muy grave."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 40,
+      "endTime": 45,
+      "text": "<br>Está bien, pasen ustedes los magistrados. ¡Pero toda esta chusma fuera!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 45,
+      "endTime": 48,
+      "text": "¡Silencio! ¡Silencio!"
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 48,
+      "endTime": 60,
+      "text": "Ellos no vienen con nosotros.<br>De todos modos, tampoco nosotros podríamos penetrar hoy en la fortaleza.<br>Es la víspera del gran sábado de Pascua y nuestras leyes lo prohíben."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 60,
+      "endTime": 75.0,
+      "text": "Anda, ve y dile al gobernador que se digne salir un momento"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 79,
+      "endTime": 82,
+      "text": "<br>¿Qué pasa con este hombre? Es un delincuente que no tiene delitos en este país de bandidos y rameras. ¿Y ustedes?<br>Yo no tengo nada que ver con vuestro enfrentamiento religioso."
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 82,
+      "endTime": 97.0,
+      "text": "No, gobernador.<br>Te lo traemos a ti porque se trata de un asunto político.<br>Este Galileo se ha rebelado contra Roma<br>y a Roma corresponde juzgarlo.<br>Además,<br>Nosotros tampoco tenemos facultades para imponer la pena capital<br>Que es el castigo que se merece"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 103,
+      "endTime": 109,
+      "text": "Está bien<br>Centurión, suba al detenido<br>Voy a interrogarlo"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 109,
+      "endTime": 119,
+      "text": "Tú, súbelo"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 119,
+      "endTime": 129,
+      "text": "¿Es este vuestro peligroso aspirante, rey?<br>Andrajoso, demacrado<br>¿Eres tú el rey de los judíos?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 129,
+      "endTime": 133,
+      "text": "Dices eso por ti mismo.<br>Te lo han dicho otros de mí."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 133,
+      "endTime": 135,
+      "text": "¿Acaso soy yo judío?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 135,
+      "endTime": 140,
+      "text": "Son los de tu propia nación y los jefes de los sacerdotes<br>los que te han entregado a mí."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 140,
+      "endTime": 143,
+      "text": "¿Qué has hecho?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 143,
+      "endTime": 157,
+      "text": "Mi reino no es de este mundo Si lo fuera mi gente habría luchado para impedir que yo cayese en manos de los judíos. Pero no<br>Mi reino no es de este mundo."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 157,
+      "endTime": 161,
+      "text": "Entonces, ¿tú eres rey?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 161,
+      "endTime": 176.0,
+      "text": "Tú lo dices.<br>Soy rey.<br>Precisamente para eso nací y para eso vine al mundo.<br>Para dar testimonio de la verdad.<br>Todo el que pertenece a la verdad, escucha mi voz."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 179,
+      "endTime": 194.0,
+      "text": "<br>¿Y qué es la verdad?<br>Este hombre es Galileo, ¿no?<br>Pues llévenselo a Herodes y que sea él quien decida sobre su vida."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 229,
+      "endTime": 232,
+      "text": "<br>¿Qué es la verdad? Claudia<br>¿Puedes reconocerla con tan solo oírla?"
+    },
+    {
+      "character": "CLAUDIA",
+      "startTime": 232,
+      "endTime": 234,
+      "text": "Sí, Poncio."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 234,
+      "endTime": 237,
+      "text": "¿Cómo lo haces? ¿Cuál es el secreto?"
+    },
+    {
+      "character": "CLAUDIA",
+      "startTime": 237,
+      "endTime": 243,
+      "text": "Es fácil. Nadie puede decirte la verdad si no quieres escucharla."
+    },
+    {
+      "character": "CLAUDIA",
+      "startTime": 243,
+      "endTime": 249,
+      "text": "Ayer soñé con él.<br>Fue una pesadilla horrible"
+    },
+    {
+      "character": "CLAUDIA",
+      "startTime": 249,
+      "endTime": 254,
+      "text": "No, Poncio"
+    },
+    {
+      "character": "CLAUDIA",
+      "startTime": 254,
+      "endTime": 259,
+      "text": "No te manches tú las manos con la sangre de ese hombre<br>Estoy segura de que dice la verdad"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 259,
+      "endTime": 269.0,
+      "text": "Verdad<br>Mi verdad es que he contenido revueltas en esta tierra durante once largos años, Claudia<br>Y ahora me encuentro atado<br>Si no condeno al profeta, Caifás comenzará una rebelión<br>y si lo hago la comenzarán sus seguidores.<br>Habrá sangre, decida lo que decida.<br>El César me lo advirtió, Claudia.<br>Si hay una nueva revolución, la primera sangre derramada será la mía.<br>Esa es la única verdad que conozco."
+    }
+  ],
+  "110": [
+    {
+      "character": "NARRADOR",
+      "startTime": 30,
+      "endTime": 45.0,
+      "text": "<br>¡Suscríbete al canal!"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 90,
+      "endTime": 105.0,
+      "text": "Maravilloso, espléndido<br>Por fin Por fin te veo las barbas Jesús de Nazaret<br>Éramos vecinos y aún no nos conocíamos.<br>Tú, profeta, ¿acaso no tenías curiosidad por conocer la cara de tu rey?"
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 123,
+      "endTime": 127,
+      "text": "Parece mentira, Herodes, qué súbditos tan ingratos tienes."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 127,
+      "endTime": 142.0,
+      "text": "Sí, Galileo, yo soy tu rey y mando sobre ti. ¿No lo sabías?<br>Pobre muchacho. ¿Te han dado una buena tunda en casa de Caifás?<br>¿O fue Poncio Pilato? ¿Te han hecho mucho daño los soldaditos extranjeros?<br>Bueno, pero tú eres fuerte y aguantarás eso y mucho más, ¿no es cierto?<br>A ver, profeta, alégranos a mañana. Ya te he visto el pelo, ahora quiero oírte la voz.<br>Me han dicho que tienes una muy buena lengua para hacer cuentos y entretener a la gente.<br>Vamos, aquí hay confianza.<br>Esto de ser rey es aburridísimo.<br>Es como tirar los dados una y otra vez.<br>Y ganar siempre.<br>Vamos, anímate un poco.<br>Estoy seguro de que si a Herodías le gusta tu historia, conseguirás un indulto."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 183,
+      "endTime": 194,
+      "text": "¿Qué te pasa?<br>No se te ocurre nada<br>Siempre lo mismo<br>Muchas surabatas en la taberna<br>Pero luego se vuelven modositos<br>Como una doncella en cuanto entran a palacio"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 194,
+      "endTime": 209.0,
+      "text": "Es normal, Herodías<br>Los campesinos son tímidos<br>Pero no te asustes muchacho Que no soy tan malo como me pintan No tiembles que no voy a comerte Por cierto me han dicho que tambi sabes hacer milagros<br>¿Es eso cierto profeta o también son cuentos?"
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 218,
+      "endTime": 222,
+      "text": "<br>No sabes hacer nada, ni siquiera el truco de la serpiente."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 222,
+      "endTime": 227,
+      "text": "<br>Las manos, Herodes, las tiene amarradas.<br>Necesita moverlas con libertad."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 227,
+      "endTime": 242.0,
+      "text": "Tienes razón, preciosa.<br>¡Gracco, Gracco!<br>Suéltale las manos a ese.<br>¿Ya estás listo, profeta, o necesitas algo más?<br>Pues, hea, muchacho, toma esta manzana<br>¡Tómala, te digo!<br>Si la haces desaparecer sin que yo me dé cuenta, te daré un buen premio<br>¡Vamos, caramba, que no es tan difícil hacer eso!<br>¿O es que la belleza de mi mujer te tiene trastornado?<br>Pues esa manzana sí que no te la regalo, amiguito<br>Es solo mía"
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 256,
+      "endTime": 267,
+      "text": "<br>Ya me estoy aburriendo, Herodes. Este mentecato no nos sirve ni para hacernos reír."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 267,
+      "endTime": 274,
+      "text": "¿Pero qué te pasa? Habla, di algo. ¿O es que ya te cort... Me parece muy bien."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 274,
+      "endTime": 279,
+      "text": "<br>Las profetas no solo habría que cortarles la lengua, habría que cortarles la cabeza entera."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 279,
+      "endTime": 294.0,
+      "text": "Yo se la corté a ese, a Juan el Bautista. Melenudo impertinente, víbora venenosa.<br>¿Y tú? ¿Por qué me miras así? ¿Por qué me miras así, maldito Nazareno?<br>¿Quieres hacerme creer que no me tienes miedo?<br>Pues no, muchachito, yo no trago tus cuentos.<br>Yo no soy tan estúpido como esa chusma que te aclama.<br>C Herodes No te hagas mala sangre por un est como ve y dile al gobernador poncio pilato que herodes el tetrarca de galilea y de<br>perea le devuelva a su prisionero que ratifica todo lo que sobre él se decida<br>que lo mate que lo clave en una cruz y que le saque los ojos que luego venga mi<br>palacio que veremos el mejor vino de arabia cuando los gusanos te estén<br>comiendo. ¡Óyelo bien, maldito nazareno!"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 339,
+      "endTime": 354.0,
+      "text": "¡Herodías! ¡Herodías!"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 394,
+      "endTime": 404.0,
+      "text": "<br>¡Suscríbete al canal!"
+    }
+  ],
+  "111": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 8,
+      "text": "Primera estación<br>Jesús es condenado a muerte"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 8,
+      "endTime": 11,
+      "text": "Señor, Señor"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 11,
+      "endTime": 15,
+      "text": "<br>Herodes ratifica cualquier decisión que tome<br>Lo hemos traído aquí de nuevo"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 15,
+      "endTime": 16,
+      "text": "Necesitaremos refuerzos"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 16,
+      "endTime": 19,
+      "text": "No, lo último que quiero es una rebelión"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 19,
+      "endTime": 20,
+      "text": "Ya hay una rebelión"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 20,
+      "endTime": 35.0,
+      "text": "No encuentro delito alguno en este hombre<br>¿Tenéis la costumbre que os ponga en libertad un prisionero por fiesta de Pascua?<br>Tenemos dos presos.<br>Uno es Jesús de Nazaret, acusado de traición por proclamarse el mismo rey de los judíos.<br>Y otro, Barrabás, acusado de sedición y de asesinato de un soldado romano.<br>¿A cuál de estos dos hombres queréis que os suelte?<br>¿Al asesino Barrabás o a Jesús de Nazaret llamado Mesías?"
+    },
+    {
+      "character": "CAIFÁS",
+      "startTime": 69,
+      "endTime": 84.0,
+      "text": "¿Mesías? ¿Ese?<br>Ese no es el enviado de nadie.<br>Es solo un impostor y un blasfemo.<br>Anda, deja libre a Barrabás."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 86,
+      "endTime": 100,
+      "text": "Os pregunto de nuevo, ¿a cuál de estos dos hombres queréis que os suelte?"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 100,
+      "endTime": 109,
+      "text": "<br>Calma calma hago entonces con Jes el llamado Mes"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 109,
+      "endTime": 124.0,
+      "text": "Pues qué mal ha hecho este hombre.<br>No he encontrado nada en él que me lesca su castigo.<br>No me hago responsable de esta muerte<br>Allá vosotros<br>Está bien<br>Soltaré a Barrabás<br>y os entregaré a Jesús después de azotarlo para que sea crucificado."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 149,
+      "endTime": 155,
+      "text": "¡Azotadlo!"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 155,
+      "endTime": 170.0,
+      "text": "<br>Mirad mi siervo.<br>Desfigurado, no parecía hombre ni tenía aspecto humano.<br>Preció en su presencia como brote, como raíz en tierra ánima,<br>sin figura, sin belleza.<br>Lo vimos sin aspecto atrayente, despreciado y evitado de los hombres,<br>como un hombre de dolores, acostumbrado a los sufrimientos<br>ante el cual se ocultan los rostros, despreciado y desestimado.<br>Él soportó nuestros sufrimientos y aguantó nuestros dolores.<br>Nosotros lo veíamos herido de Dios y humillado,<br>triturado por nuestros crímenes.<br>Nuestro castigo cayó sobre sus cicatrices nos curó Maltratado voluntariamente se humillaba y no abr la boca<br>Como cordero llevado al matadero, como oveja ante el esquilador,<br>enmudecía y no abría la boca.<br>Sin defensa, sin justicia se lo llevaron.<br>¿Quién meditó en su destino?<br>Lo arrancaron de la tierra de los vivos, le dieron sepultura con los malvados<br>Y una tumba con los malhechores<br>Aunque no había cometido crímenes, ni hubo engaño en su boca<br>El Señor hizo triturarlo con el sufrimiento<br>Verá su descendencia, prolongará sus años"
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 256,
+      "endTime": 271.0,
+      "text": "¡No!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 273,
+      "endTime": 288.0,
+      "text": "¡No vienes a ver a Jerusalén como un rey!<br>¡Miradlo ahora!<br>¡Ahí está el rey!<br>¡El rey de los judíos!<br>¡Tenemos que vestirlo como un rey!<br>¡Con un trapo de suerte!<br>¡Tiene razón!<br>Esto servirá.<br>¡Muélvete para ponerte el manto real!<br>Mirad, si es un rey, necesito una corona.<br>Sí.<br>rey y poderos majestad Aqu traigo la corona real Alc Una corona de oro puro con la corona<br>¡Solem de coronación!<br>Necesito el centro.<br>¡Majestad!<br>¡Qué bien le sienta!<br>¡Maravilloso!<br>Nadie tuvo una corona igual.<br>¡Salve, rey de los judíos!<br>¡Gracias, carácter! ¡Levanten la cruz!"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 360,
+      "endTime": 370.0,
+      "text": "<br>La Iglesia de Jesucristo de los Santos de los Últimos Días<br>"
+    }
+  ],
+  "201": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 10.0,
+      "text": "Segunda estación.<br>Jesús es cargado con la cruz.<br>Luego de la injusta sentencia, Jesús fue obligado a cargar su cruz<br>y dirigirse con ella hacia el lugar que llamaban la calavera o gólgota.<br>Mientras caminaba con este pesado madero,<br>la gente lo insultaba y sus captores lo maltrataban."
+    }
+  ],
+  "202": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 10.0,
+      "text": "Tercera estación.<br>Jesús cae por primera vez.<br>Mientras Jesús caminaba hacia el Calvario, la gente que se amotinaba alrededor de Él<br>le lanzaba los más severos gritos de desaprobación y humillación.<br>Pero Jesús, manso y humilde, no mostraba el más mínimo indicio de querer desistir de su elección,<br>de llevar sobre toda la humanidad y presentársela al Padre.<br>Más cuando la humanidad representada en la cruz quería aplastar y querer hacer caer a Jesús<br>Él, con todo el esfuerzo y amor, se proponía levantarla y seguir con ella hasta el momento de su glorificación"
+    }
+  ],
+  "203": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 6,
+      "text": "Cuarta estación. Jesús encuentra a su madre."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 6,
+      "endTime": 21.0,
+      "text": "Madre."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 30,
+      "endTime": 45.0,
+      "text": "Aquí estoy, hijo<br>Aquí estoy, hijo<br>Hijo mío<br>Jesús"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 61,
+      "endTime": 71.0,
+      "text": "<br>Dios madre<br>Yo adoré las cosas<br>est"
+    }
+  ],
+  "204": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 10.0,
+      "text": "Quinta estación.<br>Simón de Sirene ayuda a Jesús a llevar la cruz.<br>Jesús, cansado y adolorido, presentaba ya torpeza al andar,<br>y a los soldados romanos les desesperaba aquella actitud,<br>así que echaron mano de un hombre que se encontraron en el camino."
+    }
+  ],
+  "205": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "Sexta estación.<br>La Verónica enjuga el rostro de Jesús.<br>Entre la multitud, una mujer limpia el rostro ensangrentado de Jesús con un sudario perfumado, tal como indicaba el profeta."
+    },
+    {
+      "character": "VERÓNICA",
+      "startTime": 16,
+      "endTime": 30,
+      "text": "Señor, Señor, por aquí, Señor.<br>Señor, déjame limpiarte el rostro."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 30,
+      "endTime": 45,
+      "text": "<br>Al derramar este ungüento sobre mi cara,<br>Lo has hecho sobre mi sepultura.<br>Bendita seas por prestar al Hijo del Hombre una sábana para recostar su cara."
+    },
+    {
+      "character": "VERÓNICA",
+      "startTime": 45,
+      "endTime": 55.0,
+      "text": "<br>Más que el rostro que has plasmado en esta sábana, tus palabras han quedado en mi corazón."
+    }
+  ],
+  "206": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 10.0,
+      "text": "Séptima estación.<br>Jesús cae por segunda vez.<br>Simón de Sirene le ayudó por unos cuantos kilómetros,<br>pero los soldados hostigados por los hombres que condenaron a Jesús,<br>hicieron que éste tomara de nuevo su cruz y cargara con su propia culpa."
+    }
+  ],
+  "207": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "Octava estación<br>Jesús consuela a las santas mujeres<br>Repuesto ya Jesús de su segunda caída, avanza hacia el Gólgota.<br>Los hombres y mujeres se amotinan a su alrededor.<br>Se entremezclan aquellos que radicalmente aprueban la condena de Jesús<br>y otros, por el contrario, entre gritos y llantos, reclaman la liberación del Señor.<br>Tal es el caso de un grupo de mujeres que desconsoladas gimen<br>por el que ellas consideran su maestro."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 42,
+      "endTime": 57.0,
+      "text": "Hijas de Jerusalén,<br>no lloren por mí.<br>Lloren más bien por ustedes mismas<br>y por sus hijos.<br>porque está por llegar el día en que se dirán felices las madres sin hijos<br>felices las mujeres que no dieron a luz ni amamantaron.<br>Entonces se dirá, ojalá los cerros caigan sobre nosotros, ojalá que las lomas nos ocultaran.<br>Porque si así tratan al árbol verde, ¿quedarán con el seco?"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 120,
+      "endTime": 130.0,
+      "text": "<br>"
+    }
+  ],
+  "301": [
+    {
+      "character": "SOLDADO",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "¡Fuera! ¡Atrás! ¡Atrás!"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 30,
+      "endTime": 45.0,
+      "text": "Novena estación.<br>Jesús cae por tercera vez."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 60,
+      "endTime": 70.0,
+      "text": "<br>la mierda que llueve<br>¡No te pares!<br>Mira cómo está"
+    }
+  ],
+  "302": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "Décima estación.<br>Jesús es despojado de sus vestiduras."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 20,
+      "endTime": 30.0,
+      "text": "Vamos, rey. Arriba.<br>Vamos, vamos"
+    }
+  ],
+  "303": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 6,
+      "text": "La décima primera estación.<br>Jesús es clavado en la cruz."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 6,
+      "endTime": 10,
+      "text": "¡Ponedlo en la cruz!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 10,
+      "endTime": 25.0,
+      "text": "¡Vamos!<br>¡No podéis pasar!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 30,
+      "endTime": 45.0,
+      "text": "¡No!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 60,
+      "endTime": 75.0,
+      "text": "¡Patale!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 90,
+      "endTime": 105.0,
+      "text": "¡No!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 120,
+      "endTime": 135.0,
+      "text": "¡Los pies!<br>pies<br>¡Vamos! ¡Subidlo!<br>Vamos, más fuerte.<br>Arriba.<br>Vamos arriba.<br>Un poco más.<br>Con fuerza.<br>Así está.<br>Ya lo tenemos.<br>Tira, tira.<br>¡Vamos!"
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 223,
+      "endTime": 226,
+      "text": "Hijo mío"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 226,
+      "endTime": 236,
+      "text": "<br>Rey de los judíos<br>¿Ves el templo desde ahí arriba?"
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 236,
+      "endTime": 239,
+      "text": "¡Dejadlo, monstruos!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 239,
+      "endTime": 253,
+      "text": "Padre<br>Padre<br>Perdónalos<br>¿Por qué no saben lo que hacen?"
+    },
+    {
+      "character": "OTRO LADRÓN",
+      "startTime": 253,
+      "endTime": 268.0,
+      "text": "<br>pasa La t es m<br>¿No eres tú el Mesías?<br>¿Por qué no te salvas si no salvas a nosotros?"
+    },
+    {
+      "character": "LADRÓN ARREPENTIDO",
+      "startTime": 299,
+      "endTime": 314,
+      "text": "<br>Nuestro castigo es justo.<br>Pero este hombre no ha hecho nada malo.<br>Recuérdame cuando entres en tu reino."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 314,
+      "endTime": 329.0,
+      "text": "En verdad te digo...<br>que hoy...<br>tú estarás conmigo en el paraíso."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 332,
+      "endTime": 341,
+      "text": "Ma..."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 341,
+      "endTime": 356.0,
+      "text": "Ahí tienes a tu hijo<br>Juan<br>Ahí tienes a tu madre<br>Dios mío<br>Dios mío.<br>¿Por qué me has abandonado?<br>¿Por qué?<br>Tengo sed."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 392,
+      "endTime": 407.0,
+      "text": "pasa pasa<br>¿Qué pasa?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 471,
+      "endTime": 486.0,
+      "text": "<br>Ha terminado."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 501,
+      "endTime": 516.0,
+      "text": "¡No!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 531,
+      "endTime": 541.0,
+      "text": "Padre, en tus manos encomiendo mi espíritu."
+    }
+  ],
+  "304": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 10.0,
+      "text": "--???--<br>Décima segunda estación.<br>Jesús muere en la cruz.<br>Desde el mediodía hasta las tres de la tarde, toda la tierra quedó en oscuridad.<br>El velo del templo se rasgó por la mitad.<br>"
+    }
+  ],
+  "305": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "...<br>Decima tercera estación<br>Jesús es bajado de la cruz"
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 16,
+      "endTime": 26.0,
+      "text": "Hijo mío<br>Hijo mío<br>Hijo<br>Mirad si hay dolor como el mío<br>El hijo más bueno<br>El único bueno de verdad<br>Destrozado<br>Habiendo soportado toda la maldad del mundo<br>Hijo<br>Hijo mío<br>Hijo<br>Hijo<br>Hijo<br>Déjame ahora<br>Sostener con mi amor y mi dolor<br>el cuerpo de tu hijo<br>y mi hijo<br>mientras espero que rompas tu silencio<br>hijo mío<br>hijo<br>hijo mío"
+    }
+  ],
+  "306": [
+    {
+      "character": "MUSICA SAETA",
+      "startTime": 0,
+      "endTime": 10.0,
+      "text": "--???--<br>Dijo una voz popular, que me presta una escalera para subir al madero, para quitarle los clavos a Jesús, el nazareno.<br>Oh, la saeta al cantar ..."
+    }
+  ],
+  "401": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "Decima cuarta estación.<br>El cuerpo de Jesús es depositado en el sepulcro."
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 30,
+      "endTime": 45.0,
+      "text": "--???--<br>¿Qué pasa?"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 60,
+      "endTime": 70.0,
+      "text": "--???--<br>"
+    }
+  ],
+  "402": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "José de Arimatea, un hombre bueno y justo que pertenecía a la Junta Suprema y que no estuvo de acuerdo con estos hechos,<br>obtuvo permiso de Poncio Pilato para colocar el cuerpo de Jesús en una tumba antes de que diera principio el día de reposo.<br>El primer día de la semana, regresaron al sepulcro muy temprano, llevando los perfumes que habían preparado.<br>La piedra había sido removida y la tumba estaba abierta<br>Al entrar vieron que el cuerpo de Jesús ya no estaba ahí"
+    },
+    {
+      "character": "ÁNGEL",
+      "startTime": 35,
+      "endTime": 50.0,
+      "text": "--???--<br>¿Por qué buscan entre los muertos al que vive?<br>No está aquí, ha resucitado.<br>Recuerden lo que les dijo cuando todavía estaba en Galilea,<br>que el Hijo del Hombre tenía que ser entregado en manos de los pecadores,<br>que lo crucificarían y que al tercer día resucitarían."
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 89,
+      "endTime": 104.0,
+      "text": "--???--<br>Escuchen, la piedra fue removida.<br>Entramos.<br>Y el cuerpo de nuestro señor no está.<br>¿Cómo? ¿Desapareció?<br>Y vimos a dos hombres con ropas brillantes, como el sol."
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 107,
+      "endTime": 117.0,
+      "text": "--???--<br>Y dijeron, ¿por qué buscan a los vivos entre los muertos?"
+    }
+  ],
+  "403": [
+    {
+      "character": "NARRADOR",
+      "startTime": 0,
+      "endTime": 15.0,
+      "text": "--???--<br>La Lucha de los Ángeles"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 30,
+      "endTime": 45.0,
+      "text": "No temáis<br>Confiad en Dios<br>Confiad también en mí<br>Bienaventurados<br>Los que no me han visto<br>Y aún así<br>Creen<br>Sabed que llegar donde yo voy, Yo soy el camino, La verdad y la vida, El primero y el principio y el fin<br>No habrá más muerte, ni tristeza, ni llanto, ni dolor.<br>Voy a hacerlo todo nuevo."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 91,
+      "endTime": 101,
+      "text": "--???--<br>Que la gracia del señor siempre esté con el pueblo de dios"
+    },
+    {
+      "character": "PUEBLO",
+      "startTime": 101,
+      "endTime": 116.0,
+      "text": "--???--<br>am  én"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 121,
+      "endTime": 131.0,
+      "text": "--???--<br>¡!"
+    }
+  ]
+}

@@ -22,28 +22,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000); // Vuelve al auto-scroll tras 3s de inactividad de scroll
     });
 
-    // Carga principal del guion actual
-    fetch(`../audios/subs/${window.audioFileBase}.json?v=${window.appVersion || Date.now()}`)
+    // Carga del guion maestro completo
+    fetch(`../audios/subs/guion_completo.json?v=${window.appVersion || Date.now()}`)
         .then(response => {
-            if (!response.ok) throw new Error('No hay guion disponible para este audio.');
+            if (!response.ok) throw new Error('No se pudo cargar el archivo maestro de guiones.');
             return response.json();
         })
-        .then(data => {
-            if (data.length === 0) throw new Error('El guion está vacío.');
+        .then(masterData => {
+            const currentAudioId = window.audioId;
+            const nextAudioId = window.nextAudioId;
             
-            // Marcar items como de este track
-            scriptData = data.map(cue => ({...cue, isNextAudio: false}));
+            // Extraer guion actual
+            let currentScript = masterData[currentAudioId] || [];
+            scriptData = currentScript.map(cue => ({...cue, isNextAudio: false}));
             
             // Si hay un script siguiente, traerlo también para mostrarlo pegado abajo (preview continuo)
-            if (window.nextAudioFileBase) {
-                fetch(`../audios/subs/${window.nextAudioFileBase}.json?v=${window.appVersion || Date.now()}`)
-                    .then(res => res.ok ? res.json() : [])
-                    .then(nextData => {
-                        const nextDataMapped = nextData.map(cue => ({...cue, isNextAudio: true}));
-                        scriptData = scriptData.concat(nextDataMapped);
-                        renderScript(scriptData);
-                    })
-                    .catch(() => renderScript(scriptData)); // Si falla el 2do, rinde el 1ro nomás
+            if (nextAudioId && masterData[nextAudioId]) {
+                const nextDataMapped = masterData[nextAudioId].map(cue => ({...cue, isNextAudio: true}));
+                scriptData = scriptData.concat(nextDataMapped);
+            }
+            
+            if (scriptData.length === 0) {
+                scriptContainer.innerHTML = `<div class="script-placeholder">Pista instrumental o sin diálogos asignados.</div>`;
             } else {
                 renderScript(scriptData);
             }
