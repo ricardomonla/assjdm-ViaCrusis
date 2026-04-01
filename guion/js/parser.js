@@ -44,18 +44,33 @@ function parseMarkdownToVellum(markdown) {
     let currentGroupId = null;
     let inTrackBlock = false;
 
+    let lastCharacterGlobal = null;
+
     function flushCharacter() {
         if (inCharacterBlock) {
+             let nameHtml = '';
+             let blockMarginTop = 'mt-6';
+             
+             // Si el personaje es exactamente igual al de la intervención anterior inmediata, agrupamos
+             if (currentCharacter === lastCharacterGlobal) {
+                 blockMarginTop = 'mt-1'; // Juntamos los bloques
+             } else {
+                 nameHtml = `<span class="character-name font-bold uppercase mb-1">${currentCharacter}</span>`;
+             }
+
              html += `
-                <div class="character-block flex flex-col items-center mt-6">
+                <div class="character-block flex flex-col items-center ${blockMarginTop}">
                     <div class="w-full flex flex-col items-center group cursor-text p-1 hover:bg-gray-50 transition-colors">
-                        <span class="character-name font-bold uppercase mb-1">${currentCharacter}</span>
-                        ${currentParenthetical ? `<span class="parenthetical italic text-[13px] mb-1">${currentParenthetical}</span>` : ''}
+                        ${nameHtml}
+                        ${currentParenthetical ? `<span class="parenthetical italic text-[13px] mb-1 text-gray-500">${currentParenthetical}</span>` : ''}
                         <p class="dialogue text-center w-[85%] md:w-[70%] text-balance">
                             ${dialogueBuffer.join('<br>')}
                         </p>
                     </div>
                 </div>`;
+            
+            lastCharacterGlobal = currentCharacter;
+            
             inCharacterBlock = false;
             dialogueBuffer = [];
             currentCharacter = "";
@@ -85,12 +100,14 @@ function parseMarkdownToVellum(markdown) {
         // --- Separadores horizontales ---
         if (line.startsWith('---')) {
             flushCharacter();
+            lastCharacterGlobal = null;
             continue;
         }
 
         // --- H1 Principal ---
         if (line.startsWith('#') && !line.startsWith('##')) {
             flushCharacter();
+            lastCharacterGlobal = null;
             let mainTitle = line.replace(/^#\s*/, '').trim();
             html += `<h1 class="text-center font-bold text-2xl uppercase mb-10 pb-4 border-b">${mainTitle}</h1>`;
             continue;
@@ -99,6 +116,7 @@ function parseMarkdownToVellum(markdown) {
         // --- Audio Tracks (Escenas) ---
         if (line.startsWith('## ')) {
             closeTrackBlock();
+            lastCharacterGlobal = null;
             
             // Expected '## Audio 000: Desfile...'
             let trackMatch = line.match(/Audio\s+(\d{3})/i);
@@ -142,6 +160,7 @@ function parseMarkdownToVellum(markdown) {
         // --- Notas / Bloques Acotativos ---
         if (line.startsWith('>')) {
             flushCharacter();
+            lastCharacterGlobal = null;
             html += `<div class="action-block mb-6 cursor-text p-2 hover:bg-gray-50 transition-colors text-gray-500 italic bg-gray-50/50 rounded">${line.substring(1).trim()}</div>`;
             continue;
         }
@@ -169,6 +188,7 @@ function parseMarkdownToVellum(markdown) {
 
         // --- Acción general (Action Blocks) ---
         if (line.length > 0 && !inCharacterBlock) {
+             lastCharacterGlobal = null;
              html += `<div class="action-block mb-6 cursor-text p-1 hover:bg-gray-50 transition-colors">${line}</div>`;
              continue;
         }
