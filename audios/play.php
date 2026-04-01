@@ -49,32 +49,34 @@ include '../incs/header.php';
             
             <div class="audio-navigation">
                 <a href="index.php" class="nav-button back-button" title="Volver a la lista completa">
-                    ← Volver
+                    ☰
                 </a>
                 
                 <!-- Controles de navegación -->
-                <?php if ($prevAudio): ?>
-                <a href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>&v=<?= urlencode($latestVersion) ?>" 
-                    class="nav-button prev-button">
-                    ⟵ Anterior
-                </a>
-                <?php endif; ?>
-                
-                <?php if ($nextAudio): ?>
-                <a href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>&v=<?= urlencode($latestVersion) ?>" 
-                    class="nav-button next-button"
-                    data-is-last="false"
-                    data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
-                    Siguiente ⟶
-                </a>
-                <?php else: ?>
-                <a href="play.php?id=<?= htmlspecialchars($firstAudioId) ?>&v=<?= urlencode($latestVersion) ?>" 
-                    class="nav-button next-button"
-                    data-is-last="true"
-                    data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
-                    Iniciar nuevamente
-                </a>
-                <?php endif; ?>
+                <div class="navigation-group">
+                    <?php if ($prevAudio): ?>
+                    <a href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>&v=<?= urlencode($latestVersion) ?>" 
+                        class="nav-button prev-button" title="Anterior">
+                        ⏮
+                    </a>
+                    <?php endif; ?>
+                    
+                    <?php if ($nextAudio): ?>
+                    <a href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>&v=<?= urlencode($latestVersion) ?>" 
+                        class="nav-button next-button" title="Siguiente"
+                        data-is-last="false"
+                        data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
+                        ⏭
+                    </a>
+                    <?php else: ?>
+                    <a href="play.php?id=<?= htmlspecialchars($firstAudioId) ?>&v=<?= urlencode($latestVersion) ?>" 
+                        class="nav-button next-button" title="Iniciar nuevamente"
+                        data-is-last="true"
+                        data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
+                        🔁
+                    </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
         

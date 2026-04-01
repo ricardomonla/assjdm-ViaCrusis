@@ -264,8 +264,8 @@ audio::-webkit-media-controls-time-remaining-display {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 12px;
-    font-size: 13px;
+    padding: 8px 18px;
+    font-size: 18px;
     color: #4a3e31;
     background-color: #e9d8b7;
     border: 1px solid #806d5a;
@@ -274,7 +274,7 @@ audio::-webkit-media-controls-time-remaining-display {
     text-decoration: none;
     transition: all 0.3s ease;
     width: auto;
-    min-width: 80px;
+    min-width: 44px;
     max-width: 250px;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
@@ -438,8 +438,8 @@ body.admin-mode .admin-logout {
         width: 95%;
     }
     .nav-button {
-        padding: 7px 10px;
-        font-size: 13px;
+        padding: 8px 15px;
+        font-size: 16px;
     }
 }
 
@@ -449,8 +449,8 @@ body.admin-mode .admin-logout {
         padding: 10px;
     }
     .nav-button {
-        width: 100%;
-        padding: 6px 8px;
-        font-size: 12px;
+        width: auto;
+        padding: 8px 16px;
+        font-size: 18px;
     }
 }
