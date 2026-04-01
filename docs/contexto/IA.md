@@ -40,14 +40,17 @@ Aplicación web PHP para la gestión y reproducción de audios del Via Crucis de
 
 ```
 assjdm-ViaCrusis/
-├── index.php          # Página principal — lista de audios
-├── play.php           # Reproductor de audio individual
+├── audios/            # Módulo de Reproducción
+│   ├── index.php      # Página principal — lista de audios
+│   ├── play.php       # Reproductor de audio individual
+│   └── media/         # 34 archivos MP3 (000-403)
 ├── serve.php          # Servidor de archivos MP3 (seguridad + range requests)
 ├── docker-compose.yml # Config Docker (entorno local)
 ├── css/
 │   ├── style.css      # Estilos principales (modo claro/oscuro, responsive)
 │   └── index.php      # Protección de directorio
 ├── incs/
+│   ├── elementos.php  # Estructura centralizada (Grupos y Metadatos de tracks)
 │   ├── header.php     # Cabecera HTML
 │   ├── footer.php     # Pie de página (versión)
 │   ├── functions.php  # Funciones auxiliares (getAudioFiles, getBaseURL)
@@ -55,7 +58,6 @@ assjdm-ViaCrusis/
 │   └── kerberos.php   # Protección de directorio
 ├── jss/
 │   └── js.js          # JavaScript (autoplay, navegación)
-├── media/             # 34 archivos MP3 (000-403)
 ├── tools/             # Scripts de mantenimiento e Inteligencia Artificial
 │   ├── api_key_rotator/ # Gestor Ruby de encriptación (LLMs y candados)
 │   ├── etiquetar_personajes.py # IA local
@@ -148,6 +150,7 @@ ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
 - [ ] **Backup**: Configurar vzdump para respaldos automáticos del LXC
 - [ ] **Monitorización**: Integrar sistema de monitoreo
 - [ ] **Diseño**: Modernizar la estética del sitio
+- [x] **Mover Sitio de Audios**: Reubicar catálogo principal a `/audios/` → Plan 05 ✅
 
 ---
 

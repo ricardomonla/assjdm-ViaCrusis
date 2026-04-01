@@ -1,7 +1,7 @@
 <?php
 require 'incs/functions.php';
 
-$dirMEDIA = 'media';
+$dirMEDIA = 'audios/media';
 $file = $_GET['file'] ?? '';
 $isDownload = isset($_GET['download']) && $_GET['download'] === '1';
 
@@ -12,7 +12,7 @@ if ($isDownload && (!isset($_GET['key']) || $_GET['key'] !== 'VCBY2026')) {
 }
 
 // Validar estructura del nombre de archivo
-if (!preg_match('/^\d{3}_v\d{4}_.+\.mp3$/', $file)) {
+if (!preg_match('/^\d{3}_v\d{4}(_.+)?\.mp3$/', $file)) {
     http_response_code(403);
     die('Formato de archivo no válido.');
 }

@@ -61,7 +61,7 @@ function adminModalClose() {
 function adminLogin() {
     const key = document.getElementById('admin-key').value;
     // Validar via fetch al servidor
-    fetch('admin_check.php', {
+    fetch('../admin_check.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: 'key=' + encodeURIComponent(key)

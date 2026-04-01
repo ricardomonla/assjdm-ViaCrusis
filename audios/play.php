@@ -1,6 +1,6 @@
 <?php
-require 'incs/functions.php';
-require 'incs/versionLogs.php';
+require '../incs/functions.php';
+require '../incs/versionLogs.php';
 
 // Configuración inicial
 $dirMEDIA = 'media';
@@ -35,7 +35,7 @@ $firstAudioId = $audioFiles[0]['id'] ?? '';
 $audio_title = htmlspecialchars($audio['display_name']);
 $audio_file = htmlspecialchars($audio['filename']);
 
-include 'incs/header.php';
+include '../incs/header.php';
 ?>
 
 <main class="main-content">
@@ -43,7 +43,7 @@ include 'incs/header.php';
         <h2 class="audio-title"><?= $audio_title ?></h2>
         <div class="audio-player-container">
             <audio id="audioPlayer" controls controlsList="nodownload">
-                <source src="serve.php?file=<?= $audio_file ?>" type="audio/mpeg">
+                <source src="../serve.php?file=<?= $audio_file ?>" type="audio/mpeg">
                 Tu navegador no soporta el elemento de audio.
             </audio>
             
@@ -52,24 +52,24 @@ include 'incs/header.php';
                     ← Volver
                 </a>
                 
-                <!-- Navegación: visible solo en modo admin -->
+                <!-- Controles de navegación -->
                 <?php if ($prevAudio): ?>
                 <a href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>" 
-                    class="nav-button prev-button admin-only">
+                    class="nav-button prev-button">
                     ⟵ Anterior
                 </a>
                 <?php endif; ?>
                 
                 <?php if ($nextAudio): ?>
                 <a href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>" 
-                    class="nav-button next-button admin-only"
+                    class="nav-button next-button"
                     data-is-last="false"
                     data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
                     Siguiente ⟶
                 </a>
                 <?php else: ?>
                 <a href="play.php?id=<?= htmlspecialchars($firstAudioId) ?>" 
-                    class="nav-button next-button admin-only"
+                    class="nav-button next-button"
                     data-is-last="true"
                     data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
                     Iniciar nuevamente
@@ -87,8 +87,8 @@ include 'incs/header.php';
                 audio.volume = 1.0;
             });
         </script>
-        <script src="jss/js.js"></script>
+        <script src="../jss/js.js"></script>
     </section>
 </main>
 
-<?php include 'incs/footer.php'; ?>
+<?php include '../incs/footer.php'; ?>
