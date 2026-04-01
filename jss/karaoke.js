@@ -84,16 +84,28 @@ document.addEventListener('DOMContentLoaded', function() {
             block.className = 'cue-block cue-inactive ' + (cue.isNextAudio ? 'cue-next-audio' : '');
             block.id = `cue-${index}`;
             
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'cue-header';
+            
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'cue-time';
+            const m = Math.floor(cue.startTime / 60);
+            const s = Math.floor(cue.startTime % 60).toString().padStart(2, '0');
+            timeSpan.textContent = `[${m}:${s}]`;
+            
             const characterSpan = document.createElement('span');
             characterSpan.className = 'cue-character';
             characterSpan.textContent = cue.character;
             
-            const textSpan = document.createElement('span');
-            textSpan.className = 'cue-text';
-            textSpan.innerHTML = cue.text;
+            headerDiv.appendChild(timeSpan);
+            headerDiv.appendChild(characterSpan);
             
-            block.appendChild(characterSpan);
-            block.appendChild(textSpan);
+            const textDiv = document.createElement('div');
+            textDiv.className = 'cue-text';
+            textDiv.innerHTML = cue.text;
+            
+            block.appendChild(headerDiv);
+            block.appendChild(textDiv);
             
             block.addEventListener('click', (e) => {
                 // Prevenir que el click bubble up e interfiera (opcional, dejamos que suba para doble tap general)

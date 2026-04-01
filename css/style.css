@@ -475,20 +475,38 @@ body.admin-mode .admin-only {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.cue-character {
-    font-weight: bold;
-    color: #4a3e31;
+/* Cabecera del diálogo: Tiempo y Personaje */
+.cue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+    border-bottom: 1px dotted rgba(0,0,0,0.05);
+    padding-bottom: 4px;
+}
+
+.cue-time {
+    font-family: monospace;
     font-size: 0.85em;
+    color: #8c8c8c;
+}
+
+.cue-character {
+    font-weight: 700;
+    color: #4a3e31;
+    font-size: 0.9em;
     text-transform: uppercase;
-    margin-bottom: 4px;
-    display: block;
     letter-spacing: 0.5px;
+    text-align: right;
+    flex-grow: 1; /* Empuja al personaje a la derecha junto al tiempo */
 }
 
 .cue-text {
     color: #333;
     font-size: 1.1em;
-    line-height: 1.4;
+    line-height: 1.45;
+    padding-left: 20px; /* Sangría notable como en guiones teatrales reales */
+    border-left: 2px solid rgba(0,0,0,0.05); /* Barra muy sutil a la izquierda */
 }
 
 .cue-next-audio {
