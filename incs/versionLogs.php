@@ -1,5 +1,38 @@
 <?php
 $versionLogs = [
+    '26.6.21' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'System Triage: Detectado y reparado fallo de sincronización en el Webhook de CI/CD del servidor de producción Proxmox (`srvv-nginx-rm`) ocasionado por conflictos locales, obligando a un `git reset --hard`.',
+            'CSS Core: Removida la regla `overflow-x: hidden;` de la etiqueta `body`, ya que los navegadores modernos inhabilitan la propiedad `position: sticky` de los elementos hijos (en este caso el Footer) a nivel del Viewport cuando el contenedor padre presenta restricciones de desbordamiento horizontal. Footer estabilizado en Desktop y Móvil.'
+        ]
+    ],
+    '26.6.20' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Componente Footer (`css/style.css`): Añadida la regla estricta `position: sticky; bottom: 0;` en el contenedor del footer garantizando su persistencia visible y evitando que quede colapsado/desbordado por el contenido excesivo del flexbox envoltorio, especialmente en modo móvil.',
+            'Núcleo Guion (`guion/js/parser.js`): Refactorización del renderizador de Vellum. Se inyectó una caché de lectura secuencial de personajes (`lastCharacterGlobal`) calcando la UX lograda en el karaoke, agrupando visualmente de inmediato monólogos que posean intervenciones de acotaciones intermedias, resultando en un Markdown traducido a Libreto más limpio.'
+        ]
+    ],
+    '26.6.19' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'FrontEnd Playback `css/style.css`: Fijada corrección de propiedad estática CSS `position: relative` para el contenedor primario del V-DOM solucionando los desbordamientos del offsetTop que rompían el motor de smooth scrolling, logrando que la frase en reproducción se ancle centradamente.',
+            'FrontEnd Karaoke `jss/karaoke.js`: Refactor del script de redibujado; implementada retención de caché (`lastCharacter`) que verifica y purga visualmente el nombre del personaje si este habla en más de dos cuadros continuos. Esto otorga al guion visual simetría de Párrafo Teatral Puro (UX).'
+        ]
+    ],
+    '26.6.18' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'IA Protocol: Incorporado parche de idioma (`language: es`) en la API de Whisper (`groq_client.rb`) para suprimir las alucinaciones bilingües causadas por altos niveles de música instrumental de fondo en los registros legacy.'
+        ]
+    ],
+    '26.6.17' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'IA Protocol: Refactorizado Whisper/LLaMA parser. Se confía en la fila pre-cargada del v0.1.md para los gaps iniciales, optimizando el control humano total y previniendo inyecciones ciegas de código Ruby.'
+        ]
+    ],
     '26.6.16' => [
         'date' => '2026-04-01',
         'changes' => [
