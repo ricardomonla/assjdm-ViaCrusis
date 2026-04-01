@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.11' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Estilo Teatral: Formateo definitivo del timestamp en HH:MM:SS para tiempo global absoluto, añadiendo el sufijo [ID] de la pista.'
+        ]
+    ],
     '26.6.10' => [
         'date' => '2026-04-01',
         'changes' => [

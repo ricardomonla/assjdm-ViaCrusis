@@ -136,24 +136,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const timeSpan = document.createElement('span');
             timeSpan.className = 'cue-time';
             
-            // Tiempo Local de la escena: Ej 101.0.56
             // Identificar qué ID fuente es el cue:
             let cueId = window.audioId.split('_')[0];
             if (cue.isNextAudio && window.nextAudioId) cueId = window.nextAudioId.split('_')[0];
             if (cue.isPrevAudio && window.prevAudioId) cueId = window.prevAudioId.split('_')[0];
             
-            const localM = Math.floor(cue.startTime / 60);
-            const localS = Math.floor(cue.startTime % 60).toString().padStart(2, '0');
-            const localString = `[${cueId}.${localM}.${localS}]`;
-            
             // Tiempo Global: Offset Sumado + cue.startTime
             const gOffset = getGlobalOffset(cueId);
             const globalTime = gOffset + cue.startTime;
-            const globalM = Math.floor(globalTime / 60).toString().padStart(2, '0');
+            const globalH = Math.floor(globalTime / 3600).toString().padStart(2, '0');
+            const globalM = Math.floor((globalTime % 3600) / 60).toString().padStart(2, '0');
             const globalS = Math.floor(globalTime % 60).toString().padStart(2, '0');
-            const globalString = `T+ ${globalM}:${globalS}`;
             
-            timeSpan.innerHTML = `<strong>${localString}</strong> <span style="opacity:0.5; font-size: 0.9em; margin-left: 8px;">(${globalString})</span>`;
+            timeSpan.innerHTML = `<strong>${globalH}:${globalM}:${globalS}</strong> <span style="opacity:0.5; font-size: 0.9em; margin-left: 6px;">[${cueId}]</span>`;
             
             const characterSpan = document.createElement('span');
             characterSpan.className = 'cue-character';
