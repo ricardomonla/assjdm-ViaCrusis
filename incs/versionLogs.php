@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.24' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Sincronización de Base de Datos Estática (`incs/elementos.php`): Se forzó el push y despliegue del catálogo de títulos de audios actualizado localmente. Esto soluciona la discrepancia observada en la lista del reproductor, descartando el antiguo título `Adeje16-Aguas-Monedas` en favor de `La Última Cena + Monedas de Judas`.'
+        ]
+    ],
     '26.6.23' => [
         'date' => '2026-04-01',
         'changes' => [

@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.6.23` (Gestión Escénica + UI) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.6.24` (Gestión Escénica + UI) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -103,11 +103,11 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.6.23 (2026-04-01)
-- **Cambios**: Purgado núcleo de Vanilla JS `fadeOutAudio` en `js.js` para los botones Next/Prev. Dicha transición caprichosa reajustaba el volumen en segundo plano neutralizando artificialmente los esfuerzos del `localStorage` creados en la versión anterior.
+- **Versión**: 26.6.24 (2026-04-01)
+- **Cambios**: Sincronización final al repositorio maestro de las configuraciones de títulos locales (`incs/elementos.php`), para inyectar correctamente la limpieza de nombres heredados en la base de datos estática al servidor de producción, resolviendo el bug de nomenclaturas como `Adeje16...`.
 
 > **Estado del Repositorio:** Limpio (sin logs temporales basura).  
-> **Versión Actual:** 26.6.23 (Limpieza FadeOut Audio Interactivo).
+> **Versión Actual:** 26.6.24 (Sync Títulos Vía Crucis Estáticos).
 
 ## Estado del Sitio (2026-03-28)
 
