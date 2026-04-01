@@ -54,21 +54,21 @@ include '../incs/header.php';
                 
                 <!-- Controles de navegación -->
                 <?php if ($prevAudio): ?>
-                <a href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>&v=3" 
+                <a href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>&v=<?= urlencode($latestVersion) ?>" 
                     class="nav-button prev-button">
                     ⟵ Anterior
                 </a>
                 <?php endif; ?>
                 
                 <?php if ($nextAudio): ?>
-                <a href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>&v=3" 
+                <a href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>&v=<?= urlencode($latestVersion) ?>" 
                     class="nav-button next-button"
                     data-is-last="false"
                     data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
                     Siguiente ⟶
                 </a>
                 <?php else: ?>
-                <a href="play.php?id=<?= htmlspecialchars($firstAudioId) ?>&v=3" 
+                <a href="play.php?id=<?= htmlspecialchars($firstAudioId) ?>&v=<?= urlencode($latestVersion) ?>" 
                     class="nav-button next-button"
                     data-is-last="true"
                     data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
@@ -81,6 +81,7 @@ include '../incs/header.php';
         <script>
             window.autoNextEnabled = true;
             window.firstAudioId = '<?= htmlspecialchars($firstAudioId) ?>';
+            window.appVersion = '<?= htmlspecialchars($latestVersion) ?>';
             
             document.addEventListener('DOMContentLoaded', function() {
                 var audio = document.getElementById('audioPlayer');

@@ -8,7 +8,7 @@ header("Pragma: no-cache");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css?v=2">
+    <link rel="stylesheet" href="../css/style.css?v=<?= urlencode($latestVersion ?? '1.0') ?>">
     <title>ViaCrusis - BY2026</title>
 </head>
 <body>

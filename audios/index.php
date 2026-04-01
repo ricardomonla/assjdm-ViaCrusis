@@ -26,7 +26,7 @@ include '../incs/header.php';
                     $audioURL = $baseURL . "/play.php?id=" . urlencode($audio['id']) . "&wa=1";
                 ?>
                 <li class="song-item">
-                    <a href="play.php?id=<?= htmlspecialchars($audio['id']) ?>" class="song-link">
+                    <a href="play.php?id=<?= htmlspecialchars($audio['id']) ?>&v=<?= urlencode($latestVersion) ?>" class="song-link">
                         <?= htmlspecialchars($audio['display_name']) ?>
                     </a>
                     
