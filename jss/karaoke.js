@@ -122,6 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return offset;
         }
         
+        let lastCharacter = null;
+        
         data.forEach((cue, index) => {
             const block = document.createElement('div');
             let extraClass = '';
@@ -152,7 +154,23 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const characterSpan = document.createElement('span');
             characterSpan.className = 'cue-character';
-            characterSpan.textContent = cue.character;
+            
+            // Lógica de Agrupación de Interlocutores
+            if (cue.character === lastCharacter && !cue.isNextAudio && !cue.isPrevAudio) {
+                // Si es el mismo de la línea anterior que no escriba nada
+                characterSpan.textContent = '';
+                // Optional: Quitar el border bottom del header para dar sensación de continuidad
+                headerDiv.style.borderBottom = 'none';
+                headerDiv.style.marginBottom = '2px';
+                headerDiv.style.paddingBottom = '0px';
+            } else {
+                characterSpan.textContent = cue.character;
+            }
+            
+            // Solo actualizamos lastCharacter si no es un preview de external audio (para no romper la cadena natural)
+            if (!cue.isNextAudio && !cue.isPrevAudio) {
+                lastCharacter = cue.character;
+            }
             
             headerDiv.appendChild(timeSpan);
             headerDiv.appendChild(characterSpan);
