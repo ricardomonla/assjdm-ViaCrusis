@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.6.24` (Gestión Escénica + UI) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.6.26` (Gestión Escénica + UI) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -103,11 +103,11 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.6.24 (2026-04-01)
-- **Cambios**: Sincronización final al repositorio maestro de las configuraciones de títulos locales (`incs/elementos.php`), para inyectar correctamente la limpieza de nombres heredados en la base de datos estática al servidor de producción, resolviendo el bug de nomenclaturas como `Adeje16...`.
+- **Versión**: 26.6.26 (2026-04-01)
+- **Cambios**: Se inyectó el refinado gramatical y léxico de `docs/Guion-vcby2026...md` dentro de los archivos `101_v1.1.md` y `102_v1.1.md` al igual que se había obrado con el 103. Se recompiló todo el `guion_completo.json` logrando una cohesión dramática total para todo este primer bloque de audios.
 
 > **Estado del Repositorio:** Limpio (sin logs temporales basura).  
-> **Versión Actual:** 26.6.24 (Sync Títulos Vía Crucis Estáticos).
+> **Versión Actual:** 26.6.26 (Gramática Transcripciones 101-102-103).
 
 ## Estado del Sitio (2026-03-28)
 

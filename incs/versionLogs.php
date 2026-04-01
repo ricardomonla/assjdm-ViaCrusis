@@ -1,5 +1,17 @@
 <?php
 $versionLogs = [
+    '26.6.26' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Refinado Filológico Global (101, 102, 103): Se reescribieron los guiones v1.1 para inyectar ortografía, acentuación y signos de puntuación propios del documento semiótico base. Se enlazó esto con una recompilación exitosa en `guion_completo.json` habilitando textos puros y dramatúrgicos en el renderizado final del reproductor.'
+        ]
+    ],
+    '26.6.25' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Flujo H.I.T.L. (Pistas 103, 104, 105): Se recompiló el `guion_completo.json` para inyectar en caliente los progresos de revisión del archivo `103_v1.1.md`. Adicionalmente, se generaron las plantillas esqueleto (v0.1) de transcripciones para El Monte de los Olivos (104) y La Entrega (105).'
+        ]
+    ],
     '26.6.24' => [
         'date' => '2026-04-01',
         'changes' => [
