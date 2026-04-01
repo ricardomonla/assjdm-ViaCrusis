@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.22' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Audio Player (`audios/play.php`): Incorporación de estado persistente del volumen de reproducción usando el entorno nativo `localStorage`. Ahora el usuario puede calibrar el volumen a su preferencia (ej. 50%) y el sistema retendrá el nivel exacto al cambiar a reproducciones subsecuentes.'
+        ]
+    ],
     '26.6.21' => [
         'date' => '2026-04-01',
         'changes' => [

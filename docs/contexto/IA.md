@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.6.21` (Gestión Escénica + UI) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.6.22` (Gestión Escénica + UI) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -103,11 +103,11 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.6.21 (2026-04-01)
-- **Cambios**: Se inyectó por SSH (LXC 116) un `git reset --hard` debido a un conflicto local fantasma en el servidor de NGINX que bloqueaba la ejecución del webhook de auto-deploy. Por otra parte, se eliminó la directiva `overflow-x: hidden` a nivel de etiqueta HTML `body` ya que esta sentencia destruye de forma documentada el comportamiento `position: sticky` en Chrome y Safari Mobile impidiendo el anclaje del footer.
+- **Versión**: 26.6.22 (2026-04-01)
+- **Cambios**: Incorporación de retención de preferencias de usuario en `audios/play.php` usando `localStorage` para el objeto genérico `vcby_vol`. Evita que el `audioPlayer` vuelva caprichosamente al `1.0` predeterminado cada vez que hay una transición de pista o reinicio.
 
 > **Estado del Repositorio:** Limpio (sin logs temporales basura).  
-> **Versión Actual:** 26.6.21 (Parche CI/CD Servidor & Fix Nativo del Footer Sticky).
+> **Versión Actual:** 26.6.22 (Persistencia de Volumen).
 
 ## Estado del Sitio (2026-03-28)
 

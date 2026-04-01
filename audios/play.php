@@ -95,7 +95,15 @@ include '../incs/header.php';
             
             document.addEventListener('DOMContentLoaded', function() {
                 var audio = document.getElementById('audioPlayer');
-                audio.volume = 1.0;
+                
+                // Recuperar volumen guardado o 1.0 por defecto
+                var savedVol = localStorage.getItem('vcby_vol');
+                audio.volume = savedVol !== null ? parseFloat(savedVol) : 1.0;
+                
+                // Escuchar cambios de volumen y persistirlos
+                audio.addEventListener('volumechange', function() {
+                    localStorage.setItem('vcby_vol', audio.volume);
+                });
             });
         </script>
         <script src="../jss/js.js?v=<?= urlencode($latestVersion) ?>"></script>
