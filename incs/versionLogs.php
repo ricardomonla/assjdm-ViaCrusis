@@ -1,5 +1,19 @@
 <?php
 $versionLogs = [
+    '26.6.14' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'IA Integration: Consolidación Final del flujo HITL. Antigravity genera manualmente el template base v0.1.md con IP de personajes.',
+            'Scripting: genera_subs_v1.0.rb unifica la extracción vía Whisper de los tiempos, leyendo el template v0.1.md para mapear personajes vacíos y volcarlos en v1.0.md vía LLaMA 3.3.'
+        ]
+    ],
+    '26.6.13' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'IA Integration: Consolidación del flujo Human-in-the-Loop (HITL) basando la intervención mediante formato Markdown Tabular (v0.1.md -> v1.0.md -> v1.1.md) para revisión teatral humana directa.',
+            'Scripting: Creación de genera_subs_v0.1.rb para transcripción directa de MP3 a Markdown y genera_subs_v1.0.rb para mapeo de personajes semántico en Markdown con Groq LLaMA 3.3.'
+        ]
+    ],
     '26.6.12' => [
         'date' => '2026-04-01',
         'changes' => [
