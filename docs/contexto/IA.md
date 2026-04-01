@@ -101,8 +101,8 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.6.1 (2026-04-01)
-- **Cambios**: Diseño teatral del guion, paleta tonal semántica de tiempo, y acotamiento restrictivo del contexto contiguo.
+- **Versión**: 26.6.9 (2026-04-01)
+- **Cambios**: Desglose granular de 9 commits sobre el Plan 06, culminando en la UI de Karaoke teatral.
 
 ## Estado del Sitio (2026-03-28)
 

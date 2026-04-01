@@ -1,22 +1,63 @@
 <?php
 $versionLogs = [
+    '26.6.9' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Lógica: Acotamiento restrictivo del contexto contiguo al *último* diálogo previo y el *primer* diálogo posterior.'
+        ]
+    ],
+    '26.6.8' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'UX Tonal: Distinción visual semántica. Fondos azul pálido para pasado, crema para presente inactivo y naranja cálido para futuro.'
+        ]
+    ],
+    '26.6.7' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Estilo Teatral UI: Inclusión dinámica del Timestamp matemáticamente calculado para cada bloque [mm:ss].'
+        ]
+    ],
+    '26.6.6' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Estilo Teatral UI: Rediseño completo del bloque. El personaje se sitúa a la derecha y el diálogo cae a una nueva línea con sangría de 20px.'
+        ]
+    ],
+    '26.6.5' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Logic UI: Carga y renderizado automático contiguo por encima de los diálogos del audio previo tocado. Se utiliza `prevAudioId` nativo.'
+        ]
+    ],
+    '26.6.4' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Hotfix: Corrección de crash silencioso en la UI solucionando variables obsoletas y limpieza asimétrica de la clave `ID_vXXXX` a solo `ID`.'
+        ]
+    ],
+    '26.6.3' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Refactor: Unificación de +30 archivos de transcripción a un único mega-json `guion_completo.json` y purga del FileSystem local.'
+        ]
+    ],
+    '26.6.2' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Interacción Táctil: Lógica manual de tap simple para viajar en la línea de tiempo y *doble tap* continuo global para Pausar/Reproducir.'
+        ]
+    ],
     '26.6.1' => [
         'date' => '2026-04-01',
         'changes' => [
-            'Estilo Teatral: Personajes alineados a la derecha, diálogo re-organizado en nueva línea con sangría de 20px.',
-            'Estilo Teatral: Inclusión paramétrica del Timestamp de cada intervención [mm:ss].',
-            'UX Tonal: Distinción visual semántica (azul frío para audios pasados, crema para inactivos, naranja cálido para los próximos).',
-            'Lógica: Acotamiento de la pre-carga del guion a exclusivamente el *último* diálogo previo y el *primer* diálogo posterior, sin cargar arrays completos.'
+            'MVP Karaoke Auto-scroll: Inyección del primer contendor interactivo Script Container basado en timeupdate event de HTML5.'
         ]
     ],
     '26.6.0' => [
         'date' => '2026-04-01',
         'changes' => [
-            'MVP Karaoke: Implementación del Script Container con auto-scroll dinámico.',
-            'Optimizacion: Doble tap en pantalla para pausar/reproducir, tap simple para saltar al tiempo exacto.',
-            'Refactor: Unificación de 34 archivos de guión en un único maestro guion_completo.json.',
-            'UI: Modo continuo (preview visual del siguiente audio vinculado automáticamente).',
-            'Tooling: Creación de scripts en Python para convertir Markdown a JSON.'
+            'Tooling Plan 06: Primer borrador del script conversor en Python exportando Markdown Markdown-To-Objects para audios.'
         ]
     ],
     '26.5.0' => [
