@@ -93,8 +93,8 @@ function getMediaGroupsStructure() {
                     'id' => '103_v2510',
                     'order' => '103',
                     'version' => '2510',
-                    'title' => 'La Última Cena Adeje16-Aguas-Monedas',
-                    'display_name' => '103 La Última Cena Adeje16-Aguas-Monedas',
+                    'title' => 'La Última Cena + Monedas de Judas',
+                    'display_name' => '103 La Última Cena + Monedas de Judas',
                     'filename' => '103_v2510.mp3'
                 ],
                 [
