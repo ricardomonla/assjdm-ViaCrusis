@@ -54,21 +54,21 @@ include '../incs/header.php';
                 
                 <!-- Controles de navegación -->
                 <?php if ($prevAudio): ?>
-                <a href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>" 
+                <a href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>&v=3" 
                     class="nav-button prev-button">
                     ⟵ Anterior
                 </a>
                 <?php endif; ?>
                 
                 <?php if ($nextAudio): ?>
-                <a href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>" 
+                <a href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>&v=3" 
                     class="nav-button next-button"
                     data-is-last="false"
                     data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">
                     Siguiente ⟶
                 </a>
                 <?php else: ?>
-                <a href="play.php?id=<?= htmlspecialchars($firstAudioId) ?>" 
+                <a href="play.php?id=<?= htmlspecialchars($firstAudioId) ?>&v=3" 
                     class="nav-button next-button"
                     data-is-last="true"
                     data-first-audio-id="<?= htmlspecialchars($firstAudioId) ?>">

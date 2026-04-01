@@ -71,7 +71,7 @@ function initAudioPlayer() {
             
             if (isLastAudio && window.autoNextEnabled) {
                 // Transición inmediata sin fade
-                window.location.href = 'play.php?id=' + nextButton.dataset.firstAudioId;
+                window.location.href = 'play.php?id=' + nextButton.dataset.firstAudioId + '&v=3';
             } else if (nextButton && window.autoNextEnabled) {
                 // Transición inmediata sin fade
                 window.location.href = nextButton.href;
