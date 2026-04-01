@@ -101,7 +101,7 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.5.2 (2026-04-01)
+- **Versión**: 26.6.1 (2026-04-01)
 - **Cambios**: Diseño teatral del guion, paleta tonal semántica de tiempo, y acotamiento restrictivo del contexto contiguo.
 
 ## Estado del Sitio (2026-03-28)
