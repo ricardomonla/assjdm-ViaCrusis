@@ -101,8 +101,8 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 ## Versión Actual
 
-- **Versión**: 26.5.1 (2026-04-01)
-- **Cambios**: Módulo Karaoke interactivo y unificación de guion maestro.
+- **Versión**: 26.5.2 (2026-04-01)
+- **Cambios**: Diseño teatral del guion, paleta tonal semántica de tiempo, y acotamiento restrictivo del contexto contiguo.
 
 ## Estado del Sitio (2026-03-28)
 

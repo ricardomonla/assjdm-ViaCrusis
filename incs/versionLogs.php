@@ -1,5 +1,14 @@
 <?php
 $versionLogs = [
+    '26.5.2' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Estilo Teatral: Personajes alineados a la derecha, diálogo re-organizado en nueva línea con sangría de 20px.',
+            'Estilo Teatral: Inclusión paramétrica del Timestamp de cada intervención [mm:ss].',
+            'UX Tonal: Distinción visual semántica (azul frío para audios pasados, crema para inactivos, naranja cálido para los próximos).',
+            'Lógica: Acotamiento de la pre-carga del guion a exclusivamente el *último* diálogo previo y el *primer* diálogo posterior, sin cargar arrays completos.'
+        ]
+    ],
     '26.5.1' => [
         'date' => '2026-04-01',
         'changes' => [
