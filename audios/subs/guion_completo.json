@@ -1,40 +1,100 @@
 {
   "101": [
     {
-      "character": "NARRADOR",
       "startTime": 0,
-      "endTime": 15.0,
-      "text": "La Pascua es la mayor festividad judía del año.<br>Miles acuden a Jerusalén para dar gracias a Dios<br>por liberar a sus antepasados de la esclavitud de los egipcios.<br>La entrada de Jesús provoca un aluvión"
-    },
-    {
-      "character": "PUEBLO",
-      "startTime": 56,
-      "endTime": 57,
-      "text": "Jesús es el Mesías"
-    },
-    {
+      "endTime": 17.86,
       "character": "NARRADOR",
-      "startTime": 57,
-      "endTime": 72.0,
-      "text": "El profeta Zacarías predijo que un nuevo rey de los judíos entraría en la ciudad a lomos de un asno."
+      "text": "La Pascua es la mayor festividad judía del año."
     },
     {
+      "startTime": 23.24,
+      "endTime": 29.96,
+      "character": "NARRADOR",
+      "text": "Miles acuden a Jerusalén para dar gracias a Dios por liberar a sus antepasados de la esclavitud de los egipcios."
+    },
+    {
+      "startTime": 30,
+      "endTime": 47.4,
+      "character": "NARRADOR",
+      "text": "La entrada de Jesús provoca un aluvión."
+    },
+    {
+      "startTime": 60,
+      "endTime": 65.94,
+      "character": "NARRADOR",
+      "text": "El profeta Zacarías predijo que un nuevo rey de los judíos entraría en la ciudad a lomos de Unasno."
+    },
+    {
+      "startTime": 90,
+      "endTime": 107.33,
       "character": "PUEBLO",
-      "startTime": 100,
-      "endTime": 115.0,
-      "text": "¡Mesías! ¡Mesías!<br>¡El reino está cerca!<br>¡El reino está cerca!<br>¡El Mesías!<br>Es Barrabás.<br>¡Mesías!<br>¡Rey de Israel!<br>¿Por qué no nos vienes a liberar?<br>¡Sálvanos de la ley de los romanos!"
+      "text": "El reino est cerca"
     },
     {
+      "startTime": 108.09,
+      "endTime": 110.19,
+      "character": "PUEBLO",
+      "text": "El reino está cerca."
+    },
+    {
+      "startTime": 110.53,
+      "endTime": 111.73,
+      "character": "PUEBLO",
+      "text": "El mesías."
+    },
+    {
+      "startTime": 112.49,
+      "endTime": 113.29,
+      "character": "PUEBLO",
+      "text": "Es Barrabás."
+    },
+    {
+      "startTime": 114.01,
+      "endTime": 114.93,
+      "character": "PUEBLO",
+      "text": "¡Mesías!"
+    },
+    {
+      "startTime": 115.81,
+      "endTime": 119.89,
+      "character": "PUEBLO",
+      "text": "Rey de Israel, ¿por qué no nos vienes a liberar?"
+    },
+    {
+      "startTime": 120.45,
+      "endTime": 123.03,
+      "character": "PUEBLO",
+      "text": "¡Sálvanos de la ley de los romanos!"
+    },
+    {
+      "startTime": 134.13,
+      "endTime": 135.79,
       "character": "JESÚS",
-      "startTime": 134,
-      "endTime": 149.0,
-      "text": "Venimos en paz, Barrabás.<br>Dejad que los niños se acerquen a mí<br>Porque de los que son como ellos<br>Es el reino de los cielos<br>Venid"
+      "text": "Venimos en paz, Barrabás."
     },
     {
+      "startTime": 145.81,
+      "endTime": 156.11,
+      "character": "JESÚS",
+      "text": "Dejad que los niños se acerquen a mí,"
+    },
+    {
+      "startTime": 157.83,
+      "endTime": 162.57,
+      "character": "JESÚS",
+      "text": "porque de los que son como ellos, es el reino de los cielos."
+    },
+    {
+      "startTime": 164.13,
+      "endTime": 164.47,
+      "character": "JESÚS",
+      "text": "Venid."
+    },
+    {
+      "startTime": 175.81,
+      "endTime": 181.45,
       "character": "NARRADOR",
-      "startTime": 175,
-      "endTime": 185.0,
-      "text": "<br>"
+      "text": "La Iglesia de Jesucristo de los Santos de los Últimos Días"
     }
   ],
   "102": [

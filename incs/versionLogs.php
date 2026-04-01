@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.6.12' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'IA Integration: Creación de scripts en Ruby interactuando con Groq API whisper-large-v3 para desgrabar audios crudos.',
+            'IA Integration: Inclusión de script mapeador con Llama 3.3 70B para inyectar personajes del guion antiguo sobre marcas de tiempo exactas (MVP exitoso con Pista 101).'
+        ]
+    ],
     '26.6.11' => [
         'date' => '2026-04-01',
         'changes' => [
