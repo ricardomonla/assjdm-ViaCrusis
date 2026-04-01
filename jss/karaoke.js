@@ -238,30 +238,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Si cambió el index activo
         if (foundIdx !== currentActiveIdx && foundIdx !== -1) {
-            if (currentActiveIdx !== -1) {
-                const oldBlock = document.getElementById(`cue-${currentActiveIdx}`);
-                if (oldBlock) {
-                    oldBlock.classList.remove('cue-active');
-                    oldBlock.classList.add('cue-inactive');
+            for (let i = 0; i < scriptData.length; i++) {
+                const block = document.getElementById(`cue-${i}`);
+                if (block) {
+                    block.classList.remove('cue-active', 'cue-inactive', 'cue-past');
+                    if (i < foundIdx) {
+                        block.classList.add('cue-inactive', 'cue-past');
+                    } else if (i === foundIdx) {
+                        block.classList.add('cue-active');
+                    } else {
+                        block.classList.add('cue-inactive');
+                    }
                 }
             }
             
             const newBlock = document.getElementById(`cue-${foundIdx}`);
-            if (newBlock) {
-                newBlock.classList.remove('cue-inactive');
-                newBlock.classList.add('cue-active');
-                
-                // Auto-scroll
-                if (!isUserScrolling) {
-                    const containerHeight = scriptContainer.clientHeight;
-                    const blockTop = newBlock.offsetTop;
-                    const blockHeight = newBlock.clientHeight;
-                    
-                    scriptContainer.scrollTo({
-                        top: blockTop - (containerHeight / 2) + (blockHeight / 2),
-                        behavior: 'smooth'
-                    });
-                }
+            if (newBlock && !isUserScrolling) {
+                const blockTop = newBlock.offsetTop;
+                scriptContainer.scrollTo({
+                    top: Math.max(0, blockTop - 25), // 25px de margen superior, reemplazando el centrado anterior
+                    behavior: 'smooth'
+                });
             }
             
             currentActiveIdx = foundIdx;

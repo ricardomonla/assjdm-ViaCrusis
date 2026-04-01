@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.27' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Mejora UX Karaoke: Modificación de `karaoke.js` para que el autoscroll alinee el subtítulo activo en la parte superior (en lugar de centrarlo). Se agregó un nuevo estilo `cue-past` en `style.css` que difumina (blur) y reduce la opacidad fuertemente del texto ya reproducido, generando un efecto visual donde lo pasado queda "oculto" arriba.'
+        ]
+    ],
     '26.6.26' => [
         'date' => '2026-04-01',
         'changes' => [
