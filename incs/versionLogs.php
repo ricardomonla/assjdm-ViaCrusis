@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.6.10' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Tooling: Creación de scripts para calcular duraciones exactas de cada audio con FFprobe en audio_durations.json.',
+            'Cálculo UI: Implementación de sistema dual de tiempo (Global y Relativo) en pantalla (Ej: [108.0.56] y T+ 35:45).'
+        ]
+    ],
     '26.6.9' => [
         'date' => '2026-04-01',
         'changes' => [

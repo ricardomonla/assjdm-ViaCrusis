@@ -22,16 +22,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000); // Vuelve al auto-scroll tras 3s de inactividad de scroll
     });
 
-    // Carga del guion maestro completo
-    fetch(`../audios/subs/guion_completo.json?v=${window.appVersion || Date.now()}`)
-        .then(response => {
-            if (!response.ok) throw new Error('No se pudo cargar el archivo maestro de guiones.');
-            return response.json();
+    // Carga paralela del guion maestro completo y las duraciones calculadas con ffprobe
+    Promise.all([
+        fetch(`../audios/subs/guion_completo.json?v=${window.appVersion || Date.now()}`).then(res => {
+            if (!res.ok) throw new Error('No se pudo cargar el archivo maestro de guiones.');
+            return res.json();
+        }),
+        fetch(`../audios/subs/audio_durations.json?v=${window.appVersion || Date.now()}`).then(res => {
+            if (!res.ok) return {}; // Falla silenciosa y devuelve duraciones vacías si no existe
+            return res.json();
         })
-        .then(masterData => {
-            const currentAudioId = window.audioId.split('_')[0];
-            const nextAudioId = window.nextAudioId ? window.nextAudioId.split('_')[0] : "";
-            const prevAudioId = window.prevAudioId ? window.prevAudioId.split('_')[0] : "";
+    ])
+    .then(([masterData, durationsData]) => {
+        const currentAudioId = window.audioId.split('_')[0];
+        const nextAudioId = window.nextAudioId ? window.nextAudioId.split('_')[0] : "";
+        const prevAudioId = window.prevAudioId ? window.prevAudioId.split('_')[0] : "";
+        
+        // Sumamos absolutamente todos los delays anteriores filtrando por el prefijo, sin contar tracks 00X (Desfile)
+        function getGlobalOffset(targetId) {
+            let offset = 0;
+            const sortedKeys = Object.keys(durationsData).sort();
+            for (const key of sortedKeys) {
+                // Solo sumar si es parte de la obra principal (arranca con 1, 2, 3, 4)
+                if (key.match(/^[1-4]/)) {
+                    if (key === targetId) break;
+                    offset += durationsData[key];
+                }
+            }
+            return offset;
+        }
             
             // Extraer guion actual
             let currentScript = masterData[currentAudioId] || [];
@@ -53,15 +72,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 scriptData = scriptData.concat(nextDataMapped);
             }
             
-            if (scriptData.length === 0) {
-                scriptContainer.innerHTML = `<div class="script-placeholder">Pista instrumental o sin diálogos asignados.</div>`;
-            } else {
-                renderScript(scriptData);
-            }
-        })
-        .catch(error => {
-            scriptContainer.innerHTML = `<div class="script-placeholder">${error.message}</div>`;
-        });
+        if (scriptData.length === 0) {
+            scriptContainer.innerHTML = `<div class="script-placeholder">Pista instrumental o sin diálogos asignados.</div>`;
+        } else {
+            renderScript(scriptData, durationsData);
+        }
+    })
+    .catch(error => {
+        scriptContainer.innerHTML = `<div class="script-placeholder">${error.message}</div>`;
+    });
 
     let lastTap = 0;
     let pendingClickTimeout = null;
@@ -87,8 +106,21 @@ document.addEventListener('DOMContentLoaded', function() {
         lastTap = currentTime;
     });
 
-    function renderScript(data) {
+    function renderScript(data, durationsData) {
         scriptContainer.innerHTML = ''; // Limpiar
+        
+        // Función interna auxiliar
+        function getGlobalOffset(targetId) {
+            let offset = 0;
+            const sortedKeys = Object.keys(durationsData).sort();
+            for (const key of sortedKeys) {
+                if (key.match(/^[1-4]/)) {
+                    if (key === targetId) break;
+                    offset += durationsData[key];
+                }
+            }
+            return offset;
+        }
         
         data.forEach((cue, index) => {
             const block = document.createElement('div');
@@ -103,9 +135,25 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const timeSpan = document.createElement('span');
             timeSpan.className = 'cue-time';
-            const m = Math.floor(cue.startTime / 60);
-            const s = Math.floor(cue.startTime % 60).toString().padStart(2, '0');
-            timeSpan.textContent = `[${m}:${s}]`;
+            
+            // Tiempo Local de la escena: Ej 101.0.56
+            // Identificar qué ID fuente es el cue:
+            let cueId = window.audioId.split('_')[0];
+            if (cue.isNextAudio && window.nextAudioId) cueId = window.nextAudioId.split('_')[0];
+            if (cue.isPrevAudio && window.prevAudioId) cueId = window.prevAudioId.split('_')[0];
+            
+            const localM = Math.floor(cue.startTime / 60);
+            const localS = Math.floor(cue.startTime % 60).toString().padStart(2, '0');
+            const localString = `[${cueId}.${localM}.${localS}]`;
+            
+            // Tiempo Global: Offset Sumado + cue.startTime
+            const gOffset = getGlobalOffset(cueId);
+            const globalTime = gOffset + cue.startTime;
+            const globalM = Math.floor(globalTime / 60).toString().padStart(2, '0');
+            const globalS = Math.floor(globalTime % 60).toString().padStart(2, '0');
+            const globalString = `T+ ${globalM}:${globalS}`;
+            
+            timeSpan.innerHTML = `<strong>${localString}</strong> <span style="opacity:0.5; font-size: 0.9em; margin-left: 8px;">(${globalString})</span>`;
             
             const characterSpan = document.createElement('span');
             characterSpan.className = 'cue-character';
