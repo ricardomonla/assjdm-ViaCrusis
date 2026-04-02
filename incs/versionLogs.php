@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.32' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Procesada la pista 108 y 109. Completado el pase filológico, y ambas listas para web.'
+        ]
+    ],
     '26.6.31' => [
         'date' => '2026-04-02',
         'changes' => [

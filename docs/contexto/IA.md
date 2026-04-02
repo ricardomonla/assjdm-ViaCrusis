@@ -113,9 +113,9 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Versión Actual:** `26.6.31`
+- **Versión Actual:** `26.6.32`
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
-- **Estado General:** Avance integral de pistas (101-107). Flujo AI optimizado (v1 a v4). Catálogo `00_Personajes.md` masterizado.
+- **Estado General:** Avance integral de pistas (101-109). Flujo AI optimizado (v1 a v4). Catálogo `00_Personajes.md` masterizado.
 
 > **Estado del Repositorio:** Limpio (sin logs temporales basura).  
 > **Versión Actual:** `26.6.31`
