@@ -113,12 +113,17 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Versión Actual:** `26.6.40`
+- **Versión Actual:** `26.6` (Cerrada) -> Preparando `26.7`
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
-- **Estado General:** Transcripción H.I.T.L. COMPLETADA de principio a fin (Pistas 101 a 403) en JSON maestro. Guion de Docs perfectamente sincronizado.
+- **Estado General:** Transcripción H.I.T.L. COMPLETADA (Pistas 101 a 403) en JSON maestro. Inicia Fase de Pulido Fino (v26.7).
 
-> **Estado del Repositorio:** Limpio (sin logs temporales basura).  
-> **Versión Actual:** `26.6.40`
+> **Versión Actual:** `26.7` (Planificación)
+
+## Roadmap v26.7 (Fase de Pulido Fino)
+
+1. **Sincronización de Personajes:** Reorganizar la tabla estática de `00_Personajes.md` y UI para que el orden de los IDs/Colores condiga exactamente con su aparición escénica cronológica.
+2. **Sincronización de Tiempos Exquisitos:** Repasar las marcas de tiempo en el JSON para micro-ajustes en milisegundos y lograr un sincro Karaoke perfecto.
+3. **Acotaciones Descriptivas Internas:** Intercalar elementos en la UI (p.ej. un `P00` narrativo) que anuncien los efectos de sonido o las transiciones de escena que ayudan al actor/director a ubicarse visualmente en la ausencia de habla.
 
 ## Estado del Sitio (2026-03-28)
 
