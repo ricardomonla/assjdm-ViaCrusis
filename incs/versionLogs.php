@@ -1,18 +1,13 @@
 <?php
 $versionLogs = [
-    '26.7.2' => [
+    '26.7' => [
         'date' => '2026-04-02',
         'changes' => [
+            'Apertura oficial de la Fase de Pulido y Revisión Fina. Creación del documento planificador (docs/plan).',
             'Conclusión del Plan 07: Entorno Móvil/Android Offline totalmente validado.',
             'Transición de visibilidad: Pase del repositorio a Público y simplificación del flujo git-pull HTTPS.',
-            'Sanitización del repositorio: Eliminación de docker-compose y archivos legacy de infraestructura local (Termux + PHP nativo rinden 100%).',
+            'Sanitización del repositorio: Eliminación de docker-compose y archivos legacy de infraestructura local.',
             'Nuevo script de arranque rápido y atajos nativos en Android (start_termux.sh).'
-        ]
-    ],
-    '26.7.1' => [
-        'date' => '2026-04-02',
-        'changes' => [
-            'Apertura oficial de la Fase de Pulido y Revisión Fina. Creación del documento planificador (docs/plan).'
         ]
     ],
     '26.6' => [

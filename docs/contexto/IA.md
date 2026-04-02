@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.7.2` (Gestión Escénica + UI) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.7` (Gestión Escénica + UI) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -113,11 +113,11 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Versión Actual:** `26.7.2` (Entorno Móvil)
+- **Versión Actual:** `26.7` (Entorno Móvil y Pulido)
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
 - **Estado General:** Transcripción H.I.T.L. Base COMPLETADA (Pistas 101 a 403) en JSON maestro. Inicia Fase de Pulido Fino y Enriquecimiento Dramático (v26.7).
 
-> **Versión Actual:** `26.7.2`
+> **Versión Actual:** `26.7`
 
 ## Roadmap v26.7 (Fase de Pulido Fino)
 
