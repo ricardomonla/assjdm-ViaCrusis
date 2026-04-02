@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.39' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Pista 402 compilada al JSON maestro. Archivo fuente de Guion actualizado para validar ajustes en directriz teatral de personajes (P08 y P25).'
+        ]
+    ],
     '26.6.38' => [
         'date' => '2026-04-02',
         'changes' => [

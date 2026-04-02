@@ -3256,27 +3256,123 @@
   "402": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "José de Arimatea, un hombre bueno y justo que pertenecía a la Junta Suprema y que no estuvo de acuerdo con estos hechos,<br>obtuvo permiso de Poncio Pilato para colocar el cuerpo de Jesús en una tumba antes de que diera principio el día de reposo.<br>El primer día de la semana, regresaron al sepulcro muy temprano, llevando los perfumes que habían preparado.<br>La piedra había sido removida y la tumba estaba abierta<br>Al entrar vieron que el cuerpo de Jesús ya no estaba ahí"
+      "startTime": 0.0,
+      "endTime": 18.0,
+      "text": "José de Arimatea, un hombre bueno y justo que pertenecía a la Junta Suprema y que no estuvo de acuerdo con estos hechos, obtuvo permiso de Poncio Pilato para colocar el cuerpo de Jesús en una tumba antes de que diera principio el día de reposo."
     },
     {
-      "character": "ÁNGEL",
-      "startTime": 35,
-      "endTime": 50.0,
-      "text": "--???--<br>¿Por qué buscan entre los muertos al que vive?<br>No está aquí, ha resucitado.<br>Recuerden lo que les dijo cuando todavía estaba en Galilea,<br>que el Hijo del Hombre tenía que ser entregado en manos de los pecadores,<br>que lo crucificarían y que al tercer día resucitarían."
+      "character": "NARRADOR",
+      "startTime": 18.0,
+      "endTime": 24.0,
+      "text": "El primer día de la semana, regresaron al sepulcro muy temprano, llevando los perfumes que habían preparado."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 24.0,
+      "endTime": 31.0,
+      "text": "La piedra había sido removida y la tumba estaba abierta."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 31.0,
+      "endTime": 35.0,
+      "text": "Al entrar, vieron que el cuerpo de Jesús ya no estaba ahí."
+    },
+    {
+      "character": "ÁNGEL 1",
+      "startTime": 35.0,
+      "endTime": 55.0,
+      "text": "¿Por qué buscan entre los muertos al que vive?"
+    },
+    {
+      "character": "ÁNGEL 1",
+      "startTime": 55.0,
+      "endTime": 57.0,
+      "text": "No está aquí, ha resucitado."
+    },
+    {
+      "character": "ÁNGEL 2",
+      "startTime": 57.0,
+      "endTime": 60.0,
+      "text": "Recuerden lo que les dijo cuando todavía estaba en Galilea,"
+    },
+    {
+      "character": "ÁNGEL 2",
+      "startTime": 60.0,
+      "endTime": 64.0,
+      "text": "que el Hijo del Hombre tenía que ser entregado en manos de los pecadores,"
+    },
+    {
+      "character": "ÁNGEL 2",
+      "startTime": 64.0,
+      "endTime": 89.0,
+      "text": "que lo crucificarían y que al tercer día resucitaría."
     },
     {
       "character": "MARÍA MAGDALENA",
-      "startTime": 89,
+      "startTime": 89.0,
+      "endTime": 91.0,
+      "text": "Escuchen, la piedra fue removida."
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 91.0,
+      "endTime": 94.0,
+      "text": "Entramos."
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 94.0,
+      "endTime": 96.0,
+      "text": "Y el cuerpo de nuestro Señor..."
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 96.0,
+      "endTime": 98.0,
+      "text": "...no está."
+    },
+    {
+      "character": "DISCÍPULOS",
+      "startTime": 98.0,
+      "endTime": 100.0,
+      "text": "¿Cómo? ¿Desapareció?"
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 100.0,
+      "endTime": 102.0,
+      "text": "Y vimos a dos hombres..."
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 102.0,
       "endTime": 104.0,
-      "text": "--???--<br>Escuchen, la piedra fue removida.<br>Entramos.<br>Y el cuerpo de nuestro señor no está.<br>¿Cómo? ¿Desapareció?<br>Y vimos a dos hombres con ropas brillantes, como el sol."
+      "text": "...con ropas brillantes..."
     },
     {
       "character": "MARÍA MAGDALENA",
-      "startTime": 107,
-      "endTime": 117.0,
-      "text": "--???--<br>Y dijeron, ¿por qué buscan a los vivos entre los muertos?"
+      "startTime": 104.0,
+      "endTime": 106.0,
+      "text": "...como el sol,"
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 106.0,
+      "endTime": 107.0,
+      "text": "y dijeron:"
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 107.0,
+      "endTime": 111.0,
+      "text": "«¿Por qué buscan a los vivos..."
+    },
+    {
+      "character": "MARÍA MAGDALENA",
+      "startTime": 111.0,
+      "endTime": 116.0,
+      "text": "...entre los muertos?»"
     }
   ],
   "403": [

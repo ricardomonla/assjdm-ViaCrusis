@@ -24,11 +24,12 @@
 | P17 | CENTURIÓN | Guardia Romano |
 | P18 | LADRÓN ARREPENTIDO | Ladrón crucificado, humilde |
 | P19 | OTRO LADRÓN | Ladrón crucificado, burlesco |
-| P20 | ÁNGEL | Ser celestial en el sepulcro |
+| P20 | ÁNGEL 1 | Ser celestial en el sepulcro |
 | P21 | MARÍA MAGDALENA | Discípula en la tumba |
 | P22 | NICODEMO | Miembro importante del consejo del Sanedrín y simpatizante de Jesús |
 | P23 | SOLDADO | Guardia Romano |
 | P24 | SOLDADOS | Soldados romanos |
+| P25 | ÁNGEL 2 | Ser celestial en el sepulcro |
 | P99 | MUSICA SAETA | Canción popular |
 
 ## 2. Subtítulos
