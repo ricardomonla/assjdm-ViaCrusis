@@ -2260,99 +2260,441 @@
   "111": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 8,
-      "text": "Primera estación<br>Jesús es condenado a muerte"
+      "startTime": 0.0,
+      "endTime": 5.0,
+      "text": "Primera estación."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 5.0,
+      "endTime": 8.0,
+      "text": "Jesús es condenado a muerte."
     },
     {
       "character": "SOLDADO",
-      "startTime": 8,
-      "endTime": 11,
-      "text": "Señor, Señor"
+      "startTime": 8.0,
+      "endTime": 11.0,
+      "text": "Señor, Señor."
     },
     {
       "character": "PILATOS",
-      "startTime": 11,
-      "endTime": 15,
-      "text": "<br>Herodes ratifica cualquier decisión que tome<br>Lo hemos traído aquí de nuevo"
+      "startTime": 11.0,
+      "endTime": 14.0,
+      "text": "Herodes ratifica cualquier decisión que tome."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 14.0,
+      "endTime": 15.0,
+      "text": "Lo hemos traído aquí de nuevo."
     },
     {
       "character": "SOLDADO",
-      "startTime": 15,
-      "endTime": 16,
-      "text": "Necesitaremos refuerzos"
+      "startTime": 15.0,
+      "endTime": 16.0,
+      "text": "Necesitaremos refuerzos."
     },
     {
       "character": "PILATOS",
-      "startTime": 16,
-      "endTime": 19,
-      "text": "No, lo último que quiero es una rebelión"
+      "startTime": 16.0,
+      "endTime": 19.0,
+      "text": "No, lo último que quiero es una rebelión."
     },
     {
       "character": "SOLDADO",
-      "startTime": 19,
-      "endTime": 20,
-      "text": "Ya hay una rebelión"
+      "startTime": 19.0,
+      "endTime": 20.0,
+      "text": "Ya hay una rebelión."
     },
     {
       "character": "PILATOS",
-      "startTime": 20,
-      "endTime": 35.0,
-      "text": "No encuentro delito alguno en este hombre<br>¿Tenéis la costumbre que os ponga en libertad un prisionero por fiesta de Pascua?<br>Tenemos dos presos.<br>Uno es Jesús de Nazaret, acusado de traición por proclamarse el mismo rey de los judíos.<br>Y otro, Barrabás, acusado de sedición y de asesinato de un soldado romano.<br>¿A cuál de estos dos hombres queréis que os suelte?<br>¿Al asesino Barrabás o a Jesús de Nazaret llamado Mesías?"
-    },
-    {
-      "character": "CAIFÁS",
-      "startTime": 69,
-      "endTime": 84.0,
-      "text": "¿Mesías? ¿Ese?<br>Ese no es el enviado de nadie.<br>Es solo un impostor y un blasfemo.<br>Anda, deja libre a Barrabás."
+      "startTime": 20.0,
+      "endTime": 30.0,
+      "text": "No encuentro delito alguno en este hombre."
     },
     {
       "character": "PILATOS",
-      "startTime": 86,
-      "endTime": 100,
-      "text": "Os pregunto de nuevo, ¿a cuál de estos dos hombres queréis que os suelte?"
+      "startTime": 30.0,
+      "endTime": 36.0,
+      "text": "¿Tenéis la costumbre que os ponga en libertad un prisionero por fiesta de Pascua?"
     },
     {
       "character": "PILATOS",
-      "startTime": 100,
-      "endTime": 109,
-      "text": "<br>Calma calma hago entonces con Jes el llamado Mes"
+      "startTime": 36.0,
+      "endTime": 39.0,
+      "text": "Tenemos dos presos."
     },
     {
       "character": "PILATOS",
-      "startTime": 109,
-      "endTime": 124.0,
-      "text": "Pues qué mal ha hecho este hombre.<br>No he encontrado nada en él que me lesca su castigo.<br>No me hago responsable de esta muerte<br>Allá vosotros<br>Está bien<br>Soltaré a Barrabás<br>y os entregaré a Jesús después de azotarlo para que sea crucificado."
+      "startTime": 39.0,
+      "endTime": 43.0,
+      "text": "Uno es Jesús de Nazaret,"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 43.0,
+      "endTime": 48.0,
+      "text": "acusado de traición por proclamarse él mismo rey de los judíos."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 48.0,
+      "endTime": 50.0,
+      "text": "Y otro Barrabás,"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 50.0,
+      "endTime": 56.0,
+      "text": "acusado de sedición y de asesinato de un soldado romano."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 56.0,
+      "endTime": 61.0,
+      "text": "¿A cuál de estos dos hombres queréis que os suelte?"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 61.0,
+      "endTime": 69.0,
+      "text": "¿Al asesino Barrabás o a Jesús de Nazaret llamado Mesías?"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 69.0,
+      "endTime": 71.0,
+      "text": "¿Mesías? ¿Ese?"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 71.0,
+      "endTime": 73.0,
+      "text": "Ese no es el enviado de nadie."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 73.0,
+      "endTime": 76.0,
+      "text": "Es solo un impostor y un blasfemo."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 76.0,
+      "endTime": 86.0,
+      "text": "Anda, deja libre a Barrabás."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 86.0,
+      "endTime": 90.0,
+      "text": "Os pregunto de nuevo,"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 90.0,
+      "endTime": 100.0,
+      "text": "¿a cuál de estos dos hombres queréis que os suelte?"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 100.0,
+      "endTime": 109.0,
+      "text": "¡Calma, calma! ¿Y qué hago entonces con Jesús, el llamado Mesías?"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 109.0,
+      "endTime": 111.0,
+      "text": "Pues, ¿qué mal ha hecho este hombre?"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 111.0,
+      "endTime": 114.0,
+      "text": "No he encontrado nada en él que merezca este castigo."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 114.0,
+      "endTime": 128.0,
+      "text": "No me hago responsable de esta muerte."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 128.0,
+      "endTime": 131.0,
+      "text": "Allá vosotros."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 131.0,
+      "endTime": 136.0,
+      "text": "Está bien."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 136.0,
+      "endTime": 138.0,
+      "text": "Soltaré a Barrabás"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 138.0,
+      "endTime": 149.0,
+      "text": "y os entregaré a Jesús después de azotarlo para que sea crucificado."
     },
     {
       "character": "SOLDADO",
-      "startTime": 149,
-      "endTime": 155,
+      "startTime": 149.0,
+      "endTime": 153.0,
       "text": "¡Azotadlo!"
     },
     {
       "character": "NARRADOR",
-      "startTime": 155,
-      "endTime": 170.0,
-      "text": "<br>Mirad mi siervo.<br>Desfigurado, no parecía hombre ni tenía aspecto humano.<br>Preció en su presencia como brote, como raíz en tierra ánima,<br>sin figura, sin belleza.<br>Lo vimos sin aspecto atrayente, despreciado y evitado de los hombres,<br>como un hombre de dolores, acostumbrado a los sufrimientos<br>ante el cual se ocultan los rostros, despreciado y desestimado.<br>Él soportó nuestros sufrimientos y aguantó nuestros dolores.<br>Nosotros lo veíamos herido de Dios y humillado,<br>triturado por nuestros crímenes.<br>Nuestro castigo cayó sobre sus cicatrices nos curó Maltratado voluntariamente se humillaba y no abr la boca<br>Como cordero llevado al matadero, como oveja ante el esquilador,<br>enmudecía y no abría la boca.<br>Sin defensa, sin justicia se lo llevaron.<br>¿Quién meditó en su destino?<br>Lo arrancaron de la tierra de los vivos, le dieron sepultura con los malvados<br>Y una tumba con los malhechores<br>Aunque no había cometido crímenes, ni hubo engaño en su boca<br>El Señor hizo triturarlo con el sufrimiento<br>Verá su descendencia, prolongará sus años"
+      "startTime": 153.0,
+      "endTime": 160.0,
+      "text": "Mirad a mi siervo. Desfigurado, no parecía hombre ni tenía aspecto humano."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 160.0,
+      "endTime": 168.0,
+      "text": "Creció en su presencia como brote, como raíz en tierra árida, sin figura, sin belleza."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 168.0,
+      "endTime": 174.0,
+      "text": "Lo vimos sin aspecto atrayente, despreciado y evitado de los hombres,"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 174.0,
+      "endTime": 179.0,
+      "text": "como un hombre de dolores, acostumbrado a los sufrimientos"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 179.0,
+      "endTime": 185.0,
+      "text": "ante el cual se ocultan los rostros, despreciado y desestimado."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 185.0,
+      "endTime": 190.0,
+      "text": "Él soportó nuestros sufrimientos y aguantó nuestros dolores."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 190.0,
+      "endTime": 198.0,
+      "text": "Nosotros lo veíamos herido de Dios y humillado, triturado por nuestros crímenes."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 198.0,
+      "endTime": 211.0,
+      "text": "Nuestro castigo cayó sobre él, y sus cicatrices nos curaron. Maltratado voluntariamente se humillaba y no abría la boca."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 211.0,
+      "endTime": 216.0,
+      "text": "Como cordero llevado al matadero, como oveja ante el esquilador,"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 216.0,
+      "endTime": 220.0,
+      "text": "enmudecía y no abría la boca."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 220.0,
+      "endTime": 224.0,
+      "text": "Sin defensa, sin justicia se lo llevaron."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 224.0,
+      "endTime": 226.0,
+      "text": "¿Quién meditó en su destino?"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 226.0,
+      "endTime": 229.0,
+      "text": "Lo arrancaron de la tierra de los vivos,"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 229.0,
+      "endTime": 231.0,
+      "text": "le dieron sepultura con los malvados,"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 231.0,
+      "endTime": 234.0,
+      "text": "y una tumba con los malhechores,"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 234.0,
+      "endTime": 238.0,
+      "text": "aunque no había cometido crímenes"
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 238.0,
+      "endTime": 240.0,
+      "text": "ni hubo engaño en su boca."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 240.0,
+      "endTime": 246.0,
+      "text": "El Señor quiso triturarlo con el sufrimiento."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 246.0,
+      "endTime": 248.0,
+      "text": "Verá su descendencia."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 248.0,
+      "endTime": 256.0,
+      "text": "Prolongará sus años."
     },
     {
       "character": "PUEBLO",
-      "startTime": 256,
-      "endTime": 271.0,
+      "startTime": 256.0,
+      "endTime": 273.0,
       "text": "¡No!"
     },
     {
       "character": "SOLDADO",
-      "startTime": 273,
-      "endTime": 288.0,
-      "text": "¡No vienes a ver a Jerusalén como un rey!<br>¡Miradlo ahora!<br>¡Ahí está el rey!<br>¡El rey de los judíos!<br>¡Tenemos que vestirlo como un rey!<br>¡Con un trapo de suerte!<br>¡Tiene razón!<br>Esto servirá.<br>¡Muélvete para ponerte el manto real!<br>Mirad, si es un rey, necesito una corona.<br>Sí.<br>rey y poderos majestad Aqu traigo la corona real Alc Una corona de oro puro con la corona<br>¡Solem de coronación!<br>Necesito el centro.<br>¡Majestad!<br>¡Qué bien le sienta!<br>¡Maravilloso!<br>Nadie tuvo una corona igual.<br>¡Salve, rey de los judíos!<br>¡Gracias, carácter! ¡Levanten la cruz!"
+      "startTime": 273.0,
+      "endTime": 274.0,
+      "text": "¡Oye! ¿No venías a Jerusalén como un rey?"
     },
     {
-      "character": "NARRADOR",
-      "startTime": 360,
-      "endTime": 370.0,
-      "text": "<br>La Iglesia de Jesucristo de los Santos de los Últimos Días<br>"
+      "character": "SOLDADO",
+      "startTime": 274.0,
+      "endTime": 277.0,
+      "text": "¡Miradlo ahora!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 277.0,
+      "endTime": 280.0,
+      "text": "Ahí está el rey. ¡El rey de los judíos!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 280.0,
+      "endTime": 281.0,
+      "text": "(Risas)"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 281.0,
+      "endTime": 283.0,
+      "text": "¡Tenemos que vestirlo como un rey!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 283.0,
+      "endTime": 284.0,
+      "text": "¡Con un trapo de esos!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 284.0,
+      "endTime": 287.0,
+      "text": "¡Tienes razón! Esto servirá."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 287.0,
+      "endTime": 288.0,
+      "text": "(Risas)"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 288.0,
+      "endTime": 294.0,
+      "text": "¡Muévete para ponerte el manto real!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 294.0,
+      "endTime": 295.0,
+      "text": "(Risas)"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 295.0,
+      "endTime": 299.0,
+      "text": "Mirad, si es un rey, ¡necesita una corona!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 299.0,
+      "endTime": 300.0,
+      "text": "¡Sí!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 300.0,
+      "endTime": 305.0,
+      "text": "Majestad, aquí traigo la corona real. Una corona de oro puro..."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 305.0,
+      "endTime": 308.0,
+      "text": "¡Solemne coronación!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 308.0,
+      "endTime": 310.0,
+      "text": "¡Necesita el cetro!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 310.0,
+      "endTime": 312.0,
+      "text": "¡Majestad!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 312.0,
+      "endTime": 315.0,
+      "text": "¡Qué bien le sienta! ¡Maravilloso!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 315.0,
+      "endTime": 333.0,
+      "text": "Nadie tuvo una corona igual."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 333.0,
+      "endTime": 335.0,
+      "text": "¡Salve, Rey de los Judíos!"
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 335.0,
+      "endTime": 340.0,
+      "text": "¡Guardias, levanten la cruz!"
     }
   ],
   "201": [
