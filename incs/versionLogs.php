@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.37' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Pista 305 (13ºE Jesús es bajado de la cruz) procesada y en JSON maestro. Pista 306 saltada.'
+        ]
+    ],
     '26.6.36' => [
         'date' => '2026-04-02',
         'changes' => [

@@ -28,5 +28,5 @@ Este flujo rediseñado aprovecha las capacidades puras de Groq para audición ci
 ## Fase 5: Consolidación y Commit (`Sistema -> JSON y v3.0.md`)
 *   **Responsable:** Compilador automatizado / IA.
 *   **Acción:** El archivo definitivo (validado en Fase 4) es absorbido por el motor (`compilador.rb`), inyectándose ordenadamente dentro de `audios/subs/guion_completo.json`. 
-*   **Proceso:** Una vez sellado con éxito en la base de datos de producción (donde la aplicación de Karaoke interactúa), el archivo markdown queda con la etiqueta final de vida útil (Ej. **`XXX_v3.0.md`**).
-*   **Resultado:** La IA empaqueta todos los cambios del JSON y archivos markdown resultantes impulsando un `git commit` & `git push` hacia la nube, terminando el ciclo de esa pista.
+*   **Proceso:** Una vez sellado con éxito en la base de datos de producción (donde la aplicación de Karaoke interactúa), el archivo markdown queda con la etiqueta final de vida útil (Ej. **`XXX_v4.0.md`**). Se encadena el `git push`.
+*   **Bucle Autónomo (Pre-carga):** Inmediatamente al finalizar el commit, la IA tiene como instrucción disparar automáticamente la **Fase 1** (la audición de Groq) sobre el audio correlativo siguiente. Así, mientras tú terminas una pista, el sistema ya deja listo el `v1.0.md` de la pista venidera en bandeja.

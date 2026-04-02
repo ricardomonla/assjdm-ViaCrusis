@@ -3118,15 +3118,117 @@
   "305": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "...<br>Decima tercera estación<br>Jesús es bajado de la cruz"
+      "startTime": 0.0,
+      "endTime": 16.0,
+      "text": "Décima tercera estación. Jesús es bajado de la cruz."
     },
     {
       "character": "MARÍA",
-      "startTime": 16,
-      "endTime": 26.0,
-      "text": "Hijo mío<br>Hijo mío<br>Hijo<br>Mirad si hay dolor como el mío<br>El hijo más bueno<br>El único bueno de verdad<br>Destrozado<br>Habiendo soportado toda la maldad del mundo<br>Hijo<br>Hijo mío<br>Hijo<br>Hijo<br>Hijo<br>Déjame ahora<br>Sostener con mi amor y mi dolor<br>el cuerpo de tu hijo<br>y mi hijo<br>mientras espero que rompas tu silencio<br>hijo mío<br>hijo<br>hijo mío"
+      "startTime": 16.0,
+      "endTime": 30.0,
+      "text": "¡Hijo mío! ¡Hijo mío!"
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 30.0,
+      "endTime": 32.0,
+      "text": "Hijo..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 32.0,
+      "endTime": 43.0,
+      "text": "Mirad si hay dolor como el mío."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 43.0,
+      "endTime": 45.0,
+      "text": "El hijo más bueno."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 45.0,
+      "endTime": 49.0,
+      "text": "El único bueno de verdad."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 49.0,
+      "endTime": 53.0,
+      "text": "¡Destrozado!"
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 53.0,
+      "endTime": 57.0,
+      "text": "Habiendo soportado toda la maldad del mundo."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 57.0,
+      "endTime": 63.0,
+      "text": "Hijo..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 63.0,
+      "endTime": 67.0,
+      "text": "Hijo mío..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 67.0,
+      "endTime": 83.0,
+      "text": "Hijo..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 83.0,
+      "endTime": 84.0,
+      "text": "Déjame ahora..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 84.0,
+      "endTime": 87.0,
+      "text": "...sostener, con mi amor y mi dolor..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 87.0,
+      "endTime": 90.0,
+      "text": "...el cuerpo de tu hijo..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 90.0,
+      "endTime": 93.0,
+      "text": "...y mi hijo..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 93.0,
+      "endTime": 98.0,
+      "text": "...mientras espero que rompas tu silencio."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 98.0,
+      "endTime": 101.0,
+      "text": "¡Hijo mío!"
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 101.0,
+      "endTime": 103.0,
+      "text": "Hijo..."
+    },
+    {
+      "character": "MARÍA",
+      "startTime": 103.0,
+      "endTime": 108.0,
+      "text": "Hijo mío..."
     }
   ],
   "306": [
