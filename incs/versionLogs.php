@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.33' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Procesada la pista 110. Correcciones filológicas en Herodes y Herodías y guardada en maestro.'
+        ]
+    ],
     '26.6.32' => [
         'date' => '2026-04-02',
         'changes' => [

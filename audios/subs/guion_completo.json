@@ -1861,94 +1861,400 @@
   ],
   "110": [
     {
-      "character": "NARRADOR",
-      "startTime": 30,
-      "endTime": 45.0,
-      "text": "<br>¡Suscríbete al canal!"
+      "character": "Música / Ambiente",
+      "startTime": 0.0,
+      "endTime": 90.0,
+      "text": "(Música de ambiente)"
     },
     {
       "character": "HERODES",
-      "startTime": 90,
-      "endTime": 105.0,
-      "text": "Maravilloso, espléndido<br>Por fin Por fin te veo las barbas Jesús de Nazaret<br>Éramos vecinos y aún no nos conocíamos.<br>Tú, profeta, ¿acaso no tenías curiosidad por conocer la cara de tu rey?"
+      "startTime": 90.0,
+      "endTime": 94.0,
+      "text": "Maravilloso, espléndido."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 94.0,
+      "endTime": 108.0,
+      "text": "¡Por fin, por fin te veo las barbas, Jesús de Nazaret!"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 108.0,
+      "endTime": 114.0,
+      "text": "Éramos vecinos y aún no nos conocíamos."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 114.0,
+      "endTime": 123.0,
+      "text": "Tú, profeta, ¿acaso no tenías curiosidad por conocer la cara de tu rey?"
     },
     {
       "character": "HERODÍAS",
-      "startTime": 123,
-      "endTime": 127,
+      "startTime": 123.0,
+      "endTime": 127.0,
       "text": "Parece mentira, Herodes, qué súbditos tan ingratos tienes."
     },
     {
       "character": "HERODES",
-      "startTime": 127,
+      "startTime": 127.0,
+      "endTime": 130.0,
+      "text": "Sí, Galileo, yo soy tu rey y mando sobre ti."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 130.0,
+      "endTime": 134.0,
+      "text": "¿No lo sabías?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 134.0,
+      "endTime": 135.0,
+      "text": "Pobre muchacho."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 135.0,
+      "endTime": 140.0,
+      "text": "¿Te han dado una buena tunda en casa de Caifás?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 140.0,
       "endTime": 142.0,
-      "text": "Sí, Galileo, yo soy tu rey y mando sobre ti. ¿No lo sabías?<br>Pobre muchacho. ¿Te han dado una buena tunda en casa de Caifás?<br>¿O fue Poncio Pilato? ¿Te han hecho mucho daño los soldaditos extranjeros?<br>Bueno, pero tú eres fuerte y aguantarás eso y mucho más, ¿no es cierto?<br>A ver, profeta, alégranos a mañana. Ya te he visto el pelo, ahora quiero oírte la voz.<br>Me han dicho que tienes una muy buena lengua para hacer cuentos y entretener a la gente.<br>Vamos, aquí hay confianza.<br>Esto de ser rey es aburridísimo.<br>Es como tirar los dados una y otra vez.<br>Y ganar siempre.<br>Vamos, anímate un poco.<br>Estoy seguro de que si a Herodías le gusta tu historia, conseguirás un indulto."
-    },
-    {
-      "character": "HERODÍAS",
-      "startTime": 183,
-      "endTime": 194,
-      "text": "¿Qué te pasa?<br>No se te ocurre nada<br>Siempre lo mismo<br>Muchas surabatas en la taberna<br>Pero luego se vuelven modositos<br>Como una doncella en cuanto entran a palacio"
+      "text": "¿O fue Poncio Pilato?"
     },
     {
       "character": "HERODES",
-      "startTime": 194,
-      "endTime": 209.0,
-      "text": "Es normal, Herodías<br>Los campesinos son tímidos<br>Pero no te asustes muchacho Que no soy tan malo como me pintan No tiembles que no voy a comerte Por cierto me han dicho que tambi sabes hacer milagros<br>¿Es eso cierto profeta o también son cuentos?"
-    },
-    {
-      "character": "HERODÍAS",
-      "startTime": 218,
-      "endTime": 222,
-      "text": "<br>No sabes hacer nada, ni siquiera el truco de la serpiente."
-    },
-    {
-      "character": "HERODÍAS",
-      "startTime": 222,
-      "endTime": 227,
-      "text": "<br>Las manos, Herodes, las tiene amarradas.<br>Necesita moverlas con libertad."
+      "startTime": 142.0,
+      "endTime": 146.0,
+      "text": "¿Te han hecho mucho daño los soldaditos extranjeros?"
     },
     {
       "character": "HERODES",
-      "startTime": 227,
-      "endTime": 242.0,
-      "text": "Tienes razón, preciosa.<br>¡Gracco, Gracco!<br>Suéltale las manos a ese.<br>¿Ya estás listo, profeta, o necesitas algo más?<br>Pues, hea, muchacho, toma esta manzana<br>¡Tómala, te digo!<br>Si la haces desaparecer sin que yo me dé cuenta, te daré un buen premio<br>¡Vamos, caramba, que no es tan difícil hacer eso!<br>¿O es que la belleza de mi mujer te tiene trastornado?<br>Pues esa manzana sí que no te la regalo, amiguito<br>Es solo mía"
+      "startTime": 146.0,
+      "endTime": 152.0,
+      "text": "Bueno, pero tú eres fuerte y aguantarás eso y mucho más, ¿no es cierto?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 152.0,
+      "endTime": 154.0,
+      "text": "A ver, profeta, alégranos la mañana."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 154.0,
+      "endTime": 156.0,
+      "text": "Ya te he visto el pelo, ahora quiero oírte la voz."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 156.0,
+      "endTime": 161.0,
+      "text": "Me han dicho que tienes una muy buena lengua para hacer cuentos y entretener a la gente."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 161.0,
+      "endTime": 163.0,
+      "text": "Vamos, aquí hay confianza."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 163.0,
+      "endTime": 167.0,
+      "text": "Esto de ser rey es aburridísimo."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 167.0,
+      "endTime": 170.0,
+      "text": "Es como tirar los dados una y otra vez..."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 170.0,
+      "endTime": 172.0,
+      "text": "...y ganar siempre."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 172.0,
+      "endTime": 175.0,
+      "text": "Vamos, anímate un poco."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 175.0,
+      "endTime": 179.0,
+      "text": "Estoy seguro de que si a Herodías le gusta tu historia, conseguirás un indulto."
     },
     {
       "character": "HERODÍAS",
-      "startTime": 256,
-      "endTime": 267,
-      "text": "<br>Ya me estoy aburriendo, Herodes. Este mentecato no nos sirve ni para hacernos reír."
-    },
-    {
-      "character": "HERODES",
-      "startTime": 267,
-      "endTime": 274,
-      "text": "¿Pero qué te pasa? Habla, di algo. ¿O es que ya te cort... Me parece muy bien."
+      "startTime": 179.0,
+      "endTime": 185.0,
+      "text": "¿Qué te pasa?"
     },
     {
       "character": "HERODÍAS",
-      "startTime": 274,
-      "endTime": 279,
-      "text": "<br>Las profetas no solo habría que cortarles la lengua, habría que cortarles la cabeza entera."
+      "startTime": 185.0,
+      "endTime": 187.0,
+      "text": "¿No se te ocurre nada?"
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 187.0,
+      "endTime": 188.0,
+      "text": "Siempre lo mismo."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 188.0,
+      "endTime": 190.0,
+      "text": "Muchas bravatas en la taberna..."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 190.0,
+      "endTime": 192.0,
+      "text": "...pero luego se vuelven modositos."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 192.0,
+      "endTime": 194.0,
+      "text": "Como una doncella en cuanto entran a palacio."
     },
     {
       "character": "HERODES",
-      "startTime": 279,
-      "endTime": 294.0,
-      "text": "Yo se la corté a ese, a Juan el Bautista. Melenudo impertinente, víbora venenosa.<br>¿Y tú? ¿Por qué me miras así? ¿Por qué me miras así, maldito Nazareno?<br>¿Quieres hacerme creer que no me tienes miedo?<br>Pues no, muchachito, yo no trago tus cuentos.<br>Yo no soy tan estúpido como esa chusma que te aclama.<br>C Herodes No te hagas mala sangre por un est como ve y dile al gobernador poncio pilato que herodes el tetrarca de galilea y de<br>perea le devuelva a su prisionero que ratifica todo lo que sobre él se decida<br>que lo mate que lo clave en una cruz y que le saque los ojos que luego venga mi<br>palacio que veremos el mejor vino de arabia cuando los gusanos te estén<br>comiendo. ¡Óyelo bien, maldito nazareno!"
+      "startTime": 194.0,
+      "endTime": 196.0,
+      "text": "Es normal, Herodías."
     },
     {
       "character": "HERODES",
-      "startTime": 339,
-      "endTime": 354.0,
+      "startTime": 196.0,
+      "endTime": 199.0,
+      "text": "Los campesinos son tímidos."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 199.0,
+      "endTime": 216.0,
+      "text": "Pero no te asustes, muchacho. Que no soy tan malo como me pintan. No tiembles, que no voy a comerte. Por cierto, me han dicho que también sabes hacer milagros."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 216.0,
+      "endTime": 218.0,
+      "text": "¿Es eso cierto, profeta, o también son cuentos?"
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 218.0,
+      "endTime": 221.0,
+      "text": "No sabes hacer nada, ni siquiera el truco de la serpiente."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 221.0,
+      "endTime": 227.0,
+      "text": "Las manos, Herodes, las tiene amarradas. Necesita moverlas con libertad."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 227.0,
+      "endTime": 229.0,
+      "text": "Tienes razón, preciosa. ¡Graco, Graco!"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 229.0,
+      "endTime": 232.0,
+      "text": "Suéltale las manos a ese."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 232.0,
+      "endTime": 237.0,
+      "text": "¿Ya estás listo, profeta, o necesitas algo más?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 237.0,
+      "endTime": 240.0,
+      "text": "Pues, ea, muchacho, toma esta manzana."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 240.0,
+      "endTime": 243.0,
+      "text": "¡Tómala, te digo!"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 243.0,
+      "endTime": 246.0,
+      "text": "Si la haces desaparecer sin que yo me dé cuenta, te daré un buen premio."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 246.0,
+      "endTime": 252.0,
+      "text": "¡Vamos, caramba, que no es tan difícil hacer eso!"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 252.0,
+      "endTime": 256.0,
+      "text": "¿O es que la belleza de mi mujer te tiene trastornado?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 256.0,
+      "endTime": 258.0,
+      "text": "Pues esa manzana sí que no te la regalo, amiguito."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 258.0,
+      "endTime": 261.0,
+      "text": "Es solo mía."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 261.0,
+      "endTime": 263.0,
+      "text": "Ya me estoy aburriendo, Herodes."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 263.0,
+      "endTime": 267.0,
+      "text": "Este mentecato no nos sirve ni para hacernos reír."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 267.0,
+      "endTime": 269.0,
+      "text": "¿Pero qué te pasa?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 269.0,
+      "endTime": 270.0,
+      "text": "Habla, di algo."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 270.0,
+      "endTime": 272.0,
+      "text": "¿O es que ya te has quedado mudo?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 272.0,
+      "endTime": 274.0,
+      "text": "Me parece muy bien."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 274.0,
+      "endTime": 276.0,
+      "text": "A los profetas no solo habría que cortarles la lengua..."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 276.0,
+      "endTime": 278.0,
+      "text": "...habría que cortarles la cabeza entera."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 278.0,
+      "endTime": 282.0,
+      "text": "Yo se la corté a ese, a Juan el Bautista."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 282.0,
+      "endTime": 286.0,
+      "text": "Melenudo impertinente, víbora venenosa."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 286.0,
+      "endTime": 289.0,
+      "text": "¿Y tú?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 289.0,
+      "endTime": 292.0,
+      "text": "¿Por qué me miras así?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 292.0,
+      "endTime": 295.0,
+      "text": "¿Por qué me miras así, maldito Nazareno?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 295.0,
+      "endTime": 298.0,
+      "text": "¿Quieres hacerme creer que no me tienes miedo?"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 298.0,
+      "endTime": 301.0,
+      "text": "Pues no, muchachito, yo no trago tus cuentos."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 301.0,
+      "endTime": 304.0,
+      "text": "Yo no soy tan estúpido como esa chusma que te aclama."
+    },
+    {
+      "character": "HERODÍAS",
+      "startTime": 304.0,
+      "endTime": 319.0,
+      "text": "¡Herodes! No te hagas mala sangre por un estúpido como éste."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 319.0,
+      "endTime": 324.0,
+      "text": "Ve y dile al gobernador Poncio Pilato que Herodes, el Tetrarca de Galilea y de Perea, le devuelve a su prisionero, y que ratifica todo lo que sobre él se decida."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 324.0,
+      "endTime": 328.0,
+      "text": "¡Que lo mate, que lo clave en una cruz y que le saque los ojos!"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 328.0,
+      "endTime": 334.0,
+      "text": "Y que luego venga a mi palacio; beberemos el mejor vino de Arabia cuando los gusanos..."
+    },
+    {
+      "character": "HERODES",
+      "startTime": 334.0,
+      "endTime": 338.0,
+      "text": "...te estén comiendo. ¡Óyelo bien, maldito Nazareno!"
+    },
+    {
+      "character": "HERODES",
+      "startTime": 338.0,
+      "endTime": 343.0,
       "text": "¡Herodías! ¡Herodías!"
-    },
-    {
-      "character": "NARRADOR",
-      "startTime": 394,
-      "endTime": 404.0,
-      "text": "<br>¡Suscríbete al canal!"
     }
   ],
   "111": [
