@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.38' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Pista 401 compilada en el JSON maestro. Corregido el Guion Histórico (Docs) para sustraer la alucinación de Whisper.'
+        ]
+    ],
     '26.6.37' => [
         'date' => '2026-04-02',
         'changes' => [

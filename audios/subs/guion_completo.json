@@ -3242,21 +3242,15 @@
   "401": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "Decima cuarta estación.<br>El cuerpo de Jesús es depositado en el sepulcro."
+      "startTime": 0.0,
+      "endTime": 30.0,
+      "text": "Décima cuarta estación. El cuerpo de Jesús es depositado en el sepulcro."
     },
     {
       "character": "PUEBLO",
-      "startTime": 30,
-      "endTime": 45.0,
-      "text": "--???--<br>¿Qué pasa?"
-    },
-    {
-      "character": "NARRADOR",
-      "startTime": 60,
-      "endTime": 70.0,
-      "text": "--???--<br>"
+      "startTime": 30.0,
+      "endTime": 35.0,
+      "text": "¿Qué pasa?"
     }
   ],
   "402": [
