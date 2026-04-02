@@ -21,26 +21,31 @@ require 'fileutils'
 DIR = File.expand_path(File.dirname(__FILE__))
 APIS_FILE = File.join(DIR, "apis.json")
 SECRET_FILE = File.join(DIR, ".secret.key")
+SOCK_PATH = "/tmp/groq_candado_#{Process.uid rescue '0'}.sock"
 
-CANDADO_FILE = File.join(DIR, ".candado.key")
+
 
 def get_passphrase
   if ENV['GROQ_ROTATOR_PASS'] && !ENV['GROQ_ROTATOR_PASS'].empty?
     return ENV['GROQ_ROTATOR_PASS']
   end
 
-  if File.exist?(CANDADO_FILE)
-    if (Time.now - File.mtime(CANDADO_FILE)) < 3600 # 1 Hora de validez
-      return File.read(CANDADO_FILE).strip
-    else
-      File.delete(CANDADO_FILE)
-      STDERR.puts "🔒 El candado expiró después de 1 hora. La clave es requerida de nuevo."
+  # Intentar leer desde el demonio en RAM
+  begin
+    require 'socket'
+    if File.exist?(SOCK_PATH)
+      sock = UNIXSocket.new(SOCK_PATH)
+      pass = sock.gets
+      sock.close
+      return pass.chomp if pass && !pass.strip.empty?
     end
+  rescue
+    # El socket no existe o el demonio murió
   end
 
   hint = load_apis["_hint"] || "Sin pista configurada"
   unless STDIN.tty?
-    raise "⚠️ No hay parámetro GROQ_ROTATOR_PASS, ni candado abierto, en un entorno no interactivo."
+    raise "⚠️ No hay parámetro GROQ_ROTATOR_PASS configurado, y el entorno no es interactivo."
   end
 
   require 'io/console'
@@ -48,12 +53,41 @@ def get_passphrase
   pass = STDIN.noecho(&:gets).chomp
   STDERR.puts
   
-  # Cerrar (Guardar) el candado por una hora
-  File.write(CANDADO_FILE, pass)
-  File.chmod(0600, CANDADO_FILE) rescue nil
-  STDERR.puts "🔓 Candado cerrado en tu equipo. Válido por 1 hora."
-  
+  if pass && !pass.empty?
+    spawn_memorizer_daemon(pass)
+    STDERR.puts "🔓 Candado virtual abierto. Memorizado de forma segura en RAM por 1 hora."
+  end
+
   pass
+end
+
+def spawn_memorizer_daemon(pass)
+  require 'socket'
+  File.delete(SOCK_PATH) if File.exist?(SOCK_PATH)
+  
+  pid = fork do
+    begin
+      Process.setsid # Aislar proceso en background (daemonize)
+      server = UNIXServer.new(SOCK_PATH)
+      File.chmod(0600, SOCK_PATH) # Solo legible por el dueño
+      
+      # Hilo suicida que destruye el socket y proceso en 1 hr
+      Thread.new do
+        sleep 3600
+        File.delete(SOCK_PATH) rescue nil
+        exit!
+      end
+      
+      loop do
+        client = server.accept
+        client.puts pass
+        client.close
+      end
+    rescue
+      exit!
+    end
+  end
+  Process.detach(pid) rescue nil
 end
 
 def get_cipher_key

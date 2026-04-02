@@ -1,5 +1,21 @@
 <?php
 $versionLogs = [
+    '26.8.2' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Serie 200 completa: Audios 201 a 207 sellados como v4.0.md tras revisión humana.',
+            'Nuevo personaje P26: MUJERES JERUSALEN incorporado al catálogo maestro.',
+            'Corrección de formato en tablas Markdown (columnas P00 normalizadas).',
+            'Fix regex en reordenar_personajes.rb para soportar IDs provisorios (P??).',
+            'Seguridad: Eliminado .candado.key, migrado a daemon en memoria RAM (UNIX Socket).'
+        ]
+    ],
+    '26.8.1' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Inicio formal del Plan 08. Ejecución automatizada de refactorización de cronología de IDs de personajes.'
+        ]
+    ],
     '26.7' => [
         'date' => '2026-04-02',
         'changes' => [
