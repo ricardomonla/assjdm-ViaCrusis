@@ -122,7 +122,7 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 ## Roadmap v26.7 (Fase de Pulido Fino)
 
 El plan de trabajo e iteraciones activas para esta etapa de nivel secundario (refinamiento de milisegundos, reordenamiento de IDs de los personajes basándose en aparición cronológica, e inyección de acotaciones descriptivas internas) ha sido mudado a su propio documento de control.
-**Revisar Plan Activo:** 👉 `docs/plan/26.7-Plan-de-Pulido.md`
+**Revisar Plan Activo:** 👉 `docs/plan/07_plan-de-pulido.md`
 
 ## Estado del Sitio (2026-03-28)
 
