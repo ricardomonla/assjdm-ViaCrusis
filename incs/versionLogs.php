@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.31' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Procesada pista 107 con IA generativa, pase filológico, compilada al JSON global exitosamente.'
+        ]
+    ],
     '26.6.30' => [
         'date' => '2026-04-01',
         'changes' => [

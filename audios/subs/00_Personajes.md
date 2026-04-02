@@ -26,7 +26,7 @@
 | P19 | OTRO LADRÓN | Ladrón crucificado, burlesco |
 | P20 | ÁNGEL | Ser celestial en el sepulcro |
 | P21 | MARÍA MAGDALENA | Discípula en la tumba |
-| P22 | OTRO SACERDOTE | Sacerdote en el Sanedrín |
+| P22 | NICODEMO | Miembro importante del consejo del Sanedrín y simpatizante de Jesús |
 | P99 | MUSICA SAETA | Canción popular |
 
 ## 2. Subtítulos
