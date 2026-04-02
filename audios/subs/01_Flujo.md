@@ -1,36 +1,32 @@
-# Flujo de Trabajo de Transcripción (H.I.T.L.)
+# Flujo de Trabajo de Transcripción (H.I.T.L. Optimizado)
 
-Este documento describe el ciclo iterativo "Human-In-The-Loop" para la creación, corrección y sincronización de los subtítulos de las pistas de audio para el Karaoke del Vía Crucis.
+Este documento describe la verdadera secuencia del ciclo iterativo "Human-In-The-Loop", pensado para la creación, corrección y sincronización milimétrica de subtítulos del Vía Crucis. 
 
-El objetivo es combinar la potencia de la IA para transcripción y tiempos, la revisión humana para coherencia escénica, y el refinado filológico para emular perfectamente el libreto original.
+Este flujo rediseñado aprovecha las capacidades puras de Groq para audición ciega (evitando sesgos), y a Antigravity (IA) como director de orquesta que vincula los libretos y catálogos, bajo la supervisión y pulso rítmico del Humano.
 
-## Paso 1: Extracción Inteligente Autónomo (`Script AI -> v1.0.md`)
-*   **Base Teórica:** El catálogo universal de todos los personajes recae de manera centralizada en `00_Personajes.md`. No se requieren plantillas previas.
-*   **Acción:** Se ejecuta el script automatizado (Ej: `ruby tools/groq_tool/genera_subs_v1.0.rb <Pista>`).
-*   **Tecnología:** El audio es ingestido por *Whisper* obteniendo los tiempos. Luego, *LLaMA 3.3* lee la transcripción completa, consulta el archivo maestro `00_Personajes.md` global y devuelve la Tabla 1 de Personajes filtrada exclusivamente con aquellos que detectó que hablan, más la Tabla 2 con la transcripción base.
-*   **Resultado:** Se genera automáticamente el archivo borrador `XXX_v1.0.md` en esta carpeta.
+## Fase 1: Transcripción Ciega (Groq) y Contextualización (IA) -> `v1.0.md`
+*   **Paso 1.1 (Audición Ciega por Groq):** El motor (`genera_subs_v1.0.rb`) procesa el audio puramente. Sin conocer información previa ni catálogos, detecta cuántas voces distintas participan, arma una tabla básica de Personajes/Sinopsis a ciegas, y lista los subtítulos con sus marcas de tiempo.
+*   **Paso 1.2 (Análisis y Enlace por Antigravity):** La IA contextual (Antigravity) recibe ese borrador crudo de Groq, lo coteja meticulosamente contra el catálogo mayor (`00_Personajes.md`), reasigna los IDPs globales correctos a cada voz y, si hubo personajes incidentales que no existían, los añade al catálogo maestro.
+*   **Resultado:** Antigravity devuelve el archivo **`XXX_v1.0.md`** limpio, enlazado correctamente al ecosistema del Vía Crucis, con los subtítulos y tiempos básicos.
 
-## Paso 2: Intervención y Validación Humana (`Humano -> v2.0.md`)
-*   **Responsable:** Director humano del Vía Crucis.
-*   **Acción:** Se abre el archivo `XXX_v1.0.md` generado en el paso anterior.
-*   **Corrección:** El operador revisa meticulosamente el audio escuchando y ajustando los **personajes (IDP)** y los **cortes de tiempo**, validando que calcen a la perfección. Durante este paso la ortografía perfecta no es crucial, tan solo alinear la sincronización rítmica y la lógica.
-*   **Resultado:** El humano guarda sus cambios **renombrando el archivo a `XXX_v2.0.md`**. Queda en sistema un bloque temporal validado 100% por el humano.
+## Fase 2: Control y Validación de Ritmo (Humano)
+*   **Responsable:** Director Humano.
+*   **Acción:** Revisa el archivo `XXX_v1.0.md`. Aquí se ajusta la precisión del corte del audio (las marcas de tiempo en corchetes) y asegura empíricamente que la IA no haya confundido un personaje con otro. En este paso la ortografía perfecta no es crucial; lo que importa es el ritmo y la exactitud de los tiempos e identidades.
+*   **Resultado:** Al finalizar, el Humano guarda el archivo y notifica por el chat a la IA: "El archivo está listo para la Fase 3".
 
-## Paso 3: Inyección Literaria y Refinado Filológico (`IA -> v3.0.md`)
+## Fase 3: Inyección Literaria y Refinado Filológico (`IA -> v2.0.md`)
 *   **Responsable:** Asistente IA (Antigravity).
-*   **Acción:** Tras recibir el archivo `v2.0.md` auditado por el Humano, el Asistente carga el archivo.
-*   **Inyección:** Se cruza con el libreto maestro en la carpeta `docs` (`Guion-vcby2026_Editado...md`).
-*   **Proceso:** El asistente inyecta las variaciones poéticas, puntuaciones, exclamaciones y la gramática sin desfasar ni los IDP que el humano determinó ni las marcas.
-*   **Resultado:** El asistente renombra el archivo y genera la versión canónica definitiva: `XXX_v3.0.md`.
+*   **Acción:** La IA toma el archivo auditado en Fase 2 y va a buscar la libreto canónico maestro (`docs/Guion-vcby2026_Editado...md`).
+*   **Proceso:** Inyecta de lleno los dramáticos poéticos, puntuaciones perfectas, intenciones y oraciones literarias del guion real sin romper la sincro ni los identificadores de personajes fijados previamente por el Humano.
+*   **Resultado:** La IA genera y entrega la versión **`XXX_v2.0.md`**.
 
-## Paso 3.1: Verificación de IA y Aprobación (`Humano -> v3.1.md`)
-*   **Responsable:** Director humano del Vía Crucis.
-*   **Acción:** Revisa el archivo `XXX_v3.0.md` procesado por la IA.
-*   **Proceso:** Ojo humano que verifica que los pases filológicos y de IDP se correspondan al 100% y afina los últimos detalles (corrección de tiempos de la inyección o palabras sueltas).
-*   **Resultado:** El humano guarda sus cambios **renombrando el archivo a `XXX_v3.1.md`**. Esto le avisa al motor que el texto está purgado y sellado.
+## Fase 4: Re-Verificación Final (Humano)
+*   **Responsable:** Director Humano.
+*   **Acción:** Lee el texto del `XXX_v2.0.md` garantizando que todo encaje perfecta y fielmente (verificándose sintaxis visual o matices finales de la inyección filológica). 
+*   **Resultado:** Conforma el OK definitivo de toda la edición textual para su pase a producción. Informa a la IA para ensamblado final.
 
-## Paso 4: Compilación a Json Maestro y UI (`Final -> v4.0.md`) 
-*   **Responsable:** Asistente IA / Humano.
-*   **Acción:** Se ejecuta el motor compilador adaptado a la nueva nomenclatura.
-*   **Proceso:** Este script absorbe todos los archivos `_v3.1.md` listos, los renderiza y consolida en un único árbol. Una vez finalizado y empujado correctamente al JSON, el propio compilador los renombra marcando su inserción.
-*   **Resultado:** El archivo se renombra a `XXX_v4.0.md` como estampa de que ya está en producción. Queda actualizado el registro maestro `audios/subs/guion_completo.json`. El Karaoke reflejará instantáneamente la pista.
+## Fase 5: Consolidación y Commit (`Sistema -> JSON y v3.0.md`)
+*   **Responsable:** Compilador automatizado / IA.
+*   **Acción:** El archivo definitivo (validado en Fase 4) es absorbido por el motor (`compilador.rb`), inyectándose ordenadamente dentro de `audios/subs/guion_completo.json`. 
+*   **Proceso:** Una vez sellado con éxito en la base de datos de producción (donde la aplicación de Karaoke interactúa), el archivo markdown queda con la etiqueta final de vida útil (Ej. **`XXX_v3.0.md`**).
+*   **Resultado:** La IA empaqueta todos los cambios del JSON y archivos markdown resultantes impulsando un `git commit` & `git push` hacia la nube, terminando el ciclo de esa pista.
