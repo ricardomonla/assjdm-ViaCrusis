@@ -1,16 +1,22 @@
 <?php
 $versionLogs = [
-'26.6' => [
-    'date' => '2026-04-02',
-    'changes' => [
-        'HITO CRÍTICO: Compilación de subtítulos HITL completada al 100% (Pistas 101 a 403) en mega-JSON maestro.',
-        'Implementación de Reproductor Web tipo Karaoke: autoscroll inteligente, UI teatral, historial dinámico y caché.',
-        'Automatización IA: Pipeline estructurado de 5 fases usando Whisper (transcripción) y LLaMA 3.3 (deducción MD).',
-        'Catálogo Literario: Consolidación semiótica de personajes (25 roles) e ingesta canónica en el script principal.',
-        'UX y System Triage: Persistencia de volumen vía localStorage, corrección del footer sticky y CSS responsive.'
-    ]
-],
-    '26.5.0' => [
+    '26.7.1' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Apertura oficial de la Fase de Pulido y Revisión Fina. Creación del documento planificador (docs/plan).'
+        ]
+    ],
+    '26.6' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'HITO CRÍTICO: Compilación de subtítulos HITL completada al 100% (Pistas 101 a 403) en mega-JSON maestro.',
+            'Implementación de Reproductor Web tipo Karaoke: autoscroll inteligente, UI teatral, historial dinámico y caché.',
+            'Automatización IA: Pipeline estructurado de 5 fases usando Whisper (transcripción) y LLaMA 3.3 (deducción MD).',
+            'Catálogo Literario: Consolidación semiótica de personajes (25 roles) e ingesta canónica en el script principal.',
+            'UX y System Triage: Persistencia de volumen vía localStorage, corrección del footer sticky y CSS responsive.'
+        ]
+    ],
+    '26.5' => [
         'date' => '2026-03-29',
         'changes' => [
             'IA: Transcripción automática de 34 audios y etiquetado de 18 personajes con Groq (Llama 3.3).',
@@ -20,7 +26,7 @@ $versionLogs = [
             'Update: Inclusión de nuevo borrador y reorganización en el README principal.'
         ]
     ],
-    '26.4.0' => [
+    '26.4' => [
         'date' => '2026-03-28',
         'changes' => [
             'Fix: Forzar modo claro (color-scheme: light only) — colores consistentes entre dispositivos.',
