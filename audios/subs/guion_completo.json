@@ -2277,13 +2277,13 @@
       "text": "Señor, Señor."
     },
     {
-      "character": "PILATOS",
+      "character": "SOLDADO",
       "startTime": 11.0,
       "endTime": 14.0,
       "text": "Herodes ratifica cualquier decisión que tome."
     },
     {
-      "character": "PILATOS",
+      "character": "SOLDADO",
       "startTime": 14.0,
       "endTime": 15.0,
       "text": "Lo hemos traído aquí de nuevo."
@@ -2571,7 +2571,7 @@
       "text": "Prolongará sus años."
     },
     {
-      "character": "PUEBLO",
+      "character": "SOLDADO",
       "startTime": 256.0,
       "endTime": 273.0,
       "text": "¡No!"
