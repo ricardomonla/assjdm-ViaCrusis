@@ -1422,207 +1422,435 @@
   "109": [
     {
       "character": "SOLDADO",
-      "startTime": 0,
-      "endTime": 3,
-      "text": "Señor, señor, hay de vuelta a la..."
+      "startTime": 0.0,
+      "endTime": 3.0,
+      "text": "Señor, señor, hay revuelta."
     },
     {
-      "character": "PILATOS",
-      "startTime": 3,
-      "endTime": 5,
-      "text": "No te atreves a molestarme a medianoche."
+      "character": "CENTURIÓN",
+      "startTime": 3.0,
+      "endTime": 5.0,
+      "text": "¿No te atreves a molestarme a medianoche?"
     },
     {
       "character": "SOLDADO",
-      "startTime": 5,
-      "endTime": 6,
+      "startTime": 5.0,
+      "endTime": 6.0,
       "text": "Pero señor, es urgente."
     },
     {
-      "character": "PILATOS",
-      "startTime": 6,
-      "endTime": 7,
+      "character": "CENTURIÓN",
+      "startTime": 6.0,
+      "endTime": 8.0,
       "text": "¿Cuál es el problema?"
     },
     {
       "character": "SOLDADO",
-      "startTime": 7,
-      "endTime": 11,
-      "text": "Las chusmas se agolpan en las calles.<br>Caifás ha prendido a cierto profeta."
+      "startTime": 8.0,
+      "endTime": 9.0,
+      "text": "Las chusmas se agolpan en las calles."
     },
     {
-      "character": "PILATOS",
-      "startTime": 11,
-      "endTime": 12,
+      "character": "SOLDADO",
+      "startTime": 9.0,
+      "endTime": 11.0,
+      "text": "Caifás ha prendido a cierto profeta."
+    },
+    {
+      "character": "CENTURIÓN",
+      "startTime": 11.0,
+      "endTime": 12.0,
       "text": "¿A quién?"
     },
     {
       "character": "SOLDADO",
-      "startTime": 12,
-      "endTime": 27.0,
-      "text": "A un galileo, Jesús de Nazaret.<br>Se llama a sí mismo rey de los judíos.<br>Está aquí, en palacio."
+      "startTime": 12.0,
+      "endTime": 14.0,
+      "text": "A un galileo, Jesús de Nazaret."
     },
     {
       "character": "SOLDADO",
-      "startTime": 30,
-      "endTime": 35,
+      "startTime": 14.0,
+      "endTime": 16.0,
+      "text": "Se llama a sí mismo rey de los judíos."
+    },
+    {
+      "character": "SOLDADO",
+      "startTime": 16.0,
+      "endTime": 30.0,
+      "text": "Está aquí, en palacio."
+    },
+    {
+      "character": "CENTURIÓN",
+      "startTime": 30.0,
+      "endTime": 35.0,
       "text": "¿Quiénes son ustedes y qué quieren?"
     },
     {
-      "character": "CAIFÁS",
-      "startTime": 35,
-      "endTime": 40,
+      "character": "ZÉRA",
+      "startTime": 35.0,
+      "endTime": 40.0,
       "text": "Necesitamos ver inmediatamente al gobernador. El asunto es muy grave."
     },
     {
-      "character": "SOLDADO",
-      "startTime": 40,
-      "endTime": 45,
-      "text": "<br>Está bien, pasen ustedes los magistrados. ¡Pero toda esta chusma fuera!"
+      "character": "CENTURIÓN",
+      "startTime": 40.0,
+      "endTime": 45.0,
+      "text": "Está bien, pasen ustedes los magistrados. ¡Pero toda esta chusma fuera!"
     },
     {
-      "character": "SOLDADO",
-      "startTime": 45,
-      "endTime": 48,
+      "character": "CENTURIÓN",
+      "startTime": 45.0,
+      "endTime": 48.0,
       "text": "¡Silencio! ¡Silencio!"
     },
     {
-      "character": "CAIFÁS",
-      "startTime": 48,
-      "endTime": 60,
-      "text": "Ellos no vienen con nosotros.<br>De todos modos, tampoco nosotros podríamos penetrar hoy en la fortaleza.<br>Es la víspera del gran sábado de Pascua y nuestras leyes lo prohíben."
+      "character": "ZÉRA",
+      "startTime": 48.0,
+      "endTime": 50.0,
+      "text": "Ellos no vienen con nosotros."
     },
     {
-      "character": "SOLDADO",
-      "startTime": 60,
-      "endTime": 75.0,
-      "text": "Anda, ve y dile al gobernador que se digne salir un momento"
+      "character": "ZÉRA",
+      "startTime": 50.0,
+      "endTime": 54.0,
+      "text": "De todos modos, tampoco nosotros podríamos penetrar hoy en la fortaleza."
     },
     {
-      "character": "PILATOS",
-      "startTime": 79,
-      "endTime": 82,
-      "text": "<br>¿Qué pasa con este hombre? Es un delincuente que no tiene delitos en este país de bandidos y rameras. ¿Y ustedes?<br>Yo no tengo nada que ver con vuestro enfrentamiento religioso."
+      "character": "ZÉRA",
+      "startTime": 54.0,
+      "endTime": 57.0,
+      "text": "Es la víspera del gran sábado de Pascua"
     },
     {
-      "character": "CAIFÁS",
-      "startTime": 82,
-      "endTime": 97.0,
-      "text": "No, gobernador.<br>Te lo traemos a ti porque se trata de un asunto político.<br>Este Galileo se ha rebelado contra Roma<br>y a Roma corresponde juzgarlo.<br>Además,<br>Nosotros tampoco tenemos facultades para imponer la pena capital<br>Que es el castigo que se merece"
+      "character": "ZÉRA",
+      "startTime": 57.0,
+      "endTime": 60.0,
+      "text": "y nuestras leyes lo prohíben."
     },
     {
-      "character": "PILATOS",
-      "startTime": 103,
-      "endTime": 109,
-      "text": "Está bien<br>Centurión, suba al detenido<br>Voy a interrogarlo"
-    },
-    {
-      "character": "SOLDADO",
-      "startTime": 109,
-      "endTime": 119,
-      "text": "Tú, súbelo"
+      "character": "CENTURIÓN",
+      "startTime": 60.0,
+      "endTime": 79.0,
+      "text": "Anda, ve y dile al gobernador que se digne salir un momento."
     },
     {
       "character": "PILATOS",
-      "startTime": 119,
-      "endTime": 129,
-      "text": "¿Es este vuestro peligroso aspirante, rey?<br>Andrajoso, demacrado<br>¿Eres tú el rey de los judíos?"
+      "startTime": 79.0,
+      "endTime": 81.0,
+      "text": "¿Qué pasa con este hombre? Es un delincuente que no tiene delitos en este país de bandidos y rameras. ¿Y ustedes?"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 81.0,
+      "endTime": 82.0,
+      "text": "Yo no tengo nada que ver con vuestro enfrentamiento religioso."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 82.0,
+      "endTime": 84.0,
+      "text": "No, gobernador."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 84.0,
+      "endTime": 89.0,
+      "text": "Te lo traemos a ti porque se trata de un asunto político."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 89.0,
+      "endTime": 91.0,
+      "text": "Este Galileo se ha rebelado contra Roma"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 91.0,
+      "endTime": 95.0,
+      "text": "y a Roma corresponde juzgarlo."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 95.0,
+      "endTime": 100.0,
+      "text": "Además, nosotros tampoco tenemos facultades para imponer la pena capital,"
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 100.0,
+      "endTime": 103.0,
+      "text": "que es el castigo que se merece."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 103.0,
+      "endTime": 105.0,
+      "text": "Está bien."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 105.0,
+      "endTime": 108.0,
+      "text": "Centurión, suba al detenido."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 108.0,
+      "endTime": 109.0,
+      "text": "Voy a interrogarlo."
+    },
+    {
+      "character": "CENTURIÓN",
+      "startTime": 109.0,
+      "endTime": 119.0,
+      "text": "Tú, súbelo."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 119.0,
+      "endTime": 123.0,
+      "text": "¿Es este vuestro peligroso aspirante a rey?"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 123.0,
+      "endTime": 125.0,
+      "text": "Andrajoso, demacrado..."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 125.0,
+      "endTime": 129.0,
+      "text": "¿Eres tú el rey de los judíos?"
     },
     {
       "character": "JESÚS",
-      "startTime": 129,
-      "endTime": 133,
-      "text": "Dices eso por ti mismo.<br>Te lo han dicho otros de mí."
+      "startTime": 129.0,
+      "endTime": 133.0,
+      "text": "¿Dices eso por ti mismo? ¿O te lo han dicho otros de mí?"
     },
     {
       "character": "PILATOS",
-      "startTime": 133,
-      "endTime": 135,
+      "startTime": 133.0,
+      "endTime": 135.0,
       "text": "¿Acaso soy yo judío?"
     },
     {
       "character": "JESÚS",
-      "startTime": 135,
-      "endTime": 140,
-      "text": "Son los de tu propia nación y los jefes de los sacerdotes<br>los que te han entregado a mí."
+      "startTime": 135.0,
+      "endTime": 140.0,
+      "text": "Son los de tu propia nación y los jefes de los sacerdotes los que te han entregado a mí."
     },
     {
       "character": "PILATOS",
-      "startTime": 140,
-      "endTime": 143,
+      "startTime": 140.0,
+      "endTime": 143.0,
       "text": "¿Qué has hecho?"
     },
     {
       "character": "JESÚS",
-      "startTime": 143,
-      "endTime": 157,
-      "text": "Mi reino no es de este mundo Si lo fuera mi gente habría luchado para impedir que yo cayese en manos de los judíos. Pero no<br>Mi reino no es de este mundo."
+      "startTime": 143.0,
+      "endTime": 155.0,
+      "text": "Mi reino no es de este mundo. Si lo fuera, mi gente habría luchado para impedir que yo cayese en manos de los judíos. Pero no."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 155.0,
+      "endTime": 157.0,
+      "text": "Mi reino no es de este mundo."
     },
     {
       "character": "PILATOS",
-      "startTime": 157,
-      "endTime": 161,
+      "startTime": 157.0,
+      "endTime": 161.0,
       "text": "Entonces, ¿tú eres rey?"
     },
     {
       "character": "JESÚS",
-      "startTime": 161,
+      "startTime": 161.0,
+      "endTime": 164.0,
+      "text": "Tú lo dices."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 164.0,
+      "endTime": 166.0,
+      "text": "Soy rey."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 166.0,
+      "endTime": 170.0,
+      "text": "Precisamente para eso nací y para eso vine al mundo."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 170.0,
+      "endTime": 173.0,
+      "text": "Para dar testimonio de la verdad."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 173.0,
       "endTime": 176.0,
-      "text": "Tú lo dices.<br>Soy rey.<br>Precisamente para eso nací y para eso vine al mundo.<br>Para dar testimonio de la verdad.<br>Todo el que pertenece a la verdad, escucha mi voz."
+      "text": "Todo el que pertenece a la verdad"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 176.0,
+      "endTime": 178.0,
+      "text": "escucha mi voz."
     },
     {
       "character": "PILATOS",
-      "startTime": 179,
-      "endTime": 194.0,
-      "text": "<br>¿Y qué es la verdad?<br>Este hombre es Galileo, ¿no?<br>Pues llévenselo a Herodes y que sea él quien decida sobre su vida."
+      "startTime": 178.0,
+      "endTime": 187.0,
+      "text": "¿Y qué es la verdad?"
     },
     {
       "character": "PILATOS",
-      "startTime": 229,
-      "endTime": 232,
-      "text": "<br>¿Qué es la verdad? Claudia<br>¿Puedes reconocerla con tan solo oírla?"
+      "startTime": 187.0,
+      "endTime": 190.0,
+      "text": "Este hombre es Galileo, ¿no?"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 190.0,
+      "endTime": 191.0,
+      "text": "Pues llévenselo a Herodes"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 191.0,
+      "endTime": 229.0,
+      "text": "y que sea él quien decida sobre su vida."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 229.0,
+      "endTime": 231.0,
+      "text": "¿Qué es la verdad? Claudia."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 231.0,
+      "endTime": 232.0,
+      "text": "¿Puedes reconocerla con tan solo oírla?"
     },
     {
       "character": "CLAUDIA",
-      "startTime": 232,
-      "endTime": 234,
+      "startTime": 232.0,
+      "endTime": 234.0,
       "text": "Sí, Poncio."
     },
     {
       "character": "PILATOS",
-      "startTime": 234,
-      "endTime": 237,
+      "startTime": 234.0,
+      "endTime": 237.0,
       "text": "¿Cómo lo haces? ¿Cuál es el secreto?"
     },
     {
       "character": "CLAUDIA",
-      "startTime": 237,
-      "endTime": 243,
+      "startTime": 237.0,
+      "endTime": 243.0,
       "text": "Es fácil. Nadie puede decirte la verdad si no quieres escucharla."
     },
     {
       "character": "CLAUDIA",
-      "startTime": 243,
-      "endTime": 249,
-      "text": "Ayer soñé con él.<br>Fue una pesadilla horrible"
+      "startTime": 243.0,
+      "endTime": 246.0,
+      "text": "Ayer soñé con él."
     },
     {
       "character": "CLAUDIA",
-      "startTime": 249,
-      "endTime": 254,
-      "text": "No, Poncio"
+      "startTime": 246.0,
+      "endTime": 249.0,
+      "text": "Fue una pesadilla horrible."
     },
     {
       "character": "CLAUDIA",
-      "startTime": 254,
-      "endTime": 259,
-      "text": "No te manches tú las manos con la sangre de ese hombre<br>Estoy segura de que dice la verdad"
+      "startTime": 249.0,
+      "endTime": 254.0,
+      "text": "No, Poncio."
+    },
+    {
+      "character": "CLAUDIA",
+      "startTime": 254.0,
+      "endTime": 256.0,
+      "text": "No te manches tú las manos con la sangre de ese hombre."
+    },
+    {
+      "character": "CLAUDIA",
+      "startTime": 256.0,
+      "endTime": 259.0,
+      "text": "Estoy segura de que dice la verdad."
     },
     {
       "character": "PILATOS",
-      "startTime": 259,
-      "endTime": 269.0,
-      "text": "Verdad<br>Mi verdad es que he contenido revueltas en esta tierra durante once largos años, Claudia<br>Y ahora me encuentro atado<br>Si no condeno al profeta, Caifás comenzará una rebelión<br>y si lo hago la comenzarán sus seguidores.<br>Habrá sangre, decida lo que decida.<br>El César me lo advirtió, Claudia.<br>Si hay una nueva revolución, la primera sangre derramada será la mía.<br>Esa es la única verdad que conozco."
+      "startTime": 259.0,
+      "endTime": 262.0,
+      "text": "Verdad..."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 262.0,
+      "endTime": 268.0,
+      "text": "Mi verdad es que he contenido revueltas en esta tierra durante once largos años, Claudia."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 268.0,
+      "endTime": 270.0,
+      "text": "Y ahora me encuentro atado."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 270.0,
+      "endTime": 274.0,
+      "text": "Si no condeno al profeta, Caifás comenzará una rebelión,"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 274.0,
+      "endTime": 278.0,
+      "text": "y si lo hago la comenzarán sus seguidores."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 278.0,
+      "endTime": 282.0,
+      "text": "Habrá sangre, decida lo que decida."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 282.0,
+      "endTime": 284.0,
+      "text": "El César me lo advirtió, Claudia."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 284.0,
+      "endTime": 286.0,
+      "text": "Si hay una nueva revolución,"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 286.0,
+      "endTime": 288.0,
+      "text": "la primera sangre derramada"
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 288.0,
+      "endTime": 290.0,
+      "text": "será la mía."
+    },
+    {
+      "character": "PILATOS",
+      "startTime": 290.0,
+      "endTime": 295.0,
+      "text": "Esa es la única verdad que conozco."
     }
   ],
   "110": [

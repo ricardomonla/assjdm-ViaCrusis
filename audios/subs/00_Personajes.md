@@ -21,12 +21,13 @@
 | P14 | CLAUDIA | Esposa de Pilatos |
 | P15 | HERODES | Tetrarca de Galilea |
 | P16 | HERODÍAS | Esposa de Herodes |
-| P17 | SOLDADO | Guardia Romano / Centurión |
+| P17 | CENTURIÓN | Guardia Romano |
 | P18 | LADRÓN ARREPENTIDO | Ladrón crucificado, humilde |
 | P19 | OTRO LADRÓN | Ladrón crucificado, burlesco |
 | P20 | ÁNGEL | Ser celestial en el sepulcro |
 | P21 | MARÍA MAGDALENA | Discípula en la tumba |
 | P22 | NICODEMO | Miembro importante del consejo del Sanedrín y simpatizante de Jesús |
+| P23 | SOLDADO | Guardia Romano |
 | P99 | MUSICA SAETA | Canción popular |
 
 ## 2. Subtítulos
