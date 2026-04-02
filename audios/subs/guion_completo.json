@@ -3098,9 +3098,21 @@
   "304": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 10.0,
-      "text": "--???--<br>Décima segunda estación.<br>Jesús muere en la cruz.<br>Desde el mediodía hasta las tres de la tarde, toda la tierra quedó en oscuridad.<br>El velo del templo se rasgó por la mitad.<br>"
+      "startTime": 0.0,
+      "endTime": 6.0,
+      "text": "Décima segunda estación. Jesús muere en la cruz."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 6.0,
+      "endTime": 30.0,
+      "text": "Desde el mediodía hasta las tres de la tarde, toda la tierra quedó en oscuridad."
+    },
+    {
+      "character": "NARRADOR",
+      "startTime": 30.0,
+      "endTime": 35.0,
+      "text": "El velo del templo se rasgó por la mitad."
     }
   ],
   "305": [

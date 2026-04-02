@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.36' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Pista 304 (12ºE Jesús muere en la cruz) compilada con éxito usando el nuevo Flujo H.I.T.L. Optimizado.'
+        ]
+    ],
     '26.6.35' => [
         'date' => '2026-04-02',
         'changes' => [
