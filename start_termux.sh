@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Script de arranque automático para Termux (Android)
+# Entrar al directorio donde vive el script (clave para que funcione si lo invocas desde afuera)
+cd "$(dirname "$0")" || exit 1
+
 echo "==============================================="
 echo "   ✝️ Via Crucis Barrio Yacampiz (VCBY) ✝️"
 echo "        Iniciador de Modo Offline Móvil        "
