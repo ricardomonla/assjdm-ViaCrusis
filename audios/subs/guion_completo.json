@@ -1216,19 +1216,25 @@
       "character": "NICODEMO",
       "startTime": 105.0,
       "endTime": 111.0,
-      "text": "¡Hermanos, hermanos de Caifás! Le han atado como un vulgar ladrón y no tienen derecho. Yo le he oído predicar y no he encontrado en su doctrina nada..."
+      "text": "¡Hermanos, hermanos de Caifás! Le han atado como un vulgar ladrón y no tienen derecho. Yo le he oído predicar y no he encontrado en su doctrina nada contra los preceptos de nuestra fe."
     },
     {
       "character": "ZÉRA",
       "startTime": 111.0,
       "endTime": 125.0,
-      "text": "...contra los preceptos de nuestra fe. Y, ¿cómo se atreve a afirmar que puede destruir el templo y en tan solo tres días construir otro no edificado por hombres? Nadie puede reconstruir el templo en tres días."
+      "text": "Y, ¿cómo se atreve a afirmar que puede destruir el templo y en tan solo tres días construir otro no edificado por hombres?"
     },
     {
       "character": "NICODEMO",
       "startTime": 125.0,
+      "endTime": 128.0,
+      "text": "Nadie puede reconstruir el templo en tres días. Lo que dijo debe de tener un significado simbólico."
+    },
+    {
+      "character": "ZÉRA",
+      "startTime": 128.0,
       "endTime": 131.0,
-      "text": "Lo que dijo debe de tener un significado simbólico. Yo le he oído decir que podía hacerlo en dos días."
+      "text": "Yo le he oído decir que podía hacerlo en dos días."
     },
     {
       "character": "CAIFÁS",
