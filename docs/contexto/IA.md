@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.6.29` (Gestión Escénica + UI) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.7.2` (Gestión Escénica + UI) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -47,7 +47,7 @@ assjdm-ViaCrusis/
 │   ├── play.php       # Reproductor de audio individual
 │   └── media/         # 34 archivos MP3 (000-403)
 ├── serve.php          # Servidor de archivos MP3 (seguridad + range requests)
-├── docker-compose.yml # Config Docker (entorno local)
+├── start_termux.sh    # Script nativo de Auto-arranque Android (Offline)
 ├── css/
 │   ├── style.css      # Estilos principales (modo claro/oscuro, responsive)
 │   └── index.php      # Protección de directorio
@@ -113,11 +113,11 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Versión Actual:** `26.7.1` (Pulido Fino)
+- **Versión Actual:** `26.7.2` (Entorno Móvil)
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
 - **Estado General:** Transcripción H.I.T.L. Base COMPLETADA (Pistas 101 a 403) en JSON maestro. Inicia Fase de Pulido Fino y Enriquecimiento Dramático (v26.7).
 
-> **Versión Actual:** `26.7.1`
+> **Versión Actual:** `26.7.2`
 
 ## Roadmap v26.7 (Fase de Pulido Fino)
 

@@ -1,5 +1,14 @@
 <?php
 $versionLogs = [
+    '26.7.2' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Conclusión del Plan 07: Entorno Móvil/Android Offline totalmente validado.',
+            'Transición de visibilidad: Pase del repositorio a Público y simplificación del flujo git-pull HTTPS.',
+            'Sanitización del repositorio: Eliminación de docker-compose y archivos legacy de infraestructura local (Termux + PHP nativo rinden 100%).',
+            'Nuevo script de arranque rápido y atajos nativos en Android (start_termux.sh).'
+        ]
+    ],
     '26.7.1' => [
         'date' => '2026-04-02',
         'changes' => [
