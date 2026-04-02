@@ -28,6 +28,7 @@
 | P21 | MARÍA MAGDALENA | Discípula en la tumba |
 | P22 | NICODEMO | Miembro importante del consejo del Sanedrín y simpatizante de Jesús |
 | P23 | SOLDADO | Guardia Romano |
+| P24 | SOLDADOS | Soldados romanos |
 | P99 | MUSICA SAETA | Canción popular |
 
 ## 2. Subtítulos

@@ -2838,122 +2838,260 @@
   "303": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 6,
-      "text": "La décima primera estación.<br>Jesús es clavado en la cruz."
+      "startTime": 0.0,
+      "endTime": 3.0,
+      "text": "Décima primera estación."
     },
     {
-      "character": "SOLDADO",
-      "startTime": 6,
-      "endTime": 10,
+      "character": "NARRADOR",
+      "startTime": 3.0,
+      "endTime": 5.0,
+      "text": "Jesús es clavado en la cruz."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 5.0,
+      "endTime": 10.0,
       "text": "¡Ponedlo en la cruz!"
     },
     {
-      "character": "SOLDADO",
-      "startTime": 10,
-      "endTime": 25.0,
-      "text": "¡Vamos!<br>¡No podéis pasar!"
+      "character": "SOLDADOS",
+      "startTime": 10.0,
+      "endTime": 13.0,
+      "text": "¡Vamos!"
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 13.0,
+      "endTime": 30.0,
+      "text": "¡No podéis pasar!"
     },
     {
       "character": "JESÚS",
-      "startTime": 30,
-      "endTime": 45.0,
+      "startTime": 30.0,
+      "endTime": 60.0,
       "text": "¡No!"
     },
     {
-      "character": "SOLDADO",
-      "startTime": 60,
-      "endTime": 75.0,
+      "character": "SOLDADOS",
+      "startTime": 60.0,
+      "endTime": 90.0,
       "text": "¡Patale!"
     },
     {
       "character": "JESÚS",
-      "startTime": 90,
-      "endTime": 105.0,
+      "startTime": 90.0,
+      "endTime": 120.0,
       "text": "¡No!"
     },
     {
-      "character": "SOLDADO",
-      "startTime": 120,
-      "endTime": 135.0,
-      "text": "¡Los pies!<br>pies<br>¡Vamos! ¡Subidlo!<br>Vamos, más fuerte.<br>Arriba.<br>Vamos arriba.<br>Un poco más.<br>Con fuerza.<br>Así está.<br>Ya lo tenemos.<br>Tira, tira.<br>¡Vamos!"
+      "character": "SOLDADOS",
+      "startTime": 120.0,
+      "endTime": 133.0,
+      "text": "¡Los pies!"
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 133.0,
+      "endTime": 163.0,
+      "text": "¡Vamos! ¡Subidlo!"
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 163.0,
+      "endTime": 166.0,
+      "text": "Vamos, ¡tirad!"
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 166.0,
+      "endTime": 169.0,
+      "text": "Vamos, más fuerte."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 169.0,
+      "endTime": 171.0,
+      "text": "¡Tirad!"
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 171.0,
+      "endTime": 173.0,
+      "text": "Arriba."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 173.0,
+      "endTime": 174.0,
+      "text": "Vamos, arriba."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 174.0,
+      "endTime": 178.0,
+      "text": "Un poco más."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 178.0,
+      "endTime": 180.0,
+      "text": "Con fuerza."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 180.0,
+      "endTime": 182.0,
+      "text": "Así está."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 182.0,
+      "endTime": 190.0,
+      "text": "Ya lo tenemos."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 190.0,
+      "endTime": 191.0,
+      "text": "Tira, tira."
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 191.0,
+      "endTime": 221.0,
+      "text": "¡Vamos!"
     },
     {
       "character": "MARÍA",
-      "startTime": 223,
-      "endTime": 226,
-      "text": "Hijo mío"
+      "startTime": 221.0,
+      "endTime": 230.0,
+      "text": "¡Hijo mío!"
     },
     {
-      "character": "SOLDADO",
-      "startTime": 226,
-      "endTime": 236,
-      "text": "<br>Rey de los judíos<br>¿Ves el templo desde ahí arriba?"
+      "character": "SOLDADOS",
+      "startTime": 230.0,
+      "endTime": 233.0,
+      "text": "¡Rey de los judíos!"
+    },
+    {
+      "character": "SOLDADOS",
+      "startTime": 233.0,
+      "endTime": 236.0,
+      "text": "¿Ves el templo desde ahí arriba?"
     },
     {
       "character": "MARÍA",
-      "startTime": 236,
-      "endTime": 239,
+      "startTime": 236.0,
+      "endTime": 239.0,
       "text": "¡Dejadlo, monstruos!"
     },
     {
       "character": "JESÚS",
-      "startTime": 239,
-      "endTime": 253,
-      "text": "Padre<br>Padre<br>Perdónalos<br>¿Por qué no saben lo que hacen?"
+      "startTime": 239.0,
+      "endTime": 241.0,
+      "text": "¡Padre!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 241.0,
+      "endTime": 246.0,
+      "text": "¡Padre!"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 246.0,
+      "endTime": 248.0,
+      "text": "Perdónalos."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 248.0,
+      "endTime": 286.0,
+      "text": "Porque no saben lo que hacen."
     },
     {
       "character": "OTRO LADRÓN",
-      "startTime": 253,
-      "endTime": 268.0,
-      "text": "<br>pasa La t es m<br>¿No eres tú el Mesías?<br>¿Por qué no te salvas si no salvas a nosotros?"
+      "startTime": 286.0,
+      "endTime": 294.0,
+      "text": "¿No eres tú el Mesías?"
+    },
+    {
+      "character": "OTRO LADRÓN",
+      "startTime": 294.0,
+      "endTime": 299.0,
+      "text": "¿Por qué no te salvas y nos salvas a nosotros?"
     },
     {
       "character": "LADRÓN ARREPENTIDO",
-      "startTime": 299,
-      "endTime": 314,
-      "text": "<br>Nuestro castigo es justo.<br>Pero este hombre no ha hecho nada malo.<br>Recuérdame cuando entres en tu reino."
+      "startTime": 299.0,
+      "endTime": 302.0,
+      "text": "Nuestro castigo es justo."
+    },
+    {
+      "character": "LADRÓN ARREPENTIDO",
+      "startTime": 302.0,
+      "endTime": 307.0,
+      "text": "Pero este hombre no ha hecho nada malo."
+    },
+    {
+      "character": "LADRÓN ARREPENTIDO",
+      "startTime": 307.0,
+      "endTime": 313.0,
+      "text": "Recuérdame cuando entres en tu reino."
     },
     {
       "character": "JESÚS",
-      "startTime": 314,
-      "endTime": 329.0,
-      "text": "En verdad te digo...<br>que hoy...<br>tú estarás conmigo en el paraíso."
+      "startTime": 313.0,
+      "endTime": 315.0,
+      "text": "En verdad te digo..."
     },
     {
       "character": "JESÚS",
-      "startTime": 332,
-      "endTime": 341,
-      "text": "Ma..."
+      "startTime": 315.0,
+      "endTime": 318.0,
+      "text": "...que hoy..."
     },
     {
       "character": "JESÚS",
-      "startTime": 341,
-      "endTime": 356.0,
-      "text": "Ahí tienes a tu hijo<br>Juan<br>Ahí tienes a tu madre<br>Dios mío<br>Dios mío.<br>¿Por qué me has abandonado?<br>¿Por qué?<br>Tengo sed."
-    },
-    {
-      "character": "SOLDADO",
-      "startTime": 392,
-      "endTime": 407.0,
-      "text": "pasa pasa<br>¿Qué pasa?"
+      "startTime": 318.0,
+      "endTime": 332.0,
+      "text": "...tú estarás conmigo en el paraíso."
     },
     {
       "character": "JESÚS",
-      "startTime": 471,
-      "endTime": 486.0,
-      "text": "<br>Ha terminado."
-    },
-    {
-      "character": "MARÍA",
-      "startTime": 501,
-      "endTime": 516.0,
-      "text": "¡No!"
+      "startTime": 332.0,
+      "endTime": 343.0,
+      "text": "Madre, ahí tienes a tu hijo."
     },
     {
       "character": "JESÚS",
-      "startTime": 531,
-      "endTime": 541.0,
+      "startTime": 343.0,
+      "endTime": 351.0,
+      "text": "Juan, ahí tienes a tu madre."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 351.0,
+      "endTime": 362.0,
+      "text": "Dios mío."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 362.0,
+      "endTime": 378.0,
+      "text": "Dios mío, ¿por qué me has abandonado?"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 378.0,
+      "endTime": 531.0,
+      "text": "Tengo sed."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 531.0,
+      "endTime": 536.0,
       "text": "Padre, en tus manos encomiendo mi espíritu."
     }
   ],

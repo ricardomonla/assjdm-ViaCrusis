@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # Archivo: tools/groq_tool/compilador.rb
-# Toma todos los archivos *_v3*.md locales y actualiza guion_completo.json,
+# Toma todos los archivos *_v3.1*.md locales y actualiza guion_completo.json,
 # luego los renombra a _v4.0.md marcándolos como listos en producción.
 
 require 'json'
@@ -75,16 +75,16 @@ end
 
 json_path = "../../audios/subs/guion_completo.json"
 guion = JSON.parse(File.read(json_path))
-archivos_md = Dir.glob("../../audios/subs/*_v3*.md").sort
+archivos_md = Dir.glob("../../audios/subs/*_v3.1*.md").sort
 
 if archivos_md.empty?
-  puts "⚠️ No se encontraron archivos *_v3*.md listos para compilar."
+  puts "⚠️ No se encontraron archivos *_v3.1*.md listos para compilar."
   exit
 end
 
 actualizados = 0
 archivos_md.each do |md_file|
-  pista_match = md_file.match(/(\d+)_v3.*\.md/)
+  pista_match = md_file.match(/(\d+)_v3\.1.*\.md/)
   next unless pista_match
 
   id_pista = pista_match[1]

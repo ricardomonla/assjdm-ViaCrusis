@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.35' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Procesada la pista 303 (11ºE Jesús clavado en la cruz). Incorporado P24 (Soldados). Guardada en maestro.'
+        ]
+    ],
     '26.6.34' => [
         'date' => '2026-04-02',
         'changes' => [
