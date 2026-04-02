@@ -172,7 +172,7 @@ ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
 - [ ] **Diseño**: Modernizar la estética del sitio
 - [x] **Mover Sitio de Audios**: Reubicar catálogo principal a `/audios/` → Plan 05 ✅
 - [ ] **Karaoke Subtítulos**: Sincronizar texto de diálogos a los audios estilo karaoke → Plan 06 📋
-- [ ] **Entorno Android (Offline)**: Configurar sistema de trabajo móvil offline en Android → Plan 07 📋
+- [x] **Entorno Android (Offline)**: Configurar sistema de trabajo móvil offline en Android → Plan 07 ✅
 - [ ] **Pulido Fino Escénico**: Refinamiento de tiempos, acotaciones y sincronía → Plan 08 ⏳
 
 ---

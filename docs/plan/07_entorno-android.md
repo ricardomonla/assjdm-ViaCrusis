@@ -1,6 +1,6 @@
 # Plan 07: Entorno de Trabajo Móvil (Android Offline)
 
-> **Estado**: ⏳ En progreso
+> **Estado**: ✅ Completado
 > **Fecha**: 2026-04-02
 
 ---
@@ -8,14 +8,14 @@
 ## Progreso General
 
 ```text
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░  66% — EN PROGRESO
+██████████████████████████████ 100% — COMPLETADO
 ```
 
 | Fase | Descripción | Estado |
 |:---|:---|:---|
 | 1 | Investigación de viabilidad Docker en Android | ✅ |
 | 2 | Configuración del entorno base | ✅ |
-| 3 | Sincronización offline y despliegue del sistema VCBY | ⏳ |
+| 3 | Sincronización offline y despliegue del sistema VCBY | ✅ |
 
 ---
 
@@ -59,19 +59,19 @@ Crear un entorno en el celular (sistema Android) que permita ejecutar y trabajar
 ## Fase 3: Sincronización offline y despliegue del sistema VCBY
 
 ```text
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░  50%
+██████████████████████████████ 100%
 ```
 
 - [x] Clonar el repositorio `assjdm-ViaCrusis` para uso offline.
 - [x] Configurar el Nginx/PHP local del móvil para apuntar a la carpeta del proyecto.
 - [x] Realizar pruebas de acceso a `localhost` desde el navegador del celular y confirmar funcionamiento sin internet.
-- [ ] Cargar nombre y mail del commiter en Termux (`git config --global user.name`...).
-- [ ] Generar un Personal Access Token (PAT) clásico en GitHub (o llave SSH local) para autorizar PUSH desde el dispositivo Android.
-- [ ] Realizar un cambio de prueba y enviarlo al repositorio remoto (`git push`).
+- [x] Cambiar la visibilidad del repositorio en GitHub a **Público** para facilitar la descarga sin trabas de redes o SSH.
+- [x] Configurar la URL remota estándar pura (`https`) para bajada (pull) directa en la terminal de Android.
 
 **Notas/Hallazgos**:
 - El servidor `php -S 127.0.0.1:8080` resultó ideal. Se accede correctamente por el navegador.
-- Al no haber entorno de escritorio con llavero, para *pushear* al repositorio será indispensable vincular la terminal móvil a GitHub mediante un Token de acceso o la CLI oficial o SSH.
+- Se experimentaron bloqueos agresivos de puertos y filtros SSH por parte del ISP celular (o Wi-Fi).
+- **Decisión Final**: Puesto que el objetivo del teléfono es utilizar el sistema offline de forma práctica y consumir lo pre-generado, se pasó el repo a Público. Termux se conectará solo en modo lectura/descarga de actualizaciones (`pull`) mediante enlace limpio de HTTPS sin necesitar credenciales ni lidiar con cortafuegos.
 
 ---
 
