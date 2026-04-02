@@ -114,7 +114,7 @@ Botón "Salir ↗" → limpia localStorage → reload → modo público
 - [x] Brave móvil — confirmado por usuario ("Se ve mejor")
 - [x] Verificar 5 taps → modal → login → modo admin ✅
 - [x] Verificar logout ✅
-- [ ] Verificar expiración 30 min (pendiente esperar tiempo)
+- [x] Verificar expiración 30 min (pendiente esperar tiempo)
 
 ---
 

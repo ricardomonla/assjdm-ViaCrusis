@@ -1,6 +1,6 @@
 # Plan 04: Sub-sitio Editor de Guion Cinematográfico Ligero
 
-> **Estado**: ⏳ En progreso
+> **Estado**: ✅ Completado
 > **Fecha**: 2026-03-29
 > **Servidor**: srvv-nginx-rm (Ruta: `/vcby/guion`)
 
@@ -141,7 +141,7 @@ Debe incorporar características avanzadas y muy rápidas de edición in-place (
 
 | Archivo | Ubicación | Estado |
 |:---|:---|:---|
-| `docs/plan/04_sitio-guion-cinematografico.md` | `docs/plan/` | ⏳ |
+| `docs/plan/04_sitio-guion-cinematografico.md` | `docs/plan/` | ✅ |
 | `index.html` / `index.php` | `guion/` | ✅ |
 | `editor.js` | `guion/js/` | ✅ |
 | `parser.js` | `guion/js/` | ✅ |

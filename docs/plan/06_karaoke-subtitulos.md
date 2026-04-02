@@ -1,6 +1,6 @@
 # Plan 06: Implementación de Subtítulos Sincronizados (Estilo Karaoke)
 
-> **Estado**: 📋 Planificado
+> **Estado**: ✅ Completado
 > **Fecha**: 2026-04-01
 > **Servidor**: srvv-nginx-rm
 
@@ -9,7 +9,7 @@
 ## Progreso General
 
 ```text
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0% — PLANIFICADO
+██████████████████████████████ 100% — COMPLETADO
 ```
 
 | Fase | Descripción | Estado |
@@ -17,8 +17,8 @@
 | 1 | Arquitectura y UI Base | ✅ |
 | 2 | Motor JavaScript y Sincronización Continua | ✅ |
 | 3 | Paleta Semántica y Tiempos Globales | ✅ |
-| 4 | Extracción Base de Transcripciones | 📋 |
-| 5 | Procesamiento IA Transcripción Sincronizada (Groq) | 📋 |
+| 4 | Extracción Base de Transcripciones | ✅ |
+| 5 | Procesamiento IA Transcripción Sincronizada (Groq) | ✅ |
 
 ---
 
@@ -46,7 +46,7 @@ Transformar la experiencia de reproducción de audios del ViaCrucis (actualmente
 ## Fase 4: Flujo H.I.T.L. (Human In The Loop) Groq a Markdown
 
 ```text
-██████████░░░░░░░░░░░░░░░░░░░░  30%
+██████████████████████████████ 100%
 ```
 
 - [x] 1. (Antigravity AI): Generar documento `v0.1.md` para cada pista, que incluye una tabla "Personajes" completa con su `IDP` y `System_Synopsis`,  dejando una tabla vacía llamada "Subtítulos" con cabecera `MARCA | IDP | SUBTITULO`.
@@ -54,7 +54,7 @@ Transformar la experiencia de reproducción de audios del ViaCrucis (actualmente
     - **Regla de Gaps**: Si Whisper no arroja palabras en el segundo 00:00, LLaMA inyectará automáticamente una fila en `[XXX.00.00.00]` con el `IDP` `P00` (Personaje 0, Músicas y fx).
 - [x] 3. (Director / Humano): Revisar y auditar la tabla en `v1.0.md`, ajustar `IDP` incorrectos deducidos por la máquina, corregir tildes, comas o palabras, y finalmente grabar el progreso con el nombre `v1.1.md` (Ready for prod).
 - [x] 4. (Compilador Automático): Script final (`compilador_v1.1.rb`) que consyme todos los `.md` aprobados (`v1.1`) y los parsea inyectando los arrays definitivos en `guion_completo.json`.
-- [ ] 5. Procesar los 34 audios y completar el repositorio con calidad humana del 100%.
+- [x] 5. Procesar los 34 audios y completar el repositorio con calidad humana del 100%.
 
 ---
 
@@ -63,9 +63,9 @@ Transformar la experiencia de reproducción de audios del ViaCrucis (actualmente
 | Archivo | Ubicación | Estado |
 |:---|:---|:---|
 | `docs/plan/06_karaoke-subtitulos.md` | Raíz | ✅ |
-| `audios/subs/*.vtt` | Backend | 📋 |
-| `audios/play.php` | Backend HTML | 📋 |
-| `css/style.css` | Frontend CSS | 📋 |
-| `jss/karaoke.js` | Frontend JS | 📋 |
-| `serve.php` (si aplica) | Backend PHP | 📋 |
+| `audios/subs/*.vtt` | Backend | ✅ |
+| `audios/play.php` | Backend HTML | ✅ |
+| `css/style.css` | Frontend CSS | ✅ |
+| `jss/karaoke.js` | Frontend JS | ✅ |
+| `serve.php` (si aplica) | Backend PHP | ✅ |
 
