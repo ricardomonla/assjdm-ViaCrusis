@@ -23,14 +23,14 @@ El objetivo es combinar la potencia de la IA para transcripción y tiempos, la r
 *   **Proceso:** El asistente inyecta las variaciones poéticas, puntuaciones, exclamaciones y la gramática sin desfasar ni los IDP que el humano determinó ni las marcas.
 *   **Resultado:** El asistente renombra el archivo y genera la versión canónica definitiva: `XXX_v3.0.md`.
 
-## Paso 4: Verificación Ocular Humana (`Humano -> v3.1.md`)
+## Paso 3.1: Verificación de IA y Aprobación (`Humano -> v3.1.md`)
 *   **Responsable:** Director humano del Vía Crucis.
-*   **Acción:** Se abre el archivo `XXX_v3.0.md` que la IA moldeó poéticamente.
-*   **Corrección:** El operador da un último chequeo visual rápido asegurando que el contenido poético o los bloques estén del todo conformes, reparando cualquier detalle si lo hubiere.
-*   **Resultado:** Renombra el archivo a `XXX_v3.1.md`. Este es el disparador con el que se le dará la luz verde definitiva al compilador maestro.
+*   **Acción:** Revisa el archivo `XXX_v3.0.md` procesado por la IA.
+*   **Proceso:** Ojo humano que verifica que los pases filológicos y de IDP se correspondan al 100% y afina los últimos detalles (corrección de tiempos de la inyección o palabras sueltas).
+*   **Resultado:** El humano guarda sus cambios **renombrando el archivo a `XXX_v3.1.md`**. Esto le avisa al motor que el texto está purgado y sellado.
 
-## Paso 5: Compilación a Json Maestro y UI (`Final -> v4.0.md`) 
+## Paso 4: Compilación a Json Maestro y UI (`Final -> v4.0.md`) 
 *   **Responsable:** Asistente IA / Humano.
 *   **Acción:** Se ejecuta el motor compilador adaptado a la nueva nomenclatura.
-*   **Proceso:** Este script absorbe todos los archivos `_v3.1.md`, los renderiza y consolida en un único árbol. Una vez finalizado y empujado correctamente al JSON, el propio compilador los renombra marcando su inserción.
+*   **Proceso:** Este script absorbe todos los archivos `_v3.1.md` listos, los renderiza y consolida en un único árbol. Una vez finalizado y empujado correctamente al JSON, el propio compilador los renombra marcando su inserción.
 *   **Resultado:** El archivo se renombra a `XXX_v4.0.md` como estampa de que ya está en producción. Queda actualizado el registro maestro `audios/subs/guion_completo.json`. El Karaoke reflejará instantáneamente la pista.

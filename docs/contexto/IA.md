@@ -105,20 +105,20 @@ Cualquier nuevo script Python o Node dentro del proyecto que requiera IA puede s
 
 Para mantener la calidad y agilizar la integración de nuevas pistas de audio al JSON del Karaoke, el equipo respeta estrictamente el siguiente ciclo iterativo H.I.T.L. (Human-In-The-Loop):
 
-1. **Paso 1: `v1.0.md` (Transcripción Automática):** Se despacha el audio a la IA para ingestar Whisper y Llama. Resulta un borrador.
-2. **Paso 2: `v2.0.md` (Validación Auditiva Humana):** El humano corrige marcas de tiempo e identificadores (IDP) y renombra a `v2.0`.
-3. **Paso 3: `v3.0.md` (Inyección Filológica IA):** La IA lee el `v2.0` cruzándolo con el guion maestro y le inyecta poesía, puntuación, mayúsculas correctas, y guarda en `v3.0`.
-4. **Paso 4: `v3.1.md` (Verificación Ocular Humana):** El usuario humano da un vistazo conformer, avala la integridad, y renombra a `v3.1`.
-5. **Paso 5: `v4.0.md` (Compilado y Cierre):** La IA lanza el compilador para incrustarlo al `guion_completo.json` y sella la iteración en producción.
+1. **`v0.1.md` (Plantilla Base / Input IA):** El asistente de IA recibe (o genera) un archivo temporal con la estructura mínima y se apoya en esto para despachar el audio al modelo de voz a texto (Groq/Whisper).
+2. **`v1.0.md` (Transcripción Cruda H.I.T.L.):** La IA devuelve los resultados con marcas de tiempo `[xxx.mm.ss.ms]` y asignaciones de personajes automáticas (`Pxx`). La IA **guarda este resultado crudo** en `audios/subs/xxx_v1.0.md` y pausa el proceso.
+3. **Pausa y Edición Humana:** El desarrollador (Humano) edita manualmente el `v1.0.md` corrigiendo pisadas de audio, ajustando o reasignando las marcas temporales e identificadores (`Pxx`) que requieren contexto fílmico real. **(Carga de trabajo principal humana)**.
+4. **`v1.1.md` (Refinado Filológico):** Una vez que el usuario indica que "ya está editado el archivo v1.0", el asistente de IA retoma el trabajo. Lee el `v1.0.md` validado, y le inyecta la **redacción gramatical y puntuación teatral perfecta** proveniente del guion maestro semiótico (`docs/Guion-vcby2026_Editado...md`). La IA lo guarda como `v1.1.md`.
+5. **Compilación y Cierre (`guion_completo.json`):** Finalmente, la IA ejecuta el motor `tools/groq_tool/compilador_v1.1.rb` inyectando la nueva pista `v1.1.md` depurada, pulida y temporalmente precisa dentro del Karaoke interactivo y termina el ciclo.
 
 ## Versión Actual
 
-- **Versión Actual:** `26.6.36`
+- **Versión Actual:** `26.6.35`
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
 - **Estado General:** Avance de pistas (101-111, 303). Flujo AI optimizado (v1 a v4). Catálogo `00_Personajes.md` actualizado (P24).
 
 > **Estado del Repositorio:** Limpio (sin logs temporales basura).  
-> **Versión Actual:** `26.6.36`
+> **Versión Actual:** `26.6.35`
 
 ## Estado del Sitio (2026-03-28)
 

@@ -1,11 +1,5 @@
 <?php
 $versionLogs = [
-    '26.6.36' => [
-        'date' => '2026-04-02',
-        'changes' => [
-            'Refinaniento global de documentación en IA.md y 01_Flujo.md oficializando los 5 pasos HITL'
-        ]
-    ],
     '26.6.35' => [
         'date' => '2026-04-02',
         'changes' => [
