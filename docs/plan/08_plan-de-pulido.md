@@ -1,4 +1,4 @@
-# Plan 07: Pulido Fino y Enriquecimiento Dramático (v26.7.x)
+# Plan 08: Pulido Fino y Enriquecimiento Dramático (v26.7.x)
 
 > **Estado**: ⏳ En progreso
 > **Fecha**: 2026-04-02

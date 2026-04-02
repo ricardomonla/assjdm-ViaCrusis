@@ -122,7 +122,7 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 ## Roadmap v26.7 (Fase de Pulido Fino)
 
 El plan de trabajo e iteraciones activas para esta etapa de nivel secundario (refinamiento de milisegundos, reordenamiento de IDs de los personajes basándose en aparición cronológica, e inyección de acotaciones descriptivas internas) ha sido mudado a su propio documento de control.
-**Revisar Plan Activo:** 👉 `docs/plan/07_plan-de-pulido.md`
+**Revisar Plan Activo:** 👉 `docs/plan/08_plan-de-pulido.md`
 
 ## Estado del Sitio (2026-03-28)
 
@@ -172,6 +172,8 @@ ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
 - [ ] **Diseño**: Modernizar la estética del sitio
 - [x] **Mover Sitio de Audios**: Reubicar catálogo principal a `/audios/` → Plan 05 ✅
 - [ ] **Karaoke Subtítulos**: Sincronizar texto de diálogos a los audios estilo karaoke → Plan 06 📋
+- [ ] **Entorno Android (Offline)**: Configurar sistema de trabajo móvil offline en Android → Plan 07 📋
+- [ ] **Pulido Fino Escénico**: Refinamiento de tiempos, acotaciones y sincronía → Plan 08 ⏳
 
 ---
 
