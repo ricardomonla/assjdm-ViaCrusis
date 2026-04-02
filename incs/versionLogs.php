@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.40' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'HITO CRÍTICO: Compilación completada de la última pista (403_v4.0.md). JSON global cerrado. Proyecto de H.I.T.L transcripción finalizado al 100%.'
+        ]
+    ],
     '26.6.39' => [
         'date' => '2026-04-02',
         'changes' => [

@@ -3377,34 +3377,76 @@
   ],
   "403": [
     {
-      "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "--???--<br>La Lucha de los Ángeles"
+      "character": "JESÚS",
+      "startTime": 30.0,
+      "endTime": 37.0,
+      "text": "¡No temáis!"
     },
     {
       "character": "JESÚS",
-      "startTime": 30,
-      "endTime": 45.0,
-      "text": "No temáis<br>Confiad en Dios<br>Confiad también en mí<br>Bienaventurados<br>Los que no me han visto<br>Y aún así<br>Creen<br>Sabed que llegar donde yo voy, Yo soy el camino, La verdad y la vida, El primero y el principio y el fin<br>No habrá más muerte, ni tristeza, ni llanto, ni dolor.<br>Voy a hacerlo todo nuevo."
+      "startTime": 37.0,
+      "endTime": 41.0,
+      "text": "Confiad en Dios."
     },
     {
-      "character": "NARRADOR",
-      "startTime": 91,
-      "endTime": 101,
-      "text": "--???--<br>Que la gracia del señor siempre esté con el pueblo de dios"
+      "character": "JESÚS",
+      "startTime": 41.0,
+      "endTime": 46.0,
+      "text": "Confiad también en mí."
     },
     {
-      "character": "PUEBLO",
-      "startTime": 101,
-      "endTime": 116.0,
-      "text": "--???--<br>am  én"
+      "character": "JESÚS",
+      "startTime": 46.0,
+      "endTime": 47.0,
+      "text": "Bienaventurados..."
     },
     {
-      "character": "NARRADOR",
-      "startTime": 121,
-      "endTime": 131.0,
-      "text": "--???--<br>¡!"
+      "character": "JESÚS",
+      "startTime": 47.0,
+      "endTime": 50.0,
+      "text": "...los que no me han visto,"
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 50.0,
+      "endTime": 53.0,
+      "text": "y aún así..."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 53.0,
+      "endTime": 56.0,
+      "text": "...creen."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 56.0,
+      "endTime": 78.0,
+      "text": "Sabeis como llegar adonde yo voy... Yo soy el camino, la verdad y la vida, el primero y el último, el principio y el fin."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 78.0,
+      "endTime": 88.0,
+      "text": "No habrá más muerte, ni tristeza, ni llanto, ni dolor."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 88.0,
+      "endTime": 91.0,
+      "text": "Voy a hacerlo todo nuevo."
+    },
+    {
+      "character": "JESÚS",
+      "startTime": 91.0,
+      "endTime": 101.0,
+      "text": "Que la gracia del Señor siempre esté con el pueblo de Dios."
+    },
+    {
+      "character": "DISCÍPULOS",
+      "startTime": 101.0,
+      "endTime": 106.0,
+      "text": "¡Amén!"
     }
   ]
 }

@@ -113,12 +113,12 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Versión Actual:** `26.6.39`
+- **Versión Actual:** `26.6.40`
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
-- **Estado General:** Avance de pistas (101-111, 303-305, 401-402). Flujo AI optimizado y consolidado. Catálogo `00_Personajes.md` actualizado (P24, P25).
+- **Estado General:** Transcripción H.I.T.L. COMPLETADA de principio a fin (Pistas 101 a 403) en JSON maestro. Guion de Docs perfectamente sincronizado.
 
 > **Estado del Repositorio:** Limpio (sin logs temporales basura).  
-> **Versión Actual:** `26.6.39`
+> **Versión Actual:** `26.6.40`
 
 ## Estado del Sitio (2026-03-28)
 
