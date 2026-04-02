@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.6.30' => [
+        'date' => '2026-04-01',
+        'changes' => [
+            'Implementado versión dinámica de pipeline AI (v1 a v4). Personajes globalizados en 00_Personajes.md. Pistas 105 y 106 compiladas exitosamente con nuevo refactor.'
+        ]
+    ],
     '26.6.29' => [
         'date' => '2026-04-01',
         'changes' => [

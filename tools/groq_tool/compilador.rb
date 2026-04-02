@@ -1,18 +1,18 @@
 #!/usr/bin/env ruby
-# Archivo: tools/groq_tool/compilador_v1.1.rb
-# Toma todos los archivos *_v1.1.md locales y actualiza guion_completo.json
+# Archivo: tools/groq_tool/compilador.rb
+# Toma todos los archivos *_v3*.md locales y actualiza guion_completo.json,
+# luego los renombra a _v4.0.md marcándolos como listos en producción.
 
 require 'json'
+require 'fileutils'
 
 def parsear_tiempo(marca_str)
-  # [101.00.01.28] => 00 horas, 01 min, 28 sec -> 88.0 seconds
   if marca_str =~ /\[\d+\.(\d+)\.(\d+)\.(\d+)\]/
     h = $1.to_i
     m = $2.to_i
     s = $3.to_i
     return (h * 3600) + (m * 60) + s.to_f
   end
-  # Si viene como [00.00.00.00] o lo que sea:
   if marca_str =~ /\[(\d+)\.(\d+)\.(\d+)\.(\d+)\]/
     h = $2.to_i
     m = $3.to_i
@@ -24,12 +24,10 @@ end
 
 def procesar_md(path)
   content = File.read(path)
-  
   personajes = {}
   subtitulos = []
-
-  # Fases de lectura
   fase = :none
+  
   content.each_line do |line|
     line.strip!
     if line.start_with?("## 1. Personajes")
@@ -46,15 +44,7 @@ def procesar_md(path)
       end
     elsif fase == :subtitulos
       if line =~ /^\|\s*(\[[^\]]+\])\s*\|\s*(P\d+)\s*\|\s*(.*)\s*\|$/
-        marca_raw = $1.strip
-        idp_raw = $2.strip
-        texto_raw = $3.strip
-
-        subtitulos << {
-          "marca" => marca_raw,
-          "idp" => idp_raw,
-          "texto" => texto_raw
-        }
+        subtitulos << { "marca" => $1.strip, "idp" => $2.strip, "texto" => $3.strip }
       end
     end
   end
@@ -63,16 +53,13 @@ def procesar_md(path)
   subtitulos.each_with_index do |sub, index|
     start_t = parsear_tiempo(sub["marca"])
     
-    # Calcular end_time basado en el próximo subtítulo o sumar 5 segundos si es el último
     end_t = if index + 1 < subtitulos.length
               parsear_tiempo(subtitulos[index+1]["marca"])
             else
               start_t + 5.0
             end
 
-    # Evitar end < start por error humano
     end_t = start_t + 1.0 if end_t <= start_t
-
     char_name = personajes[sub["idp"]] || "DESCONOCIDO"
 
     resultado << {
@@ -88,16 +75,16 @@ end
 
 json_path = "../../audios/subs/guion_completo.json"
 guion = JSON.parse(File.read(json_path))
-archivos_md = Dir.glob("../../audios/subs/*_v1.1.md").sort
+archivos_md = Dir.glob("../../audios/subs/*_v3*.md").sort
 
 if archivos_md.empty?
-  puts "⚠️ No se encontraron archivos v1.1.md para compilar."
+  puts "⚠️ No se encontraron archivos *_v3*.md listos para compilar."
   exit
 end
 
 actualizados = 0
 archivos_md.each do |md_file|
-  pista_match = md_file.match(/(\d+)_v1\.1\.md/)
+  pista_match = md_file.match(/(\d+)_v3.*\.md/)
   next unless pista_match
 
   id_pista = pista_match[1]
@@ -108,6 +95,11 @@ archivos_md.each do |md_file|
   if bloques.any?
     guion[id_pista] = bloques
     actualizados += 1
+    
+    # Renombrado a v4
+    new_path = File.join(File.dirname(md_file), "#{id_pista}_v4.0.md")
+    FileUtils.mv(md_file, new_path)
+    puts "   -> Renombrado a #{File.basename(new_path)} (Paso 4 Completado)"
   else
     puts "⚠️  La pista #{id_pista} quedó vacía tras procesarse!"
   end
@@ -115,7 +107,7 @@ end
 
 if actualizados > 0
   File.write(json_path, JSON.pretty_generate(guion))
-  puts "✅ ¡Guión Completo JSON re-compilado exitosamente! (#{actualizados} pistas inyectadas)."
+  puts "✅ ¡Guión Completo JSON re-compilado exitosamente! (#{actualizados} pistas inyectadas y renombradas)."
 else
   puts "✅ Sin cambios."
 end

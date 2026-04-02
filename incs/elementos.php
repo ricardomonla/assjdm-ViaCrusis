@@ -109,16 +109,16 @@ function getMediaGroupsStructure() {
                     'id' => '105_v2504',
                     'order' => '105',
                     'version' => '2504',
-                    'title' => 'La Entrega-MúsicaFinal',
-                    'display_name' => '105 La Entrega-MúsicaFinal',
+                    'title' => 'La Entrega',
+                    'display_name' => '105 La Entrega',
                     'filename' => '105_v2504.mp3'
                 ],
                 [
                     'id' => '106_v2504',
                     'order' => '106',
                     'version' => '2504',
-                    'title' => 'Las negaciones de Pedro-MusicaAlInicio',
-                    'display_name' => '106 Las negaciones de Pedro-MusicaAlInicio',
+                    'title' => 'Las negaciones de Pedro',
+                    'display_name' => '106 Las negaciones de Pedro',
                     'filename' => '106_v2504.mp3'
                 ],
                 [

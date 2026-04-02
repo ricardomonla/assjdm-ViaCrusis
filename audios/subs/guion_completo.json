@@ -1110,63 +1110,39 @@
   "106": [
     {
       "character": "PUEBLO",
-      "startTime": 0,
-      "endTime": 8,
-      "text": "Aquí, aquí."
-    },
-    {
-      "character": "PUEBLO",
-      "startTime": 8,
-      "endTime": 20,
-      "text": "¡Ay!<br>¡José! ¡José!<br>¡Aquí te conozco!<br>¡Conozco a ese hombre!<br>¡Mirad, amigos! También está enredado con ese Jesús de Nazaret."
+      "startTime": 0.0,
+      "endTime": 30.0,
+      "text": "Es verdad, este andaba con él, porque es galileo."
     },
     {
       "character": "PEDRO",
-      "startTime": 20,
-      "endTime": 23,
-      "text": "No sé de quién me hablas, mujer. Yo no conozco a ese hombre."
-    },
-    {
-      "character": "PUEBLO",
-      "startTime": 23,
-      "endTime": 26,
-      "text": "Sí, tú también eres uno de ellos."
-    },
-    {
-      "character": "PEDRO",
-      "startTime": 26,
-      "endTime": 28,
-      "text": "Seguro que no soy yo. Te confundes con otro."
-    },
-    {
-      "character": "PUEBLO",
-      "startTime": 28,
-      "endTime": 31,
-      "text": "Es verdad, esta andaba con él, porque es Galileo"
-    },
-    {
-      "character": "PEDRO",
-      "startTime": 31,
-      "endTime": 32,
-      "text": "No sé de qué me hablas"
+      "startTime": 30.0,
+      "endTime": 32.0,
+      "text": "No sé de qué me hablas."
     },
     {
       "character": "NARRADOR",
-      "startTime": 32,
-      "endTime": 45,
-      "text": "Pedro se acuerda de lo que el señor le había dicho"
+      "startTime": 32.0,
+      "endTime": 45.0,
+      "text": "Pedro se acuerda de lo que el Señor le había dicho."
     },
     {
       "character": "JESÚS",
-      "startTime": 45,
-      "endTime": 52,
-      "text": "Pedro, esta noche, antes de que el gallo cante, me habrás negado tres veces"
+      "startTime": 45.0,
+      "endTime": 52.0,
+      "text": "Pedro, esta noche, antes de que el gallo cante, me habrás negado tres veces."
     },
     {
       "character": "NARRADOR",
-      "startTime": 52,
-      "endTime": 62.0,
-      "text": "Entonces se marcha rápidamente y apartándose un poco de la gente<br>Llora amargamente"
+      "startTime": 52.0,
+      "endTime": 60.0,
+      "text": "Entonces, se marcha rápidamente y, apartándose un poco de la gente, llora amargamente."
+    },
+    {
+      "character": "Música / Ambiente",
+      "startTime": 60.0,
+      "endTime": 65.0,
+      "text": "(Se aleja llorando / Transición musical)"
     }
   ],
   "107": [

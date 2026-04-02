@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 # Archivo: tools/groq_tool/genera_subs_v1.0.rb
-# Ingesta el archivo v0.1.md (hecho por AI inicial) y el audio MP3.
+# Ingesta el catálogo global 00_Personajes.md y el audio MP3.
 # Llama a Whisper (para transcripción/tiempos) y luego a LLaMA 3.3
 # para combinar y deducir los personajes, generando el borrador v1.0.md.
 
 require_relative 'groq_client'
 require 'json'
+$stdout.sync = true
 
 module GeneradorSubsV1
   def self.procesar(id_pista)
@@ -21,15 +22,15 @@ module GeneradorSubsV1
       end
     end
 
-    md_v0_path = "../../audios/subs/#{id_pista}_v0.1.md"
+    md_personajes_path = "../../audios/subs/00_Personajes.md"
     md_v1_path = "../../audios/subs/#{id_pista}_v1.0.md"
     
-    unless File.exist?(md_v0_path)
-      puts "❌ Falta el archivo borrador inicial: #{md_v0_path}"
+    unless File.exist?(md_personajes_path)
+      puts "❌ Falta el catálogo global: #{md_personajes_path}"
       return
     end
 
-    md_content = File.read(md_v0_path)
+    md_content = File.read(md_personajes_path)
 
     puts "🎙️  1. Transcribiendo #{audio_path} con Groq Whisper (Límite 25MB)..."
     begin
@@ -54,29 +55,42 @@ module GeneradorSubsV1
       "MARCA: #{marca} | TEXTO: #{row["text"].strip}"
     end
 
+    if raw_segments.first["start"] > 1.0
+      whisper_texto_array.unshift("MARCA: [#{id_pista}.00.00.00] | TEXTO: (Música de fondo / Ambiente silencioso)")
+    end
+
     whisper_texto = whisper_texto_array.join("\n")
 
     puts "🧠 2. Pasando Transcripción y MD a LLaMA 3.3 (Groq) para deducción..."
     
     system_prompt = <<~PROMPT
       Eres un asistente experto de dirección teatral. Se te entregarán dos elementos:
-      1. Un ARCHIVO MARKDOWN inicial (`v0.1.md`) con una Tabla de Personajes y una Tabla de Subtítulos que puede tener la primera fila pre-cargada.
-      2. Una TRANSCRIPCIÓN CON MARCAS EXACTAS DE TIEMPO extraídas del audio real por Whisper.
+      1. Un CATÁLOGO GLOBAL DE PERSONAJES (`00_Personajes.md`) con todos los personajes de la obra.
+      2. Una TRANSCRIPCIÓN CON MARCAS EXACTAS DE TIEMPO extraídas de un audio específico por Whisper.
       
-      Tu objetivo es reescribir EXCLUSIVAMENTE el ARCHIVO MARKDOWN completo completando la Tabla 2 (Subtítulos).
+      Tu objetivo es generar un archivo Markdown `v1.0.md` para esta pista con el siguiente formato exacto:
+      
+      # Audio #{id_pista}
+      
+      ## 1. Personajes
+      
+      (Aquí debes armar una tabla de Personajes IDÉNTICA en estructura al catálogo, PERO INCLUYENDO EXCLUSIVAMENTE a los personajes que intervienen en los subtítulos de esta pista, más la infaltable fila de 'P00 Música / Ambiente').
+      
+      ## 2. Subtítulos
+      
+      (Aquí la tabla de subtítulos)
       
       REGLAS ESTRICTAS PARA LA TABLA 2:
-      - Si la tabla de Subtítulos del archivo original arranca con una fila inicial de P00 pre-cargada por el humano, DEBES MANTENERLA como la fila número 1.
       - Para cada línea de la TRANSCRIPCION, debes colocar:
-        - MARCA: El tag de tiempo exacto provisto en la entrada (ej. `[101.00.00.00]`).
+        - MARCA: El tag de tiempo exacto provisto en la entrada (ej. `[#{id_pista}.00.00.00]`).
         - IDP: El ID de personaje (P01, P02, etc.) deducido leyendo el contexto de transcripción y cruzándolo con la Tabla 1. (Usa `P00` si el texto indica Música o Efectos).
         - SUBTITULO: El texto transcrito sin alterar.
-      - DEBES devolver exactamente el archivo Markdown completo con las dos tablas.
+      - DEBES devolver exactamente el archivo Markdown completo con ambas tablas.
       - DEBES añadir TODAS las líneas transcritas a la Tabla 2. Ninguna puede quedar afuera.
       - Solo devuelve el crudo markdown formateado. No uses el bloque delimitador de lenguaje ```markdown.
     PROMPT
 
-    user_prompt = "--- ARCHIVO MARKDOWN (`v0.1.md`) ---\n#{md_content}\n\n--- TRANSCRIPCIÓN CON MARCAS EXACTAS ---\n#{whisper_texto}"
+    user_prompt = "--- CATÁLOGO GLOBAL DE PERSONAJES ---\n#{md_content}\n\n--- TRANSCRIPCIÓN CON MARCAS EXACTAS ---\n#{whisper_texto}"
 
     begin
       respuesta = GroqClient.chat(system_prompt, user_prompt)
