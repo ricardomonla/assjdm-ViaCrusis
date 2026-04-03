@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.8.8' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Modal inline (vcbyModal): reemplazo total de alert/prompt nativos por modales integrados al sitio.',
+            'Director: click en línea solo posiciona audio sin auto-play (evita scroll involuntario al editar).',
+            'Nuevo jss/modal.js: vcbyAlert (success/error/info), vcbyPrompt, vcbyConfirm — API Promise-based.',
+        ]
+    ],
     '26.8.7' => [
         'date' => '2026-04-03',
         'changes' => [
