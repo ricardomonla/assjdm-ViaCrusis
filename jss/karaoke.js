@@ -206,12 +206,22 @@ document.addEventListener('DOMContentLoaded', function() {
             bodyDiv.className = 'cue-group-body';
             
             group.cues.forEach(function(cue, localIdx) {
-                // Time tag (visible solo con time-edit-mode activo)
+                // Time tag con nudge ◂ ▸ (visible solo con time-edit-mode activo)
                 var timeTag = document.createElement('span');
                 timeTag.className = 'cue-line-time';
-                timeTag.textContent = cue.startTime.toFixed(1);
-                timeTag.title = 'Click para editar';
-                timeTag.addEventListener('click', (function(c, tag) {
+                
+                var nudgeLeft = document.createElement('span');
+                nudgeLeft.className = 'time-nudge';
+                nudgeLeft.textContent = '◂';
+                nudgeLeft.addEventListener('click', (function(c, container) {
+                    return function(e) { e.stopPropagation(); nudgeTime(c, container, -0.1); };
+                })(cue, timeTag));
+                
+                var timeVal = document.createElement('span');
+                timeVal.className = 'time-val';
+                timeVal.textContent = cue.startTime.toFixed(1);
+                timeVal.title = 'Click para editar valor';
+                timeVal.addEventListener('click', (function(c, tag, valEl) {
                     return function(e) {
                         e.stopPropagation();
                         if (tag.querySelector('input')) return;
@@ -219,44 +229,39 @@ document.addEventListener('DOMContentLoaded', function() {
                         var input = document.createElement('input');
                         input.type = 'number';
                         input.step = '0.1';
-                        input.value = c.startTime;
+                        input.value = c.startTime.toFixed(1);
                         input.className = 'cue-time-input';
-                        tag.textContent = '';
-                        tag.appendChild(input);
+                        valEl.textContent = '';
+                        valEl.appendChild(input);
                         input.focus();
                         input.select();
                         
                         function applyTime() {
                             var newTime = parseFloat(input.value);
                             if (isNaN(newTime) || newTime === oldTime) {
-                                tag.textContent = c.startTime.toFixed(1);
+                                valEl.textContent = c.startTime.toFixed(1);
                                 return;
                             }
-                            // Actualizar SOLO en memoria
-                            c.startTime = newTime;
-                            if (scriptData[c._originalIndex]) {
-                                scriptData[c._originalIndex].startTime = newTime;
-                            }
-                            tag.textContent = newTime.toFixed(1);
-                            tag.classList.add('cue-time-saved');
-                            setTimeout(function() { tag.classList.remove('cue-time-saved'); }, 1200);
-                            
-                            // Acumular cambio pendiente
-                            if (!window._pendingTimeChanges) window._pendingTimeChanges = [];
-                            window._pendingTimeChanges.push({
-                                cue_index: c._originalIndex,
-                                field: 'startTime',
-                                value: newTime
-                            });
-                            showCommitButton();
+                            applyTimeChange(c, newTime, valEl);
                         }
                         input.addEventListener('blur', applyTime);
                         input.addEventListener('keydown', function(ev) {
                             if (ev.key === 'Enter') { ev.preventDefault(); input.blur(); }
-                            if (ev.key === 'Escape') { tag.textContent = c.startTime.toFixed(1); }
+                            if (ev.key === 'Escape') { valEl.textContent = c.startTime.toFixed(1); }
                         });
                     };
+                })(cue, timeTag, timeVal));
+                
+                var nudgeRight = document.createElement('span');
+                nudgeRight.className = 'time-nudge';
+                nudgeRight.textContent = '▸';
+                nudgeRight.addEventListener('click', (function(c, container) {
+                    return function(e) { e.stopPropagation(); nudgeTime(c, container, +0.1); };
                 })(cue, timeTag));
+                
+                timeTag.appendChild(nudgeLeft);
+                timeTag.appendChild(timeVal);
+                timeTag.appendChild(nudgeRight);
                 bodyDiv.appendChild(timeTag);
                 
                 var lineSpan = document.createElement('span');
@@ -269,9 +274,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     return function() {
                         if (pendingClickTimeout) clearTimeout(pendingClickTimeout);
                         pendingClickTimeout = setTimeout(function() {
-                            audioPlayer.currentTime = c.startTime;
-                            if (audioPlayer.paused) audioPlayer.play();
-                            isUserScrolling = false;
+                            if (window._stampMode) {
+                                // STAMP: fijar startTime de este cue al tiempo actual del audio
+                                stampCueTime(c);
+                            } else {
+                                audioPlayer.currentTime = c.startTime;
+                                if (audioPlayer.paused) audioPlayer.play();
+                                isUserScrolling = false;
+                            }
                         }, 400);
                     };
                 })(cue));
@@ -388,9 +398,83 @@ document.addEventListener('DOMContentLoaded', function() {
         if (btn) {
             var active = document.body.classList.contains('time-edit-mode');
             btn.classList.toggle('btn-active', active);
-            btn.textContent = active ? '⏱ Tiempos ✓' : '⏱ Tiempos';
+            btn.textContent = active ? '⏱✓' : '⏱';
         }
     };
+
+    // ===== DIRECTOR: Stamp Mode (Modo Marcaje) =====
+    window._stampMode = false;
+
+    window.toggleStampMode = function() {
+        window._stampMode = !window._stampMode;
+        document.body.classList.toggle('stamp-mode', window._stampMode);
+        var btn = document.getElementById('btn-stamp-toggle');
+        if (btn) {
+            btn.classList.toggle('btn-active', window._stampMode);
+            btn.textContent = window._stampMode ? '🎯✓' : '🎯';
+        }
+        // Al activar stamp, activar también time-edit-mode automáticamente
+        if (window._stampMode && !document.body.classList.contains('time-edit-mode')) {
+            window.toggleTimeEdit();
+        }
+    };
+
+    // ===== DIRECTOR: Helpers de tiempo =====
+    function applyTimeChange(cue, newTime, displayEl) {
+        cue.startTime = newTime;
+        if (scriptData[cue._originalIndex]) {
+            scriptData[cue._originalIndex].startTime = newTime;
+        }
+        if (displayEl) {
+            displayEl.textContent = newTime.toFixed(1);
+            displayEl.classList.add('cue-time-saved');
+            setTimeout(function() { displayEl.classList.remove('cue-time-saved'); }, 800);
+        }
+        if (!window._pendingTimeChanges) window._pendingTimeChanges = [];
+        window._pendingTimeChanges.push({
+            cue_index: cue._originalIndex,
+            field: 'startTime',
+            value: newTime
+        });
+        showCommitButton();
+    }
+
+    function nudgeTime(cue, timeTagEl, delta) {
+        var newTime = Math.max(0, parseFloat((cue.startTime + delta).toFixed(1)));
+        var valEl = timeTagEl.querySelector('.time-val');
+        applyTimeChange(cue, newTime, valEl);
+    }
+
+    function stampCueTime(cue) {
+        var newTime = parseFloat(audioPlayer.currentTime.toFixed(1));
+        var lineEl = document.getElementById('cue-' + cue._originalIndex);
+        var valEl = null;
+        if (lineEl) {
+            var prev = lineEl.previousElementSibling;
+            while (prev) {
+                if (prev.classList && prev.classList.contains('cue-line-time')) {
+                    valEl = prev.querySelector('.time-val');
+                    break;
+                }
+                prev = prev.previousElementSibling;
+            }
+            lineEl.classList.add('cue-line-stamped');
+            setTimeout(function() { lineEl.classList.remove('cue-line-stamped'); }, 600);
+        }
+        applyTimeChange(cue, newTime, valEl);
+    }
+
+    // ===== DIRECTOR: Live time counter =====
+    audioPlayer.addEventListener('timeupdate', function() {
+        var display = document.getElementById('live-time-display');
+        if (display) {
+            var t = audioPlayer.currentTime;
+            var m = Math.floor(t / 60).toString().padStart(2, '0');
+            var s = Math.floor(t % 60).toString().padStart(2, '0');
+            var ms = Math.floor((t % 1) * 10);
+            display.textContent = m + ':' + s + '.' + ms;
+        }
+    });
 
     // ===== DIRECTOR: Edición In-Place =====
     

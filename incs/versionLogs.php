@@ -1,5 +1,15 @@
 <?php
 $versionLogs = [
+    '26.8.7' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Director: Modo Marcaje (🎯) — tap en línea durante reproducción fija su startTime al instante actual.',
+            'Director: Nudge ◂/▸ por frase — ajuste ±0.1s con un click sin abrir editor.',
+            'Director: Contador en vivo del tiempo de reproducción en la toolbar.',
+            'Director: Stamp mode activa time-edit-mode automáticamente.',
+            'Refactor: applyTimeChange centralizado para stamp/nudge/edit manual.',
+        ]
+    ],
     '26.8.6' => [
         'date' => '2026-04-03',
         'changes' => [

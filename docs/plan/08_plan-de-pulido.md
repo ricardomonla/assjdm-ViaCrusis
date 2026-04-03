@@ -15,7 +15,7 @@
 | Fase | Descripción | Estado |
 |:---|:---|:---|
 | 1 | Sincronía Cronológica de Personajes | ⏳ (80%) |
-| 2 | Tunning de Precision en Tiempos de Subtítulos | 📋 |
+| 2 | Tunning de Precision en Tiempos de Subtítulos | ⏳ (herramientas listas) |
 | 3 | Acotaciones Escénicas y Descriptivas Intermedias | 📋 |
 | 4 | Sistema de Perfiles (Publico / Director) | ✅ |
 | 5 | Burbujas Agrupadas por Personaje (Karaoke UX) | ⏳ |
@@ -39,7 +39,10 @@ El catálogo de personajes actual (`audios/subs/00_Personajes.md`) fue creciendo
 
 ## Fase 2: Tunning de Precision en Tiempos de Subtítulos
 El emparejamiento de los tiempos iniciales (`startTime`) en general es robusto, pero el auto-karaoke exige precisión perfecta para el corte interlineal.
-- [ ] Navegar los audios observando la interfaz y ajustando milimétricamente las décimas de segundo (o re-ajustando la duración total) requeridas para lograr el feeling natural.
+- [x] Implementar Modo Marcaje (🎯 Stamp): tap en línea durante reproducción fija startTime al instante actual del audio.
+- [x] Implementar Nudge ◂/▸: ajuste ±0.1s por frase sin abrir editor.
+- [x] Contador en vivo del tiempo de reproducción en la toolbar Director.
+- [ ] Navegar los audios observando la interfaz y ajustando milimétricamente las décimas de segundo requeridas para lograr el feeling natural.
 - [ ] Auditar desvíos menores o "silencios muy largos".
 
 ## Fase 3: Acotaciones Escénicas y Descriptivas Intermedias
@@ -76,3 +79,4 @@ Cualquier avance en este plan se registrará actualizando estos `checkboxes` a m
 | v26.8.2 | 2026-04-02 | Serie 200 completa (201-207 v4.0). Script de reordenamiento cronológico ejecutado en 24 pistas. P26 MUJERES JERUSALEN agregado. |
 | v26.8.3 | 2026-04-02 | Fase 4.1 completada: `jss/perfiles.js`, modal dual en `footer.php`, CSS director-mode, karaoke.js con IDP/data-attrs, compilador `compilar_json_v4.py`, JSON recompilado con `idp` (24 tracks, 601 cues). |
 | v26.8.4 | 2026-04-03 | Fase 4 COMPLETADA: Panel notas, edicion in-place, commit local, acotaciones P00 insertables. Colores por personaje para ambos perfiles. |
+| v26.8.7 | 2026-04-03 | Fase 2 herramientas: Modo Marcaje (🎯 stamp), Nudge ◂▸ ±0.1s, contador live en toolbar. applyTimeChange centralizado. |

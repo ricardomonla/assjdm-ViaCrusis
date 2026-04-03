@@ -84,13 +84,15 @@ include '../incs/header.php';
         <div class="director-toolbar director-only" id="director-panel" style="display:none">
             <div class="dtool-bar">
                 <span class="dtool-track-info">
-                    <?= htmlspecialchars($audio['id']) ?> (<?= ($currentIndex + 1) ?>/<?= count($audioFiles) ?>)
-                </span>
-                <div class="dtool-actions">
-                    <button class="dtool-btn" id="btn-time-toggle" onclick="toggleTimeEdit()" title="Marcas de tiempo">⏱</button>
-                    <button class="dtool-btn" onclick="toggleDirectorNotes()" title="Notas" id="btn-notes-toggle">📝</button>
-                    <button class="dtool-btn" onclick="shareTrackWhatsApp()" title="WhatsApp">📲</button>
-                </div>
+                <?= htmlspecialchars($audio['id']) ?> (<?= ($currentIndex + 1) ?>/<?= count($audioFiles) ?>)
+            </span>
+            <span class="dtool-live-time" id="live-time-display" title="Tiempo actual del audio">00:00.0</span>
+            <div class="dtool-actions">
+                <button class="dtool-btn" id="btn-stamp-toggle" onclick="toggleStampMode()" title="Modo marcaje: tap en línea = fijar tiempo">🎯</button>
+                <button class="dtool-btn" id="btn-time-toggle" onclick="toggleTimeEdit()" title="Marcas de tiempo">⏱</button>
+                <button class="dtool-btn" onclick="toggleDirectorNotes()" title="Notas" id="btn-notes-toggle">📝</button>
+                <button class="dtool-btn" onclick="shareTrackWhatsApp()" title="WhatsApp">📲</button>
+            </div>
             </div>
             <div id="director-notes-body" class="dtool-notes" style="display:none">
                 <textarea id="director-notes" class="dtool-notes-textarea" 
