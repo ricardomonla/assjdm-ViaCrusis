@@ -73,7 +73,7 @@ function perfilSelectPublico() {
 
 function perfilLoginDirector() {
     const key = document.getElementById('perfil-key').value;
-    fetch('../admin_check.php', {
+    fetch('https://rmonla.duckdns.org/vcby/admin_check.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: 'key=' + encodeURIComponent(key)

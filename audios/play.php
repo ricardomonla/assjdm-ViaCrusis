@@ -158,6 +158,7 @@ include '../incs/header.php';
             window.firstAudioId = '<?= htmlspecialchars($firstAudioId) ?>';
             window.appVersion = '<?= htmlspecialchars($latestVersion) ?>';
             window.audioId = '<?= htmlspecialchars($audio['id']) ?>';
+            window.apiBase = 'https://rmonla.duckdns.org/vcby/audios/';
             window.nextAudioId = '<?= $nextAudio ? htmlspecialchars($nextAudio['id']) : "" ?>';
             window.prevAudioId = '<?= $prevAudio ? htmlspecialchars($prevAudio['id']) : "" ?>';
             

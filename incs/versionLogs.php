@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.8.11' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Fix: API URLs absolutas — save/commit/login siempre van a rmonla.duckdns.org (funciona desde VPN, localhost, etc.).',
+        ]
+    ],
     '26.8.10' => [
         'date' => '2026-04-03',
         'changes' => [

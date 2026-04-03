@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         fd.append('cue_index', lastIdx);
                         fd.append('field', '_insert');
                         fd.append('value', text);
-                        fetch('save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
+                        fetch((window.apiBase||'') + 'save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
                         .then(function(r) { return r.json(); })
                         .then(function(d) { if (d.ok) { showCommitButton(); location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
                         .catch(function() { vcbyAlert('Error de conexión', 'error'); });
@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 formData.append('field', 'text');
                 formData.append('value', newText);
                 
-                fetch('save_changes.php', {
+                fetch((window.apiBase||'') + 'save_changes.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: formData.toString()
@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     fd.append('cue_index', change.cue_index);
                     fd.append('field', change.field);
                     fd.append('value', change.value);
-                    return fetch('save_changes.php', {
+                    return fetch((window.apiBase||'') + 'save_changes.php', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: fd.toString()
@@ -632,7 +632,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 fd.append('field', 'text');
                 fd.append('value', scriptData[0] ? scriptData[0].text : '');
                 fd.append('commit_msg', msg);
-                return fetch('save_changes.php', {
+                return fetch((window.apiBase||'') + 'save_changes.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: fd.toString()
