@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.8.12' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Fix: URLs relativas restauradas (funciona en local y producción).',
+            'Fix: Errores de conexión ahora muestran detalle real del fallo.',
+            'apiBase configurable: vacío=relativo, override para cross-origin.',
+        ]
+    ],
     '26.8.11' => [
         'date' => '2026-04-03',
         'changes' => [

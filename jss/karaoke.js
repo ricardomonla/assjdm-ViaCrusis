@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         fetch((window.apiBase||'') + 'save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
                         .then(function(r) { return r.json(); })
                         .then(function(d) { if (d.ok) { showCommitButton(); location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
-                        .catch(function() { vcbyAlert('Error de conexión', 'error'); });
+                .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
                     });
                 };
             })(lastCue._originalIndex));
@@ -556,9 +556,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         vcbyAlert('Error: ' + (data.msg || 'No se pudo guardar'), 'error');
                     }
                 })
-                .catch(function() {
+                .catch(function(err) {
                     textEl.innerHTML = originalText;
-                    vcbyAlert('Error de conexión al guardar', 'error');
+                    vcbyAlert('Error: ' + (err.message || err), 'error');
                 });
             }
             
@@ -649,8 +649,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     vcbyAlert('Error: ' + (data.msg || 'No se pudo commitear'), 'error');
                 }
             })
-            .catch(function() {
-                vcbyAlert('Error de conexión', 'error');
+            .catch(function(err) {
+                vcbyAlert('Error: ' + (err.message || err), 'error');
             });
         });
     };
