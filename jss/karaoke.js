@@ -277,7 +277,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             if (window._stampMode) {
                                 // STAMP: fijar startTime de este cue al tiempo actual del audio
                                 stampCueTime(c);
+                            } else if (window.VCBYPerfiles && window.VCBYPerfiles.isDirector()) {
+                                // DIRECTOR: solo posicionar, NO reproducir (evita scroll involuntario)
+                                audioPlayer.currentTime = c.startTime;
                             } else {
+                                // PUBLICO/ACTOR: saltar y reproducir
                                 audioPlayer.currentTime = c.startTime;
                                 if (audioPlayer.paused) audioPlayer.play();
                                 isUserScrolling = false;
