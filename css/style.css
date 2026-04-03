@@ -638,16 +638,94 @@ body.director-mode .director-only-inline {
     background-color: #fef9ed;
 }
 
-/* ===== Colores por personaje (bordes) — ambos perfiles ===== */
-.cue-block[data-character-id="P01"] { border-left-color: #2c3e50; }  /* NARRADOR */
-.cue-block[data-character-id="P02"] { border-left-color: #c0392b; }  /* JESÚS */
-.cue-block[data-character-id="P03"] { border-left-color: #8e44ad; }  /* MARÍA */
-.cue-block[data-character-id="P04"] { border-left-color: #d35400; }  /* PILATOS */
-.cue-block[data-character-id="P05"] { border-left-color: #7f8c8d; }  /* JUDAS */
-.cue-block[data-character-id="P06"] { border-left-color: #27ae60; }  /* CAIFÁS */
-.cue-block[data-character-id="P07"] { border-left-color: #2980b9; }  /* PUEBLO */
-.cue-block[data-character-id="P00"] { border-left-color: #95a5a6; }  /* AMBIENTE */
-.cue-block[data-character-id="P99"] { border-left-color: #e74c3c; }  /* CORO */
+/* ===== Colores por personaje (bordes) -- ambos perfiles ===== */
+.cue-group[data-character-id="P01"] { border-left-color: #2c3e50; }  /* NARRADOR */
+.cue-group[data-character-id="P02"] { border-left-color: #c0392b; }  /* JESUS */
+.cue-group[data-character-id="P03"] { border-left-color: #8e44ad; }  /* MARIA */
+.cue-group[data-character-id="P04"] { border-left-color: #d35400; }  /* PILATOS */
+.cue-group[data-character-id="P05"] { border-left-color: #7f8c8d; }  /* JUDAS */
+.cue-group[data-character-id="P06"] { border-left-color: #27ae60; }  /* CAIFAS */
+.cue-group[data-character-id="P07"] { border-left-color: #2980b9; }  /* PUEBLO */
+.cue-group[data-character-id="P00"] { border-left-color: #95a5a6; }  /* AMBIENTE */
+.cue-group[data-character-id="P99"] { border-left-color: #e74c3c; }  /* CORO */
+
+/* ===== BURBUJAS AGRUPADAS ===== */
+.cue-group {
+    background: #faf6f0;
+    border-left: 4px solid #c4b494;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+}
+
+.cue-group-active {
+    opacity: 1;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(128, 109, 90, 0.15);
+}
+
+.cue-group-past {
+    opacity: 0.35;
+}
+
+.cue-group-upcoming {
+    opacity: 0.6;
+}
+
+.cue-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(196, 180, 148, 0.3);
+}
+
+.cue-group-header .cue-character {
+    font-weight: bold;
+    font-size: 0.85em;
+    font-variant: small-caps;
+    color: #2d2418;
+    letter-spacing: 0.5px;
+}
+
+.cue-group-header .cue-time {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7em;
+    color: #b0a693;
+}
+
+.cue-group-body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #2d2418;
+}
+
+/* ===== LINEAS INDIVIDUALES DENTRO DE BURBUJA ===== */
+.cue-line {
+    transition: all 0.3s ease;
+    border-radius: 3px;
+    padding: 1px 2px;
+}
+
+.cue-line-active {
+    background: rgba(210, 170, 90, 0.25);
+    color: #1a0f05;
+    font-weight: 500;
+}
+
+.cue-line-past {
+    opacity: 0.45;
+    color: #7a6b5a;
+}
+
+.cue-line-upcoming {
+    opacity: 0.7;
+    color: #4a3b2a;
+}
 
 /* Director: IDP badge */
 .cue-idp {
@@ -782,12 +860,12 @@ body.director-mode .cue-time-range {
     box-shadow: 0 0 0 3px rgba(128, 109, 90, 0.15);
 }
 
-body.director-mode .cue-text {
+body.director-mode .cue-line {
     cursor: text;
 }
 
-body.director-mode .cue-text:hover {
-    background: rgba(128, 109, 90, 0.05);
+body.director-mode .cue-line:hover {
+    background: rgba(128, 109, 90, 0.08);
     border-radius: 3px;
 }
 

@@ -107,13 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function renderScript(data, durationsData) {
-        scriptContainer.innerHTML = ''; // Limpiar
+        scriptContainer.innerHTML = '';
         
-        // Función interna auxiliar
         function getGlobalOffset(targetId) {
-            let offset = 0;
-            const sortedKeys = Object.keys(durationsData).sort();
-            for (const key of sortedKeys) {
+            var offset = 0;
+            var sortedKeys = Object.keys(durationsData).sort();
+            for (var k = 0; k < sortedKeys.length; k++) {
+                var key = sortedKeys[k];
                 if (key.match(/^[1-4]/)) {
                     if (key === targetId) break;
                     offset += durationsData[key];
@@ -122,164 +122,154 @@ document.addEventListener('DOMContentLoaded', function() {
             return offset;
         }
         
-        let lastCharacter = null;
+        // Paso 1: Agrupar cues consecutivos del mismo personaje
+        var groups = [];
+        var currentGroup = null;
         
-        data.forEach((cue, index) => {
-            const block = document.createElement('div');
-            let extraClass = '';
-            if (cue.isNextAudio) extraClass = 'cue-external-audio cue-next-audio';
-            if (cue.isPrevAudio) extraClass = 'cue-external-audio cue-prev-audio';
-            block.className = 'cue-block cue-inactive ' + extraClass;
-            block.id = `cue-${index}`;
+        data.forEach(function(cue, index) {
+            cue._originalIndex = index;
             
-            // Data attributes para Director mode (CSS coloring + IDP display)
-            if (cue.idp) {
-                block.setAttribute('data-character-id', cue.idp);
+            if (cue.isNextAudio || cue.isPrevAudio) {
+                if (currentGroup) { groups.push(currentGroup); currentGroup = null; }
+                groups.push({ character: cue.character, idp: cue.idp || '', cues: [cue], isExternal: true });
+                return;
             }
             
-            const headerDiv = document.createElement('div');
-            headerDiv.className = 'cue-header';
-            
-            const timeSpan = document.createElement('span');
-            timeSpan.className = 'cue-time';
-            
-            // Identificar qué ID fuente es el cue:
-            let cueId = window.audioId.split('_')[0];
-            if (cue.isNextAudio && window.nextAudioId) cueId = window.nextAudioId.split('_')[0];
-            if (cue.isPrevAudio && window.prevAudioId) cueId = window.prevAudioId.split('_')[0];
-            
-            // Tiempo Global: Offset Sumado + cue.startTime
-            const gOffset = getGlobalOffset(cueId);
-            const globalTime = gOffset + cue.startTime;
-            const globalH = Math.floor(globalTime / 3600).toString().padStart(2, '0');
-            const globalM = Math.floor((globalTime % 3600) / 60).toString().padStart(2, '0');
-            const globalS = Math.floor(globalTime % 60).toString().padStart(2, '0');
-            
-            // Tiempo local del cue para Director
-            const localS = Math.floor(cue.startTime).toString();
-            
-            timeSpan.innerHTML = `<strong>${globalH}:${globalM}:${globalS}</strong> <span style="opacity:0.5; font-size: 0.9em; margin-left: 6px;">[${cueId}]</span><span class="cue-time-range"> ${localS}s</span>`;
-            
-            const characterSpan = document.createElement('span');
-            characterSpan.className = 'cue-character';
-            
-            // IDP Badge (Director-only, hidden via CSS in Public)
-            let idpHtml = '';
-            if (cue.idp) {
-                idpHtml = `<span class="cue-idp">${cue.idp}</span>`;
-            }
-            
-            // Lógica de Agrupación de Interlocutores
-            if (cue.character === lastCharacter && !cue.isNextAudio && !cue.isPrevAudio) {
-                // Si es el mismo de la línea anterior que no escriba nada
-                characterSpan.innerHTML = '';
-                // Optional: Quitar el border bottom del header para dar sensación de continuidad
-                headerDiv.style.borderBottom = 'none';
-                headerDiv.style.marginBottom = '2px';
-                headerDiv.style.paddingBottom = '0px';
+            var cueIdp = cue.idp || '';
+            if (currentGroup && !currentGroup.isExternal && currentGroup.idp === cueIdp && currentGroup.character === cue.character) {
+                currentGroup.cues.push(cue);
             } else {
-                characterSpan.innerHTML = idpHtml + cue.character;
-            }
-            
-            // Solo actualizamos lastCharacter si no es un preview de external audio (para no romper la cadena natural)
-            if (!cue.isNextAudio && !cue.isPrevAudio) {
-                lastCharacter = cue.character;
-            }
-            
-            headerDiv.appendChild(timeSpan);
-            headerDiv.appendChild(characterSpan);
-            
-            const textDiv = document.createElement('div');
-            textDiv.className = 'cue-text';
-            textDiv.innerHTML = cue.text;
-            
-            block.appendChild(headerDiv);
-            block.appendChild(textDiv);
-            
-            block.addEventListener('click', (e) => {
-                // Prevenir que el click bubble up e interfiera (opcional, dejamos que suba para doble tap general)
-                
-                // En lugar de ejecutar inmediato, agendamos el single_click para despues de 400ms.
-                // Si ocurre otro tap antes de 400ms, el global del scriptContainer cancelará este timeout.
-                if (pendingClickTimeout) clearTimeout(pendingClickTimeout);
-                
-                pendingClickTimeout = setTimeout(() => {
-                    // Acción de click normal:
-                    if (cue.isNextAudio) {
-                        window.location.href = `play.php?id=${window.nextAudioId}&v=${window.appVersion || Date.now()}`;
-                        return;
-                    }
-                    if (cue.isPrevAudio) {
-                        window.location.href = `play.php?id=${window.prevAudioId}&v=${window.appVersion || Date.now()}`;
-                        return;
-                    }
-                    
-                    // Salto temporal dentro del audio actual
-                    audioPlayer.currentTime = cue.startTime;
-                    if(audioPlayer.paused) {
-                        audioPlayer.play();
-                    }
-                    isUserScrolling = false; 
-                }, 400); 
-            });
-            
-            scriptContainer.appendChild(block);
-            
-            // Director: botón "+" entre cues para insertar acotaciones P00
-            if (!cue.isNextAudio && !cue.isPrevAudio) {
-                const insertBtn = document.createElement('div');
-                insertBtn.className = 'cue-insert-row director-only';
-                insertBtn.style.display = 'none'; // hidden by default, perfiles.js will show
-                insertBtn.innerHTML = '<button class="btn-insert-cue" title="Insertar acotación escénica">＋</button>';
-                insertBtn.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const text = prompt('Acotación escénica (P00):', '*(descripción de la escena)*');
-                    if (!text) return;
-                    
-                    const trackId = window.audioId.split('_')[0];
-                    const formData = new URLSearchParams();
-                    formData.append('track_id', trackId);
-                    formData.append('cue_index', index);
-                    formData.append('field', '_insert');
-                    formData.append('value', text);
-                    
-                    fetch('save_changes.php', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: formData.toString()
-                    })
-                    .then(function(r) { return r.json(); })
-                    .then(function(data) {
-                        if (data.ok) {
-                            showCommitButton();
-                            location.reload(); // Recargar para ver el nuevo cue
-                        } else {
-                            alert('Error: ' + (data.msg || 'No se pudo insertar'));
-                        }
-                    })
-                    .catch(function() { alert('Error de conexión'); });
-                });
-                scriptContainer.appendChild(insertBtn);
+                if (currentGroup) groups.push(currentGroup);
+                currentGroup = { character: cue.character, idp: cueIdp, cues: [cue], isExternal: false };
             }
         });
+        if (currentGroup) groups.push(currentGroup);
         
-        // Arranca a escuchar el tiempo
+        // Paso 2: Renderizar grupos como burbujas
+        groups.forEach(function(group) {
+            var groupDiv = document.createElement('div');
+            var firstCue = group.cues[0];
+            var lastCue = group.cues[group.cues.length - 1];
+            
+            if (group.isExternal) {
+                var extraClass = firstCue.isNextAudio ? 'cue-next-audio' : 'cue-prev-audio';
+                groupDiv.className = 'cue-group cue-external-audio ' + extraClass;
+                groupDiv.id = 'cue-' + firstCue._originalIndex;
+                if (firstCue.idp) groupDiv.setAttribute('data-character-id', firstCue.idp);
+                
+                var headerExt = document.createElement('div');
+                headerExt.className = 'cue-group-header';
+                headerExt.innerHTML = '<span class="cue-character">' + firstCue.character + '</span>';
+                groupDiv.appendChild(headerExt);
+                
+                var bodyExt = document.createElement('div');
+                bodyExt.className = 'cue-group-body';
+                var lineExt = document.createElement('span');
+                lineExt.className = 'cue-line';
+                lineExt.setAttribute('data-cue-index', firstCue._originalIndex);
+                lineExt.innerHTML = firstCue.text;
+                bodyExt.appendChild(lineExt);
+                groupDiv.appendChild(bodyExt);
+                
+                groupDiv.addEventListener('click', function() {
+                    if (firstCue.isNextAudio) window.location.href = 'play.php?id=' + window.nextAudioId + '&v=' + (window.appVersion || Date.now());
+                    else if (firstCue.isPrevAudio) window.location.href = 'play.php?id=' + window.prevAudioId + '&v=' + (window.appVersion || Date.now());
+                });
+                scriptContainer.appendChild(groupDiv);
+                return;
+            }
+            
+            // Grupo normal
+            groupDiv.className = 'cue-group';
+            groupDiv.id = 'group-' + firstCue._originalIndex;
+            if (group.idp) groupDiv.setAttribute('data-character-id', group.idp);
+            
+            // Header: nombre + IDP + tiempo
+            var headerDiv = document.createElement('div');
+            headerDiv.className = 'cue-group-header';
+            
+            var idpHtml = group.idp ? '<span class="cue-idp">' + group.idp + '</span>' : '';
+            var cueId = window.audioId.split('_')[0];
+            var gOffset = getGlobalOffset(cueId);
+            var globalTime = gOffset + firstCue.startTime;
+            var gH = Math.floor(globalTime / 3600).toString().padStart(2, '0');
+            var gM = Math.floor((globalTime % 3600) / 60).toString().padStart(2, '0');
+            var gS = Math.floor(globalTime % 60).toString().padStart(2, '0');
+            
+            headerDiv.innerHTML = '<span class="cue-character">' + idpHtml + group.character + '</span>' +
+                '<span class="cue-time"><strong>' + gH + ':' + gM + ':' + gS + '</strong>' +
+                '<span class="cue-time-range"> ' + Math.floor(firstCue.startTime) + 's-' + Math.floor(lastCue.startTime) + 's</span></span>';
+            groupDiv.appendChild(headerDiv);
+            
+            // Body: lineas como spans
+            var bodyDiv = document.createElement('div');
+            bodyDiv.className = 'cue-group-body';
+            
+            group.cues.forEach(function(cue, localIdx) {
+                var lineSpan = document.createElement('span');
+                lineSpan.className = 'cue-line cue-line-upcoming';
+                lineSpan.id = 'cue-' + cue._originalIndex;
+                lineSpan.setAttribute('data-cue-index', cue._originalIndex);
+                lineSpan.innerHTML = cue.text;
+                
+                lineSpan.addEventListener('click', (function(c) {
+                    return function() {
+                        if (pendingClickTimeout) clearTimeout(pendingClickTimeout);
+                        pendingClickTimeout = setTimeout(function() {
+                            audioPlayer.currentTime = c.startTime;
+                            if (audioPlayer.paused) audioPlayer.play();
+                            isUserScrolling = false;
+                        }, 400);
+                    };
+                })(cue));
+                
+                bodyDiv.appendChild(lineSpan);
+                if (localIdx < group.cues.length - 1) {
+                    bodyDiv.appendChild(document.createTextNode(' '));
+                }
+            });
+            
+            groupDiv.appendChild(bodyDiv);
+            scriptContainer.appendChild(groupDiv);
+            
+            // Director: boton "+" despues de cada grupo
+            var insertBtn = document.createElement('div');
+            insertBtn.className = 'cue-insert-row director-only';
+            insertBtn.style.display = 'none';
+            insertBtn.innerHTML = '<button class="btn-insert-cue" title="Insertar acotacion">+</button>';
+            insertBtn.querySelector('.btn-insert-cue').addEventListener('click', (function(lastIdx) {
+                return function(e) {
+                    e.stopPropagation();
+                    var text = prompt('Acotacion escenica (P00):', '*(descripcion de la escena)*');
+                    if (!text) return;
+                    var trackId = window.audioId.split('_')[0];
+                    var fd = new URLSearchParams();
+                    fd.append('track_id', trackId);
+                    fd.append('cue_index', lastIdx);
+                    fd.append('field', '_insert');
+                    fd.append('value', text);
+                    fetch('save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) { if (d.ok) { showCommitButton(); location.reload(); } else { alert('Error: ' + (d.msg || '')); } })
+                    .catch(function() { alert('Error de conexion'); });
+                };
+            })(lastCue._originalIndex));
+            scriptContainer.appendChild(insertBtn);
+        });
+        
         audioPlayer.addEventListener('timeupdate', updateKaraoke);
     }
     
     function updateKaraoke() {
-        const currentTime = audioPlayer.currentTime;
-        let foundIdx = -1;
+        var currentTime = audioPlayer.currentTime;
+        var foundIdx = -1;
         
-        // Buscar cual es el cue correspondiente
-        for (let i = 0; i < scriptData.length; i++) {
-            const cue = scriptData[i];
+        for (var i = 0; i < scriptData.length; i++) {
+            var cue = scriptData[i];
+            if (cue.isNextAudio || cue.isPrevAudio) continue;
             
-            if (cue.isNextAudio || cue.isPrevAudio) continue; 
-            
-            const nextStartTime = (i + 1 < scriptData.length && !scriptData[i+1].isNextAudio && !scriptData[i+1].isPrevAudio) 
-                                    ? scriptData[i + 1].startTime 
-                                    : Infinity;
+            var nextStartTime = (i + 1 < scriptData.length && !scriptData[i+1].isNextAudio && !scriptData[i+1].isPrevAudio)
+                ? scriptData[i + 1].startTime : Infinity;
             
             if (currentTime >= cue.startTime && currentTime < nextStartTime) {
                 foundIdx = i;
@@ -287,27 +277,49 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Si cambió el index activo
         if (foundIdx !== currentActiveIdx && foundIdx !== -1) {
-            for (let i = 0; i < scriptData.length; i++) {
-                const block = document.getElementById(`cue-${i}`);
-                if (block) {
-                    block.classList.remove('cue-active', 'cue-inactive', 'cue-past');
-                    if (i < foundIdx) {
-                        block.classList.add('cue-inactive', 'cue-past');
-                    } else if (i === foundIdx) {
-                        block.classList.add('cue-active');
-                    } else {
-                        block.classList.add('cue-inactive');
-                    }
+            // Actualizar todas las lineas
+            var allLines = scriptContainer.querySelectorAll('.cue-line[data-cue-index]');
+            for (var j = 0; j < allLines.length; j++) {
+                var line = allLines[j];
+                var lineIdx = parseInt(line.getAttribute('data-cue-index'));
+                line.classList.remove('cue-line-active', 'cue-line-past', 'cue-line-upcoming');
+                
+                if (lineIdx < foundIdx) {
+                    line.classList.add('cue-line-past');
+                } else if (lineIdx === foundIdx) {
+                    line.classList.add('cue-line-active');
+                } else {
+                    line.classList.add('cue-line-upcoming');
                 }
             }
             
-            const newBlock = document.getElementById(`cue-${foundIdx}`);
-            if (newBlock && !isUserScrolling) {
-                const blockTop = newBlock.offsetTop;
+            // Actualizar grupos (burbuja activa)
+            var allGroups = scriptContainer.querySelectorAll('.cue-group:not(.cue-external-audio)');
+            for (var g = 0; g < allGroups.length; g++) {
+                var grp = allGroups[g];
+                var hasActive = grp.querySelector('.cue-line-active');
+                var hasPast = grp.querySelector('.cue-line-past');
+                var hasUpcoming = grp.querySelector('.cue-line-upcoming');
+                
+                grp.classList.remove('cue-group-active', 'cue-group-past', 'cue-group-upcoming');
+                if (hasActive) {
+                    grp.classList.add('cue-group-active');
+                } else if (hasPast && !hasUpcoming) {
+                    grp.classList.add('cue-group-past');
+                } else if (!hasPast && hasUpcoming) {
+                    grp.classList.add('cue-group-upcoming');
+                } else if (hasPast) {
+                    grp.classList.add('cue-group-past');
+                }
+            }
+            
+            // Scroll al span activo
+            var activeLine = document.getElementById('cue-' + foundIdx);
+            if (activeLine && !isUserScrolling) {
+                var lineTop = activeLine.offsetTop;
                 scriptContainer.scrollTo({
-                    top: Math.max(0, blockTop - 25), // 25px de margen superior, reemplazando el centrado anterior
+                    top: Math.max(0, lineTop - 60),
                     behavior: 'smooth'
                 });
             }
@@ -318,26 +330,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== DIRECTOR: Edición In-Place =====
     
-    // Doble-click en texto de subtítulo para editar (solo Director)
+    // Doble-click en texto de subtitulo para editar (solo Director)
     scriptContainer.addEventListener('dblclick', function(e) {
         if (!window.VCBYPerfiles || !window.VCBYPerfiles.isDirector()) return;
         
-        // Buscar el .cue-text más cercano
-        const textEl = e.target.closest('.cue-text');
+        // Buscar el .cue-line mas cercano
+        var textEl = e.target.closest('.cue-line');
         if (!textEl) return;
         
-        // Ya está en edición?
+        // Ya esta en edicion?
         if (textEl.contentEditable === 'true') return;
         
-        // Encontrar el cue-block padre y su índice
-        const block = textEl.closest('.cue-block');
-        if (!block) return;
-        
-        const cueIdx = parseInt(block.id.replace('cue-', ''));
+        // Obtener indice del cue
+        var cueIdx = parseInt(textEl.getAttribute('data-cue-index'));
         if (isNaN(cueIdx)) return;
         
-        // Verificar que no sea cue externo (prev/next audio)
-        if (block.classList.contains('cue-external-audio')) return;
+        // Verificar que no sea cue externo
+        if (textEl.closest('.cue-external-audio')) return;
         
         // Pausar audio durante la edición
         audioPlayer.pause();
