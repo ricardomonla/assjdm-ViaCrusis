@@ -1,5 +1,15 @@
 <?php
 $versionLogs = [
+    '26.8.6' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Toolbar Director compacta: barra superior con iconos toggle.',
+            'Edicion de tiempos inline por frase (toggle activable).',
+            'Modelo offline-first: cambios locales + batch save al commitear.',
+            'Panel de notas desplegable minimalista.',
+            'Fase 5 COMPLETADA: burbujas agrupadas + toolbar + tiempos.',
+        ]
+    ],
     '26.8.5' => [
         'date' => '2026-04-03',
         'changes' => [

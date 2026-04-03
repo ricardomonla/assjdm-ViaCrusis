@@ -59,10 +59,12 @@ La interfaz actual tiene un solo punto de acceso sin diferenciación de roles. S
 > **Documento de diseño completo**: Ver propuesta detallada en la conversación de IA (2026-04-02).
 
 ## Fase 5: Burbujas Agrupadas por Personaje (Karaoke UX)
-La interfaz actual muestra un bloque separado por cada marca de tiempo, resultando visualmente pesada. Se propone agrupar las líneas consecutivas del mismo personaje en una sola burbuja, y avanzar el resaltado karaoke *dentro* de esa burbuja.
-- [ ] **5.1 Agrupación**: Renderizar una sola burbuja por cada bloque consecutivo del mismo `idp`. Dentro, cada línea es un `<span>` con su propio `data-cue-index`.
-- [ ] **5.2 Resaltado Interno**: Al avanzar el audio, el span activo se ilumina y los anteriores/posteriores se atenúan, sin cambiar de burbuja.
-- [ ] **5.3 Scroll Suave**: El autoscroll se ajusta al span activo dentro de la burbuja, no a la burbuja entera.
+La interfaz actual muestra un bloque separado por cada marca de tiempo, resultando visualmente pesada. Se propone agrupar las lineas consecutivas del mismo personaje en una sola burbuja, y avanzar el resaltado karaoke *dentro* de esa burbuja.
+- [x] **5.1 Agrupacion**: Renderizar una sola burbuja por cada bloque consecutivo del mismo `idp`. Dentro, cada linea es un `<span>` con su propio `data-cue-index`. ✅
+- [x] **5.2 Resaltado Interno**: Al avanzar el audio, el span activo se ilumina y los anteriores/posteriores se atenuan, sin cambiar de burbuja. ✅
+- [x] **5.3 Scroll Suave**: El autoscroll se ajusta al span activo dentro de la burbuja, no a la burbuja entera. ✅
+- [x] **5.4 Toolbar Director**: Barra compacta superior con toggles (Tiempos/Notas/WhatsApp). ✅
+- [x] **5.5 Edicion de Tiempos**: Tags inline editables por frase, modelo offline-first con batch save al commitear. ✅
 
 ---
 **Nota para la IA y Operador H.I.T.L:** 

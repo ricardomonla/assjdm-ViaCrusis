@@ -116,11 +116,11 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Version Actual:** `26.8.5` (Burbujas Agrupadas por Personaje)
+- **Version Actual:** `26.8.6` (Fase 5 COMPLETADA — Burbujas + Toolbar + Tiempos)
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
-- **Estado General:** Transcripcion H.I.T.L. Base COMPLETADA. Pulido Fino (Fase 1 80%). Fase 4 Perfiles COMPLETADA. Fase 5 Burbujas en progreso.
+- **Estado General:** Transcripcion H.I.T.L. Base COMPLETADA. Pulido Fino (Fase 1 80%). Fase 4 Perfiles COMPLETADA. Fase 5 Burbujas COMPLETADA.
 
-> **Version Actual:** `26.8.5`
+> **Version Actual:** `26.8.6`
 
 ## Roadmap v26.8 (Pulido Fino + Perfiles)
 
