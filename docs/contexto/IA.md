@@ -116,11 +116,11 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Versión Actual:** `26.8.3` (Perfiles Público/Director + Pulido)
+- **Versión Actual:** `26.8.4` (Fase 4 Perfiles COMPLETADA)
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
-- **Estado General:** Transcripción H.I.T.L. Base COMPLETADA. Fase de Pulido Fino activa (Fase 1 80%). Fase 4.1 (Infraestructura de Perfiles) COMPLETADA.
+- **Estado General:** Transcripción H.I.T.L. Base COMPLETADA. Pulido Fino (Fase 1 80%). Fase 4 Perfiles COMPLETADA.
 
-> **Versión Actual:** `26.8.3`
+> **Versión Actual:** `26.8.4`
 
 ## Roadmap v26.8 (Pulido Fino + Perfiles)
 

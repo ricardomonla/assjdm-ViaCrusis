@@ -838,6 +838,45 @@ body.director-mode .cue-text:hover {
     transform: scale(0.97);
 }
 
+/* ===== DIRECTOR: Botón insertar acotación ===== */
+.cue-insert-row {
+    text-align: center;
+    padding: 2px 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.cue-insert-row:hover {
+    opacity: 1;
+}
+
+body.director-mode .cue-insert-row {
+    opacity: 0.3;
+}
+
+body.director-mode .cue-insert-row:hover {
+    opacity: 1;
+}
+
+.btn-insert-cue {
+    background: #806d5a;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.btn-insert-cue:hover {
+    background: #27ae60;
+    transform: scale(1.2);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .playlist {

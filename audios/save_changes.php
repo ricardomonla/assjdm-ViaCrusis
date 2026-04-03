@@ -38,7 +38,62 @@ if (!file_exists($jsonFile)) {
 
 // ===== Leer JSON =====
 $guion = json_decode(file_get_contents($jsonFile), true);
-if (!isset($guion[$trackId]) || !isset($guion[$trackId][$cueIndex])) {
+// ===== Acción especial: Insertar cue (Acotación Escénica) =====
+if ($field === '_insert') {
+    if (!isset($guion[$trackId])) {
+        echo json_encode(['ok' => false, 'msg' => "Track $trackId no encontrado."]);
+        exit;
+    }
+    
+    $insertAfter = $cueIndex; // Insertar DESPUÉS de este índice
+    $text = $value ?? '*(acotación escénica)*';
+    
+    // Calcular startTime: promedio entre el cue actual y el siguiente
+    $prevTime = isset($guion[$trackId][$insertAfter]) ? $guion[$trackId][$insertAfter]['startTime'] : 0;
+    $nextTime = isset($guion[$trackId][$insertAfter + 1]) ? $guion[$trackId][$insertAfter + 1]['startTime'] : $prevTime + 2;
+    $newTime = round(($prevTime + $nextTime) / 2, 1);
+    
+    $newCue = [
+        'character' => 'Música / Ambiente',
+        'idp' => 'P00',
+        'startTime' => $newTime,
+        'endTime' => $newTime + 2.0,
+        'text' => $text
+    ];
+    
+    // Insertar en el array
+    array_splice($guion[$trackId], $insertAfter + 1, 0, [$newCue]);
+    
+    // Guardar JSON
+    file_put_contents($jsonFile, json_encode($guion, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    
+    // Sincronizar v4.0.md
+    $mdFile = __DIR__ . "/subs/{$trackId}_v4.0.md";
+    if (file_exists($mdFile)) {
+        rewriteV4FromJson($trackId, $guion[$trackId], $mdFile);
+    }
+    
+    // Commit si se pidió
+    $commitResult = null;
+    if ($commitMsg) {
+        $scriptPath = realpath(__DIR__ . '/../tools/commit_cambios.sh');
+        if ($scriptPath && file_exists($scriptPath)) {
+            $output = shell_exec("bash $scriptPath " . escapeshellarg($commitMsg) . " 2>&1");
+            $commitResult = $output;
+        }
+    }
+    
+    echo json_encode([
+        'ok' => true,
+        'msg' => "Acotación insertada después de cue $insertAfter en track $trackId.",
+        'new_index' => $insertAfter + 1,
+        'commit' => $commitResult
+    ]);
+    exit;
+}
+
+// ===== Validación de cue existente =====
+if (!isset($guion[$trackId][$cueIndex])) {
     echo json_encode(['ok' => false, 'msg' => "Track $trackId o cue $cueIndex no encontrado."]);
     exit;
 }

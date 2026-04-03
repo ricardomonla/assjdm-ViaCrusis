@@ -2,14 +2,14 @@
 
 > **Estado**: ⏳ En progreso
 > **Fecha**: 2026-04-02
-> **Última actualización**: 2026-04-02 22:03
+> **Ultima actualizacion**: 2026-04-03 01:15
 
 ---
 
 ## Progreso General
 
 ```text
-█████████░░░░░░░░░░░░░░░░░░░░░  30% — EN PROGRESO
+██████████░░░░░░░░░░░░░░░░░░░░  35% - EN PROGRESO
 ```
 
 | Fase | Descripción | Estado |
@@ -17,7 +17,7 @@
 | 1 | Sincronía Cronológica de Personajes | ⏳ (80%) |
 | 2 | Tunning de Precision en Tiempos de Subtítulos | 📋 |
 | 3 | Acotaciones Escénicas y Descriptivas Intermedias | 📋 |
-| 4 | Sistema de Perfiles (Público / Director) | ⏳ (4.1-4.3 ✅) |
+| 4 | Sistema de Perfiles (Publico / Director) | ✅ |
 
 ---
 
@@ -51,7 +51,7 @@ La interfaz actual tiene un solo punto de acceso sin diferenciación de roles. S
 - [x] **4.1 Infraestructura**: Extender modal de login a multi-perfil (Público/Director), crear `jss/perfiles.js`, agregar clases CSS `.director-mode`/`.director-only`. ✅ *Compilador v4 con IDP, JSON recompilado (24 tracks/601 cues)*.
 - [x] **4.2 Enriquecimiento Visual**: IDP técnicos visibles para Director, colores por personaje, panel de notas por track. ✅ *Panel colapsable con notas localStorage + WhatsApp Director-only*.
 - [x] **4.3 Edición In-Place**: Doble-click en subtítulos para editar, guardar cambios vía `tools/commit_cambios.sh` (git commit local). ✅ *save_changes.php + barra flotante de commit*.
-- [ ] **4.4 Acotaciones Escénicas**: Insertar filas P00 entre líneas, persistencia vía commit.
+- [x] **4.4 Acotaciones Escenicas**: Insertar filas P00 entre lineas, persistencia via commit. ✅ *Boton + entre cues, save_changes.php con accion _insert*.
 
 > **Perfil Público (Actores)**: Solo escuchar audio + ver subtítulos karaoke. Sin edición, sin WhatsApp, sin IDs técnicos.
 > **Perfil Director**: Todo lo anterior + edición, notas, ajuste de tiempos, acotaciones, commit local.
@@ -66,3 +66,4 @@ Cualquier avance en este plan se registrará actualizando estos `checkboxes` a m
 |:---|:---|:---|
 | v26.8.2 | 2026-04-02 | Serie 200 completa (201-207 v4.0). Script de reordenamiento cronológico ejecutado en 24 pistas. P26 MUJERES JERUSALEN agregado. |
 | v26.8.3 | 2026-04-02 | Fase 4.1 completada: `jss/perfiles.js`, modal dual en `footer.php`, CSS director-mode, karaoke.js con IDP/data-attrs, compilador `compilar_json_v4.py`, JSON recompilado con `idp` (24 tracks, 601 cues). |
+| v26.8.4 | 2026-04-03 | Fase 4 COMPLETADA: Panel notas, edicion in-place, commit local, acotaciones P00 insertables. Colores por personaje para ambos perfiles. |

@@ -224,6 +224,43 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             scriptContainer.appendChild(block);
+            
+            // Director: botón "+" entre cues para insertar acotaciones P00
+            if (!cue.isNextAudio && !cue.isPrevAudio) {
+                const insertBtn = document.createElement('div');
+                insertBtn.className = 'cue-insert-row director-only';
+                insertBtn.style.display = 'none'; // hidden by default, perfiles.js will show
+                insertBtn.innerHTML = '<button class="btn-insert-cue" title="Insertar acotación escénica">＋</button>';
+                insertBtn.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const text = prompt('Acotación escénica (P00):', '*(descripción de la escena)*');
+                    if (!text) return;
+                    
+                    const trackId = window.audioId.split('_')[0];
+                    const formData = new URLSearchParams();
+                    formData.append('track_id', trackId);
+                    formData.append('cue_index', index);
+                    formData.append('field', '_insert');
+                    formData.append('value', text);
+                    
+                    fetch('save_changes.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: formData.toString()
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data.ok) {
+                            showCommitButton();
+                            location.reload(); // Recargar para ver el nuevo cue
+                        } else {
+                            alert('Error: ' + (data.msg || 'No se pudo insertar'));
+                        }
+                    })
+                    .catch(function() { alert('Error de conexión'); });
+                });
+                scriptContainer.appendChild(insertBtn);
+            }
         });
         
         // Arranca a escuchar el tiempo

@@ -1,5 +1,14 @@
 <?php
 $versionLogs = [
+    '26.8.4' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Fase 4 Perfiles COMPLETADA.',
+            'Acotaciones escenicas: boton + entre lineas para insertar P00 (Director).',
+            'Fix: panel Director oculto correctamente en modo Publico (doble proteccion CSS+JS).',
+            'Colores por personaje visibles en ambos perfiles.',
+        ]
+    ],
     '26.8.3' => [
         'date' => '2026-04-02',
         'changes' => [
