@@ -1,11 +1,11 @@
 # Contexto del Proyecto — ViaCrucis BY2026
 
-> Última actualización: 2026-03-28
+> Última actualización: 2026-04-02
 
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.8.1` (Pulido Fino + Sincronía) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.8.3` (Perfiles Público/Director) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -54,14 +54,17 @@ assjdm-ViaCrusis/
 ├── incs/
 │   ├── elementos.php  # Estructura centralizada (Grupos y Metadatos de tracks)
 │   ├── header.php     # Cabecera HTML
-│   ├── footer.php     # Pie de página (versión)
+│   ├── footer.php     # Pie de página + Modal de Perfiles (Público/Director)
 │   ├── functions.php  # Funciones auxiliares (getAudioFiles, getBaseURL)
 │   ├── versionLogs.php # Historial de versiones
 │   └── kerberos.php   # Protección de directorio
 ├── jss/
-│   └── js.js          # JavaScript (autoplay, navegación)
+│   ├── js.js          # JavaScript (autoplay, navegación)
+│   ├── karaoke.js     # Motor de karaoke (subtítulos sincronizados + IDP data-attrs)
+│   └── perfiles.js    # Gestión de perfiles Público/Director (localStorage + TTL)
 ├── tools/             # Scripts de mantenimiento e Inteligencia Artificial
 │   ├── api_key_rotator/ # Gestor Ruby de encriptación (LLMs y candados)
+│   ├── compilar_json_v4.py # Compilador v4.0.md → guion_completo.json (con IDP)
 │   ├── etiquetar_personajes.py # IA local
 │   ├── transcribir_groq.py     # Transcripción API
 │   └── renamer.py
@@ -113,18 +116,18 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Versión Actual:** `26.8.1` (Entorno Móvil y Pulido)
+- **Versión Actual:** `26.8.3` (Perfiles Público/Director + Pulido)
 - **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
-- **Estado General:** Transcripción H.I.T.L. Base COMPLETADA (Pistas 101 a 403) en JSON maestro. Inicia Fase de Pulido Fino y Enriquecimiento Dramático (v26.7).
+- **Estado General:** Transcripción H.I.T.L. Base COMPLETADA. Fase de Pulido Fino activa (Fase 1 80%). Fase 4.1 (Infraestructura de Perfiles) COMPLETADA.
 
-> **Versión Actual:** `26.8.1`
+> **Versión Actual:** `26.8.3`
 
-## Roadmap v26.7 (Fase de Pulido Fino)
+## Roadmap v26.8 (Pulido Fino + Perfiles)
 
-El plan de trabajo e iteraciones activas para esta etapa de nivel secundario (refinamiento de milisegundos, reordenamiento de IDs de los personajes basándose en aparición cronológica, e inyección de acotaciones descriptivas internas) ha sido mudado a su propio documento de control.
+El plan de trabajo e iteraciones activas para esta etapa (refinamiento de milisegundos, reordenamiento de IDs, acotaciones descriptivas, y **sistema de perfiles dual Público/Director**) ha sido mudado a su propio documento de control.
 **Revisar Plan Activo:** 👉 `docs/plan/08_plan-de-pulido.md`
 
-## Estado del Sitio (2026-03-28)
+## Estado del Sitio (2026-04-02)
 
 | Aspecto | Estado |
 |:---|:---|

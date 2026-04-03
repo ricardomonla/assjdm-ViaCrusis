@@ -132,6 +132,11 @@ document.addEventListener('DOMContentLoaded', function() {
             block.className = 'cue-block cue-inactive ' + extraClass;
             block.id = `cue-${index}`;
             
+            // Data attributes para Director mode (CSS coloring + IDP display)
+            if (cue.idp) {
+                block.setAttribute('data-character-id', cue.idp);
+            }
+            
             const headerDiv = document.createElement('div');
             headerDiv.className = 'cue-header';
             
@@ -150,21 +155,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const globalM = Math.floor((globalTime % 3600) / 60).toString().padStart(2, '0');
             const globalS = Math.floor(globalTime % 60).toString().padStart(2, '0');
             
-            timeSpan.innerHTML = `<strong>${globalH}:${globalM}:${globalS}</strong> <span style="opacity:0.5; font-size: 0.9em; margin-left: 6px;">[${cueId}]</span>`;
+            // Tiempo local del cue para Director
+            const localS = Math.floor(cue.startTime).toString();
+            
+            timeSpan.innerHTML = `<strong>${globalH}:${globalM}:${globalS}</strong> <span style="opacity:0.5; font-size: 0.9em; margin-left: 6px;">[${cueId}]</span><span class="cue-time-range"> ${localS}s</span>`;
             
             const characterSpan = document.createElement('span');
             characterSpan.className = 'cue-character';
             
+            // IDP Badge (Director-only, hidden via CSS in Public)
+            let idpHtml = '';
+            if (cue.idp) {
+                idpHtml = `<span class="cue-idp">${cue.idp}</span>`;
+            }
+            
             // Lógica de Agrupación de Interlocutores
             if (cue.character === lastCharacter && !cue.isNextAudio && !cue.isPrevAudio) {
                 // Si es el mismo de la línea anterior que no escriba nada
-                characterSpan.textContent = '';
+                characterSpan.innerHTML = '';
                 // Optional: Quitar el border bottom del header para dar sensación de continuidad
                 headerDiv.style.borderBottom = 'none';
                 headerDiv.style.marginBottom = '2px';
                 headerDiv.style.paddingBottom = '0px';
             } else {
-                characterSpan.textContent = cue.character;
+                characterSpan.innerHTML = idpHtml + cue.character;
             }
             
             // Solo actualizamos lastCharacter si no es un preview de external audio (para no romper la cadena natural)

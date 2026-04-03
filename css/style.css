@@ -544,8 +544,140 @@ body.admin-mode .admin-only {
     margin-top: 25px; /* Separación más grande con el final real */
 }
 
-body.admin-mode .admin-logout {
+body.admin-mode .admin-logout,
+body.director-mode .admin-logout {
     display: inline-block;
+}
+
+/* ===== PERFILES: DIRECTOR MODE ===== */
+.director-only {
+    display: none !important;
+}
+
+body.director-mode .director-only {
+    display: flex !important;
+}
+
+body.director-mode .director-only-block {
+    display: block !important;
+}
+
+body.director-mode .director-only-inline {
+    display: inline !important;
+}
+
+/* Indicador de perfil en el header */
+.perfil-indicator {
+    font-size: 0.8em;
+    vertical-align: middle;
+    margin-left: 6px;
+    animation: perfilPulse 2s ease-in-out infinite;
+}
+
+@keyframes perfilPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ===== MODAL: SELECTOR DE PERFIL ===== */
+.perfil-options {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.btn-perfil-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 10px;
+    border: 2px solid #c4b494;
+    border-radius: 12px;
+    background-color: #f9f4ef;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+}
+
+.btn-perfil-option:hover {
+    border-color: #806d5a;
+    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn-perfil-option:active {
+    transform: translateY(0);
+}
+
+.perfil-option-icon {
+    font-size: 2em;
+}
+
+.perfil-option-label {
+    font-weight: bold;
+    font-size: 1em;
+    color: #2d2418;
+}
+
+.perfil-option-desc {
+    font-size: 0.75em;
+    color: #806d5a;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.btn-perfil-director {
+    border-color: #8b6914;
+}
+
+.btn-perfil-director:hover {
+    border-color: #705410;
+    background-color: #fef9ed;
+}
+
+/* ===== DIRECTOR: Colores por personaje (bordes) ===== */
+body.director-mode .cue-block[data-character-id="P01"] { border-left-color: #2c3e50; }  /* NARRADOR */
+body.director-mode .cue-block[data-character-id="P02"] { border-left-color: #c0392b; }  /* JESÚS */
+body.director-mode .cue-block[data-character-id="P03"] { border-left-color: #8e44ad; }  /* MARÍA */
+body.director-mode .cue-block[data-character-id="P04"] { border-left-color: #d35400; }  /* PILATOS */
+body.director-mode .cue-block[data-character-id="P05"] { border-left-color: #7f8c8d; }  /* JUDAS */
+body.director-mode .cue-block[data-character-id="P06"] { border-left-color: #27ae60; }  /* CAIFÁS */
+body.director-mode .cue-block[data-character-id="P07"] { border-left-color: #2980b9; }  /* PUEBLO */
+body.director-mode .cue-block[data-character-id="P00"] { border-left-color: #95a5a6; }  /* AMBIENTE */
+body.director-mode .cue-block[data-character-id="P99"] { border-left-color: #e74c3c; }  /* CORO */
+
+/* Director: IDP badge */
+.cue-idp {
+    display: none;
+    font-family: monospace;
+    font-size: 0.7em;
+    color: #fff;
+    background: #806d5a;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+}
+
+body.director-mode .cue-idp {
+    display: inline;
+}
+
+/* Director: Rango de tiempo expandido */
+.cue-time-range {
+    display: none;
+    font-family: monospace;
+    font-size: 0.75em;
+    color: #b0a693;
+    margin-left: 4px;
+}
+
+body.director-mode .cue-time-range {
+    display: inline;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -556,6 +688,9 @@ body.admin-mode .admin-logout {
     .nav-button {
         padding: 8px 15px;
         font-size: 16px;
+    }
+    .perfil-options {
+        flex-direction: column;
     }
 }
 

@@ -1,3451 +1,4256 @@
 {
   "101": [
     {
-      "character": "Música / Ambiente",
-      "startTime": 0.0,
-      "endTime": 14.0,
-      "text": ""
-    },
-    {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 14.0,
       "endTime": 23.0,
       "text": "La Pascua es la mayor festividad judía del año."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 23.0,
       "endTime": 26.0,
       "text": "Miles acuden a Jerusalén para dar gracias a Dios"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 26.0,
       "endTime": 30.0,
       "text": "por liberar a sus antepasados de la esclavitud de los egipcios."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 30.0,
-      "endTime": 56.0,
+      "endTime": 45.0,
       "text": "La entrada de Jesús provoca un aluvión."
     },
     {
       "character": "PUEBLO",
+      "idp": "P02",
       "startTime": 56.0,
       "endTime": 58.0,
       "text": "¡Es el Mesías!"
     },
     {
       "character": "PUEBLO",
+      "idp": "P02",
       "startTime": 58.0,
-      "endTime": 59.0,
+      "endTime": 58.0,
       "text": "¡Es el Mesías!"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 58.0,
-      "endTime": 88.0,
+      "endTime": 73.0,
       "text": "El profeta Zacarías predijo que un nuevo rey de los judíos entraría en la ciudad a lomos de un asno."
     },
     {
-      "character": "Música / Ambiente",
-      "startTime": 88.0,
-      "endTime": 104.0,
-      "text": ""
-    },
-    {
       "character": "BARRABÁS",
+      "idp": "P03",
       "startTime": 104.0,
       "endTime": 108.0,
       "text": "¡El reino está cerca!"
     },
     {
       "character": "BARRABÁS",
+      "idp": "P03",
       "startTime": 108.0,
       "endTime": 110.0,
       "text": "¡El reino está cerca!"
     },
     {
       "character": "BARRABÁS",
+      "idp": "P03",
       "startTime": 110.0,
       "endTime": 112.0,
       "text": "¡El Mesías!"
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 112.0,
       "endTime": 113.0,
       "text": "¡Es Barrabás!"
     },
     {
       "character": "BARRABÁS",
+      "idp": "P03",
       "startTime": 113.0,
       "endTime": 115.0,
       "text": "¡Mesías!"
     },
     {
       "character": "BARRABÁS",
+      "idp": "P03",
       "startTime": 115.0,
       "endTime": 120.0,
       "text": "¡Rey de Israel! ¿Por qué no nos vienes a liberar?"
     },
     {
       "character": "BARRABÁS",
+      "idp": "P03",
       "startTime": 120.0,
       "endTime": 134.0,
       "text": "¡Sálvanos de la ley de los romanos!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 134.0,
       "endTime": 145.0,
       "text": "Venimos en paz, Barrabás."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 145.0,
       "endTime": 156.0,
       "text": "Dejad que los niños se acerquen a mí,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 156.0,
       "endTime": 159.0,
       "text": "porque de los que son como ellos"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 159.0,
       "endTime": 162.0,
       "text": "es el reino de los cielos."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 162.0,
-      "endTime": 167.0,
+      "endTime": 172.0,
       "text": "Venid."
     }
   ],
   "102": [
     {
       "character": "Música / Ambiente",
+      "idp": "P00",
       "startTime": 0.0,
       "endTime": 6.0,
       "text": "(Ambiente callejero / Pasos)"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 6.0,
       "endTime": 9.0,
       "text": "¡Hombre! ¡Judas! ¡Dichosos los ojos!"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 9.0,
       "endTime": 11.0,
       "text": "¿Cuánto tiempo? ¿Dónde te habías metido?"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 11.0,
       "endTime": 18.0,
       "text": "Hace días que no se te ve con Jesús de Nazaret. Acércate."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 18.0,
       "endTime": 20.0,
       "text": "Estaba reflexionando, decidiendo qué hacer."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 20.0,
       "endTime": 26.0,
       "text": "¿Qué hacer? Parecías saber muy bien lo que debías hacer la última vez que nos vimos."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 26.0,
       "endTime": 30.0,
       "text": "¿Qué ha cambiado desde entonces?"
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 30.0,
       "endTime": 33.0,
       "text": "No lo sé, estoy confuso."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 33.0,
       "endTime": 40.0,
       "text": "Siempre había creído en la acción política, que eso lo resolvía todo."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 40.0,
       "endTime": 44.0,
       "text": "Creía que era suficiente con pensar detenidamente y actuar con contundencia."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 44.0,
       "endTime": 48.0,
       "text": "Pero me temo que mi maestro no está de acuerdo."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 48.0,
       "endTime": 51.0,
       "text": "No comparte mi visión."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 51.0,
       "endTime": 54.0,
       "text": "Dice que es más importante el corazón."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 54.0,
       "endTime": 56.0,
       "text": "Me he endurecido."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 56.0,
       "endTime": 57.0,
       "text": "No soy digno de ser uno de ellos."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 57.0,
       "endTime": 59.0,
       "text": "Será mejor que me vaya."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 59.0,
       "endTime": 64.0,
       "text": "Judas, ¿por qué te empeñas en engañarte?"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 64.0,
       "endTime": 70.0,
       "text": "Reconoce que hace tiempo que has dejado de creer que Jesús de Nazaret sea verdaderamente el Mesías."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 70.0,
       "endTime": 73.0,
       "text": "Pero hay una forma de averiguar la verdad."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 73.0,
       "endTime": 76.0,
       "text": "Y lo sabías la primera vez que viniste a verme:"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 76.0,
       "endTime": 79.0,
       "text": "Deja que Jesús declare ante el Sanedrín."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 79.0,
       "endTime": 84.0,
       "text": "Demasiado tarde, nunca lo aceptará."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 84.0,
       "endTime": 85.0,
       "text": "¿Pero por qué?"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 85.0,
       "endTime": 87.0,
       "text": "Hay muchos sacerdotes que admiran a Jesús."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 87.0,
       "endTime": 89.0,
       "text": "Tendrá un juicio justo."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 89.0,
       "endTime": 92.0,
       "text": "Y si de verdad es el Mesías,"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 92.0,
       "endTime": 94.0,
       "text": "Dios Padre no le abandonará."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 94.0,
       "endTime": 96.0,
       "text": "Y si no lo es,"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 96.0,
       "endTime": 100.0,
       "text": "habrás contribuido a salvar a Israel"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 100.0,
-      "endTime": 105.0,
+      "endTime": 110.0,
       "text": "de un falso profeta más."
     }
   ],
   "103": [
     {
       "character": "Música / Ambiente",
+      "idp": "P00",
       "startTime": 0.0,
-      "endTime": 60.0,
+      "endTime": 15.0,
       "text": "Música / Ambiente"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 60.0,
       "endTime": 62.0,
       "text": "Bendito seas, Señor,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 62.0,
       "endTime": 64.0,
       "text": "Dios nuestro,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 64.0,
       "endTime": 66.0,
       "text": "Rey del mundo,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 66.0,
       "endTime": 69.0,
       "text": "que das a Israel esta fiesta"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 69.0,
       "endTime": 83.0,
       "text": "para alegría y memorial."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 83.0,
       "endTime": 86.0,
       "text": "¡Cuánto he deseado comer esta Pascua con vosotros,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 86.0,
       "endTime": 89.0,
       "text": "antes de padecer!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 89.0,
       "endTime": 94.0,
       "text": "Os digo que no volveré a comerla hasta que se cumpla en el reino de mi Padre."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 94.0,
       "endTime": 108.0,
       "text": "Sois testigos"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 108.0,
       "endTime": 113.0,
       "text": "de que los poderosos de la tierra dominan a sus súbditos."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 113.0,
       "endTime": 116.0,
       "text": "Que no sea así entre vosotros."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 116.0,
       "endTime": 119.0,
       "text": "El que quiera ser el primero,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 119.0,
       "endTime": 123.0,
       "text": "que sea el último y servidor de todos."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 123.0,
       "endTime": 126.0,
       "text": "Pues yo estoy entre vosotros"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 126.0,
       "endTime": 141.0,
       "text": "como el que sirve."
     },
     {
       "character": "Música / Ambiente",
+      "idp": "P00",
       "startTime": 141.0,
-      "endTime": 171.0,
+      "endTime": 156.0,
       "text": "Música / Ambiente"
     },
     {
       "character": "Música / Ambiente",
+      "idp": "P00",
       "startTime": 171.0,
-      "endTime": 201.0,
+      "endTime": 186.0,
       "text": "Música / Ambiente"
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 201.0,
       "endTime": 204.0,
       "text": "Entonces, Señor, no sólo los pies,"
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 204.0,
-      "endTime": 231.0,
+      "endTime": 219.0,
       "text": "lávame también las manos y la cabeza."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 231.0,
-      "endTime": 261.0,
+      "endTime": 246.0,
       "text": "¿Entendéis lo que he hecho con vosotros?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 261.0,
       "endTime": 268.0,
       "text": "Me llamáis el Maestro, el Señor, y lo soy."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 268.0,
       "endTime": 279.0,
       "text": "Pero si yo he hecho esto con vosotros, también debéis hacer lo mismo con los demás."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 279.0,
       "endTime": 285.0,
       "text": "Quiero que sepáis que uno de vosotros me va a entregar."
     },
     {
       "character": "DISCÍPULOS",
+      "idp": "P08",
       "startTime": 285.0,
       "endTime": 298.0,
       "text": "¡Es imposible que alguno de nosotros sea el traidor! ¡No puedo creer semejante cosa! ¿Soy yo? ¿Seré yo, Jesús? ¡No! ¿Tal vez yo, Maestro? ¡Pudiera ser yo!"
     },
     {
       "character": "DISCÍPULOS",
+      "idp": "P08",
       "startTime": 298.0,
       "endTime": 299.0,
       "text": "¿A lo mejor yo, Señor?"
     },
     {
       "character": "DISCÍPULOS",
+      "idp": "P08",
       "startTime": 299.0,
       "endTime": 300.0,
       "text": "¿Acaso soy yo, Jesús?"
     },
     {
       "character": "DISCÍPULOS",
+      "idp": "P08",
       "startTime": 300.0,
       "endTime": 305.0,
       "text": "¿Acaso soy yo, Señor?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 305.0,
       "endTime": 306.0,
       "text": "¿Quién te traicionará?"
     },
     {
       "character": "JUAN",
+      "idp": "P09",
       "startTime": 306.0,
       "endTime": 307.0,
       "text": "¿Seré yo?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 307.0,
       "endTime": 309.0,
       "text": "Aquel que moje su pan"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 309.0,
       "endTime": 311.0,
       "text": "cuando yo moje el mío..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 311.0,
       "endTime": 317.0,
       "text": "Ése es."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 317.0,
-      "endTime": 345.0,
+      "endTime": 332.0,
       "text": "Judas, lo que has de hacer, hazlo cuanto antes."
     },
     {
       "character": "DISCÍPULOS",
+      "idp": "P08",
       "startTime": 345.0,
       "endTime": 346.0,
       "text": "¿Dónde vas, Judas? ¿A dónde vas?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 346.0,
-      "endTime": 369.0,
+      "endTime": 361.0,
       "text": "Tomad y comed."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 369.0,
       "endTime": 376.0,
       "text": "Esto es mi cuerpo que se entrega por vosotros."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 376.0,
-      "endTime": 404.0,
+      "endTime": 391.0,
       "text": "Éste es el cáliz de mi sangre,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 404.0,
       "endTime": 411.0,
       "text": "derramada por vosotros como símbolo de una nueva alianza."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 411.0,
       "endTime": 413.0,
       "text": "Bebed todos de él."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 413.0,
       "endTime": 416.0,
       "text": "Lo que acabo de hacer,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 416.0,
       "endTime": 422.0,
       "text": "hacedlo también vosotros para recordarme."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 422.0,
       "endTime": 426.0,
       "text": "Todos fallaréis por mi causa."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 426.0,
       "endTime": 429.0,
       "text": "Pero después de resucitar,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 429.0,
       "endTime": 430.0,
       "text": "iré delante de vosotros a Galilea."
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 430.0,
       "endTime": 440.0,
       "text": "Maestro, te seguiré donde quiera que vayas. ¡Si hiciera falta dar mi vida por ti...!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 440.0,
       "endTime": 443.0,
       "text": "Pedro, esta noche,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 443.0,
       "endTime": 446.0,
       "text": "antes de que el gallo cante,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 446.0,
       "endTime": 448.0,
       "text": "me habrás negado tres veces."
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 448.0,
       "endTime": 451.0,
       "text": "¡Oh, Señor!"
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 451.0,
       "endTime": 453.0,
       "text": "Yo nunca te fallaré."
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 453.0,
       "endTime": 456.0,
       "text": "Aunque todos pierdan la fe..."
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 456.0,
       "endTime": 457.0,
       "text": "¡Yo no, yo nunca!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 457.0,
-      "endTime": 458.0,
+      "endTime": 457.0,
       "text": "Pedro,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 457.0,
       "endTime": 462.0,
       "text": "he rezado por ti."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 462.0,
       "endTime": 464.0,
       "text": "Y tú, cuando te hayas recuperado,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 464.0,
       "endTime": 468.0,
       "text": "tendrás que dar fuerza a tus hermanos."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 468.0,
       "endTime": 473.0,
       "text": "Que no esté triste vuestro corazón."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 473.0,
       "endTime": 477.0,
       "text": "Creed en Dios,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 477.0,
       "endTime": 480.0,
       "text": "y creed también en mí."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 480.0,
       "endTime": 482.0,
       "text": "Yo soy el camino,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 482.0,
       "endTime": 485.0,
       "text": "la verdad y la vida."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 485.0,
       "endTime": 487.0,
       "text": "Nadie va al Padre sino por mí."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 487.0,
       "endTime": 490.0,
       "text": "Esto es lo que os mando:"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 490.0,
       "endTime": 494.0,
       "text": "que os améis los unos a los otros, como yo os he amado."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 494.0,
       "endTime": 497.0,
       "text": "Nadie tiene mayor amor"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 497.0,
       "endTime": 499.0,
       "text": "que el que da la vida por sus amigos."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 499.0,
       "endTime": 502.0,
       "text": "A vosotros ya no os llamo siervos,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 502.0,
       "endTime": 505.0,
       "text": "porque el siervo no sabe lo que hace su Señor."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 505.0,
       "endTime": 507.0,
       "text": "A vosotros,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 507.0,
       "endTime": 510.0,
       "text": "os llamo amigos."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 510.0,
       "endTime": 512.0,
       "text": "Porque todo lo que he oído decir a mi Padre"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 512.0,
       "endTime": 518.0,
       "text": "os lo he dado a conocer."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 518.0,
       "endTime": 520.0,
       "text": "Amaos los unos a los otros,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 520.0,
-      "endTime": 537.0,
+      "endTime": 535.0,
       "text": "como yo os he amado."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 537.0,
-      "endTime": 542.0,
+      "endTime": 547.0,
       "text": "Vamos, se hace tarde."
     }
   ],
   "104": [
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 0.0,
       "endTime": 9.0,
       "text": "El Semaní es un huerto de los muchos que se extendían por las fértiles laderas del Monte de los Olivos."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 9.0,
       "endTime": 18.0,
       "text": "Allí, viendo muy cercana y muy posible una muerte violenta, Jesús experimenta un sinfín de sentimientos contradictorios."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 18.0,
       "endTime": 21.0,
       "text": "Es un momento decisivo en el compromiso de fe de Jesús."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 21.0,
       "endTime": 25.0,
       "text": "Nunca se había sentido tan vulnerable."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 25.0,
       "endTime": 31.0,
       "text": "Y nunca su fidelidad sería más dolorosamente firme que entonces."
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 31.0,
       "endTime": 34.0,
       "text": "¿Qué te ha ocurrido, Señor?"
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 34.0,
       "endTime": 35.0,
       "text": "Aviso a los demás..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 35.0,
       "endTime": 38.0,
       "text": "No, Pedro."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 38.0,
       "endTime": 41.0,
       "text": "No quiero que me vean así."
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 41.0,
       "endTime": 45.0,
       "text": "Estás en peligro, no deberíamos huir."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 45.0,
       "endTime": 46.0,
       "text": "Permaneced aquí."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 46.0,
       "endTime": 50.0,
       "text": "Velad y orad."
     },
     {
       "character": "Música / Ambiente",
+      "idp": "P00",
       "startTime": 50.0,
-      "endTime": 104.0,
+      "endTime": 65.0,
       "text": "(Música de tensión profunda)"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 104.0,
-      "endTime": 126.0,
+      "endTime": 119.0,
       "text": "Mi alma está triste hasta la muerte."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 126.0,
       "endTime": 128.0,
       "text": "Si es posible, pase de mí este cáliz."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 128.0,
       "endTime": 133.0,
       "text": "Pero que no se haga mi voluntad,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 133.0,
-      "endTime": 153.0,
+      "endTime": 148.0,
       "text": "sino la tuya."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 153.0,
-      "endTime": 171.0,
+      "endTime": 168.0,
       "text": "Ahora se acerca el momento de volver a tus manos, de agradecerte este regalo de ser hombre que me diste durante 33 años... ¿Ha sido hermoso, sabes?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 171.0,
-      "endTime": 172.0,
+      "endTime": 171.0,
       "text": "Hermoso."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 171.0,
       "endTime": 184.0,
       "text": "Y doloroso."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 184.0,
       "endTime": 188.0,
       "text": "Yo conozco la fría violencia del hombre,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 188.0,
       "endTime": 193.0,
       "text": "el egoísmo sucio que respiran sus almas y sus pulmones."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 193.0,
       "endTime": 199.0,
       "text": "He visto la serpiente del odio enroscándose en torno a mi vida,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 199.0,
       "endTime": 204.0,
       "text": "pero también he medido su ignorancia."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 204.0,
       "endTime": 209.0,
       "text": "Padre mío..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 209.0,
       "endTime": 212.0,
       "text": "No me asusta morir,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 212.0,
       "endTime": 215.0,
       "text": "porque sé que cumplo con tu voluntad."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 215.0,
       "endTime": 219.0,
       "text": "Padre, me asusta el dolor,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 219.0,
       "endTime": 221.0,
       "text": "el sufrimiento,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 221.0,
       "endTime": 225.0,
       "text": "y tanta maldad que tengo que cargar sobre mí."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 225.0,
       "endTime": 229.0,
       "text": "Y me siento solo..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 229.0,
       "endTime": 233.0,
       "text": "solo."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 233.0,
       "endTime": 246.0,
       "text": "Y aquí tú y yo solos en la hora crucial de mi vida, Padre. ¡Y no me hablas!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 246.0,
       "endTime": 250.0,
       "text": "¡Yo sé que tú me escuchas!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 250.0,
       "endTime": 253.0,
       "text": "Tú lo haces siempre, Padre."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 253.0,
       "endTime": 255.0,
       "text": "Pero ahora, ¿por qué te callas?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 255.0,
       "endTime": 260.0,
       "text": "¡Oh, Padre!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 260.0,
       "endTime": 264.0,
       "text": "¡Yo soy despreciable!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 264.0,
-      "endTime": 285.0,
+      "endTime": 279.0,
       "text": "¡Padre mío!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 285.0,
       "endTime": 294.0,
       "text": "Hágase tu voluntad..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 294.0,
       "endTime": 301.0,
       "text": "Señor..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 301.0,
       "endTime": 304.0,
       "text": "Dame fuerza."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 304.0,
-      "endTime": 309.0,
+      "endTime": 314.0,
       "text": "Dame fuerza, Señor."
     }
   ],
   "105": [
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 0.0,
       "endTime": 7.0,
       "text": "¿Con que no habéis podido estar en vela conmigo ni siquiera una hora?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 7.0,
       "endTime": 12.0,
       "text": "Velad y orad para que podáis hacer frente a la prueba,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 12.0,
       "endTime": 14.0,
       "text": "que el espíritu está bien dispuesto,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 14.0,
       "endTime": 17.0,
       "text": "pero la carne es débil..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 17.0,
       "endTime": 21.0,
       "text": "Levantaos, vamos,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 21.0,
       "endTime": 30.0,
       "text": "que ya está cerca el que me entrega."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 30.0,
       "endTime": 33.0,
       "text": "¡Maestro!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 33.0,
       "endTime": 38.0,
       "text": "Judas, ¿amigo que yo elegí?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 38.0,
       "endTime": 51.0,
       "text": "¿Con un beso entregas al Hijo del Hombre?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 51.0,
       "endTime": 55.0,
       "text": "¿Habéis venido a prenderme con espadas y palos como si fuera un vulgar ladrón?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 55.0,
       "endTime": 59.0,
       "text": "Estaba todos los días con vosotros en el Templo y no me pusisteis la mano encima..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 59.0,
       "endTime": 61.0,
       "text": "Pero esta es vuestra hora,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 61.0,
-      "endTime": 66.0,
+      "endTime": 71.0,
       "text": "la hora del poder de las tinieblas."
     }
   ],
   "106": [
     {
       "character": "PUEBLO",
+      "idp": "P02",
       "startTime": 0.0,
-      "endTime": 30.0,
+      "endTime": 15.0,
       "text": "Es verdad, este andaba con él, porque es galileo."
     },
     {
       "character": "PEDRO",
+      "idp": "P04",
       "startTime": 30.0,
       "endTime": 32.0,
       "text": "No sé de qué me hablas."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 32.0,
       "endTime": 45.0,
       "text": "Pedro se acuerda de lo que el Señor le había dicho."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 45.0,
       "endTime": 52.0,
       "text": "Pedro, esta noche, antes de que el gallo cante, me habrás negado tres veces."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 52.0,
       "endTime": 60.0,
       "text": "Entonces, se marcha rápidamente y, apartándose un poco de la gente, llora amargamente."
     },
     {
       "character": "Música / Ambiente",
+      "idp": "P00",
       "startTime": 60.0,
-      "endTime": 65.0,
+      "endTime": 70.0,
       "text": "(Se aleja llorando / Transición musical)"
     }
   ],
   "107": [
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 0.0,
       "endTime": 5.0,
       "text": "Mientras Pedro llora su culpa, Jesús es llevado secretamente al Sanedrín,"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 5.0,
       "endTime": 10.0,
       "text": "el tribunal religioso encargado de velar por la pureza del judaísmo,"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 10.0,
-      "endTime": 30.0,
+      "endTime": 25.0,
       "text": "y que en aquel tiempo estaba presidido por Caifás, sumo sacerdote del Templo de Jerusalén."
     },
     {
       "character": "Música / Ambiente",
+      "idp": "P00",
       "startTime": 30.0,
-      "endTime": 60.0,
+      "endTime": 45.0,
       "text": "(Música de transición / Ambiente)"
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 60.0,
       "endTime": 66.0,
       "text": "Rabí, te hemos traído aquí para que puedas responder por ti mismo."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 66.0,
       "endTime": 69.0,
       "text": "Mira de cuántas cosas te acusan."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 69.0,
       "endTime": 75.0,
       "text": "Queremos que reflexiones antes de responder a nuestras preguntas."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 75.0,
       "endTime": 84.0,
       "text": "Dinos, ¿de qué naturaleza es la doctrina que tú y tus discípulos habéis estado predicando en Judea?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 84.0,
       "endTime": 88.0,
       "text": "He hablado abiertamente para todos los que quisieran oírme."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 88.0,
       "endTime": 95.0,
       "text": "He enseñado todos los días en el templo. Preguntad a ellos."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 95.0,
       "endTime": 105.0,
       "text": "¿Hay testigos dispuestos a repetir su afirmación de que puede destruir el templo y luego reconstruirlo en tres días?"
     },
     {
       "character": "NICODEMO",
+      "idp": "P11",
       "startTime": 105.0,
       "endTime": 111.0,
       "text": "¡Hermanos, hermanos de Caifás! Le han atado como un vulgar ladrón y no tienen derecho. Yo le he oído predicar y no he encontrado en su doctrina nada contra los preceptos de nuestra fe."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 111.0,
       "endTime": 125.0,
       "text": "Y, ¿cómo se atreve a afirmar que puede destruir el templo y en tan solo tres días construir otro no edificado por hombres?"
     },
     {
       "character": "NICODEMO",
+      "idp": "P11",
       "startTime": 125.0,
       "endTime": 128.0,
       "text": "Nadie puede reconstruir el templo en tres días. Lo que dijo debe de tener un significado simbólico."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 128.0,
       "endTime": 131.0,
       "text": "Yo le he oído decir que podía hacerlo en dos días."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 131.0,
       "endTime": 140.0,
       "text": "Dos días, tres días, ¿os dais cuenta? Ni los testigos están de acuerdo."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 140.0,
       "endTime": 148.0,
       "text": "No responde nada. ¿Qué significan estas acusaciones?"
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 148.0,
       "endTime": 156.0,
       "text": "Óyeme, se ha dicho que tú mismo te has proclamado el Hijo de Dios."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 156.0,
       "endTime": 161.0,
       "text": "Yo te conjuro en el nombre de Dios a que respondas."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 161.0,
       "endTime": 167.0,
       "text": "¿Eres tú el Mesías, el Hijo de Dios?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 167.0,
       "endTime": 171.0,
       "text": "Yo soy."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 171.0,
       "endTime": 174.0,
       "text": "Y veréis al Hijo del Hombre sentado a la derecha del Todopoderoso."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 174.0,
       "endTime": 177.0,
       "text": "Y venir entre las nubes del cielo."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 177.0,
       "endTime": 182.0,
       "text": "¡Escucha! ¡Oh Israel!"
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 182.0,
       "endTime": 185.0,
       "text": "El Señor es nuestro Dios."
     },
     {
       "character": "CAIFÁS",
+      "idp": "P10",
       "startTime": 185.0,
       "endTime": 191.0,
       "text": "El Señor es único."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 191.0,
       "endTime": 201.0,
       "text": "¿Qué necesidad tenemos ya de testigos?"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 201.0,
       "endTime": 203.0,
       "text": "Acabáis de oír todos la blasfemia."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 203.0,
       "endTime": 207.0,
       "text": "Vamos a llevarlo ante el procurador Poncio Pilato,"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 207.0,
-      "endTime": 212.0,
+      "endTime": 217.0,
       "text": "en cuyas manos está la suprema autoridad de juzgar y condenar."
     }
   ],
   "108": [
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 0.0,
-      "endTime": 17.0,
+      "endTime": 15.0,
       "text": "¡Jesús! Ojalá no te vuelvas, Jesús."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 17.0,
       "endTime": 20.0,
       "text": "Ojalá no me mires."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 20.0,
       "endTime": 23.0,
       "text": "¡No te atrevas a mirarme!"
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 23.0,
       "endTime": 30.0,
       "text": "Yo no merezco una mirada tuya."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 30.0,
       "endTime": 36.0,
       "text": "No podría soportarla."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 36.0,
       "endTime": 44.0,
       "text": "Tengo las manos manchadas de sangre."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 44.0,
-      "endTime": 60.0,
+      "endTime": 59.0,
       "text": "Nunca pensé que cuando decías que en Jerusalén ibas a ser entregado, sería yo quien lo haría."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 60.0,
       "endTime": 64.0,
       "text": "Y ahora todos me miran,"
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 64.0,
       "endTime": 68.0,
       "text": "y me señalan con el dedo."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 68.0,
       "endTime": 70.0,
       "text": "Piensan..."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 70.0,
       "endTime": 72.0,
       "text": "Piensan que nací siendo traidor."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 72.0,
       "endTime": 73.0,
       "text": "Pero no..."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 73.0,
-      "endTime": 106.0,
+      "endTime": 88.0,
       "text": "¡Traidor! Me he vuelto con el tiempo. Nunca nadie me había querido. ¿Por qué ibas a hacerlo tú? ¡Dime! ¿Por qué ibas a hacerlo tú? ¿Por qué tuviste que hacerlo tú?"
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 106.0,
       "endTime": 109.0,
       "text": "No merezco vivir."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 109.0,
-      "endTime": 136.0,
+      "endTime": 124.0,
       "text": "No puedo vivir con esta culpa."
     },
     {
       "character": "JUDAS",
+      "idp": "P07",
       "startTime": 136.0,
-      "endTime": 141.0,
+      "endTime": 146.0,
       "text": "Lo siento, Jesús. No tengo valor para seguir."
     }
   ],
   "109": [
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 0.0,
       "endTime": 3.0,
       "text": "Señor, señor, hay revuelta."
     },
     {
       "character": "CENTURIÓN",
+      "idp": "P13",
       "startTime": 3.0,
       "endTime": 5.0,
       "text": "¿No te atreves a molestarme a medianoche?"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 5.0,
       "endTime": 6.0,
       "text": "Pero señor, es urgente."
     },
     {
       "character": "CENTURIÓN",
+      "idp": "P13",
       "startTime": 6.0,
       "endTime": 8.0,
       "text": "¿Cuál es el problema?"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 8.0,
       "endTime": 9.0,
       "text": "Las chusmas se agolpan en las calles."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 9.0,
       "endTime": 11.0,
       "text": "Caifás ha prendido a cierto profeta."
     },
     {
       "character": "CENTURIÓN",
+      "idp": "P13",
       "startTime": 11.0,
       "endTime": 12.0,
       "text": "¿A quién?"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 12.0,
       "endTime": 14.0,
       "text": "A un galileo, Jesús de Nazaret."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 14.0,
       "endTime": 16.0,
       "text": "Se llama a sí mismo rey de los judíos."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 16.0,
       "endTime": 30.0,
       "text": "Está aquí, en palacio."
     },
     {
       "character": "CENTURIÓN",
+      "idp": "P13",
       "startTime": 30.0,
       "endTime": 35.0,
       "text": "¿Quiénes son ustedes y qué quieren?"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 35.0,
       "endTime": 40.0,
       "text": "Necesitamos ver inmediatamente al gobernador. El asunto es muy grave."
     },
     {
       "character": "CENTURIÓN",
+      "idp": "P13",
       "startTime": 40.0,
       "endTime": 45.0,
       "text": "Está bien, pasen ustedes los magistrados. ¡Pero toda esta chusma fuera!"
     },
     {
       "character": "CENTURIÓN",
+      "idp": "P13",
       "startTime": 45.0,
       "endTime": 48.0,
       "text": "¡Silencio! ¡Silencio!"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 48.0,
       "endTime": 50.0,
       "text": "Ellos no vienen con nosotros."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 50.0,
       "endTime": 54.0,
       "text": "De todos modos, tampoco nosotros podríamos penetrar hoy en la fortaleza."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 54.0,
       "endTime": 57.0,
       "text": "Es la víspera del gran sábado de Pascua"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 57.0,
       "endTime": 60.0,
       "text": "y nuestras leyes lo prohíben."
     },
     {
       "character": "CENTURIÓN",
+      "idp": "P13",
       "startTime": 60.0,
-      "endTime": 79.0,
+      "endTime": 75.0,
       "text": "Anda, ve y dile al gobernador que se digne salir un momento."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 79.0,
       "endTime": 81.0,
       "text": "¿Qué pasa con este hombre? Es un delincuente que no tiene delitos en este país de bandidos y rameras. ¿Y ustedes?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 81.0,
       "endTime": 82.0,
       "text": "Yo no tengo nada que ver con vuestro enfrentamiento religioso."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 82.0,
       "endTime": 84.0,
       "text": "No, gobernador."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 84.0,
       "endTime": 89.0,
       "text": "Te lo traemos a ti porque se trata de un asunto político."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 89.0,
       "endTime": 91.0,
       "text": "Este Galileo se ha rebelado contra Roma"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 91.0,
       "endTime": 95.0,
       "text": "y a Roma corresponde juzgarlo."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 95.0,
       "endTime": 100.0,
       "text": "Además, nosotros tampoco tenemos facultades para imponer la pena capital,"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 100.0,
       "endTime": 103.0,
       "text": "que es el castigo que se merece."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 103.0,
       "endTime": 105.0,
       "text": "Está bien."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 105.0,
       "endTime": 108.0,
       "text": "Centurión, suba al detenido."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 108.0,
       "endTime": 109.0,
       "text": "Voy a interrogarlo."
     },
     {
       "character": "CENTURIÓN",
+      "idp": "P13",
       "startTime": 109.0,
       "endTime": 119.0,
       "text": "Tú, súbelo."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 119.0,
       "endTime": 123.0,
       "text": "¿Es este vuestro peligroso aspirante a rey?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 123.0,
       "endTime": 125.0,
       "text": "Andrajoso, demacrado..."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 125.0,
       "endTime": 129.0,
       "text": "¿Eres tú el rey de los judíos?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 129.0,
       "endTime": 133.0,
       "text": "¿Dices eso por ti mismo? ¿O te lo han dicho otros de mí?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 133.0,
       "endTime": 135.0,
       "text": "¿Acaso soy yo judío?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 135.0,
       "endTime": 140.0,
       "text": "Son los de tu propia nación y los jefes de los sacerdotes los que te han entregado a mí."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 140.0,
       "endTime": 143.0,
       "text": "¿Qué has hecho?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 143.0,
       "endTime": 155.0,
       "text": "Mi reino no es de este mundo. Si lo fuera, mi gente habría luchado para impedir que yo cayese en manos de los judíos. Pero no."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 155.0,
       "endTime": 157.0,
       "text": "Mi reino no es de este mundo."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 157.0,
       "endTime": 161.0,
       "text": "Entonces, ¿tú eres rey?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 161.0,
       "endTime": 164.0,
       "text": "Tú lo dices."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 164.0,
       "endTime": 166.0,
       "text": "Soy rey."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 166.0,
       "endTime": 170.0,
       "text": "Precisamente para eso nací y para eso vine al mundo."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 170.0,
       "endTime": 173.0,
       "text": "Para dar testimonio de la verdad."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 173.0,
       "endTime": 176.0,
       "text": "Todo el que pertenece a la verdad"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 176.0,
       "endTime": 178.0,
       "text": "escucha mi voz."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 178.0,
       "endTime": 187.0,
       "text": "¿Y qué es la verdad?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 187.0,
       "endTime": 190.0,
       "text": "Este hombre es Galileo, ¿no?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 190.0,
       "endTime": 191.0,
       "text": "Pues llévenselo a Herodes"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 191.0,
-      "endTime": 229.0,
+      "endTime": 206.0,
       "text": "y que sea él quien decida sobre su vida."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 229.0,
       "endTime": 231.0,
       "text": "¿Qué es la verdad? Claudia."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 231.0,
       "endTime": 232.0,
       "text": "¿Puedes reconocerla con tan solo oírla?"
     },
     {
       "character": "CLAUDIA",
+      "idp": "P15",
       "startTime": 232.0,
       "endTime": 234.0,
       "text": "Sí, Poncio."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 234.0,
       "endTime": 237.0,
       "text": "¿Cómo lo haces? ¿Cuál es el secreto?"
     },
     {
       "character": "CLAUDIA",
+      "idp": "P15",
       "startTime": 237.0,
       "endTime": 243.0,
       "text": "Es fácil. Nadie puede decirte la verdad si no quieres escucharla."
     },
     {
       "character": "CLAUDIA",
+      "idp": "P15",
       "startTime": 243.0,
       "endTime": 246.0,
       "text": "Ayer soñé con él."
     },
     {
       "character": "CLAUDIA",
+      "idp": "P15",
       "startTime": 246.0,
       "endTime": 249.0,
       "text": "Fue una pesadilla horrible."
     },
     {
       "character": "CLAUDIA",
+      "idp": "P15",
       "startTime": 249.0,
       "endTime": 254.0,
       "text": "No, Poncio."
     },
     {
       "character": "CLAUDIA",
+      "idp": "P15",
       "startTime": 254.0,
       "endTime": 256.0,
       "text": "No te manches tú las manos con la sangre de ese hombre."
     },
     {
       "character": "CLAUDIA",
+      "idp": "P15",
       "startTime": 256.0,
       "endTime": 259.0,
       "text": "Estoy segura de que dice la verdad."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 259.0,
       "endTime": 262.0,
       "text": "Verdad..."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 262.0,
       "endTime": 268.0,
       "text": "Mi verdad es que he contenido revueltas en esta tierra durante once largos años, Claudia."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 268.0,
       "endTime": 270.0,
       "text": "Y ahora me encuentro atado."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 270.0,
       "endTime": 274.0,
       "text": "Si no condeno al profeta, Caifás comenzará una rebelión,"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 274.0,
       "endTime": 278.0,
       "text": "y si lo hago la comenzarán sus seguidores."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 278.0,
       "endTime": 282.0,
       "text": "Habrá sangre, decida lo que decida."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 282.0,
       "endTime": 284.0,
       "text": "El César me lo advirtió, Claudia."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 284.0,
       "endTime": 286.0,
       "text": "Si hay una nueva revolución,"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 286.0,
       "endTime": 288.0,
       "text": "la primera sangre derramada"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 288.0,
       "endTime": 290.0,
       "text": "será la mía."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 290.0,
-      "endTime": 295.0,
+      "endTime": 300.0,
       "text": "Esa es la única verdad que conozco."
     }
   ],
   "110": [
     {
       "character": "Música / Ambiente",
+      "idp": "P00",
       "startTime": 0.0,
-      "endTime": 90.0,
+      "endTime": 15.0,
       "text": "(Música de ambiente)"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 90.0,
       "endTime": 94.0,
       "text": "Maravilloso, espléndido."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 94.0,
       "endTime": 108.0,
       "text": "¡Por fin, por fin te veo las barbas, Jesús de Nazaret!"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 108.0,
       "endTime": 114.0,
       "text": "Éramos vecinos y aún no nos conocíamos."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 114.0,
       "endTime": 123.0,
       "text": "Tú, profeta, ¿acaso no tenías curiosidad por conocer la cara de tu rey?"
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 123.0,
       "endTime": 127.0,
       "text": "Parece mentira, Herodes, qué súbditos tan ingratos tienes."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 127.0,
       "endTime": 130.0,
       "text": "Sí, Galileo, yo soy tu rey y mando sobre ti."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 130.0,
       "endTime": 134.0,
       "text": "¿No lo sabías?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 134.0,
       "endTime": 135.0,
       "text": "Pobre muchacho."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 135.0,
       "endTime": 140.0,
       "text": "¿Te han dado una buena tunda en casa de Caifás?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 140.0,
       "endTime": 142.0,
       "text": "¿O fue Poncio Pilato?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 142.0,
       "endTime": 146.0,
       "text": "¿Te han hecho mucho daño los soldaditos extranjeros?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 146.0,
       "endTime": 152.0,
       "text": "Bueno, pero tú eres fuerte y aguantarás eso y mucho más, ¿no es cierto?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 152.0,
       "endTime": 154.0,
       "text": "A ver, profeta, alégranos la mañana."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 154.0,
       "endTime": 156.0,
       "text": "Ya te he visto el pelo, ahora quiero oírte la voz."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 156.0,
       "endTime": 161.0,
       "text": "Me han dicho que tienes una muy buena lengua para hacer cuentos y entretener a la gente."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 161.0,
       "endTime": 163.0,
       "text": "Vamos, aquí hay confianza."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 163.0,
       "endTime": 167.0,
       "text": "Esto de ser rey es aburridísimo."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 167.0,
       "endTime": 170.0,
       "text": "Es como tirar los dados una y otra vez..."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 170.0,
       "endTime": 172.0,
       "text": "...y ganar siempre."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 172.0,
       "endTime": 175.0,
       "text": "Vamos, anímate un poco."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 175.0,
       "endTime": 179.0,
       "text": "Estoy seguro de que si a Herodías le gusta tu historia, conseguirás un indulto."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 179.0,
       "endTime": 185.0,
       "text": "¿Qué te pasa?"
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 185.0,
       "endTime": 187.0,
       "text": "¿No se te ocurre nada?"
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 187.0,
       "endTime": 188.0,
       "text": "Siempre lo mismo."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 188.0,
       "endTime": 190.0,
       "text": "Muchas bravatas en la taberna..."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 190.0,
       "endTime": 192.0,
       "text": "...pero luego se vuelven modositos."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 192.0,
       "endTime": 194.0,
       "text": "Como una doncella en cuanto entran a palacio."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 194.0,
       "endTime": 196.0,
       "text": "Es normal, Herodías."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 196.0,
       "endTime": 199.0,
       "text": "Los campesinos son tímidos."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 199.0,
-      "endTime": 216.0,
+      "endTime": 214.0,
       "text": "Pero no te asustes, muchacho. Que no soy tan malo como me pintan. No tiembles, que no voy a comerte. Por cierto, me han dicho que también sabes hacer milagros."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 216.0,
       "endTime": 218.0,
       "text": "¿Es eso cierto, profeta, o también son cuentos?"
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 218.0,
       "endTime": 221.0,
       "text": "No sabes hacer nada, ni siquiera el truco de la serpiente."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 221.0,
       "endTime": 227.0,
       "text": "Las manos, Herodes, las tiene amarradas. Necesita moverlas con libertad."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 227.0,
       "endTime": 229.0,
       "text": "Tienes razón, preciosa. ¡Graco, Graco!"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 229.0,
       "endTime": 232.0,
       "text": "Suéltale las manos a ese."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 232.0,
       "endTime": 237.0,
       "text": "¿Ya estás listo, profeta, o necesitas algo más?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 237.0,
       "endTime": 240.0,
       "text": "Pues, ea, muchacho, toma esta manzana."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 240.0,
       "endTime": 243.0,
       "text": "¡Tómala, te digo!"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 243.0,
       "endTime": 246.0,
       "text": "Si la haces desaparecer sin que yo me dé cuenta, te daré un buen premio."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 246.0,
       "endTime": 252.0,
       "text": "¡Vamos, caramba, que no es tan difícil hacer eso!"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 252.0,
       "endTime": 256.0,
       "text": "¿O es que la belleza de mi mujer te tiene trastornado?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 256.0,
       "endTime": 258.0,
       "text": "Pues esa manzana sí que no te la regalo, amiguito."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 258.0,
       "endTime": 261.0,
       "text": "Es solo mía."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 261.0,
       "endTime": 263.0,
       "text": "Ya me estoy aburriendo, Herodes."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 263.0,
       "endTime": 267.0,
       "text": "Este mentecato no nos sirve ni para hacernos reír."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 267.0,
       "endTime": 269.0,
       "text": "¿Pero qué te pasa?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 269.0,
       "endTime": 270.0,
       "text": "Habla, di algo."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 270.0,
       "endTime": 272.0,
       "text": "¿O es que ya te has quedado mudo?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 272.0,
       "endTime": 274.0,
       "text": "Me parece muy bien."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 274.0,
       "endTime": 276.0,
       "text": "A los profetas no solo habría que cortarles la lengua..."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 276.0,
       "endTime": 278.0,
       "text": "...habría que cortarles la cabeza entera."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 278.0,
       "endTime": 282.0,
       "text": "Yo se la corté a ese, a Juan el Bautista."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 282.0,
       "endTime": 286.0,
       "text": "Melenudo impertinente, víbora venenosa."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 286.0,
       "endTime": 289.0,
       "text": "¿Y tú?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 289.0,
       "endTime": 292.0,
       "text": "¿Por qué me miras así?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 292.0,
       "endTime": 295.0,
       "text": "¿Por qué me miras así, maldito Nazareno?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 295.0,
       "endTime": 298.0,
       "text": "¿Quieres hacerme creer que no me tienes miedo?"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 298.0,
       "endTime": 301.0,
       "text": "Pues no, muchachito, yo no trago tus cuentos."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 301.0,
       "endTime": 304.0,
       "text": "Yo no soy tan estúpido como esa chusma que te aclama."
     },
     {
       "character": "HERODÍAS",
+      "idp": "P17",
       "startTime": 304.0,
       "endTime": 319.0,
       "text": "¡Herodes! No te hagas mala sangre por un estúpido como éste."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 319.0,
       "endTime": 324.0,
       "text": "Ve y dile al gobernador Poncio Pilato que Herodes, el Tetrarca de Galilea y de Perea, le devuelve a su prisionero, y que ratifica todo lo que sobre él se decida."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 324.0,
       "endTime": 328.0,
       "text": "¡Que lo mate, que lo clave en una cruz y que le saque los ojos!"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 328.0,
       "endTime": 334.0,
       "text": "Y que luego venga a mi palacio; beberemos el mejor vino de Arabia cuando los gusanos..."
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 334.0,
       "endTime": 338.0,
       "text": "...te estén comiendo. ¡Óyelo bien, maldito Nazareno!"
     },
     {
       "character": "HERODES",
+      "idp": "P16",
       "startTime": 338.0,
-      "endTime": 343.0,
+      "endTime": 348.0,
       "text": "¡Herodías! ¡Herodías!"
     }
   ],
   "111": [
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 0.0,
       "endTime": 5.0,
       "text": "Primera estación."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 5.0,
       "endTime": 8.0,
       "text": "Jesús es condenado a muerte."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 8.0,
       "endTime": 11.0,
       "text": "Señor, Señor."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 11.0,
       "endTime": 14.0,
       "text": "Herodes ratifica cualquier decisión que tome."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 14.0,
       "endTime": 15.0,
       "text": "Lo hemos traído aquí de nuevo."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 15.0,
       "endTime": 16.0,
       "text": "Necesitaremos refuerzos."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 16.0,
       "endTime": 19.0,
       "text": "No, lo último que quiero es una rebelión."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 19.0,
       "endTime": 20.0,
       "text": "Ya hay una rebelión."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 20.0,
       "endTime": 30.0,
       "text": "No encuentro delito alguno en este hombre."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 30.0,
       "endTime": 36.0,
       "text": "¿Tenéis la costumbre que os ponga en libertad un prisionero por fiesta de Pascua?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 36.0,
       "endTime": 39.0,
       "text": "Tenemos dos presos."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 39.0,
       "endTime": 43.0,
       "text": "Uno es Jesús de Nazaret,"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 43.0,
       "endTime": 48.0,
       "text": "acusado de traición por proclamarse él mismo rey de los judíos."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 48.0,
       "endTime": 50.0,
       "text": "Y otro Barrabás,"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 50.0,
       "endTime": 56.0,
       "text": "acusado de sedición y de asesinato de un soldado romano."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 56.0,
       "endTime": 61.0,
       "text": "¿A cuál de estos dos hombres queréis que os suelte?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 61.0,
       "endTime": 69.0,
       "text": "¿Al asesino Barrabás o a Jesús de Nazaret llamado Mesías?"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 69.0,
       "endTime": 71.0,
       "text": "¿Mesías? ¿Ese?"
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 71.0,
       "endTime": 73.0,
       "text": "Ese no es el enviado de nadie."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 73.0,
       "endTime": 76.0,
       "text": "Es solo un impostor y un blasfemo."
     },
     {
       "character": "ZÉRA",
+      "idp": "P06",
       "startTime": 76.0,
       "endTime": 86.0,
       "text": "Anda, deja libre a Barrabás."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 86.0,
       "endTime": 90.0,
       "text": "Os pregunto de nuevo,"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 90.0,
       "endTime": 100.0,
       "text": "¿a cuál de estos dos hombres queréis que os suelte?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 100.0,
       "endTime": 109.0,
       "text": "¡Calma, calma! ¿Y qué hago entonces con Jesús, el llamado Mesías?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 109.0,
       "endTime": 111.0,
       "text": "Pues, ¿qué mal ha hecho este hombre?"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 111.0,
       "endTime": 114.0,
       "text": "No he encontrado nada en él que merezca este castigo."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 114.0,
       "endTime": 128.0,
       "text": "No me hago responsable de esta muerte."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 128.0,
       "endTime": 131.0,
       "text": "Allá vosotros."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 131.0,
       "endTime": 136.0,
       "text": "Está bien."
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 136.0,
       "endTime": 138.0,
       "text": "Soltaré a Barrabás"
     },
     {
       "character": "PILATOS",
+      "idp": "P14",
       "startTime": 138.0,
       "endTime": 149.0,
       "text": "y os entregaré a Jesús después de azotarlo para que sea crucificado."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 149.0,
       "endTime": 153.0,
       "text": "¡Azotadlo!"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 153.0,
       "endTime": 160.0,
       "text": "Mirad a mi siervo. Desfigurado, no parecía hombre ni tenía aspecto humano."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 160.0,
       "endTime": 168.0,
       "text": "Creció en su presencia como brote, como raíz en tierra árida, sin figura, sin belleza."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 168.0,
       "endTime": 174.0,
       "text": "Lo vimos sin aspecto atrayente, despreciado y evitado de los hombres,"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 174.0,
       "endTime": 179.0,
       "text": "como un hombre de dolores, acostumbrado a los sufrimientos"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 179.0,
       "endTime": 185.0,
       "text": "ante el cual se ocultan los rostros, despreciado y desestimado."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 185.0,
       "endTime": 190.0,
       "text": "Él soportó nuestros sufrimientos y aguantó nuestros dolores."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 190.0,
       "endTime": 198.0,
       "text": "Nosotros lo veíamos herido de Dios y humillado, triturado por nuestros crímenes."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 198.0,
       "endTime": 211.0,
       "text": "Nuestro castigo cayó sobre él, y sus cicatrices nos curaron. Maltratado voluntariamente se humillaba y no abría la boca."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 211.0,
       "endTime": 216.0,
       "text": "Como cordero llevado al matadero, como oveja ante el esquilador,"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 216.0,
       "endTime": 220.0,
       "text": "enmudecía y no abría la boca."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 220.0,
       "endTime": 224.0,
       "text": "Sin defensa, sin justicia se lo llevaron."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 224.0,
       "endTime": 226.0,
       "text": "¿Quién meditó en su destino?"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 226.0,
       "endTime": 229.0,
       "text": "Lo arrancaron de la tierra de los vivos,"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 229.0,
       "endTime": 231.0,
       "text": "le dieron sepultura con los malvados,"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 231.0,
       "endTime": 234.0,
       "text": "y una tumba con los malhechores,"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 234.0,
       "endTime": 238.0,
       "text": "aunque no había cometido crímenes"
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 238.0,
       "endTime": 240.0,
       "text": "ni hubo engaño en su boca."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 240.0,
       "endTime": 246.0,
       "text": "El Señor quiso triturarlo con el sufrimiento."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 246.0,
       "endTime": 248.0,
       "text": "Verá su descendencia."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 248.0,
       "endTime": 256.0,
       "text": "Prolongará sus años."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 256.0,
-      "endTime": 273.0,
+      "endTime": 271.0,
       "text": "¡No!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 273.0,
       "endTime": 274.0,
       "text": "¡Oye! ¿No venías a Jerusalén como un rey?"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 274.0,
       "endTime": 277.0,
       "text": "¡Miradlo ahora!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 277.0,
       "endTime": 280.0,
       "text": "Ahí está el rey. ¡El rey de los judíos!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 280.0,
       "endTime": 281.0,
       "text": "(Risas)"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 281.0,
       "endTime": 283.0,
       "text": "¡Tenemos que vestirlo como un rey!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 283.0,
       "endTime": 284.0,
       "text": "¡Con un trapo de esos!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 284.0,
       "endTime": 287.0,
       "text": "¡Tienes razón! Esto servirá."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 287.0,
       "endTime": 288.0,
       "text": "(Risas)"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 288.0,
       "endTime": 294.0,
       "text": "¡Muévete para ponerte el manto real!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 294.0,
       "endTime": 295.0,
       "text": "(Risas)"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 295.0,
       "endTime": 299.0,
       "text": "Mirad, si es un rey, ¡necesita una corona!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 299.0,
       "endTime": 300.0,
       "text": "¡Sí!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 300.0,
       "endTime": 305.0,
       "text": "Majestad, aquí traigo la corona real. Una corona de oro puro..."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 305.0,
       "endTime": 308.0,
       "text": "¡Solemne coronación!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 308.0,
       "endTime": 310.0,
       "text": "¡Necesita el cetro!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 310.0,
       "endTime": 312.0,
       "text": "¡Majestad!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 312.0,
       "endTime": 315.0,
       "text": "¡Qué bien le sienta! ¡Maravilloso!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 315.0,
-      "endTime": 333.0,
+      "endTime": 330.0,
       "text": "Nadie tuvo una corona igual."
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 333.0,
       "endTime": 335.0,
       "text": "¡Salve, Rey de los Judíos!"
     },
     {
       "character": "SOLDADO",
+      "idp": "P12",
       "startTime": 335.0,
-      "endTime": 340.0,
+      "endTime": 345.0,
       "text": "¡Guardias, levanten la cruz!"
     }
   ],
   "201": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 10.0,
-      "text": "Segunda estación.<br>Jesús es cargado con la cruz.<br>Luego de la injusta sentencia, Jesús fue obligado a cargar su cruz<br>y dirigirse con ella hacia el lugar que llamaban la calavera o gólgota.<br>Mientras caminaba con este pesado madero,<br>la gente lo insultaba y sus captores lo maltrataban."
+      "idp": "P01",
+      "startTime": 0.0,
+      "endTime": 7.0,
+      "text": "Segunda estación. Jesús es cargado con la cruz."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 7.0,
+      "endTime": 17.0,
+      "text": "Luego de la injusta sentencia, Jesús fue obligado a cargar su cruz y dirigirse con ella hacia el lugar que llamaban la calavera o gólgota."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 17.0,
+      "endTime": 24.0,
+      "text": "Mientras caminaba con este pesado madero, la gente lo insultaba y sus captores lo maltrataban."
+    },
+    {
+      "character": "Música de fondo / Ambiente",
+      "idp": "P00",
+      "startTime": 24.0,
+      "endTime": 34.0,
+      "text": "Música de fondo / Ambiente"
     }
   ],
   "202": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 10.0,
-      "text": "Tercera estación.<br>Jesús cae por primera vez.<br>Mientras Jesús caminaba hacia el Calvario, la gente que se amotinaba alrededor de Él<br>le lanzaba los más severos gritos de desaprobación y humillación.<br>Pero Jesús, manso y humilde, no mostraba el más mínimo indicio de querer desistir de su elección,<br>de llevar sobre toda la humanidad y presentársela al Padre.<br>Más cuando la humanidad representada en la cruz quería aplastar y querer hacer caer a Jesús<br>Él, con todo el esfuerzo y amor, se proponía levantarla y seguir con ella hasta el momento de su glorificación"
+      "idp": "P01",
+      "startTime": 0.0,
+      "endTime": 5.0,
+      "text": "Tercera estación. Jesús cae por primera vez."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 5.0,
+      "endTime": 14.0,
+      "text": "Mientras Jesús caminaba hacia el Calvario, la gente que se amotinaba alrededor de Él le lanzaba los más severos gritos de desaprobación y humillación."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 14.0,
+      "endTime": 24.0,
+      "text": "Pero Jesús, manso y humilde, no mostraba el más mínimo indicio de querer desistir de su elección, de llevar sobre toda la humanidad y presentársela al Padre."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 24.0,
+      "endTime": 30.0,
+      "text": "Más cuando la humanidad representada en la cruz quería aplastar y querer hacer caer a Jesús"
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 30.0,
+      "endTime": 40.0,
+      "text": "Él, con todo el esfuerzo y amor, se proponía levantarla y seguir con ella hasta el momento de su glorificación"
+    },
+    {
+      "character": "Música / Ambiente",
+      "idp": "P00",
+      "startTime": 40.0,
+      "endTime": 50.0,
+      "text": "(Música de fondo / Ambiente silencioso)"
     }
   ],
   "203": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 6,
+      "idp": "P01",
+      "startTime": 0.0,
+      "endTime": 6.0,
       "text": "Cuarta estación. Jesús encuentra a su madre."
     },
     {
       "character": "JESÚS",
-      "startTime": 6,
-      "endTime": 21.0,
-      "text": "Madre."
+      "idp": "P05",
+      "startTime": 6.0,
+      "endTime": 10.0,
+      "text": "Madre"
+    },
+    {
+      "character": "Música / Ambiente",
+      "idp": "P00",
+      "startTime": 10.0,
+      "endTime": 24.0,
+      "text": "Música de fondo / Se escucha a Jesús sufriendo"
+    },
+    {
+      "character": "PUEBLO",
+      "idp": "P02",
+      "startTime": 24.0,
+      "endTime": 39.0,
+      "text": "Música de fondo / Murmullos de la multitud / Se escuhan latigazos y a María tratando de llegar hasta su hijo."
     },
     {
       "character": "MARÍA",
-      "startTime": 30,
-      "endTime": 45.0,
-      "text": "Aquí estoy, hijo<br>Aquí estoy, hijo<br>Hijo mío<br>Jesús"
+      "idp": "P19",
+      "startTime": 43.0,
+      "endTime": 50.0,
+      "text": "Aquí estoy, hijo."
+    },
+    {
+      "character": "MARÍA",
+      "idp": "P19",
+      "startTime": 50.0,
+      "endTime": 54.0,
+      "text": "Aquí estoy, hijo."
+    },
+    {
+      "character": "MARÍA",
+      "idp": "P19",
+      "startTime": 54.0,
+      "endTime": 61.0,
+      "text": "Hijo mío."
+    },
+    {
+      "character": "MARÍA",
+      "idp": "P19",
+      "startTime": 61.0,
+      "endTime": 63.0,
+      "text": "Jesús."
     },
     {
       "character": "JESÚS",
-      "startTime": 61,
-      "endTime": 71.0,
-      "text": "<br>Dios madre<br>Yo adoré las cosas<br>est"
+      "idp": "P05",
+      "startTime": 63.0,
+      "endTime": 65.0,
+      "text": "Ves madre,"
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 65.0,
+      "endTime": 70.0,
+      "text": "Yo hago nuevas las cosas."
+    },
+    {
+      "character": "Música / Ambiente",
+      "idp": "P00",
+      "startTime": 70.0,
+      "endTime": 85.0,
+      "text": "Música de fondo / Se escucha ruidos de de madera y cuando se retira a María"
+    },
+    {
+      "character": "Música / Ambiente",
+      "idp": "P00",
+      "startTime": 93.0,
+      "endTime": 103.0,
+      "text": "(Música de fondo / Ambiente silencioso)"
     }
   ],
   "204": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 10.0,
-      "text": "Quinta estación.<br>Simón de Sirene ayuda a Jesús a llevar la cruz.<br>Jesús, cansado y adolorido, presentaba ya torpeza al andar,<br>y a los soldados romanos les desesperaba aquella actitud,<br>así que echaron mano de un hombre que se encontraron en el camino."
+      "idp": "P01",
+      "startTime": 0.0,
+      "endTime": 7.0,
+      "text": "Quinta estación. Simón de Cirene ayuda a Jesús a llevar la cruz."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 7.0,
+      "endTime": 21.0,
+      "text": "Jesús, cansado y adolorido, presentaba ya torpeza al andar, y a los soldados romanos les desesperaba aquella actitud, así que echaron mano de un hombre que se encontraron en el camino."
+    },
+    {
+      "character": "Música / Ambiente",
+      "idp": "P00",
+      "startTime": 21.0,
+      "endTime": 31.0,
+      "text": "Música de fondo / Ambiente silencioso"
     }
   ],
   "205": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "Sexta estación.<br>La Verónica enjuga el rostro de Jesús.<br>Entre la multitud, una mujer limpia el rostro ensangrentado de Jesús con un sudario perfumado, tal como indicaba el profeta."
+      "idp": "P01",
+      "startTime": 0.0,
+      "endTime": 7.0,
+      "text": "Sexta estación. La Verónica enjuga el rostro de Jesús."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 7.0,
+      "endTime": 16.0,
+      "text": "Entre la multitud una mujer limpia el rostro ensangrentado de Jesús con un sudario perfumado, tal como indicaba el profeta."
     },
     {
       "character": "VERÓNICA",
-      "startTime": 16,
-      "endTime": 30,
-      "text": "Señor, Señor, por aquí, Señor.<br>Señor, déjame limpiarte el rostro."
+      "idp": "P25",
+      "startTime": 16.0,
+      "endTime": 21.0,
+      "text": "Señor, Señor, por aquí, Señor."
+    },
+    {
+      "character": "VERÓNICA",
+      "idp": "P25",
+      "startTime": 21.0,
+      "endTime": 25.0,
+      "text": "Señor, déjame limpiarte el rostro."
     },
     {
       "character": "JESÚS",
-      "startTime": 30,
-      "endTime": 45,
-      "text": "<br>Al derramar este ungüento sobre mi cara,<br>Lo has hecho sobre mi sepultura.<br>Bendita seas por prestar al Hijo del Hombre una sábana para recostar su cara."
+      "idp": "P05",
+      "startTime": 25.0,
+      "endTime": 30.0,
+      "text": "Al derramar este ungüento sobre mi cara,"
     },
     {
-      "character": "VERÓNICA",
-      "startTime": 45,
-      "endTime": 55.0,
-      "text": "<br>Más que el rostro que has plasmado en esta sábana, tus palabras han quedado en mi corazón."
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 30.0,
+      "endTime": 31.0,
+      "text": "lo has hecho sobre mi sepultura."
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 31.0,
+      "endTime": 37.0,
+      "text": "Bendita seas por prestar al Hijo del Hombre una sábana"
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 37.0,
+      "endTime": 43.0,
+      "text": "para recostar su cara."
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 43.0,
+      "endTime": 46.0,
+      "text": "Más que el rostro que has plasmado en esta sábana,"
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 46.0,
+      "endTime": 50.0,
+      "text": "tus palabras han quedado en mi corazón."
+    },
+    {
+      "character": "Música / Ambiente",
+      "idp": "P00",
+      "startTime": 50.0,
+      "endTime": 60.0,
+      "text": "Música de fondo / Ambiente silencioso"
     }
   ],
   "206": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 10.0,
-      "text": "Séptima estación.<br>Jesús cae por segunda vez.<br>Simón de Sirene le ayudó por unos cuantos kilómetros,<br>pero los soldados hostigados por los hombres que condenaron a Jesús,<br>hicieron que éste tomara de nuevo su cruz y cargara con su propia culpa."
+      "idp": "P01",
+      "startTime": 0.0,
+      "endTime": 6.0,
+      "text": "Séptima estación. Jesús cae por segunda vez."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 6.0,
+      "endTime": 20.0,
+      "text": "Simón de Sirene le ayudó por unos cuantos kilómetros, pero los soldados hostigados por los hombres que condenaron a Jesús, hicieron que éste tomara de nuevo su cruz y cargara con su propia culpa."
+    },
+    {
+      "character": "Música / Ambiente",
+      "idp": "P00",
+      "startTime": 20.0,
+      "endTime": 30.0,
+      "text": "Música de fondo / Ambiente silencioso"
     }
   ],
   "207": [
     {
       "character": "NARRADOR",
-      "startTime": 0,
+      "idp": "P01",
+      "startTime": 0.0,
+      "endTime": 6.0,
+      "text": "Octava estación. Jesús consuela a las santas mujeres."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 6.0,
+      "endTime": 11.0,
+      "text": "Repuesto ya Jesús de su segunda caída, avanza hacia el Gólgota."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 11.0,
       "endTime": 15.0,
-      "text": "Octava estación<br>Jesús consuela a las santas mujeres<br>Repuesto ya Jesús de su segunda caída, avanza hacia el Gólgota.<br>Los hombres y mujeres se amotinan a su alrededor.<br>Se entremezclan aquellos que radicalmente aprueban la condena de Jesús<br>y otros, por el contrario, entre gritos y llantos, reclaman la liberación del Señor.<br>Tal es el caso de un grupo de mujeres que desconsoladas gimen<br>por el que ellas consideran su maestro."
+      "text": "Los hombres y mujeres se amotinan a su alrededor."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 15.0,
+      "endTime": 19.0,
+      "text": "Se entremezclan aquellos que radicalmente aprueban la condena de Jesús,"
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 19.0,
+      "endTime": 24.0,
+      "text": "y otros, por el contrario, entre gritos y llantos, reclaman la liberación del Señor."
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 24.0,
+      "endTime": 28.0,
+      "text": "Tal es el caso de un grupo de mujeres que desconsoladas gimen,"
+    },
+    {
+      "character": "NARRADOR",
+      "idp": "P01",
+      "startTime": 28.0,
+      "endTime": 32.0,
+      "text": "por el que ellas consideran su maestro."
+    },
+    {
+      "character": "MUJERES JERUSALEN",
+      "idp": "P26",
+      "startTime": 32.0,
+      "endTime": 42.0,
+      "text": "Maestro, sueltenló, sueltenlo."
     },
     {
       "character": "JESÚS",
-      "startTime": 42,
-      "endTime": 57.0,
-      "text": "Hijas de Jerusalén,<br>no lloren por mí.<br>Lloren más bien por ustedes mismas<br>y por sus hijos.<br>porque está por llegar el día en que se dirán felices las madres sin hijos<br>felices las mujeres que no dieron a luz ni amamantaron.<br>Entonces se dirá, ojalá los cerros caigan sobre nosotros, ojalá que las lomas nos ocultaran.<br>Porque si así tratan al árbol verde, ¿quedarán con el seco?"
+      "idp": "P05",
+      "startTime": 42.0,
+      "endTime": 46.0,
+      "text": "Hijas de Jerusalén,"
     },
     {
-      "character": "NARRADOR",
-      "startTime": 120,
-      "endTime": 130.0,
-      "text": "<br>"
-    }
-  ],
-  "301": [
-    {
-      "character": "SOLDADO",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "¡Fuera! ¡Atrás! ¡Atrás!"
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 46.0,
+      "endTime": 52.0,
+      "text": "no lloren por mí."
     },
     {
-      "character": "NARRADOR",
-      "startTime": 30,
-      "endTime": 45.0,
-      "text": "Novena estación.<br>Jesús cae por tercera vez."
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 52.0,
+      "endTime": 55.0,
+      "text": "Lloren más bien por ustedes mismas"
     },
     {
-      "character": "SOLDADO",
-      "startTime": 60,
-      "endTime": 70.0,
-      "text": "<br>la mierda que llueve<br>¡No te pares!<br>Mira cómo está"
-    }
-  ],
-  "302": [
-    {
-      "character": "NARRADOR",
-      "startTime": 0,
-      "endTime": 15.0,
-      "text": "Décima estación.<br>Jesús es despojado de sus vestiduras."
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 55.0,
+      "endTime": 59.0,
+      "text": "y por sus hijos."
     },
     {
-      "character": "SOLDADO",
-      "startTime": 20,
-      "endTime": 30.0,
-      "text": "Vamos, rey. Arriba.<br>Vamos, vamos"
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 59.0,
+      "endTime": 71.0,
+      "text": "Porque está por llegar el día en que se dirá: Felices las madres sin hijos."
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 71.0,
+      "endTime": 76.0,
+      "text": "Felices las mujeres que no dieron a luz ni amamantaron"
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 76.0,
+      "endTime": 79.0,
+      "text": "Entonces se dirá,"
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 79.0,
+      "endTime": 84.0,
+      "text": "ojalá los cerros caigan sobre nosotros,"
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 84.0,
+      "endTime": 90.0,
+      "text": "ojalá que las lomas nos ocultaran."
+    },
+    {
+      "character": "JESÚS",
+      "idp": "P05",
+      "startTime": 90.0,
+      "endTime": 100.0,
+      "text": "Porque si así tratan al árbol verde, ¿qué harán con el seco?"
+    },
+    {
+      "character": "Música / Ambiente",
+      "idp": "P00",
+      "startTime": 100.0,
+      "endTime": 110.0,
+      "text": "Música de fondo / Ambiente silencioso"
     }
   ],
   "303": [
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 0.0,
       "endTime": 3.0,
       "text": "Décima primera estación."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 3.0,
       "endTime": 5.0,
       "text": "Jesús es clavado en la cruz."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 5.0,
       "endTime": 10.0,
       "text": "¡Ponedlo en la cruz!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 10.0,
       "endTime": 13.0,
       "text": "¡Vamos!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 13.0,
-      "endTime": 30.0,
+      "endTime": 28.0,
       "text": "¡No podéis pasar!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 30.0,
-      "endTime": 60.0,
+      "endTime": 45.0,
       "text": "¡No!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 60.0,
-      "endTime": 90.0,
+      "endTime": 75.0,
       "text": "¡Patale!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 90.0,
-      "endTime": 120.0,
+      "endTime": 105.0,
       "text": "¡No!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 120.0,
       "endTime": 133.0,
       "text": "¡Los pies!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 133.0,
-      "endTime": 163.0,
+      "endTime": 148.0,
       "text": "¡Vamos! ¡Subidlo!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 163.0,
       "endTime": 166.0,
       "text": "Vamos, ¡tirad!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 166.0,
       "endTime": 169.0,
       "text": "Vamos, más fuerte."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 169.0,
       "endTime": 171.0,
       "text": "¡Tirad!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 171.0,
       "endTime": 173.0,
       "text": "Arriba."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 173.0,
       "endTime": 174.0,
       "text": "Vamos, arriba."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 174.0,
       "endTime": 178.0,
       "text": "Un poco más."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 178.0,
       "endTime": 180.0,
       "text": "Con fuerza."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 180.0,
       "endTime": 182.0,
       "text": "Así está."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 182.0,
       "endTime": 190.0,
       "text": "Ya lo tenemos."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 190.0,
       "endTime": 191.0,
       "text": "Tira, tira."
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 191.0,
-      "endTime": 221.0,
+      "endTime": 206.0,
       "text": "¡Vamos!"
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 221.0,
       "endTime": 230.0,
       "text": "¡Hijo mío!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 230.0,
       "endTime": 233.0,
       "text": "¡Rey de los judíos!"
     },
     {
       "character": "SOLDADOS",
+      "idp": "P18",
       "startTime": 233.0,
       "endTime": 236.0,
       "text": "¿Ves el templo desde ahí arriba?"
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 236.0,
       "endTime": 239.0,
       "text": "¡Dejadlo, monstruos!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 239.0,
       "endTime": 241.0,
       "text": "¡Padre!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 241.0,
       "endTime": 246.0,
       "text": "¡Padre!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 246.0,
       "endTime": 248.0,
       "text": "Perdónalos."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 248.0,
-      "endTime": 286.0,
+      "endTime": 263.0,
       "text": "Porque no saben lo que hacen."
     },
     {
       "character": "OTRO LADRÓN",
+      "idp": "P20",
       "startTime": 286.0,
       "endTime": 294.0,
       "text": "¿No eres tú el Mesías?"
     },
     {
       "character": "OTRO LADRÓN",
+      "idp": "P20",
       "startTime": 294.0,
       "endTime": 299.0,
       "text": "¿Por qué no te salvas y nos salvas a nosotros?"
     },
     {
       "character": "LADRÓN ARREPENTIDO",
+      "idp": "P21",
       "startTime": 299.0,
       "endTime": 302.0,
       "text": "Nuestro castigo es justo."
     },
     {
       "character": "LADRÓN ARREPENTIDO",
+      "idp": "P21",
       "startTime": 302.0,
       "endTime": 307.0,
       "text": "Pero este hombre no ha hecho nada malo."
     },
     {
       "character": "LADRÓN ARREPENTIDO",
+      "idp": "P21",
       "startTime": 307.0,
       "endTime": 313.0,
       "text": "Recuérdame cuando entres en tu reino."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 313.0,
       "endTime": 315.0,
       "text": "En verdad te digo..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 315.0,
       "endTime": 318.0,
       "text": "...que hoy..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 318.0,
       "endTime": 332.0,
       "text": "...tú estarás conmigo en el paraíso."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 332.0,
       "endTime": 343.0,
       "text": "Madre, ahí tienes a tu hijo."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 343.0,
       "endTime": 351.0,
       "text": "Juan, ahí tienes a tu madre."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 351.0,
       "endTime": 362.0,
       "text": "Dios mío."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 362.0,
-      "endTime": 378.0,
+      "endTime": 377.0,
       "text": "Dios mío, ¿por qué me has abandonado?"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 378.0,
-      "endTime": 531.0,
+      "endTime": 393.0,
       "text": "Tengo sed."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 531.0,
-      "endTime": 536.0,
+      "endTime": 541.0,
       "text": "Padre, en tus manos encomiendo mi espíritu."
     }
   ],
   "304": [
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 0.0,
       "endTime": 6.0,
       "text": "Décima segunda estación. Jesús muere en la cruz."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 6.0,
-      "endTime": 30.0,
+      "endTime": 21.0,
       "text": "Desde el mediodía hasta las tres de la tarde, toda la tierra quedó en oscuridad."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 30.0,
-      "endTime": 35.0,
+      "endTime": 40.0,
       "text": "El velo del templo se rasgó por la mitad."
     }
   ],
   "305": [
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 0.0,
-      "endTime": 16.0,
+      "endTime": 15.0,
       "text": "Décima tercera estación. Jesús es bajado de la cruz."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 16.0,
       "endTime": 30.0,
       "text": "¡Hijo mío! ¡Hijo mío!"
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 30.0,
       "endTime": 32.0,
       "text": "Hijo..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 32.0,
       "endTime": 43.0,
       "text": "Mirad si hay dolor como el mío."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 43.0,
       "endTime": 45.0,
       "text": "El hijo más bueno."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 45.0,
       "endTime": 49.0,
       "text": "El único bueno de verdad."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 49.0,
       "endTime": 53.0,
       "text": "¡Destrozado!"
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 53.0,
       "endTime": 57.0,
       "text": "Habiendo soportado toda la maldad del mundo."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 57.0,
       "endTime": 63.0,
       "text": "Hijo..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 63.0,
       "endTime": 67.0,
       "text": "Hijo mío..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 67.0,
-      "endTime": 83.0,
+      "endTime": 82.0,
       "text": "Hijo..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 83.0,
       "endTime": 84.0,
       "text": "Déjame ahora..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 84.0,
       "endTime": 87.0,
       "text": "...sostener, con mi amor y mi dolor..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 87.0,
       "endTime": 90.0,
       "text": "...el cuerpo de tu hijo..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 90.0,
       "endTime": 93.0,
       "text": "...y mi hijo..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 93.0,
       "endTime": 98.0,
       "text": "...mientras espero que rompas tu silencio."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 98.0,
       "endTime": 101.0,
       "text": "¡Hijo mío!"
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 101.0,
       "endTime": 103.0,
       "text": "Hijo..."
     },
     {
       "character": "MARÍA",
+      "idp": "P19",
       "startTime": 103.0,
-      "endTime": 108.0,
+      "endTime": 113.0,
       "text": "Hijo mío..."
-    }
-  ],
-  "306": [
-    {
-      "character": "MUSICA SAETA",
-      "startTime": 0,
-      "endTime": 10.0,
-      "text": "--???--<br>Dijo una voz popular, que me presta una escalera para subir al madero, para quitarle los clavos a Jesús, el nazareno.<br>Oh, la saeta al cantar ..."
     }
   ],
   "401": [
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 0.0,
-      "endTime": 30.0,
+      "endTime": 15.0,
       "text": "Décima cuarta estación. El cuerpo de Jesús es depositado en el sepulcro."
     },
     {
       "character": "PUEBLO",
+      "idp": "P02",
       "startTime": 30.0,
-      "endTime": 35.0,
+      "endTime": 40.0,
       "text": "¿Qué pasa?"
     }
   ],
   "402": [
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 0.0,
-      "endTime": 18.0,
+      "endTime": 15.0,
       "text": "José de Arimatea, un hombre bueno y justo que pertenecía a la Junta Suprema y que no estuvo de acuerdo con estos hechos, obtuvo permiso de Poncio Pilato para colocar el cuerpo de Jesús en una tumba antes de que diera principio el día de reposo."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 18.0,
       "endTime": 24.0,
       "text": "El primer día de la semana, regresaron al sepulcro muy temprano, llevando los perfumes que habían preparado."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 24.0,
       "endTime": 31.0,
       "text": "La piedra había sido removida y la tumba estaba abierta."
     },
     {
       "character": "NARRADOR",
+      "idp": "P01",
       "startTime": 31.0,
       "endTime": 35.0,
       "text": "Al entrar, vieron que el cuerpo de Jesús ya no estaba ahí."
     },
     {
       "character": "ÁNGEL 1",
+      "idp": "P22",
       "startTime": 35.0,
-      "endTime": 55.0,
+      "endTime": 50.0,
       "text": "¿Por qué buscan entre los muertos al que vive?"
     },
     {
       "character": "ÁNGEL 1",
+      "idp": "P22",
       "startTime": 55.0,
       "endTime": 57.0,
       "text": "No está aquí, ha resucitado."
     },
     {
       "character": "ÁNGEL 2",
+      "idp": "P23",
       "startTime": 57.0,
       "endTime": 60.0,
       "text": "Recuerden lo que les dijo cuando todavía estaba en Galilea,"
     },
     {
       "character": "ÁNGEL 2",
+      "idp": "P23",
       "startTime": 60.0,
       "endTime": 64.0,
       "text": "que el Hijo del Hombre tenía que ser entregado en manos de los pecadores,"
     },
     {
       "character": "ÁNGEL 2",
+      "idp": "P23",
       "startTime": 64.0,
-      "endTime": 89.0,
+      "endTime": 79.0,
       "text": "que lo crucificarían y que al tercer día resucitaría."
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 89.0,
       "endTime": 91.0,
       "text": "Escuchen, la piedra fue removida."
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 91.0,
       "endTime": 94.0,
       "text": "Entramos."
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 94.0,
       "endTime": 96.0,
       "text": "Y el cuerpo de nuestro Señor..."
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 96.0,
       "endTime": 98.0,
       "text": "...no está."
     },
     {
       "character": "DISCÍPULOS",
+      "idp": "P08",
       "startTime": 98.0,
       "endTime": 100.0,
       "text": "¿Cómo? ¿Desapareció?"
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 100.0,
       "endTime": 102.0,
       "text": "Y vimos a dos hombres..."
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 102.0,
       "endTime": 104.0,
       "text": "...con ropas brillantes..."
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 104.0,
       "endTime": 106.0,
       "text": "...como el sol,"
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 106.0,
       "endTime": 107.0,
       "text": "y dijeron:"
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 107.0,
       "endTime": 111.0,
       "text": "«¿Por qué buscan a los vivos..."
     },
     {
       "character": "MARÍA MAGDALENA",
+      "idp": "P24",
       "startTime": 111.0,
-      "endTime": 116.0,
+      "endTime": 121.0,
       "text": "...entre los muertos?»"
     }
   ],
   "403": [
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 30.0,
       "endTime": 37.0,
       "text": "¡No temáis!"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 37.0,
       "endTime": 41.0,
       "text": "Confiad en Dios."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 41.0,
       "endTime": 46.0,
       "text": "Confiad también en mí."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 46.0,
       "endTime": 47.0,
       "text": "Bienaventurados..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 47.0,
       "endTime": 50.0,
       "text": "...los que no me han visto,"
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 50.0,
       "endTime": 53.0,
       "text": "y aún así..."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 53.0,
       "endTime": 56.0,
       "text": "...creen."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 56.0,
-      "endTime": 78.0,
+      "endTime": 71.0,
       "text": "Sabeis como llegar adonde yo voy... Yo soy el camino, la verdad y la vida, el primero y el último, el principio y el fin."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 78.0,
       "endTime": 88.0,
       "text": "No habrá más muerte, ni tristeza, ni llanto, ni dolor."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 88.0,
       "endTime": 91.0,
       "text": "Voy a hacerlo todo nuevo."
     },
     {
       "character": "JESÚS",
+      "idp": "P05",
       "startTime": 91.0,
       "endTime": 101.0,
       "text": "Que la gracia del Señor siempre esté con el pueblo de Dios."
     },
     {
       "character": "DISCÍPULOS",
+      "idp": "P08",
       "startTime": 101.0,
-      "endTime": 106.0,
+      "endTime": 111.0,
       "text": "¡Amén!"
     }
   ]
