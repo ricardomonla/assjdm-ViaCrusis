@@ -1091,3 +1091,115 @@ body.stamp-mode .cue-line-active {
         font-size: 18px;
     }
 }
+
+/* ===== MODAL INLINE (reemplazo de alert/prompt) ===== */
+.vcby-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    animation: vcbyFadeIn 0.2s ease;
+}
+
+.vcby-modal-overlay.active {
+    display: flex;
+}
+
+@keyframes vcbyFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.vcby-modal {
+    background: #f9f4ef;
+    border: 2px solid #806d5a;
+    border-radius: 12px;
+    padding: 20px 24px;
+    width: 300px;
+    max-width: 90vw;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    animation: vcbySlideIn 0.25s ease;
+}
+
+@keyframes vcbySlideIn {
+    from { transform: translateY(-15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.vcby-modal-icon {
+    font-size: 2em;
+    margin-bottom: 8px;
+}
+
+.vcby-modal-msg {
+    color: #2d2418;
+    font-family: 'Georgia', serif;
+    font-size: 0.95em;
+    line-height: 1.4;
+    margin-bottom: 14px;
+    word-break: break-word;
+}
+
+.vcby-modal-input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 2px solid #c4b494;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 14px;
+    color: #2d2418;
+    background: #fff;
+}
+
+.vcby-modal-input:focus {
+    border-color: #806d5a;
+    box-shadow: 0 0 0 2px rgba(128, 109, 90, 0.2);
+}
+
+.vcby-modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.vcby-modal-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid #806d5a;
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.vcby-modal-btn-ok {
+    background: #806d5a;
+    color: #fff;
+}
+
+.vcby-modal-btn-ok:hover {
+    background: #6b5a4a;
+}
+
+.vcby-modal-btn-cancel {
+    background: #e9d8b7;
+    color: #4a3e31;
+}
+
+.vcby-modal-btn-cancel:hover {
+    background: #f9f4ef;
+}
+
+/* Variantes de estado */
+.vcby-modal-success .vcby-modal-icon { color: #27ae60; }
+.vcby-modal-error .vcby-modal-icon { color: #c0392b; }
+.vcby-modal-info .vcby-modal-icon { color: #806d5a; }

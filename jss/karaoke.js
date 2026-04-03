@@ -303,18 +303,19 @@ document.addEventListener('DOMContentLoaded', function() {
             insertBtn.querySelector('.btn-insert-cue').addEventListener('click', (function(lastIdx) {
                 return function(e) {
                     e.stopPropagation();
-                    var text = prompt('Acotacion escenica (P00):', '*(descripcion de la escena)*');
-                    if (!text) return;
-                    var trackId = window.audioId.split('_')[0];
-                    var fd = new URLSearchParams();
-                    fd.append('track_id', trackId);
-                    fd.append('cue_index', lastIdx);
-                    fd.append('field', '_insert');
-                    fd.append('value', text);
-                    fetch('save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
-                    .then(function(r) { return r.json(); })
-                    .then(function(d) { if (d.ok) { showCommitButton(); location.reload(); } else { alert('Error: ' + (d.msg || '')); } })
-                    .catch(function() { alert('Error de conexion'); });
+                    vcbyPrompt('Acotación escénica (P00):', '*(descripción de la escena)*', '🎭').then(function(text) {
+                        if (!text) return;
+                        var trackId = window.audioId.split('_')[0];
+                        var fd = new URLSearchParams();
+                        fd.append('track_id', trackId);
+                        fd.append('cue_index', lastIdx);
+                        fd.append('field', '_insert');
+                        fd.append('value', text);
+                        fetch('save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
+                        .then(function(r) { return r.json(); })
+                        .then(function(d) { if (d.ok) { showCommitButton(); location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
+                        .catch(function() { vcbyAlert('Error de conexión', 'error'); });
+                    });
                 };
             })(lastCue._originalIndex));
             scriptContainer.appendChild(insertBtn);
@@ -548,12 +549,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         showCommitButton();
                     } else {
                         textEl.innerHTML = originalText;
-                        alert('Error: ' + (data.msg || 'No se pudo guardar'));
+                        vcbyAlert('Error: ' + (data.msg || 'No se pudo guardar'), 'error');
                     }
                 })
                 .catch(function() {
                     textEl.innerHTML = originalText;
-                    alert('Error de conexión al guardar');
+                    vcbyAlert('Error de conexión al guardar', 'error');
                 });
             }
             
@@ -596,56 +597,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.directorCommit = function() {
-        var msg = prompt('Mensaje del commit:', 'Edicion de subtitulos');
-        if (!msg) return;
-        
-        var trackId = window.audioId.split('_')[0];
-        var pending = window._pendingTimeChanges || [];
-        
-        // Enviar cada cambio pendiente secuencialmente
-        var chain = Promise.resolve();
-        pending.forEach(function(change) {
-            chain = chain.then(function() {
+        vcbyPrompt('Mensaje del commit:', 'Edicion de subtitulos', '💾').then(function(msg) {
+            if (!msg) return;
+            
+            var trackId = window.audioId.split('_')[0];
+            var pending = window._pendingTimeChanges || [];
+            
+            // Enviar cada cambio pendiente secuencialmente
+            var chain = Promise.resolve();
+            pending.forEach(function(change) {
+                chain = chain.then(function() {
+                    var fd = new URLSearchParams();
+                    fd.append('track_id', trackId);
+                    fd.append('cue_index', change.cue_index);
+                    fd.append('field', change.field);
+                    fd.append('value', change.value);
+                    return fetch('save_changes.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: fd.toString()
+                    }).then(function(r) { return r.json(); });
+                });
+            });
+            
+            // Despues de todos los cambios, trigger commit
+            chain.then(function() {
                 var fd = new URLSearchParams();
                 fd.append('track_id', trackId);
-                fd.append('cue_index', change.cue_index);
-                fd.append('field', change.field);
-                fd.append('value', change.value);
+                fd.append('cue_index', 0);
+                fd.append('field', 'text');
+                fd.append('value', scriptData[0] ? scriptData[0].text : '');
+                fd.append('commit_msg', msg);
                 return fetch('save_changes.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: fd.toString()
                 }).then(function(r) { return r.json(); });
+            })
+            .then(function(data) {
+                if (data.ok) {
+                    pendingEdits = 0;
+                    window._pendingTimeChanges = [];
+                    var bar = document.getElementById('director-commit-bar');
+                    if (bar) bar.style.display = 'none';
+                    vcbyAlert('Commit realizado: ' + pending.length + ' cambios guardados', 'success');
+                } else {
+                    vcbyAlert('Error: ' + (data.msg || 'No se pudo commitear'), 'error');
+                }
+            })
+            .catch(function() {
+                vcbyAlert('Error de conexión', 'error');
             });
-        });
-        
-        // Despues de todos los cambios, trigger commit
-        chain.then(function() {
-            var fd = new URLSearchParams();
-            fd.append('track_id', trackId);
-            fd.append('cue_index', 0);
-            fd.append('field', 'text');
-            fd.append('value', scriptData[0] ? scriptData[0].text : '');
-            fd.append('commit_msg', msg);
-            return fetch('save_changes.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: fd.toString()
-            }).then(function(r) { return r.json(); });
-        })
-        .then(function(data) {
-            if (data.ok) {
-                pendingEdits = 0;
-                window._pendingTimeChanges = [];
-                var bar = document.getElementById('director-commit-bar');
-                if (bar) bar.style.display = 'none';
-                alert('Commit realizado: ' + pending.length + ' cambios guardados');
-            } else {
-                alert('Error: ' + (data.msg || 'No se pudo commitear'));
-            }
-        })
-        .catch(function() {
-            alert('Error de conexion');
         });
     };
 });

@@ -175,6 +175,7 @@ include '../incs/header.php';
             });
         </script>
         <script src="../jss/js.js?v=<?= urlencode($latestVersion) ?>"></script>
+        <script src="../jss/modal.js?v=<?= urlencode($latestVersion) ?>"></script>
         <script src="../jss/karaoke.js?v=<?= urlencode($latestVersion) ?>"></script>
     </section>
 </main>
