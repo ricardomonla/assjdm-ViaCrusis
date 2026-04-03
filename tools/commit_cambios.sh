@@ -1,5 +1,5 @@
 #!/bin/bash
-# tools/commit_cambios.sh — Commit local de cambios del Director
+# tools/commit_cambios.sh — Commit + Push de cambios del Director
 # Invocado desde audios/save_changes.php
 # Uso: bash tools/commit_cambios.sh "mensaje de commit"
 
@@ -23,4 +23,7 @@ fi
 # Commit con mensaje descriptivo
 git commit -m "🎬 Director: $MSG ($TIMESTAMP)" --no-verify 2>&1
 
-echo "{\"ok\":true,\"msg\":\"Commit realizado: $MSG\",\"ts\":\"$TIMESTAMP\"}"
+# Push a GitHub (deploy key con permisos de escritura)
+git push origin main 2>&1 || echo '{"push_warning":"Push falló, commit local OK"}'
+
+echo "{\"ok\":true,\"msg\":\"Commit + push realizado: $MSG\",\"ts\":\"$TIMESTAMP\"}"

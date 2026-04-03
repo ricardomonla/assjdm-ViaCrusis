@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.8.9' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Director remoto: commit + push a GitHub desde la web (edición desde cualquier dispositivo).',
+            'Servidor: permisos www-data configurados para escritura en subs/ y git.',
+            'Deploy: post-pull restaura permisos automáticamente.',
+        ]
+    ],
     '26.8.8' => [
         'date' => '2026-04-03',
         'changes' => [
