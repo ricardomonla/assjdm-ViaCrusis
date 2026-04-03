@@ -1,6 +1,6 @@
 <?php
 $versionLogs = [
-    '26.9.0' => [
+    '26.8.10' => [
         'date' => '2026-04-03',
         'changes' => [
             'UX: Modal de perfiles simplificado — 5 taps va directo a pedir clave Director (sin paso intermedio Público).',
