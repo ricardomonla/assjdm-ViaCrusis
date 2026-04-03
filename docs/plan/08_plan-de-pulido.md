@@ -2,14 +2,14 @@
 
 > **Estado**: ⏳ En progreso
 > **Fecha**: 2026-04-02
-> **Última actualización**: 2026-04-02 21:58
+> **Última actualización**: 2026-04-02 22:03
 
 ---
 
 ## Progreso General
 
 ```text
-██████░░░░░░░░░░░░░░░░░░░░░░░░  20% — EN PROGRESO
+█████████░░░░░░░░░░░░░░░░░░░░░  30% — EN PROGRESO
 ```
 
 | Fase | Descripción | Estado |
@@ -17,7 +17,7 @@
 | 1 | Sincronía Cronológica de Personajes | ⏳ (80%) |
 | 2 | Tunning de Precision en Tiempos de Subtítulos | 📋 |
 | 3 | Acotaciones Escénicas y Descriptivas Intermedias | 📋 |
-| 4 | Sistema de Perfiles (Público / Director) | ⏳ (4.1 ✅) |
+| 4 | Sistema de Perfiles (Público / Director) | ⏳ (4.1-4.3 ✅) |
 
 ---
 
@@ -49,8 +49,8 @@ Inyectar un capa puramente teatral que explique qué ocurre en momentos instrume
 ## Fase 4: Sistema de Perfiles (Público / Director)
 La interfaz actual tiene un solo punto de acceso sin diferenciación de roles. Se requiere un sistema dual:
 - [x] **4.1 Infraestructura**: Extender modal de login a multi-perfil (Público/Director), crear `jss/perfiles.js`, agregar clases CSS `.director-mode`/`.director-only`. ✅ *Compilador v4 con IDP, JSON recompilado (24 tracks/601 cues)*.
-- [ ] **4.2 Enriquecimiento Visual**: IDP técnicos visibles para Director, colores por personaje, panel de notas por track.
-- [ ] **4.3 Edición In-Place**: Doble-click en subtítulos para editar, guardar cambios vía `tools/commit_cambios.sh` (git commit local).
+- [x] **4.2 Enriquecimiento Visual**: IDP técnicos visibles para Director, colores por personaje, panel de notas por track. ✅ *Panel colapsable con notas localStorage + WhatsApp Director-only*.
+- [x] **4.3 Edición In-Place**: Doble-click en subtítulos para editar, guardar cambios vía `tools/commit_cambios.sh` (git commit local). ✅ *save_changes.php + barra flotante de commit*.
 - [ ] **4.4 Acotaciones Escénicas**: Insertar filas P00 entre líneas, persistencia vía commit.
 
 > **Perfil Público (Actores)**: Solo escuchar audio + ver subtítulos karaoke. Sin edición, sin WhatsApp, sin IDs técnicos.

@@ -638,16 +638,16 @@ body.director-mode .director-only-inline {
     background-color: #fef9ed;
 }
 
-/* ===== DIRECTOR: Colores por personaje (bordes) ===== */
-body.director-mode .cue-block[data-character-id="P01"] { border-left-color: #2c3e50; }  /* NARRADOR */
-body.director-mode .cue-block[data-character-id="P02"] { border-left-color: #c0392b; }  /* JESÚS */
-body.director-mode .cue-block[data-character-id="P03"] { border-left-color: #8e44ad; }  /* MARÍA */
-body.director-mode .cue-block[data-character-id="P04"] { border-left-color: #d35400; }  /* PILATOS */
-body.director-mode .cue-block[data-character-id="P05"] { border-left-color: #7f8c8d; }  /* JUDAS */
-body.director-mode .cue-block[data-character-id="P06"] { border-left-color: #27ae60; }  /* CAIFÁS */
-body.director-mode .cue-block[data-character-id="P07"] { border-left-color: #2980b9; }  /* PUEBLO */
-body.director-mode .cue-block[data-character-id="P00"] { border-left-color: #95a5a6; }  /* AMBIENTE */
-body.director-mode .cue-block[data-character-id="P99"] { border-left-color: #e74c3c; }  /* CORO */
+/* ===== Colores por personaje (bordes) — ambos perfiles ===== */
+.cue-block[data-character-id="P01"] { border-left-color: #2c3e50; }  /* NARRADOR */
+.cue-block[data-character-id="P02"] { border-left-color: #c0392b; }  /* JESÚS */
+.cue-block[data-character-id="P03"] { border-left-color: #8e44ad; }  /* MARÍA */
+.cue-block[data-character-id="P04"] { border-left-color: #d35400; }  /* PILATOS */
+.cue-block[data-character-id="P05"] { border-left-color: #7f8c8d; }  /* JUDAS */
+.cue-block[data-character-id="P06"] { border-left-color: #27ae60; }  /* CAIFÁS */
+.cue-block[data-character-id="P07"] { border-left-color: #2980b9; }  /* PUEBLO */
+.cue-block[data-character-id="P00"] { border-left-color: #95a5a6; }  /* AMBIENTE */
+.cue-block[data-character-id="P99"] { border-left-color: #e74c3c; }  /* CORO */
 
 /* Director: IDP badge */
 .cue-idp {
@@ -678,6 +678,164 @@ body.director-mode .cue-idp {
 
 body.director-mode .cue-time-range {
     display: inline;
+}
+
+/* ===== DIRECTOR: Panel de Notas ===== */
+.director-panel {
+    margin: 12px 0;
+    border: 1px solid #c4b494;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #faf6f0, #f4ece0);
+    overflow: hidden;
+}
+
+.director-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #806d5a;
+    color: #fff;
+}
+
+.director-panel-title {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.director-panel-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+
+.director-notes-body {
+    padding: 10px 12px;
+}
+
+.director-notes-textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px;
+    border: 1px solid #d4c8b4;
+    border-radius: 6px;
+    background: #fff;
+    font-family: Georgia, serif;
+    font-size: 0.85em;
+    color: #2d2418;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.director-notes-textarea:focus {
+    outline: none;
+    border-color: #806d5a;
+    box-shadow: 0 0 0 2px rgba(128, 109, 90, 0.2);
+}
+
+.director-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    gap: 8px;
+}
+
+.btn-director-action {
+    padding: 6px 14px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-director-action:hover {
+    background: #1da851;
+    transform: translateY(-1px);
+}
+
+.btn-director-action:active {
+    transform: translateY(0);
+}
+
+.director-track-info {
+    font-family: monospace;
+    font-size: 0.75em;
+    color: #806d5a;
+}
+
+/* ===== DIRECTOR: Edición In-Place ===== */
+.cue-editing {
+    background: #fff !important;
+    border: 2px solid #806d5a !important;
+    border-radius: 4px;
+    padding: 4px 6px;
+    outline: none;
+    min-height: 1.5em;
+    box-shadow: 0 0 0 3px rgba(128, 109, 90, 0.15);
+}
+
+body.director-mode .cue-text {
+    cursor: text;
+}
+
+body.director-mode .cue-text:hover {
+    background: rgba(128, 109, 90, 0.05);
+    border-radius: 3px;
+}
+
+/* ===== DIRECTOR: Barra flotante de commit ===== */
+.director-commit-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 16px;
+    background: #2d2418;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.commit-count {
+    font-size: 0.85em;
+    color: #e8d5b5;
+}
+
+.btn-commit {
+    padding: 8px 18px;
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-commit:hover {
+    background: #219a52;
+}
+
+.btn-commit:active {
+    transform: scale(0.97);
 }
 
 /* ===== RESPONSIVE ===== */

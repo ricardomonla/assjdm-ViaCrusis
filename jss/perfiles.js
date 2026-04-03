@@ -73,6 +73,12 @@
             document.body.classList.remove('director-mode', 'admin-mode');
         }
 
+        // Mostrar/ocultar elementos director-only (override inline style="display:none")
+        var directorEls = document.querySelectorAll('.director-only');
+        for (var i = 0; i < directorEls.length; i++) {
+            directorEls[i].style.display = (perfil === 'director') ? '' : 'none';
+        }
+
         // Actualizar indicador visual en el header
         actualizarIndicadorHeader(perfil);
         // Actualizar botón logout

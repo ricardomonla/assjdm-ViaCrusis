@@ -1,5 +1,19 @@
 <?php
 $versionLogs = [
+    '26.8.3' => [
+        'date' => '2026-04-02',
+        'changes' => [
+            'Sistema de Perfiles dual: Público (actores) y Director (edición avanzada).',
+            'Modal de selección de perfil con autenticación para Director.',
+            'Panel de Notas de Dirección por track (auto-guardado localStorage).',
+            'Edición in-place de subtítulos: doble-click para editar, Enter para guardar.',
+            'Endpoint save_changes.php: actualiza JSON y v4.0.md en servidor.',
+            'Commit local desde interfaz web: barra flotante + tools/commit_cambios.sh.',
+            'Colores por personaje en subtítulos (ambos perfiles). IDP badges y tiempos locales (Director).',
+            'Nuevo compilador compilar_json_v4.py: lee v4.0.md directamente con campo IDP.',
+            'WhatsApp Director-only: compartir track con notas incluidas.',
+        ]
+    ],
     '26.8.2' => [
         'date' => '2026-04-02',
         'changes' => [

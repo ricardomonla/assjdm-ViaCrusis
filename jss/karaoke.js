@@ -278,4 +278,159 @@ document.addEventListener('DOMContentLoaded', function() {
             currentActiveIdx = foundIdx;
         }
     }
+
+    // ===== DIRECTOR: Edición In-Place =====
+    
+    // Doble-click en texto de subtítulo para editar (solo Director)
+    scriptContainer.addEventListener('dblclick', function(e) {
+        if (!window.VCBYPerfiles || !window.VCBYPerfiles.isDirector()) return;
+        
+        // Buscar el .cue-text más cercano
+        const textEl = e.target.closest('.cue-text');
+        if (!textEl) return;
+        
+        // Ya está en edición?
+        if (textEl.contentEditable === 'true') return;
+        
+        // Encontrar el cue-block padre y su índice
+        const block = textEl.closest('.cue-block');
+        if (!block) return;
+        
+        const cueIdx = parseInt(block.id.replace('cue-', ''));
+        if (isNaN(cueIdx)) return;
+        
+        // Verificar que no sea cue externo (prev/next audio)
+        if (block.classList.contains('cue-external-audio')) return;
+        
+        // Pausar audio durante la edición
+        audioPlayer.pause();
+        
+        // Activar edición
+        const originalText = textEl.innerHTML;
+        textEl.contentEditable = 'true';
+        textEl.classList.add('cue-editing');
+        textEl.focus();
+        
+        // Seleccionar todo el texto
+        const range = document.createRange();
+        range.selectNodeContents(textEl);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        
+        // Guardar al perder foco o Enter
+        function saveEdit() {
+            textEl.contentEditable = 'false';
+            textEl.classList.remove('cue-editing');
+            
+            const newText = textEl.innerHTML.trim();
+            if (newText !== originalText) {
+                // Actualizar en scriptData local
+                if (scriptData[cueIdx]) {
+                    scriptData[cueIdx].text = newText;
+                }
+                
+                // Enviar al servidor
+                const trackId = window.audioId.split('_')[0];
+                const formData = new URLSearchParams();
+                formData.append('track_id', trackId);
+                formData.append('cue_index', cueIdx);
+                formData.append('field', 'text');
+                formData.append('value', newText);
+                
+                fetch('save_changes.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData.toString()
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.ok) {
+                        // Mostrar feedback breve
+                        textEl.style.transition = 'background 0.3s';
+                        textEl.style.background = 'rgba(39, 174, 96, 0.15)';
+                        setTimeout(function() { textEl.style.background = ''; }, 1000);
+                        // Mostrar botón commit
+                        showCommitButton();
+                    } else {
+                        textEl.innerHTML = originalText;
+                        alert('Error: ' + (data.msg || 'No se pudo guardar'));
+                    }
+                })
+                .catch(function() {
+                    textEl.innerHTML = originalText;
+                    alert('Error de conexión al guardar');
+                });
+            }
+            
+            textEl.removeEventListener('blur', saveEdit);
+            textEl.removeEventListener('keydown', handleKeys);
+        }
+        
+        function handleKeys(ev) {
+            if (ev.key === 'Enter' && !ev.shiftKey) {
+                ev.preventDefault();
+                textEl.blur();
+            }
+            if (ev.key === 'Escape') {
+                textEl.innerHTML = originalText;
+                textEl.blur();
+            }
+        }
+        
+        textEl.addEventListener('blur', saveEdit);
+        textEl.addEventListener('keydown', handleKeys);
+    });
+    
+    // ===== DIRECTOR: Botón flotante de commit =====
+    let pendingEdits = 0;
+    
+    function showCommitButton() {
+        pendingEdits++;
+        let commitBar = document.getElementById('director-commit-bar');
+        if (!commitBar) {
+            commitBar = document.createElement('div');
+            commitBar.id = 'director-commit-bar';
+            commitBar.className = 'director-commit-bar';
+            commitBar.innerHTML = 
+                '<span class="commit-count"></span>' +
+                '<button class="btn-commit" onclick="directorCommit()">💾 Commitear</button>';
+            document.body.appendChild(commitBar);
+        }
+        commitBar.querySelector('.commit-count').textContent = pendingEdits + ' cambio' + (pendingEdits > 1 ? 's' : '') + ' sin commit';
+        commitBar.style.display = 'flex';
+    }
+    
+    window.directorCommit = function() {
+        const msg = prompt('Mensaje del commit:', 'Edición de subtítulos');
+        if (!msg) return;
+        
+        const trackId = window.audioId.split('_')[0];
+        const formData = new URLSearchParams();
+        formData.append('track_id', trackId);
+        formData.append('cue_index', 0);
+        formData.append('field', 'text');
+        formData.append('value', scriptData[0] ? scriptData[0].text : '');
+        formData.append('commit_msg', msg);
+        
+        fetch('save_changes.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: formData.toString()
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.ok) {
+                pendingEdits = 0;
+                const bar = document.getElementById('director-commit-bar');
+                if (bar) bar.style.display = 'none';
+                alert('✅ Commit realizado');
+            } else {
+                alert('Error: ' + (data.msg || 'No se pudo commitear'));
+            }
+        })
+        .catch(function() {
+            alert('Error de conexión');
+        });
+    };
 });

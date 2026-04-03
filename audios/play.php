@@ -85,6 +85,75 @@ include '../incs/header.php';
             <div class="script-placeholder">Verificando guion...</div>
         </div>
         
+        <!-- Panel Director (solo visible en modo Director) -->
+        <div class="director-panel director-only" id="director-panel" style="display:none">
+            <div class="director-panel-header">
+                <span class="director-panel-title">🎬 Notas de Dirección</span>
+                <button class="director-panel-toggle" onclick="toggleDirectorNotes()" title="Expandir/Colapsar">▼</button>
+            </div>
+            <div id="director-notes-body" class="director-notes-body">
+                <textarea id="director-notes" class="director-notes-textarea" 
+                    placeholder="Escribí tus notas para esta escena... (se guardan automáticamente)"
+                    rows="3"></textarea>
+                <div class="director-actions">
+                    <button class="btn-director-action" onclick="shareTrackWhatsApp()" title="Compartir por WhatsApp">
+                        📲 WhatsApp
+                    </button>
+                    <span class="director-track-info">
+                        Track: <strong><?= htmlspecialchars($audio['id']) ?></strong> 
+                        | Pos: <?= ($currentIndex + 1) ?>/<?= count($audioFiles) ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+        // ===== DIRECTOR NOTES =====
+        (function() {
+            const trackId = '<?= htmlspecialchars($audio['id']) ?>';
+            const NOTES_KEY = 'vcby_notes_' + trackId;
+            const notesEl = document.getElementById('director-notes');
+            
+            if (notesEl) {
+                // Cargar notas guardadas
+                notesEl.value = localStorage.getItem(NOTES_KEY) || '';
+                
+                // Auto-guardar al escribir (debounced)
+                let saveTimer = null;
+                notesEl.addEventListener('input', function() {
+                    clearTimeout(saveTimer);
+                    saveTimer = setTimeout(function() {
+                        localStorage.setItem(NOTES_KEY, notesEl.value);
+                    }, 500);
+                });
+            }
+        })();
+        
+        function toggleDirectorNotes() {
+            const body = document.getElementById('director-notes-body');
+            const btn = document.querySelector('.director-panel-toggle');
+            if (body.style.display === 'none') {
+                body.style.display = '';
+                btn.textContent = '▼';
+            } else {
+                body.style.display = 'none';
+                btn.textContent = '▶';
+            }
+        }
+        
+        function shareTrackWhatsApp() {
+            const trackId = '<?= htmlspecialchars($audio['id']) ?>';
+            const title = '<?= addslashes($audio_title) ?>';
+            const notes = document.getElementById('director-notes').value;
+            const url = window.location.href;
+            let msg = '🎬 VCBY - ' + title + '\n🔗 ' + url;
+            if (notes.trim()) {
+                msg += '\n\n📝 Notas:\n' + notes;
+            }
+            window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+        }
+        </script>
+
         <script>
             window.autoNextEnabled = true;
             window.firstAudioId = '<?= htmlspecialchars($firstAudioId) ?>';

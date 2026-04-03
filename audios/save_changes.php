@@ -1,0 +1,136 @@
+<?php
+/**
+ * audios/save_changes.php — Endpoint para guardar cambios del Director
+ * 
+ * Recibe ediciones de subtítulos via POST, actualiza el v4.0.md correspondiente,
+ * recompila el JSON maestro, y opcionalmente ejecuta un git commit local.
+ * 
+ * POST params:
+ *   track_id   - ID del track (ej: "101")
+ *   cue_index  - Índice del cue modificado
+ *   field      - Campo editado: "text", "character", "startTime"
+ *   value      - Nuevo valor
+ *   commit_msg - (opcional) Mensaje de commit. Si se envía, se ejecuta git commit.
+ */
+
+header('Content-Type: application/json');
+
+// Validar que sea modo admin/director
+require '../incs/functions.php';
+
+$trackId   = $_POST['track_id'] ?? null;
+$cueIndex  = isset($_POST['cue_index']) ? intval($_POST['cue_index']) : null;
+$field     = $_POST['field'] ?? null;
+$value     = $_POST['value'] ?? null;
+$commitMsg = $_POST['commit_msg'] ?? null;
+
+// ===== Validaciones =====
+if (!$trackId || $cueIndex === null || !$field) {
+    echo json_encode(['ok' => false, 'msg' => 'Parámetros incompletos.']);
+    exit;
+}
+
+$jsonFile = __DIR__ . '/subs/guion_completo.json';
+if (!file_exists($jsonFile)) {
+    echo json_encode(['ok' => false, 'msg' => 'guion_completo.json no encontrado.']);
+    exit;
+}
+
+// ===== Leer JSON =====
+$guion = json_decode(file_get_contents($jsonFile), true);
+if (!isset($guion[$trackId]) || !isset($guion[$trackId][$cueIndex])) {
+    echo json_encode(['ok' => false, 'msg' => "Track $trackId o cue $cueIndex no encontrado."]);
+    exit;
+}
+
+// ===== Aplicar cambio =====
+$allowedFields = ['text', 'character', 'startTime', 'endTime', 'idp'];
+if (!in_array($field, $allowedFields)) {
+    echo json_encode(['ok' => false, 'msg' => "Campo '$field' no permitido."]);
+    exit;
+}
+
+$oldValue = $guion[$trackId][$cueIndex][$field] ?? null;
+
+if ($field === 'startTime' || $field === 'endTime') {
+    $guion[$trackId][$cueIndex][$field] = floatval($value);
+} else {
+    $guion[$trackId][$cueIndex][$field] = $value;
+}
+
+// ===== Guardar JSON =====
+file_put_contents($jsonFile, json_encode($guion, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+
+// ===== Actualizar v4.0.md (sincronizar) =====
+$mdFile = __DIR__ . "/subs/{$trackId}_v4.0.md";
+if (file_exists($mdFile) && ($field === 'text' || $field === 'character' || $field === 'idp')) {
+    // Reescribir el v4.0.md desde el JSON actualizado
+    rewriteV4FromJson($trackId, $guion[$trackId], $mdFile);
+}
+
+// ===== Commit (si se pidió) =====
+$commitResult = null;
+if ($commitMsg) {
+    $scriptPath = realpath(__DIR__ . '/../tools/commit_cambios.sh');
+    if ($scriptPath && file_exists($scriptPath)) {
+        $escapedMsg = escapeshellarg($commitMsg);
+        $output = shell_exec("bash $scriptPath $escapedMsg 2>&1");
+        $commitResult = $output;
+    }
+}
+
+echo json_encode([
+    'ok' => true,
+    'msg' => "Campo '$field' actualizado en track $trackId, cue $cueIndex.",
+    'old_value' => $oldValue,
+    'new_value' => $guion[$trackId][$cueIndex][$field],
+    'commit' => $commitResult
+]);
+
+// ===== Helper: Reescribir v4.0.md desde JSON =====
+function rewriteV4FromJson($trackId, $cues, $mdFile) {
+    $content = file_get_contents($mdFile);
+    $lines = explode("\n", $content);
+    
+    // Encontrar sección ## 2. Subtítulos
+    $subStart = null;
+    $subEnd = null;
+    for ($i = 0; $i < count($lines); $i++) {
+        if (preg_match('/^## 2\./i', trim($lines[$i]))) {
+            $subStart = $i;
+        }
+        if ($subStart !== null && $i > $subStart + 2 && preg_match('/^## /i', trim($lines[$i]))) {
+            $subEnd = $i;
+            break;
+        }
+    }
+    
+    if ($subStart === null) return; // No section found
+    if ($subEnd === null) $subEnd = count($lines);
+    
+    // Reconstruir la tabla de subtítulos
+    $newTable = [];
+    $newTable[] = "## 2. Subtítulos";
+    $newTable[] = "";
+    $newTable[] = "| MARCA | IDP | SUBTITULO |";
+    $newTable[] = "|:---|:---|:---|";
+    
+    foreach ($cues as $cue) {
+        $startTime = $cue['startTime'];
+        $hh = str_pad(floor($startTime / 3600), 2, '0', STR_PAD_LEFT);
+        $mm = str_pad(floor(($startTime % 3600) / 60), 2, '0', STR_PAD_LEFT);
+        $ss = str_pad(floor($startTime % 60), 2, '0', STR_PAD_LEFT);
+        $mark = "[{$trackId}.{$hh}.{$mm}.{$ss}]";
+        $idp = $cue['idp'] ?? 'P00';
+        $text = $cue['text'] ?? '';
+        $newTable[] = "| $mark | $idp | $text |";
+    }
+    $newTable[] = "";
+    
+    // Reemplazar sección
+    $before = array_slice($lines, 0, $subStart);
+    $after = ($subEnd < count($lines)) ? array_slice($lines, $subEnd) : [];
+    
+    $newLines = array_merge($before, $newTable, $after);
+    file_put_contents($mdFile, implode("\n", $newLines));
+}
