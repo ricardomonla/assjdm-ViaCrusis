@@ -758,95 +758,127 @@ body.director-mode .cue-time-range {
     display: inline;
 }
 
-/* ===== DIRECTOR: Panel de Notas ===== */
-.director-panel {
-    margin: 12px 0;
-    border: 1px solid #c4b494;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #faf6f0, #f4ece0);
-    overflow: hidden;
+/* Director: Time tag editable por linea (toggle) */
+.cue-line-time {
+    display: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65em;
+    color: #b0a693;
+    background: rgba(128, 109, 90, 0.08);
+    padding: 1px 4px;
+    border-radius: 3px;
+    margin-right: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    vertical-align: middle;
 }
 
-.director-panel-header {
+body.time-edit-mode .cue-line-time {
+    display: inline;
+}
+
+.cue-line-time:hover {
+    background: rgba(128, 109, 90, 0.2);
+    color: #2d2418;
+}
+
+.cue-time-saved {
+    background: rgba(39, 174, 96, 0.2) !important;
+    color: #27ae60 !important;
+}
+
+.cue-time-input {
+    width: 55px;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    border: 1px solid #806d5a;
+    border-radius: 3px;
+    padding: 1px 3px;
+    background: #fff;
+    color: #2d2418;
+    outline: none;
+}
+
+.cue-time-input:focus {
+    border-color: #27ae60;
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.15);
+}
+
+/* Toggle button active state */
+.btn-active {
+    background: #27ae60 !important;
+    color: #fff !important;
+}
+
+/* ===== DIRECTOR: Barra de herramientas compacta ===== */
+.director-toolbar {
+    margin-bottom: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #3a3028;
+}
+
+.dtool-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
-    background: #806d5a;
-    color: #fff;
+    padding: 6px 12px;
 }
 
-.director-panel-title {
-    font-weight: bold;
-    font-size: 0.9em;
+.dtool-track-info {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75em;
+    color: #c4b494;
 }
 
-.director-panel-toggle {
-    background: none;
+.dtool-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.dtool-btn {
+    background: rgba(255,255,255,0.1);
     border: none;
-    color: #fff;
+    border-radius: 6px;
+    padding: 5px 8px;
     font-size: 1em;
     cursor: pointer;
-    padding: 2px 6px;
+    transition: all 0.2s ease;
+    line-height: 1;
 }
 
-.director-notes-body {
-    padding: 10px 12px;
+.dtool-btn:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.1);
 }
 
-.director-notes-textarea {
+.dtool-btn.btn-active {
+    background: #27ae60 !important;
+}
+
+.dtool-notes {
+    padding: 8px 12px;
+    background: #2d2418;
+}
+
+.dtool-notes-textarea {
     width: 100%;
-    min-height: 60px;
-    padding: 8px;
-    border: 1px solid #d4c8b4;
+    min-height: 40px;
+    padding: 6px 8px;
+    border: 1px solid #4a3b2a;
     border-radius: 6px;
-    background: #fff;
+    background: #1a1209;
     font-family: Georgia, serif;
-    font-size: 0.85em;
-    color: #2d2418;
+    font-size: 0.8em;
+    color: #c4b494;
     resize: vertical;
     box-sizing: border-box;
 }
 
-.director-notes-textarea:focus {
+.dtool-notes-textarea:focus {
     outline: none;
     border-color: #806d5a;
-    box-shadow: 0 0 0 2px rgba(128, 109, 90, 0.2);
-}
-
-.director-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 8px;
-    gap: 8px;
-}
-
-.btn-director-action {
-    padding: 6px 14px;
-    background: #25D366;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.8em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-director-action:hover {
-    background: #1da851;
-    transform: translateY(-1px);
-}
-
-.btn-director-action:active {
-    transform: translateY(0);
-}
-
-.director-track-info {
-    font-family: monospace;
-    font-size: 0.75em;
-    color: #806d5a;
+    box-shadow: 0 0 0 2px rgba(128, 109, 90, 0.3);
 }
 
 /* ===== DIRECTOR: Edición In-Place ===== */

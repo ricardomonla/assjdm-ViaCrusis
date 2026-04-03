@@ -118,7 +118,7 @@ file_put_contents($jsonFile, json_encode($guion, JSON_UNESCAPED_UNICODE | JSON_P
 
 // ===== Actualizar v4.0.md (sincronizar) =====
 $mdFile = __DIR__ . "/subs/{$trackId}_v4.0.md";
-if (file_exists($mdFile) && ($field === 'text' || $field === 'character' || $field === 'idp')) {
+if (file_exists($mdFile) && ($field === 'text' || $field === 'character' || $field === 'idp' || $field === 'startTime')) {
     // Reescribir el v4.0.md desde el JSON actualizado
     rewriteV4FromJson($trackId, $guion[$trackId], $mdFile);
 }

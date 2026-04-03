@@ -196,9 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
             var gM = Math.floor((globalTime % 3600) / 60).toString().padStart(2, '0');
             var gS = Math.floor(globalTime % 60).toString().padStart(2, '0');
             
-            headerDiv.innerHTML = '<span class="cue-character">' + idpHtml + group.character + '</span>' +
-                '<span class="cue-time"><strong>' + gH + ':' + gM + ':' + gS + '</strong>' +
-                '<span class="cue-time-range"> ' + Math.floor(firstCue.startTime) + 's-' + Math.floor(lastCue.startTime) + 's</span></span>';
+            headerDiv.innerHTML = '<span class="cue-time cue-time-range">' + gH + ':' + gM + ':' + gS +
+                ' (' + Math.floor(firstCue.startTime) + 's-' + Math.floor(lastCue.startTime) + 's)</span>' +
+                '<span class="cue-character">' + idpHtml + group.character + '</span>';
             groupDiv.appendChild(headerDiv);
             
             // Body: lineas como spans
@@ -206,6 +206,59 @@ document.addEventListener('DOMContentLoaded', function() {
             bodyDiv.className = 'cue-group-body';
             
             group.cues.forEach(function(cue, localIdx) {
+                // Time tag (visible solo con time-edit-mode activo)
+                var timeTag = document.createElement('span');
+                timeTag.className = 'cue-line-time';
+                timeTag.textContent = cue.startTime.toFixed(1);
+                timeTag.title = 'Click para editar';
+                timeTag.addEventListener('click', (function(c, tag) {
+                    return function(e) {
+                        e.stopPropagation();
+                        if (tag.querySelector('input')) return;
+                        var oldTime = c.startTime;
+                        var input = document.createElement('input');
+                        input.type = 'number';
+                        input.step = '0.1';
+                        input.value = c.startTime;
+                        input.className = 'cue-time-input';
+                        tag.textContent = '';
+                        tag.appendChild(input);
+                        input.focus();
+                        input.select();
+                        
+                        function applyTime() {
+                            var newTime = parseFloat(input.value);
+                            if (isNaN(newTime) || newTime === oldTime) {
+                                tag.textContent = c.startTime.toFixed(1);
+                                return;
+                            }
+                            // Actualizar SOLO en memoria
+                            c.startTime = newTime;
+                            if (scriptData[c._originalIndex]) {
+                                scriptData[c._originalIndex].startTime = newTime;
+                            }
+                            tag.textContent = newTime.toFixed(1);
+                            tag.classList.add('cue-time-saved');
+                            setTimeout(function() { tag.classList.remove('cue-time-saved'); }, 1200);
+                            
+                            // Acumular cambio pendiente
+                            if (!window._pendingTimeChanges) window._pendingTimeChanges = [];
+                            window._pendingTimeChanges.push({
+                                cue_index: c._originalIndex,
+                                field: 'startTime',
+                                value: newTime
+                            });
+                            showCommitButton();
+                        }
+                        input.addEventListener('blur', applyTime);
+                        input.addEventListener('keydown', function(ev) {
+                            if (ev.key === 'Enter') { ev.preventDefault(); input.blur(); }
+                            if (ev.key === 'Escape') { tag.textContent = c.startTime.toFixed(1); }
+                        });
+                    };
+                })(cue, timeTag));
+                bodyDiv.appendChild(timeTag);
+                
                 var lineSpan = document.createElement('span');
                 lineSpan.className = 'cue-line cue-line-upcoming';
                 lineSpan.id = 'cue-' + cue._originalIndex;
@@ -328,6 +381,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // ===== DIRECTOR: Toggle Marcas de Tiempo =====
+    window.toggleTimeEdit = function() {
+        document.body.classList.toggle('time-edit-mode');
+        var btn = document.getElementById('btn-time-toggle');
+        if (btn) {
+            var active = document.body.classList.contains('time-edit-mode');
+            btn.classList.toggle('btn-active', active);
+            btn.textContent = active ? '⏱ Tiempos ✓' : '⏱ Tiempos';
+        }
+    };
+
     // ===== DIRECTOR: Edición In-Place =====
     
     // Doble-click en texto de subtitulo para editar (solo Director)
@@ -448,35 +512,56 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.directorCommit = function() {
-        const msg = prompt('Mensaje del commit:', 'Edición de subtítulos');
+        var msg = prompt('Mensaje del commit:', 'Edicion de subtitulos');
         if (!msg) return;
         
-        const trackId = window.audioId.split('_')[0];
-        const formData = new URLSearchParams();
-        formData.append('track_id', trackId);
-        formData.append('cue_index', 0);
-        formData.append('field', 'text');
-        formData.append('value', scriptData[0] ? scriptData[0].text : '');
-        formData.append('commit_msg', msg);
+        var trackId = window.audioId.split('_')[0];
+        var pending = window._pendingTimeChanges || [];
         
-        fetch('save_changes.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: formData.toString()
+        // Enviar cada cambio pendiente secuencialmente
+        var chain = Promise.resolve();
+        pending.forEach(function(change) {
+            chain = chain.then(function() {
+                var fd = new URLSearchParams();
+                fd.append('track_id', trackId);
+                fd.append('cue_index', change.cue_index);
+                fd.append('field', change.field);
+                fd.append('value', change.value);
+                return fetch('save_changes.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: fd.toString()
+                }).then(function(r) { return r.json(); });
+            });
+        });
+        
+        // Despues de todos los cambios, trigger commit
+        chain.then(function() {
+            var fd = new URLSearchParams();
+            fd.append('track_id', trackId);
+            fd.append('cue_index', 0);
+            fd.append('field', 'text');
+            fd.append('value', scriptData[0] ? scriptData[0].text : '');
+            fd.append('commit_msg', msg);
+            return fetch('save_changes.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: fd.toString()
+            }).then(function(r) { return r.json(); });
         })
-        .then(function(r) { return r.json(); })
         .then(function(data) {
             if (data.ok) {
                 pendingEdits = 0;
-                const bar = document.getElementById('director-commit-bar');
+                window._pendingTimeChanges = [];
+                var bar = document.getElementById('director-commit-bar');
                 if (bar) bar.style.display = 'none';
-                alert('✅ Commit realizado');
+                alert('Commit realizado: ' + pending.length + ' cambios guardados');
             } else {
                 alert('Error: ' + (data.msg || 'No se pudo commitear'));
             }
         })
         .catch(function() {
-            alert('Error de conexión');
+            alert('Error de conexion');
         });
     };
 });

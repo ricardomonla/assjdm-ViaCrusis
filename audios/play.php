@@ -80,31 +80,28 @@ include '../incs/header.php';
             </div>
         </div>
         
+        <!-- Panel Director - Barra superior (solo Director) -->
+        <div class="director-toolbar director-only" id="director-panel" style="display:none">
+            <div class="dtool-bar">
+                <span class="dtool-track-info">
+                    <?= htmlspecialchars($audio['id']) ?> (<?= ($currentIndex + 1) ?>/<?= count($audioFiles) ?>)
+                </span>
+                <div class="dtool-actions">
+                    <button class="dtool-btn" id="btn-time-toggle" onclick="toggleTimeEdit()" title="Marcas de tiempo">⏱</button>
+                    <button class="dtool-btn" onclick="toggleDirectorNotes()" title="Notas" id="btn-notes-toggle">📝</button>
+                    <button class="dtool-btn" onclick="shareTrackWhatsApp()" title="WhatsApp">📲</button>
+                </div>
+            </div>
+            <div id="director-notes-body" class="dtool-notes" style="display:none">
+                <textarea id="director-notes" class="dtool-notes-textarea" 
+                    placeholder="Notas para esta escena..."
+                    rows="2"></textarea>
+            </div>
+        </div>
+
         <!-- Contenedor del Guion / Karaoke -->
         <div id="script-container" class="script-container">
             <div class="script-placeholder">Verificando guion...</div>
-        </div>
-        
-        <!-- Panel Director (solo visible en modo Director) -->
-        <div class="director-panel director-only" id="director-panel" style="display:none">
-            <div class="director-panel-header">
-                <span class="director-panel-title">🎬 Notas de Dirección</span>
-                <button class="director-panel-toggle" onclick="toggleDirectorNotes()" title="Expandir/Colapsar">▼</button>
-            </div>
-            <div id="director-notes-body" class="director-notes-body">
-                <textarea id="director-notes" class="director-notes-textarea" 
-                    placeholder="Escribí tus notas para esta escena... (se guardan automáticamente)"
-                    rows="3"></textarea>
-                <div class="director-actions">
-                    <button class="btn-director-action" onclick="shareTrackWhatsApp()" title="Compartir por WhatsApp">
-                        📲 WhatsApp
-                    </button>
-                    <span class="director-track-info">
-                        Track: <strong><?= htmlspecialchars($audio['id']) ?></strong> 
-                        | Pos: <?= ($currentIndex + 1) ?>/<?= count($audioFiles) ?>
-                    </span>
-                </div>
-            </div>
         </div>
         
         <script>
@@ -130,14 +127,14 @@ include '../incs/header.php';
         })();
         
         function toggleDirectorNotes() {
-            const body = document.getElementById('director-notes-body');
-            const btn = document.querySelector('.director-panel-toggle');
+            var body = document.getElementById('director-notes-body');
+            var btn = document.getElementById('btn-notes-toggle');
             if (body.style.display === 'none') {
                 body.style.display = '';
-                btn.textContent = '▼';
+                if (btn) btn.classList.add('btn-active');
             } else {
                 body.style.display = 'none';
-                btn.textContent = '▶';
+                if (btn) btn.classList.remove('btn-active');
             }
         }
         

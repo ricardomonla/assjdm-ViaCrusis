@@ -1,5 +1,15 @@
 <?php
 $versionLogs = [
+    '26.8.5' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Rediseno karaoke: burbujas agrupadas por personaje (Fase 5).',
+            'Lineas consecutivas del mismo personaje en una sola burbuja.',
+            'Resaltado interno: frase activa iluminada, pasadas atenuadas.',
+            'Scroll suave centrado en la linea activa dentro de la burbuja.',
+            'Edicion in-place adaptada al nuevo layout agrupado.',
+        ]
+    ],
     '26.8.4' => [
         'date' => '2026-04-03',
         'changes' => [
