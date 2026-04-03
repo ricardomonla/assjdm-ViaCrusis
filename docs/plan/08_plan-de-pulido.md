@@ -2,23 +2,23 @@
 
 > **Estado**: ⏳ En progreso
 > **Fecha**: 2026-04-02
-> **Ultima actualizacion**: 2026-04-03 07:42
+> **Ultima actualizacion**: 2026-04-03 19:57
 
 ---
 
 ## Progreso General
 
 ```text
-██████████░░░░░░░░░░░░░░░░░░░░  35% - EN PROGRESO
+████████████████░░░░░░░░░░░░░░  55% - EN PROGRESO
 ```
 
 | Fase | Descripción | Estado |
 |:---|:---|:---|
 | 1 | Sincronía Cronológica de Personajes | ⏳ (80%) |
-| 2 | Tunning de Precision en Tiempos de Subtítulos | ⏳ (herramientas listas) |
+| 2 | Tunning de Precision en Tiempos de Subtítulos | ⏳ (herramientas ✅, auditoría pendiente) |
 | 3 | Acotaciones Escénicas y Descriptivas Intermedias | 📋 |
 | 4 | Sistema de Perfiles (Publico / Director) | ✅ |
-| 5 | Burbujas Agrupadas por Personaje (Karaoke UX) | ⏳ |
+| 5 | Burbujas Agrupadas por Personaje (Karaoke UX) | ✅ |
 
 ---
 
@@ -80,3 +80,5 @@ Cualquier avance en este plan se registrará actualizando estos `checkboxes` a m
 | v26.8.3 | 2026-04-02 | Fase 4.1 completada: `jss/perfiles.js`, modal dual en `footer.php`, CSS director-mode, karaoke.js con IDP/data-attrs, compilador `compilar_json_v4.py`, JSON recompilado con `idp` (24 tracks, 601 cues). |
 | v26.8.4 | 2026-04-03 | Fase 4 COMPLETADA: Panel notas, edicion in-place, commit local, acotaciones P00 insertables. Colores por personaje para ambos perfiles. |
 | v26.8.7 | 2026-04-03 | Fase 2 herramientas: Modo Marcaje (🎯 stamp), Nudge ◂▸ ±0.1s, contador live en toolbar. applyTimeChange centralizado. |
+| v26.8.8 | 2026-04-03 | Modal inline (vcbyModal): reemplazo total de alert/prompt nativos. Director click sin auto-play. |
+| v26.8.9 | 2026-04-03 | Director remoto: commit+push a GitHub desde la web. Edición desde cualquier dispositivo. |
