@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.9.0' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'UX: Modal de perfiles simplificado — 5 taps va directo a pedir clave Director (sin paso intermedio Público).',
+            'UX: Si ya es Director, 5 taps ofrece "Salir del modo Director".',
+            'Fix: Permisos del servidor restaurados post-deploy para edición remota.',
+        ]
+    ],
     '26.8.9' => [
         'date' => '2026-04-03',
         'changes' => [

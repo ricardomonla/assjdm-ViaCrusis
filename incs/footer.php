@@ -4,37 +4,26 @@
     </p>
 </footer>
 
-<!-- Modal de Perfiles (Público / Director) -->
 <div id="perfil-modal" class="admin-modal-overlay">
     <div class="admin-modal">
-        <!-- Paso 1: Elegir Perfil -->
-        <div id="perfil-step-choose" class="perfil-step">
-            <h3>👤 Elegir Perfil</h3>
-            <div class="perfil-options">
-                <button class="btn-perfil-option btn-perfil-publico" onclick="perfilSelectPublico()">
-                    <span class="perfil-option-icon">👥</span>
-                    <span class="perfil-option-label">Público</span>
-                    <span class="perfil-option-desc">Escuchar y ver subtítulos</span>
-                </button>
-                <button class="btn-perfil-option btn-perfil-director" onclick="perfilShowDirectorKey()">
-                    <span class="perfil-option-icon">🎬</span>
-                    <span class="perfil-option-label">Director</span>
-                    <span class="perfil-option-desc">Editar, anotar y gestionar</span>
-                </button>
-            </div>
-            <div class="admin-modal-buttons" style="margin-top: 12px;">
+        <!-- Director: Opcion de salir -->
+        <div id="perfil-step-logout" class="perfil-step" style="display: none;">
+            <h3>🎬 Modo Director</h3>
+            <p style="color:#4a3e31; margin: 10px 0;">Sesión activa. ¿Cerrar modo Director?</p>
+            <div class="admin-modal-buttons">
+                <button class="btn-admin-ok" onclick="perfilSelectPublico()">Salir del modo Director</button>
                 <button class="btn-admin-cancel" onclick="perfilModalClose()">Cancelar</button>
             </div>
         </div>
 
-        <!-- Paso 2: Clave de Director -->
+        <!-- Público: Directo a clave de Director -->
         <div id="perfil-step-key" class="perfil-step" style="display: none;">
             <h3>🔐 Acceso Director</h3>
             <input type="password" id="perfil-key" placeholder="Clave de acceso" autocomplete="off">
             <p id="perfil-error" class="admin-error">Clave incorrecta</p>
             <div class="admin-modal-buttons">
                 <button class="btn-admin-ok" onclick="perfilLoginDirector()">Entrar</button>
-                <button class="btn-admin-cancel" onclick="perfilBackToChoose()">Volver</button>
+                <button class="btn-admin-cancel" onclick="perfilModalClose()">Cancelar</button>
             </div>
         </div>
     </div>
@@ -59,9 +48,19 @@ document.getElementById('footer-version').addEventListener('click', function() {
 
 function perfilModalOpen() {
     document.getElementById('perfil-modal').classList.add('active');
-    document.getElementById('perfil-step-choose').style.display = '';
-    document.getElementById('perfil-step-key').style.display = 'none';
     document.getElementById('perfil-error').style.display = 'none';
+
+    if (window.VCBYPerfiles.isDirector()) {
+        // Ya es Director → ofrecer salir
+        document.getElementById('perfil-step-logout').style.display = '';
+        document.getElementById('perfil-step-key').style.display = 'none';
+    } else {
+        // Es Público → directo a pedir clave
+        document.getElementById('perfil-step-logout').style.display = 'none';
+        document.getElementById('perfil-step-key').style.display = '';
+        document.getElementById('perfil-key').value = '';
+        setTimeout(function() { document.getElementById('perfil-key').focus(); }, 100);
+    }
 }
 
 function perfilModalClose() {
@@ -69,21 +68,7 @@ function perfilModalClose() {
 }
 
 function perfilSelectPublico() {
-    // Público no requiere clave, simplemente cerrar sesión director si hubiera
     window.VCBYPerfiles.cerrarSesion();
-}
-
-function perfilShowDirectorKey() {
-    document.getElementById('perfil-step-choose').style.display = 'none';
-    document.getElementById('perfil-step-key').style.display = '';
-    document.getElementById('perfil-key').value = '';
-    document.getElementById('perfil-error').style.display = 'none';
-    setTimeout(function() { document.getElementById('perfil-key').focus(); }, 100);
-}
-
-function perfilBackToChoose() {
-    document.getElementById('perfil-step-key').style.display = 'none';
-    document.getElementById('perfil-step-choose').style.display = '';
 }
 
 function perfilLoginDirector() {
