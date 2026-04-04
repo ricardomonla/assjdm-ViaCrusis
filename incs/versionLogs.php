@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.8.16' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Fix: API carga solo el track actual (rápido), evita timeout y fallback al JSON viejo.',
+            'Los datos se leen/escriben directo de SQLite, sin caché intermedia.',
+        ]
+    ],
     '26.8.15' => [
         'date' => '2026-04-03',
         'changes' => [
