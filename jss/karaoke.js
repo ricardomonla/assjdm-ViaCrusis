@@ -666,6 +666,13 @@ document.addEventListener('DOMContentLoaded', function() {
         textEl.classList.add('cue-editing');
         textEl.focus();
         
+        // Forzar pegado como texto plano (sin estilos HTML)
+        textEl.addEventListener('paste', function pasteHandler(e) {
+            e.preventDefault();
+            var text = (e.clipboardData || window.clipboardData).getData('text/plain');
+            document.execCommand('insertText', false, text);
+        });
+        
         // Seleccionar todo el texto
         const range = document.createRange();
         range.selectNodeContents(textEl);
@@ -678,11 +685,14 @@ document.addEventListener('DOMContentLoaded', function() {
             textEl.contentEditable = 'false';
             textEl.classList.remove('cue-editing');
             
-            const newText = textEl.innerHTML.trim();
-            if (newText !== originalText) {
+            const newText = textEl.innerText.trim();
+            if (newText !== originalText.replace(/<[^>]*>/g, '').trim()) {
                 // Actualizar en scriptData local
-                if (scriptData[cueIdx]) {
-                    scriptData[cueIdx].text = newText;
+                for (var si = 0; si < scriptData.length; si++) {
+                    if (scriptData[si]._originalIndex === cueIdx) {
+                        scriptData[si].text = newText;
+                        break;
+                    }
                 }
                 
                 // Enviar al servidor
