@@ -952,16 +952,16 @@ body.director-mode .cue-line:hover {
 .cue-insert-row {
     text-align: center;
     padding: 2px 0;
-    display: none;
+    display: none !important;
     transition: opacity 0.2s ease;
 }
 
-body.insert-mode .cue-insert-row {
-    display: block;
+body.director-mode.insert-mode .cue-insert-row {
+    display: block !important;
     opacity: 0.4;
 }
 
-body.insert-mode .cue-insert-row:hover {
+body.director-mode.insert-mode .cue-insert-row:hover {
     opacity: 1;
 }
 

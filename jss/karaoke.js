@@ -150,6 +150,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         if (currentGroup) groups.push(currentGroup);
         
+        // Helper: crear boton "+" de inserción
+        function createInsertBtn(afterIdx) {
+            var row = document.createElement('div');
+            row.className = 'cue-insert-row director-only';
+            row.innerHTML = '<button class="btn-insert-cue" title="Insertar burbuja aquí">+</button>';
+            row.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
+                e.stopPropagation();
+                var chars = window.__characters || [{idp:'P00',name:'Música / Ambiente'}];
+                vcbyInsertCue(chars).then(function(result) {
+                    if (!result) return;
+                    var trackId = window.audioId.split('_')[0];
+                    var fd = new URLSearchParams();
+                    fd.append('track_id', trackId);
+                    fd.append('cue_index', afterIdx);
+                    fd.append('field', '_insert');
+                    fd.append('value', result.text);
+                    fd.append('character', result.character);
+                    fd.append('idp', result.idp);
+                    fetch((window.apiBase||'') + 'save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) { if (d.ok) { location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
+                    .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
+                });
+            });
+            return row;
+        }
+        
+        // Insertar "+" antes del primer grupo (para agregar antes de la primera burbuja)
+        var firstNonExternal = groups.findIndex(function(g) { return !g.isExternal; });
+        if (firstNonExternal >= 0) {
+            var firstIdx = groups[firstNonExternal].cues[0]._originalIndex;
+            scriptContainer.appendChild(createInsertBtn(firstIdx - 1));
+        }
+        
         // Paso 2: Renderizar grupos como burbujas
         groups.forEach(function(group) {
             var groupDiv = document.createElement('div');
@@ -305,31 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
             scriptContainer.appendChild(groupDiv);
             
             // Director: boton "+" despues de cada grupo (visible solo en insert-mode)
-            var insertBtn = document.createElement('div');
-            insertBtn.className = 'cue-insert-row director-only';
-            insertBtn.innerHTML = '<button class="btn-insert-cue" title="Insertar burbuja aquí">+</button>';
-            insertBtn.querySelector('.btn-insert-cue').addEventListener('click', (function(lastIdx) {
-                return function(e) {
-                    e.stopPropagation();
-                    var chars = window.__characters || [{idp:'P00',name:'Música / Ambiente'}];
-                    vcbyInsertCue(chars).then(function(result) {
-                        if (!result) return;
-                        var trackId = window.audioId.split('_')[0];
-                        var fd = new URLSearchParams();
-                        fd.append('track_id', trackId);
-                        fd.append('cue_index', lastIdx);
-                        fd.append('field', '_insert');
-                        fd.append('value', result.text);
-                        fd.append('character', result.character);
-                        fd.append('idp', result.idp);
-                        fetch((window.apiBase||'') + 'save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
-                        .then(function(r) { return r.json(); })
-                        .then(function(d) { if (d.ok) { location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
-                        .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
-                    });
-                };
-            })(lastCue._originalIndex));
-            scriptContainer.appendChild(insertBtn);
+            scriptContainer.appendChild(createInsertBtn(lastCue._originalIndex));
         });
         
         audioPlayer.addEventListener('timeupdate', updateKaraoke);
@@ -436,9 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.toggle('insert-mode');
         var btn = document.getElementById('btn-insert-toggle');
         if (btn) {
-            var active = document.body.classList.contains('insert-mode');
-            btn.classList.toggle('btn-active', active);
-            btn.textContent = active ? '➕✓' : '➕';
+            btn.classList.toggle('btn-active', document.body.classList.contains('insert-mode'));
         }
     };
 
