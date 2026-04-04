@@ -22,32 +22,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000); // Vuelve al auto-scroll tras 3s de inactividad de scroll
     });
 
-    // Carga del guion: inline desde SQLite > API > JSON estático
+    // Carga del guion: inline desde SQLite > fetch JSON estático como fallback
     var _trackId = (window.audioId || '').split('_')[0];
-    
-    function loadCueData() {
-        // 1. Datos inline (inyectados por PHP desde SQLite)
-        if (window.__cueData && Object.keys(window.__cueData).length > 0) {
-            console.log('[VCBY] Datos inline desde SQLite');
-            return Promise.resolve(window.__cueData);
-        }
-        // 2. API SQLite
-        return fetch(`../audios/api_cues.php?track_id=${_trackId}&v=${Date.now()}`, {cache:'no-store'})
-            .then(res => { if (!res.ok) throw new Error('API HTTP ' + res.status); return res.json(); })
-            .then(data => { console.log('[VCBY] Datos desde API SQLite'); return data; })
-            .catch(err => {
-                console.warn('[VCBY] Fallback a JSON:', err.message);
-                return fetch(`../audios/subs/guion_completo.json?v=${Date.now()}`, {cache:'no-store'})
-                    .then(res => res.ok ? res.json() : {});
-            });
-    }
+    var _cuePromise = (window.__cueData && typeof window.__cueData === 'object' && Object.keys(window.__cueData).length > 0)
+        ? Promise.resolve(window.__cueData)
+        : fetch('../audios/subs/guion_completo.json?v=' + Date.now()).then(function(res) { return res.ok ? res.json() : {}; }).catch(function() { return {}; });
 
     Promise.all([
-        loadCueData(),
-        fetch(`../audios/subs/audio_durations.json?v=${window.appVersion || Date.now()}`).then(res => {
+        _cuePromise,
+        fetch('../audios/subs/audio_durations.json?v=' + (window.appVersion || Date.now())).then(function(res) {
             if (!res.ok) return {};
             return res.json();
-        }).catch(() => ({})) // Fallback silencioso a vacío
+        }).catch(function() { return {}; }) // Fallback silencioso a vacío
     ])
     .then(([masterData, durationsData]) => {
         const currentAudioId = window.audioId.split('_')[0];
