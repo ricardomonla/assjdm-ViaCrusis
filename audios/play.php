@@ -171,9 +171,14 @@ include '../incs/header.php';
             $nextBase = $nextAudio ? explode('_', $nextAudio['id'])[0] : null;
             $inlineData = [];
             if (function_exists('getCues')) {
-                $inlineData[$trackBase] = getCues($trackBase);
-                if ($prevBase) $inlineData[$prevBase] = getCues($prevBase);
-                if ($nextBase) $inlineData[$nextBase] = getCues($nextBase);
+                try {
+                    $inlineData[$trackBase] = getCues($trackBase);
+                    if ($prevBase) $inlineData[$prevBase] = getCues($prevBase);
+                    if ($nextBase) $inlineData[$nextBase] = getCues($nextBase);
+                } catch (Exception $e) {
+                    // SQLite no disponible (ej: Termux/Android) → fallback a JSON
+                    $inlineData = [];
+                }
             }
             ?>
             window.__cueData = <?= !empty($inlineData) ? json_encode($inlineData, JSON_UNESCAPED_UNICODE) : 'null' ?>;

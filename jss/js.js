@@ -22,9 +22,9 @@ function initAudioPlayer() {
     
     if (playPromise !== undefined) {
         playPromise.then(_ => {
-            autoplayMessage.style.display = 'none';
+            if (autoplayMessage) autoplayMessage.style.display = 'none';
         }).catch(error => {
-            autoplayMessage.style.display = 'block';
+            if (autoplayMessage) autoplayMessage.style.display = 'block';
             audio.controls = true;
         });
     }
