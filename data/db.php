@@ -153,11 +153,10 @@ function insertCue($trackId, $afterIndex, $cueData) {
     
     $db->beginTransaction();
     try {
-        // Reindexar: mover cues posteriores +1 (dos pasos para evitar colisión UNIQUE)
-        $db->exec("UPDATE cues SET cue_index = cue_index + 10000 WHERE track_id = " . $db->quote($trackId) . " AND cue_index > $afterIndex");
-        $db->exec("UPDATE cues SET cue_index = cue_index - 9999 WHERE track_id = " . $db->quote($trackId) . " AND cue_index > 10000");
-
-        // Insertar nuevo cue
+        // Paso 1: Negar índices afectados (imposible colisionar con positivos)
+        $db->exec("UPDATE cues SET cue_index = -(cue_index + 1) WHERE track_id = " . $db->quote($trackId) . " AND cue_index > $afterIndex");
+        
+        // Paso 2: Insertar nuevo cue
         $newIndex = $afterIndex + 1;
         $stmt = $db->prepare("INSERT INTO cues (track_id, cue_index, character, idp, start_time, end_time, text) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
@@ -169,6 +168,9 @@ function insertCue($trackId, $afterIndex, $cueData) {
             $cueData['endTime'] ?? 0,
             $cueData['text'] ?? ''
         ]);
+
+        // Paso 3: Restaurar negativos con offset +1
+        $db->exec("UPDATE cues SET cue_index = (-cue_index) - 1 + 1 WHERE track_id = " . $db->quote($trackId) . " AND cue_index < 0");
 
         $db->commit();
         return $newIndex;
@@ -188,11 +190,10 @@ function insertBatchCues($trackId, $afterIndex, $cuesArray) {
     
     $db->beginTransaction();
     try {
-        // Hacer espacio: mover cues posteriores +N (dos pasos para evitar UNIQUE)
-        $db->exec("UPDATE cues SET cue_index = cue_index + 10000 WHERE track_id = " . $db->quote($trackId) . " AND cue_index > $afterIndex");
-        $db->exec("UPDATE cues SET cue_index = cue_index - " . (10000 - $count) . " WHERE track_id = " . $db->quote($trackId) . " AND cue_index > 10000");
+        // Paso 1: Negar índices afectados
+        $db->exec("UPDATE cues SET cue_index = -(cue_index + 1) WHERE track_id = " . $db->quote($trackId) . " AND cue_index > $afterIndex");
 
-        // Insertar cada cue
+        // Paso 2: Insertar cada cue nuevo
         $stmt = $db->prepare("INSERT INTO cues (track_id, cue_index, character, idp, start_time, end_time, text) VALUES (?, ?, ?, ?, ?, ?, ?)");
         for ($i = 0; $i < $count; $i++) {
             $c = $cuesArray[$i];
@@ -207,6 +208,9 @@ function insertBatchCues($trackId, $afterIndex, $cuesArray) {
             ]);
         }
 
+        // Paso 3: Restaurar negativos con offset +count
+        $db->exec("UPDATE cues SET cue_index = (-cue_index) - 1 + $count WHERE track_id = " . $db->quote($trackId) . " AND cue_index < 0");
+
         $db->commit();
         return $count;
     } catch (Exception $e) {
@@ -214,3 +218,4 @@ function insertBatchCues($trackId, $afterIndex, $cuesArray) {
         throw $e;
     }
 }
+
