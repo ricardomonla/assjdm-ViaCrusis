@@ -177,13 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return row;
         }
         
-        // Insertar "+" antes del primer grupo (para agregar antes de la primera burbuja)
-        var firstNonExternal = groups.findIndex(function(g) { return !g.isExternal; });
-        if (firstNonExternal >= 0) {
-            var firstIdx = groups[firstNonExternal].cues[0]._originalIndex;
-            scriptContainer.appendChild(createInsertBtn(firstIdx - 1));
-        }
-        
         // Paso 2: Renderizar grupos como burbujas
         groups.forEach(function(group) {
             var groupDiv = document.createElement('div');

@@ -127,9 +127,9 @@
         return new Promise(function(resolve) { _resolve = resolve; });
     };
     /**
-     * vcbyInsertCue — Modal para insertar burbuja con selector de personaje
+     * vcbyInsertCue — Modal para insertar línea (duplica anterior por defecto)
      * @param {Array} characters - [{idp:'P01',name:'NARRADOR'}, ...]
-     * @param {Object} [prevCue] - Cue anterior para opción "Duplicar" {idp, character, text}
+     * @param {Object} [prevCue] - Cue anterior {idp, character, text} — se pre-llena
      * @returns {Promise<{idp,character,text}|null>}
      */
     window.vcbyInsertCue = function(characters, prevCue) {
@@ -137,10 +137,10 @@
         modal.className = 'vcby-modal vcby-modal-info';
         document.getElementById('vcby-modal-icon').textContent = '🎭';
         
-        // Construir select de personajes
         var msgDiv = document.getElementById('vcby-modal-msg');
-        msgDiv.innerHTML = '<div style="text-align:left;font-size:0.9em;margin-bottom:8px;">Insertar línea después:</div>';
+        msgDiv.innerHTML = '<div style="text-align:left;font-size:0.9em;margin-bottom:8px;">Insertar después:</div>';
         
+        // Select de personajes (pre-selecciona el del cue anterior)
         var sel = document.createElement('select');
         sel.id = 'vcby-insert-char';
         sel.style.cssText = 'width:100%;padding:8px;margin-bottom:8px;border-radius:6px;border:1px solid #555;background:#2a2520;color:#e8dcc8;font-size:0.95em;';
@@ -153,37 +153,22 @@
         });
         msgDiv.appendChild(sel);
         
-        // Input de texto
+        // Input pre-llenado con texto anterior (listo para editar)
         var input = document.getElementById('vcby-modal-input');
         input.style.display = '';
-        input.value = '';
         input.type = 'text';
         input.placeholder = 'Texto de la línea...';
+        input.value = (prevCue && prevCue.text) ? prevCue.text.replace(/<[^>]*>/g, '') : '';
 
-        // Botones: Duplicar (si hay prevCue) + Insertar + Cancelar
-        var btnsHtml = '';
-        if (prevCue && prevCue.text) {
-            btnsHtml += '<button class="vcby-modal-btn vcby-modal-btn-dup" id="vcby-modal-dup" title="Copiar personaje y texto de la línea anterior">📋 Duplicar</button>';
-        }
-        btnsHtml += '<button class="vcby-modal-btn vcby-modal-btn-ok" id="vcby-modal-ok">Insertar</button>';
-        btnsHtml += '<button class="vcby-modal-btn vcby-modal-btn-cancel" id="vcby-modal-cancel">Cancelar</button>';
-        document.getElementById('vcby-modal-buttons').innerHTML = btnsHtml;
+        document.getElementById('vcby-modal-buttons').innerHTML =
+            '<button class="vcby-modal-btn vcby-modal-btn-ok" id="vcby-modal-ok">Insertar</button>' +
+            '<button class="vcby-modal-btn vcby-modal-btn-cancel" id="vcby-modal-cancel">Cancelar</button>';
 
         function getResult() {
             var selVal = sel.value.split('|');
             var text = input.value.trim();
             if (!text) return null;
             return { idp: selVal[0], character: selVal[1], text: text };
-        }
-
-        // Duplicar: pre-llena campos y hace foco en input para editar
-        if (prevCue && prevCue.text) {
-            document.getElementById('vcby-modal-dup').onclick = function() {
-                sel.value = prevCue.idp + '|' + prevCue.character;
-                input.value = prevCue.text.replace(/<[^>]*>/g, ''); // strip HTML
-                input.focus();
-                input.select();
-            };
         }
 
         document.getElementById('vcby-modal-ok').onclick = function() { closeModal(getResult()); };
@@ -195,7 +180,7 @@
         };
 
         openModal();
-        setTimeout(function() { input.focus(); }, 100);
+        setTimeout(function() { input.focus(); input.select(); }, 100);
 
         return new Promise(function(resolve) { _resolve = resolve; });
     };
