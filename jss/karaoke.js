@@ -25,12 +25,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Carga paralela del guion (SQLite API por track) y las duraciones
     var _trackId = (window.audioId || '').split('_')[0];
     Promise.all([
-        fetch(`../audios/api_cues.php?track_id=${_trackId}&v=${window.appVersion || Date.now()}`).then(res => {
-            if (!res.ok) throw new Error('API cues no disponible');
-            return res.json();
-        }).catch(() => {
-            // Fallback: cargar JSON estático (desarrollo local)
-            return fetch(`../audios/subs/guion_completo.json?v=${window.appVersion || Date.now()}`)
+        fetch(`../audios/api_cues.php?track_id=${_trackId}&v=${Date.now()}`, {cache:'no-store'}).then(res => {
+            if (!res.ok) throw new Error('API HTTP ' + res.status);
+            return res.json().then(data => {
+                console.log('[VCBY] Datos desde SQLite API, track=' + _trackId, Object.keys(data));
+                return data;
+            });
+        }).catch(err => {
+            console.warn('[VCBY] API falló, usando JSON fallback:', err.message);
+            return fetch(`../audios/subs/guion_completo.json?v=${Date.now()}`, {cache:'no-store'})
                 .then(res => res.ok ? res.json() : {});
         }),
         fetch(`../audios/subs/audio_durations.json?v=${window.appVersion || Date.now()}`).then(res => {
