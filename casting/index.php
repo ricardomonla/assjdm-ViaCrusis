@@ -1,15 +1,17 @@
 <?php
 /**
- * casting/index.php — Página pública de casting
- * Muestra personajes con postulados y permite anotarse
+ * casting/index.php — Página de Personajes
+ * - Público: ve personajes habilitados y postulados
+ * - Director: ve todos, toggle habilitar/deshabilitar, teléfonos, eliminar
  */
-session_start();
+if (session_status() === PHP_SESSION_NONE) session_start();
 $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 require __DIR__ . '/../data/db.php';
+
 $characters = getCharacters();
 $castings = getCastingList($isAdmin);
+$enabledMap = getAllCastingEnabled();
 
-// Agrupar castings por idp
 $byIdp = [];
 foreach ($castings as $c) {
     $byIdp[$c['idp']][] = $c;
@@ -20,28 +22,13 @@ foreach ($castings as $c) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casting — Via Crusis BY2026</title>
+    <title>Personajes — Via Crusis BY2026</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        .casting-page {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 16px;
-            font-family: Georgia, 'Times New Roman', serif;
-        }
-        .casting-title {
-            text-align: center;
-            font-size: 1.3em;
-            color: #2d2418;
-            margin-bottom: 4px;
-        }
-        .casting-subtitle {
-            text-align: center;
-            font-size: 0.85em;
-            color: #8a7b68;
-            margin-bottom: 20px;
-        }
-        .casting-card {
+        .pj-page { max-width: 700px; margin: 0 auto; padding: 16px; font-family: Georgia, 'Times New Roman', serif; }
+        .pj-title { text-align: center; font-size: 1.3em; color: #2d2418; margin-bottom: 4px; }
+        .pj-subtitle { text-align: center; font-size: 0.85em; color: #8a7b68; margin-bottom: 20px; }
+        .pj-card {
             background: #fffdf8;
             border: 1px solid rgba(196, 180, 148, 0.4);
             border-radius: 10px;
@@ -49,24 +36,22 @@ foreach ($castings as $c) {
             overflow: hidden;
             transition: box-shadow 0.2s ease;
         }
-        .casting-card:hover {
-            box-shadow: 0 2px 12px rgba(128, 109, 90, 0.15);
+        .pj-card:hover { box-shadow: 0 2px 12px rgba(128, 109, 90, 0.15); }
+        .pj-card.pj-disabled {
+            opacity: 0.45;
+            background: #f5f3ef;
         }
-        .casting-header {
+        .pj-card.pj-disabled:hover { opacity: 0.7; }
+        .pj-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 14px;
             background: linear-gradient(135deg, #f5f0e6, #ede6d6);
             border-bottom: 1px solid rgba(196, 180, 148, 0.3);
-            cursor: default;
         }
-        .casting-char-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .casting-idp {
+        .pj-info { display: flex; align-items: center; gap: 8px; flex: 1; }
+        .pj-idp {
             font-family: 'Courier New', monospace;
             font-size: 0.65em;
             background: rgba(139, 0, 0, 0.08);
@@ -75,190 +60,88 @@ foreach ($castings as $c) {
             border-radius: 4px;
             font-weight: bold;
         }
-        .casting-char-name {
-            font-weight: bold;
-            font-variant: small-caps;
-            font-size: 1em;
-            color: #2d2418;
+        .pj-name { font-weight: bold; font-variant: small-caps; font-size: 1em; color: #2d2418; }
+        .pj-count {
+            font-size: 0.7em; color: #b0a693;
+            background: rgba(0,0,0,0.04);
+            padding: 2px 6px; border-radius: 8px;
         }
-        .casting-btn-add {
-            background: #4a8c3f;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .pj-actions { display: flex; gap: 6px; align-items: center; }
+        .pj-btn-add {
+            background: #4a8c3f; color: white; border: none;
+            border-radius: 50%; width: 28px; height: 28px;
+            font-size: 16px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
             transition: all 0.2s ease;
         }
-        .casting-btn-add:hover {
-            background: #3a7030;
-            transform: scale(1.15);
+        .pj-btn-add:hover { background: #3a7030; transform: scale(1.15); }
+        .pj-toggle {
+            background: none; border: 1px solid #d4c9b5;
+            border-radius: 6px; padding: 3px 8px;
+            cursor: pointer; font-size: 0.75em;
+            color: #8a7b68; transition: all 0.2s;
         }
-        .casting-body {
-            padding: 0;
-        }
-        .casting-empty {
-            padding: 8px 14px;
-            color: #b0a693;
-            font-style: italic;
-            font-size: 0.85em;
-        }
-        .casting-person {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 7px 14px;
-            border-bottom: 1px solid rgba(196, 180, 148, 0.15);
+        .pj-toggle.enabled { background: #e8f5e9; border-color: #4caf50; color: #2e7d32; }
+        .pj-toggle:hover { transform: scale(1.05); }
+        .pj-body { padding: 0; }
+        .pj-empty { padding: 8px 14px; color: #b0a693; font-style: italic; font-size: 0.85em; }
+        .pj-person {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 7px 14px; border-bottom: 1px solid rgba(196, 180, 148, 0.15);
             font-size: 0.9em;
         }
-        .casting-person:last-child {
-            border-bottom: none;
+        .pj-person:last-child { border-bottom: none; }
+        .pj-person-name { color: #2d2418; font-weight: 500; }
+        .pj-person-phone { font-family: 'Courier New', monospace; font-size: 0.8em; color: #8a7b68; }
+        .pj-person-del {
+            background: none; border: none; cursor: pointer;
+            font-size: 14px; opacity: 0.4; transition: all 0.2s;
         }
-        .casting-person-name {
-            color: #2d2418;
-            font-weight: 500;
+        .pj-person-del:hover { opacity: 1; transform: scale(1.2); }
+
+        /* Modal */
+        .pj-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); z-index: 9999;
+            justify-content: center; align-items: center;
         }
-        .casting-person-phone {
-            font-family: 'Courier New', monospace;
-            font-size: 0.8em;
-            color: #8a7b68;
-        }
-        .casting-person-delete {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            opacity: 0.4;
-            transition: all 0.2s;
-        }
-        .casting-person-delete:hover {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        .casting-count {
-            font-size: 0.7em;
-            color: #b0a693;
-            background: rgba(0,0,0,0.04);
-            padding: 2px 6px;
-            border-radius: 8px;
-            margin-left: 6px;
-        }
-        /* Modal de signup */
-        .casting-modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-        }
-        .casting-modal-overlay.active {
-            display: flex;
-        }
-        .casting-modal {
-            background: #fffdf8;
-            border-radius: 12px;
-            padding: 20px;
-            width: 90%;
-            max-width: 360px;
+        .pj-overlay.active { display: flex; }
+        .pj-modal {
+            background: #fffdf8; border-radius: 12px; padding: 20px;
+            width: 90%; max-width: 360px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-            animation: castingSlideIn 0.2s ease;
+            animation: pjSlide 0.2s ease;
         }
-        @keyframes castingSlideIn {
+        @keyframes pjSlide {
             from { transform: translateY(-20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .casting-modal h3 {
-            margin: 0 0 4px;
-            font-size: 1.1em;
-            color: #2d2418;
+        .pj-modal h3 { margin: 0 0 4px; font-size: 1.1em; color: #2d2418; }
+        .pj-modal .modal-sub { font-size: 0.85em; color: #8a7b68; margin-bottom: 14px; }
+        .pj-modal label { display: block; font-size: 0.8em; color: #5a4b3a; margin: 10px 0 3px; }
+        .pj-modal input {
+            width: 100%; padding: 8px 10px;
+            border: 1px solid #d4c9b5; border-radius: 6px;
+            font-size: 0.95em; font-family: inherit;
+            background: #fff; box-sizing: border-box;
         }
-        .casting-modal .modal-char {
-            font-size: 0.85em;
-            color: #8a7b68;
-            margin-bottom: 14px;
+        .pj-modal input:focus { outline: none; border-color: #8b0000; box-shadow: 0 0 0 2px rgba(139,0,0,0.1); }
+        .pj-modal-btns { display: flex; gap: 8px; margin-top: 16px; justify-content: flex-end; }
+        .pj-modal-btns button {
+            padding: 8px 16px; border-radius: 6px; border: none;
+            cursor: pointer; font-size: 0.9em; font-family: inherit;
         }
-        .casting-modal label {
-            display: block;
-            font-size: 0.8em;
-            color: #5a4b3a;
-            margin-bottom: 3px;
-            margin-top: 10px;
+        .pj-btn-cancel { background: #e8e0d0; color: #5a4b3a; }
+        .pj-btn-submit { background: #4a8c3f; color: white; font-weight: 600; }
+        .pj-btn-submit:hover { background: #3a7030; }
+        .pj-back { display: inline-block; margin-bottom: 12px; color: #8a7b68; text-decoration: none; font-size: 0.9em; }
+        .pj-back:hover { color: #2d2418; }
+        .pj-msg {
+            padding: 10px; border-radius: 6px; margin-bottom: 12px;
+            font-size: 0.85em; display: none;
         }
-        .casting-modal input {
-            width: 100%;
-            padding: 8px 10px;
-            border: 1px solid #d4c9b5;
-            border-radius: 6px;
-            font-size: 0.95em;
-            font-family: inherit;
-            background: #fff;
-            box-sizing: border-box;
-        }
-        .casting-modal input:focus {
-            outline: none;
-            border-color: #8b0000;
-            box-shadow: 0 0 0 2px rgba(139,0,0,0.1);
-        }
-        .casting-modal-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-            justify-content: flex-end;
-        }
-        .casting-modal-actions button {
-            padding: 8px 16px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-family: inherit;
-        }
-        .btn-cancel {
-            background: #e8e0d0;
-            color: #5a4b3a;
-        }
-        .btn-submit {
-            background: #4a8c3f;
-            color: white;
-            font-weight: 600;
-        }
-        .btn-submit:hover {
-            background: #3a7030;
-        }
-        .casting-back {
-            display: inline-block;
-            margin-bottom: 12px;
-            color: #8a7b68;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-        .casting-back:hover {
-            color: #2d2418;
-        }
-        .casting-msg {
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            font-size: 0.85em;
-            display: none;
-        }
-        .casting-msg.success {
-            background: #e8f5e9;
-            color: #2e7d32;
-            display: block;
-        }
-        .casting-msg.error {
-            background: #fce4ec;
-            color: #c62828;
-            display: block;
-        }
+        .pj-msg.success { background: #e8f5e9; color: #2e7d32; display: block; }
+        .pj-msg.error { background: #fce4ec; color: #c62828; display: block; }
     </style>
 </head>
 <body>
@@ -266,43 +149,62 @@ foreach ($castings as $c) {
     <h1>Via Crusis<br>Barrio Yacampiz - 2026</h1>
 </header>
 
-<main class="casting-page">
-    <a href="../audios/index.php" class="casting-back">← Volver a audios</a>
-    <h2 class="casting-title">🎭 Casting de Personajes</h2>
-    <p class="casting-subtitle">Postulate para interpretar un personaje. ¡Todos son bienvenidos!</p>
+<main class="pj-page">
+    <a href="../audios/index.php" class="pj-back">← Volver a audios</a>
+    <h2 class="pj-title">🎭 Personajes</h2>
+    <p class="pj-subtitle">Postulate para interpretar un personaje. ¡Todos son bienvenidos!</p>
     
-    <div id="casting-msg" class="casting-msg"></div>
+    <div id="pj-msg" class="pj-msg"></div>
 
     <?php foreach ($characters as $char): 
         $idp = $char['idp'];
         $name = $char['character'];
+        $isEnabled = isset($enabledMap[$idp]) && $enabledMap[$idp] == 1;
         $postulados = $byIdp[$idp] ?? [];
         $count = count($postulados);
+        
+        // Público solo ve habilitados (o con postulados)
+        if (!$isAdmin && !$isEnabled && $count === 0) continue;
     ?>
-    <div class="casting-card" id="card-<?= $idp ?>">
-        <div class="casting-header">
-            <div class="casting-char-info">
-                <span class="casting-idp"><?= $idp ?></span>
-                <span class="casting-char-name"><?= htmlspecialchars($name) ?></span>
+    <div class="pj-card <?= (!$isEnabled && $isAdmin) ? 'pj-disabled' : '' ?>" id="card-<?= $idp ?>">
+        <div class="pj-header">
+            <div class="pj-info">
+                <span class="pj-idp"><?= $idp ?></span>
+                <span class="pj-name"><?= htmlspecialchars($name) ?></span>
                 <?php if ($count > 0): ?>
-                    <span class="casting-count"><?= $count ?> postulado<?= $count > 1 ? 's' : '' ?></span>
+                    <span class="pj-count"><?= $count ?></span>
                 <?php endif; ?>
             </div>
-            <button class="casting-btn-add" onclick="openSignup('<?= $idp ?>', '<?= htmlspecialchars($name, ENT_QUOTES) ?>')" title="Postularme">+</button>
+            <div class="pj-actions">
+                <?php if ($isAdmin): ?>
+                    <button class="pj-toggle <?= $isEnabled ? 'enabled' : '' ?>" 
+                            onclick="toggleChar('<?= $idp ?>', <?= $isEnabled ? 0 : 1 ?>)"
+                            title="<?= $isEnabled ? 'Deshabilitar postulaciones' : 'Habilitar postulaciones' ?>">
+                        <?= $isEnabled ? '✅ Abierto' : '⬜ Cerrado' ?>
+                    </button>
+                <?php endif; ?>
+                <?php if ($isEnabled || $isAdmin): ?>
+                    <button class="pj-btn-add" onclick="openSignup('<?= $idp ?>', '<?= htmlspecialchars($name, ENT_QUOTES) ?>')" title="Postularme">+</button>
+                <?php endif; ?>
+            </div>
         </div>
-        <div class="casting-body">
+        <div class="pj-body">
             <?php if (empty($postulados)): ?>
-                <div class="casting-empty">Sin postulados aún</div>
+                <?php if ($isEnabled): ?>
+                    <div class="pj-empty">Sin postulados aún — ¡sé el primero!</div>
+                <?php else: ?>
+                    <div class="pj-empty">Sin postulados</div>
+                <?php endif; ?>
             <?php else: ?>
                 <?php foreach ($postulados as $p): ?>
-                <div class="casting-person">
-                    <span class="casting-person-name"><?= htmlspecialchars($p['nombre'] . ' ' . $p['apellido']) ?></span>
+                <div class="pj-person">
+                    <span class="pj-person-name"><?= htmlspecialchars($p['nombre'] . ' ' . $p['apellido']) ?></span>
                     <span>
                         <?php if ($isAdmin && isset($p['telefono'])): ?>
-                            <span class="casting-person-phone">📞 <?= htmlspecialchars($p['telefono']) ?></span>
+                            <a href="tel:<?= htmlspecialchars($p['telefono']) ?>" class="pj-person-phone">📞 <?= htmlspecialchars($p['telefono']) ?></a>
                         <?php endif; ?>
                         <?php if ($isAdmin): ?>
-                            <button class="casting-person-delete" onclick="deleteCasting(<?= $p['id'] ?>)" title="Eliminar">🗑</button>
+                            <button class="pj-person-del" onclick="deleteSignup(<?= $p['id'] ?>)" title="Eliminar">🗑</button>
                         <?php endif; ?>
                     </span>
                 </div>
@@ -313,53 +215,46 @@ foreach ($castings as $c) {
     <?php endforeach; ?>
 </main>
 
-<!-- Modal de signup -->
-<div class="casting-modal-overlay" id="signup-modal">
-    <div class="casting-modal">
+<!-- Modal de postulación -->
+<div class="pj-overlay" id="signup-modal">
+    <div class="pj-modal">
         <h3>Postularme</h3>
-        <div class="modal-char" id="modal-char-name"></div>
+        <div class="modal-sub" id="modal-char"></div>
         <form id="signup-form" onsubmit="submitSignup(event)">
-            <input type="hidden" id="signup-idp">
-            <input type="hidden" id="signup-char">
-            <label for="signup-nombre">Nombre</label>
-            <input type="text" id="signup-nombre" required placeholder="Tu nombre" autocomplete="given-name">
-            <label for="signup-apellido">Apellido</label>
-            <input type="text" id="signup-apellido" required placeholder="Tu apellido" autocomplete="family-name">
-            <label for="signup-telefono">Teléfono (privado, solo para coordinación)</label>
-            <input type="tel" id="signup-telefono" required placeholder="Ej: 3855-123456" autocomplete="tel">
-            <div class="casting-modal-actions">
-                <button type="button" class="btn-cancel" onclick="closeSignup()">Cancelar</button>
-                <button type="submit" class="btn-submit">Postularme</button>
+            <input type="hidden" id="s-idp">
+            <input type="hidden" id="s-char">
+            <label>Nombre</label>
+            <input type="text" id="s-nombre" required placeholder="Tu nombre" autocomplete="given-name">
+            <label>Apellido</label>
+            <input type="text" id="s-apellido" required placeholder="Tu apellido" autocomplete="family-name">
+            <label>Teléfono (privado, solo para coordinación)</label>
+            <input type="tel" id="s-telefono" required placeholder="Ej: 3855-123456" autocomplete="tel">
+            <div class="pj-modal-btns">
+                <button type="button" class="pj-btn-cancel" onclick="closeSignup()">Cancelar</button>
+                <button type="submit" class="pj-btn-submit">Postularme</button>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-function openSignup(idp, charName) {
-    document.getElementById('signup-idp').value = idp;
-    document.getElementById('signup-char').value = charName;
-    document.getElementById('modal-char-name').textContent = idp + ' — ' + charName;
-    document.getElementById('signup-nombre').value = '';
-    document.getElementById('signup-apellido').value = '';
-    document.getElementById('signup-telefono').value = '';
+function openSignup(idp, name) {
+    document.getElementById('s-idp').value = idp;
+    document.getElementById('s-char').value = name;
+    document.getElementById('modal-char').textContent = idp + ' — ' + name;
+    document.getElementById('s-nombre').value = '';
+    document.getElementById('s-apellido').value = '';
+    document.getElementById('s-telefono').value = '';
     document.getElementById('signup-modal').classList.add('active');
-    setTimeout(function() { document.getElementById('signup-nombre').focus(); }, 100);
+    setTimeout(function() { document.getElementById('s-nombre').focus(); }, 100);
 }
-
-function closeSignup() {
-    document.getElementById('signup-modal').classList.remove('active');
-}
-
-// Cerrar con click fuera
-document.getElementById('signup-modal').addEventListener('click', function(e) {
-    if (e.target === this) closeSignup();
-});
+function closeSignup() { document.getElementById('signup-modal').classList.remove('active'); }
+document.getElementById('signup-modal').addEventListener('click', function(e) { if (e.target === this) closeSignup(); });
 
 function showMsg(text, type) {
-    var el = document.getElementById('casting-msg');
+    var el = document.getElementById('pj-msg');
     el.textContent = text;
-    el.className = 'casting-msg ' + type;
+    el.className = 'pj-msg ' + type;
     setTimeout(function() { el.style.display = 'none'; }, 4000);
 }
 
@@ -367,41 +262,45 @@ function submitSignup(e) {
     e.preventDefault();
     var fd = new FormData();
     fd.append('action', 'signup');
-    fd.append('idp', document.getElementById('signup-idp').value);
-    fd.append('character_name', document.getElementById('signup-char').value);
-    fd.append('nombre', document.getElementById('signup-nombre').value.trim());
-    fd.append('apellido', document.getElementById('signup-apellido').value.trim());
-    fd.append('telefono', document.getElementById('signup-telefono').value.trim());
+    fd.append('idp', document.getElementById('s-idp').value);
+    fd.append('character_name', document.getElementById('s-char').value);
+    fd.append('nombre', document.getElementById('s-nombre').value.trim());
+    fd.append('apellido', document.getElementById('s-apellido').value.trim());
+    fd.append('telefono', document.getElementById('s-telefono').value.trim());
     
     fetch('api.php', { method: 'POST', body: fd })
         .then(function(r) { return r.json(); })
-        .then(function(data) {
-            if (data.ok) {
-                closeSignup();
-                showMsg(data.msg, 'success');
-                setTimeout(function() { location.reload(); }, 800);
-            } else {
-                showMsg(data.msg, 'error');
-            }
+        .then(function(d) {
+            if (d.ok) { closeSignup(); showMsg(d.msg, 'success'); setTimeout(function() { location.reload(); }, 800); }
+            else { showMsg(d.msg, 'error'); }
         })
         .catch(function() { showMsg('Error de conexión.', 'error'); });
 }
 
-function deleteCasting(id) {
+function deleteSignup(id) {
     if (!confirm('¿Eliminar esta postulación?')) return;
     var fd = new FormData();
     fd.append('action', 'delete');
     fd.append('id', id);
-    
     fetch('api.php', { method: 'POST', body: fd })
         .then(function(r) { return r.json(); })
-        .then(function(data) {
-            if (data.ok) {
-                showMsg(data.msg, 'success');
-                setTimeout(function() { location.reload(); }, 500);
-            } else {
-                showMsg(data.msg, 'error');
-            }
+        .then(function(d) {
+            if (d.ok) { showMsg(d.msg, 'success'); setTimeout(function() { location.reload(); }, 500); }
+            else { showMsg(d.msg, 'error'); }
+        })
+        .catch(function() { showMsg('Error de conexión.', 'error'); });
+}
+
+function toggleChar(idp, enabled) {
+    var fd = new FormData();
+    fd.append('action', 'toggle');
+    fd.append('idp', idp);
+    fd.append('enabled', enabled);
+    fetch('api.php', { method: 'POST', body: fd })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+            if (d.ok) { location.reload(); }
+            else { showMsg(d.msg, 'error'); }
         })
         .catch(function() { showMsg('Error de conexión.', 'error'); });
 }

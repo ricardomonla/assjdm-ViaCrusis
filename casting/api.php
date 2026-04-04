@@ -1,10 +1,11 @@
 <?php
 /**
- * casting/api.php — API REST para postulaciones de actores
+ * casting/api.php — API REST para Personajes
  * 
- * GET              → lista postulaciones (sin teléfono; Director ve teléfonos)
- * POST action=signup → nueva postulación
- * POST action=delete → eliminar postulación (solo Director)
+ * GET                    → lista personajes y postulaciones
+ * POST action=signup     → nueva postulación
+ * POST action=delete     → eliminar postulación (Director)
+ * POST action=toggle     → habilitar/deshabilitar personaje (Director)
  */
 
 error_reporting(0);
@@ -14,9 +15,8 @@ header('Cache-Control: no-cache');
 
 require __DIR__ . '/../data/db.php';
 
-// Detectar si es Director
 function isDirector() {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) session_start();
     return isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 }
 
@@ -27,8 +27,8 @@ try {
         $isAdmin = isDirector();
         $characters = getCharacters();
         $castings = getCastingList($isAdmin);
+        $enabled = getAllCastingEnabled();
         
-        // Agrupar castings por idp
         $byIdp = [];
         foreach ($castings as $c) {
             $byIdp[$c['idp']][] = $c;
@@ -38,6 +38,7 @@ try {
             'ok' => true,
             'characters' => $characters,
             'castings' => $byIdp,
+            'enabled' => $enabled,
             'isDirector' => $isAdmin
         ], JSON_UNESCAPED_UNICODE);
         
@@ -56,6 +57,12 @@ try {
                 exit;
             }
             
+            // Verificar que el personaje esté habilitado
+            if (!isCastingEnabled($idp) && !isDirector()) {
+                echo json_encode(['ok' => false, 'msg' => 'Este personaje no está abierto para postulaciones.']);
+                exit;
+            }
+            
             $id = addCasting($idp, $charName, $nombre, $apellido, $telefono);
             echo json_encode(['ok' => true, 'id' => $id, 'msg' => '¡Postulación registrada!']);
             
@@ -71,6 +78,20 @@ try {
             }
             deleteCasting($id);
             echo json_encode(['ok' => true, 'msg' => 'Postulación eliminada.']);
+            
+        } elseif ($action === 'toggle') {
+            if (!isDirector()) {
+                echo json_encode(['ok' => false, 'msg' => 'No autorizado.']);
+                exit;
+            }
+            $idp = trim($_POST['idp'] ?? '');
+            $enabled = intval($_POST['enabled'] ?? 0);
+            if (!$idp) {
+                echo json_encode(['ok' => false, 'msg' => 'IDP requerido.']);
+                exit;
+            }
+            toggleCastingEnabled($idp, $enabled);
+            echo json_encode(['ok' => true, 'msg' => $enabled ? 'Habilitado' : 'Deshabilitado']);
             
         } else {
             echo json_encode(['ok' => false, 'msg' => 'Acción desconocida.']);

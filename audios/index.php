@@ -48,6 +48,13 @@ include '../incs/header.php';
             </ul>
         </details>
         <?php endforeach; ?>
+
+        <!-- Link a Personajes -->
+        <a href="../casting/" class="personajes-link">
+            <span class="personajes-icon">🎭</span>
+            <span class="personajes-text">Personajes</span>
+            <span class="personajes-arrow">›</span>
+        </a>
     </section>
 </main>
 

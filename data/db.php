@@ -82,7 +82,48 @@ function ensureSchema() {
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         );
         CREATE INDEX IF NOT EXISTS idx_casting_idp ON casting(idp);
+        
+        CREATE TABLE IF NOT EXISTS casting_enabled (
+            idp TEXT PRIMARY KEY,
+            enabled INTEGER DEFAULT 0
+        );
     ");
+}
+
+/**
+ * Verificar si un personaje está habilitado para postulaciones
+ */
+function isCastingEnabled($idp) {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->prepare("SELECT enabled FROM casting_enabled WHERE idp = ?");
+    $stmt->execute([$idp]);
+    $row = $stmt->fetch();
+    return $row && $row['enabled'] == 1;
+}
+
+/**
+ * Toggle habilitación de personaje
+ */
+function toggleCastingEnabled($idp, $enabled) {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->prepare("INSERT INTO casting_enabled (idp, enabled) VALUES (?, ?) ON CONFLICT(idp) DO UPDATE SET enabled = ?");
+    $stmt->execute([$idp, $enabled ? 1 : 0, $enabled ? 1 : 0]);
+}
+
+/**
+ * Obtener todos los estados de habilitación
+ */
+function getAllCastingEnabled() {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->query("SELECT idp, enabled FROM casting_enabled");
+    $result = [];
+    foreach ($stmt->fetchAll() as $row) {
+        $result[$row['idp']] = (int)$row['enabled'];
+    }
+    return $result;
 }
 
 /**
