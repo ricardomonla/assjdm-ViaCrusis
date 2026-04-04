@@ -66,10 +66,11 @@ function getCues($trackId) {
     $stmt->execute([$trackId]);
     $rows = $stmt->fetchAll();
 
-    // Formatear como el JSON original
+    // Formatear como el JSON original (incluir cue_index real para CRUD)
     $cues = [];
     foreach ($rows as $row) {
         $cues[] = [
+            'cue_index' => (int) $row['cue_index'],
             'character' => $row['character'],
             'idp' => $row['idp'],
             'startTime' => (float) $row['start_time'],

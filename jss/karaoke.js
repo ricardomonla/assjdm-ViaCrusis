@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var currentGroup = null;
         
         data.forEach(function(cue, index) {
-            cue._originalIndex = index;
+            cue._originalIndex = (cue.cue_index !== undefined) ? cue.cue_index : index;
             
             if (cue.isNextAudio || cue.isPrevAudio) {
                 if (currentGroup) { groups.push(currentGroup); currentGroup = null; }
@@ -579,8 +579,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== DIRECTOR: Helpers de tiempo =====
     function applyTimeChange(cue, newTime, displayEl) {
         cue.startTime = newTime;
-        if (scriptData[cue._originalIndex]) {
-            scriptData[cue._originalIndex].startTime = newTime;
+        // Actualizar en scriptData buscando por cue_index
+        for (var si = 0; si < scriptData.length; si++) {
+            if (scriptData[si]._originalIndex === cue._originalIndex) {
+                scriptData[si].startTime = newTime;
+                break;
+            }
         }
         if (displayEl) {
             displayEl.textContent = newTime.toFixed(1);
