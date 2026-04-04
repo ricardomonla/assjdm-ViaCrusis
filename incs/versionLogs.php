@@ -1,5 +1,15 @@
 <?php
 $versionLogs = [
+    '26.8.15' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'ARQUITECTURA: Backend migrado de JSON+git a SQLite (ACID, sin dependencia de git).',
+            'Nuevo: data/db.php (capa de acceso SQLite), audios/api_cues.php (API REST).',
+            'save_changes.php reescrito: escritura directa a SQLite, sin commit/push.',
+            'Karaoke: carga datos desde api_cues.php con fallback a JSON estático.',
+            'DB location: /var/www/vcby-data/vcby.db (fuera del repo, inmune a deploys).',
+        ]
+    ],
     '26.8.14' => [
         'date' => '2026-04-03',
         'changes' => [

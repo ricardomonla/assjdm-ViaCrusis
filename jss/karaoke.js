@@ -22,11 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000); // Vuelve al auto-scroll tras 3s de inactividad de scroll
     });
 
-    // Carga paralela del guion maestro completo y las duraciones calculadas con ffprobe
+    // Carga paralela del guion maestro (SQLite API) y las duraciones
     Promise.all([
-        fetch(`../audios/subs/guion_completo.json?v=${window.appVersion || Date.now()}`).then(res => {
-            if (!res.ok) throw new Error('No se pudo cargar el archivo maestro de guiones.');
+        fetch(`../audios/api_cues.php?v=${window.appVersion || Date.now()}`).then(res => {
+            if (!res.ok) throw new Error('API cues no disponible');
             return res.json();
+        }).catch(() => {
+            // Fallback: cargar JSON estático (desarrollo local)
+            return fetch(`../audios/subs/guion_completo.json?v=${window.appVersion || Date.now()}`)
+                .then(res => res.ok ? res.json() : {});
         }),
         fetch(`../audios/subs/audio_durations.json?v=${window.appVersion || Date.now()}`).then(res => {
             if (!res.ok) return {}; // Falla silenciosa y devuelve duraciones vacías si no existe
@@ -593,65 +597,50 @@ document.addEventListener('DOMContentLoaded', function() {
             commitBar.className = 'director-commit-bar';
             commitBar.innerHTML = 
                 '<span class="commit-count"></span>' +
-                '<button class="btn-commit" onclick="directorCommit()">💾 Commitear</button>';
+                '<button class="btn-commit" onclick="directorCommit()">💾 Guardar cambios</button>';
             document.body.appendChild(commitBar);
         }
-        commitBar.querySelector('.commit-count').textContent = pendingEdits + ' cambio' + (pendingEdits > 1 ? 's' : '') + ' sin commit';
+        commitBar.querySelector('.commit-count').textContent = pendingEdits + ' cambio' + (pendingEdits > 1 ? 's' : '') + ' pendiente' + (pendingEdits > 1 ? 's' : '');
         commitBar.style.display = 'flex';
     }
     
     window.directorCommit = function() {
-        vcbyPrompt('Mensaje del commit:', 'Edicion de subtitulos', '💾').then(function(msg) {
-            if (!msg) return;
-            
-            var trackId = window.audioId.split('_')[0];
-            var pending = window._pendingTimeChanges || [];
-            
-            // Enviar cada cambio pendiente secuencialmente
-            var chain = Promise.resolve();
-            pending.forEach(function(change) {
-                chain = chain.then(function() {
-                    var fd = new URLSearchParams();
-                    fd.append('track_id', trackId);
-                    fd.append('cue_index', change.cue_index);
-                    fd.append('field', change.field);
-                    fd.append('value', change.value);
-                    return fetch((window.apiBase||'') + 'save_changes.php', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: fd.toString()
-                    }).then(function(r) { return r.json(); });
-                });
-            });
-            
-            // Despues de todos los cambios, trigger commit
-            chain.then(function() {
+        var trackId = window.audioId.split('_')[0];
+        var pending = window._pendingTimeChanges || [];
+        
+        if (pending.length === 0) {
+            vcbyAlert('No hay cambios pendientes', 'info');
+            return;
+        }
+        
+        // Enviar cada cambio pendiente al SQLite
+        var chain = Promise.resolve();
+        var saved = 0;
+        pending.forEach(function(change) {
+            chain = chain.then(function() {
                 var fd = new URLSearchParams();
                 fd.append('track_id', trackId);
-                fd.append('cue_index', 0);
-                fd.append('field', 'text');
-                fd.append('value', scriptData[0] ? scriptData[0].text : '');
-                fd.append('commit_msg', msg);
+                fd.append('cue_index', change.cue_index);
+                fd.append('field', change.field);
+                fd.append('value', change.value);
                 return fetch((window.apiBase||'') + 'save_changes.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: fd.toString()
-                }).then(function(r) { return r.json(); });
-            })
-            .then(function(data) {
-                if (data.ok) {
-                    pendingEdits = 0;
-                    window._pendingTimeChanges = [];
-                    var bar = document.getElementById('director-commit-bar');
-                    if (bar) bar.style.display = 'none';
-                    vcbyAlert('Commit realizado: ' + pending.length + ' cambios guardados', 'success');
-                } else {
-                    vcbyAlert('Error: ' + (data.msg || 'No se pudo commitear'), 'error');
-                }
-            })
-            .catch(function(err) {
-                vcbyAlert('Error: ' + (err.message || err), 'error');
+                }).then(function(r) { return r.json(); })
+                .then(function(data) { if (data.ok) saved++; });
             });
+        });
+        
+        chain.then(function() {
+            pendingEdits = 0;
+            window._pendingTimeChanges = [];
+            var bar = document.getElementById('director-commit-bar');
+            if (bar) bar.style.display = 'none';
+            vcbyAlert('✅ ' + saved + ' cambio' + (saved > 1 ? 's' : '') + ' guardado' + (saved > 1 ? 's' : ''), 'success');
+        })
+        .catch(function(err) {
+            vcbyAlert('Error: ' + (err.message || err), 'error');
         });
     };
 });
