@@ -473,6 +473,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (foundIdx !== currentActiveIdx && foundIdx !== -1) {
+            var activeCueIdx = scriptData[foundIdx]._originalIndex;
+            
             // Actualizar todas las lineas
             var allLines = scriptContainer.querySelectorAll('.cue-line[data-cue-index]');
             for (var j = 0; j < allLines.length; j++) {
@@ -480,9 +482,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 var lineIdx = parseInt(line.getAttribute('data-cue-index'));
                 line.classList.remove('cue-line-active', 'cue-line-past', 'cue-line-upcoming');
                 
-                if (lineIdx < foundIdx) {
+                if (lineIdx < activeCueIdx) {
                     line.classList.add('cue-line-past');
-                } else if (lineIdx === foundIdx) {
+                } else if (lineIdx === activeCueIdx) {
                     line.classList.add('cue-line-active');
                 } else {
                     line.classList.add('cue-line-upcoming');
@@ -510,7 +512,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Scroll al span activo
-            var activeLine = document.getElementById('cue-' + foundIdx);
+            var activeLine = document.getElementById('cue-' + activeCueIdx);
             if (activeLine && !isUserScrolling) {
                 var lineTop = activeLine.offsetTop;
                 scriptContainer.scrollTo({
