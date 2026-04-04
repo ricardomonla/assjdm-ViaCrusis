@@ -28,9 +28,42 @@ require __DIR__ . '/../data/db.php';
 
 // Helper: respuesta JSON limpia
 function jsonResponse($data) {
+    // Si la operación fue exitosa, regenerar guion_completo.json
+    if (!empty($data['ok'])) {
+        exportGuionJSON();
+    }
     if (ob_get_level()) ob_end_clean();
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+// Regenerar guion_completo.json desde SQLite (mantiene sync para modo offline/Android)
+function exportGuionJSON() {
+    try {
+        $db = getDB();
+        $stmt = $db->query("SELECT track_id, character, idp, start_time, end_time, text FROM cues ORDER BY track_id, cue_index");
+        $rows = $stmt->fetchAll();
+        if (empty($rows)) return;
+        
+        $guion = [];
+        foreach ($rows as $row) {
+            $tid = $row['track_id'];
+            if (!isset($guion[$tid])) $guion[$tid] = [];
+            $guion[$tid][] = [
+                'character' => $row['character'],
+                'idp'       => $row['idp'],
+                'startTime' => (float) $row['start_time'],
+                'endTime'   => (float) $row['end_time'],
+                'text'      => $row['text']
+            ];
+        }
+        uksort($guion, function($a, $b) { return intval($a) - intval($b); });
+        
+        $jsonFile = __DIR__ . '/subs/guion_completo.json';
+        file_put_contents($jsonFile, json_encode($guion, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    } catch (Exception $e) {
+        // Fallo silencioso — no impide que el save principal funcione
+    }
 }
 
 $trackId   = $_POST['track_id'] ?? null;
