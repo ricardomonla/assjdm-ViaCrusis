@@ -1011,9 +1011,9 @@ body.insert-mode .cue-insert-inline:hover {
     background: transparent;
     border: none;
     cursor: pointer;
-    font-size: 12px;
-    padding: 0 2px;
-    opacity: 0.3;
+    font-size: 14px;
+    padding: 0 3px;
+    opacity: 0.6;
     transition: all 0.2s ease;
 }
 
