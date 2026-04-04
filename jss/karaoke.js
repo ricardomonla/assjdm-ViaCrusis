@@ -150,15 +150,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         if (currentGroup) groups.push(currentGroup);
         
-        // Helper: crear boton "+" de inserción
-        function createInsertBtn(afterIdx) {
+        // Helper: crear boton "+" de inserción (afterIdx = cue_index en DB, prevCue = datos del cue anterior para duplicar)
+        function createInsertBtn(afterIdx, prevCue) {
             var row = document.createElement('div');
             row.className = 'cue-insert-row';
-            row.innerHTML = '<button class="btn-insert-cue" title="Insertar burbuja aquí">+</button>';
+            row.innerHTML = '<button class="btn-insert-cue" title="Insertar después de esta línea">+</button>';
             row.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
                 e.stopPropagation();
                 var chars = window.__characters || [{idp:'P00',name:'Música / Ambiente'}];
-                vcbyInsertCue(chars).then(function(result) {
+                vcbyInsertCue(chars, prevCue || null).then(function(result) {
                     if (!result) return;
                     var trackId = window.audioId.split('_')[0];
                     var fd = new URLSearchParams();
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Mini "+" entre líneas dentro del grupo (insert-mode)
                 if (localIdx < group.cues.length - 1) {
                     bodyDiv.appendChild(document.createTextNode(' '));
-                    var miniBtn = createInsertBtn(cue._originalIndex);
+                    var miniBtn = createInsertBtn(cue._originalIndex, cue);
                     miniBtn.className = 'cue-insert-inline';
                     bodyDiv.appendChild(miniBtn);
                 }
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function() {
             scriptContainer.appendChild(groupDiv);
             
             // Director: boton "+" despues de cada grupo (visible solo en insert-mode)
-            scriptContainer.appendChild(createInsertBtn(lastCue._originalIndex));
+            scriptContainer.appendChild(createInsertBtn(lastCue._originalIndex, lastCue));
         });
         
         audioPlayer.addEventListener('timeupdate', updateKaraoke);

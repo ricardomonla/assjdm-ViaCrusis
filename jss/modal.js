@@ -129,16 +129,17 @@
     /**
      * vcbyInsertCue — Modal para insertar burbuja con selector de personaje
      * @param {Array} characters - [{idp:'P01',name:'NARRADOR'}, ...]
+     * @param {Object} [prevCue] - Cue anterior para opción "Duplicar" {idp, character, text}
      * @returns {Promise<{idp,character,text}|null>}
      */
-    window.vcbyInsertCue = function(characters) {
+    window.vcbyInsertCue = function(characters, prevCue) {
         var modal = document.getElementById('vcby-modal');
         modal.className = 'vcby-modal vcby-modal-info';
         document.getElementById('vcby-modal-icon').textContent = '🎭';
         
         // Construir select de personajes
         var msgDiv = document.getElementById('vcby-modal-msg');
-        msgDiv.innerHTML = '<div style="text-align:left;font-size:0.9em;margin-bottom:8px;">Insertar nueva burbuja:</div>';
+        msgDiv.innerHTML = '<div style="text-align:left;font-size:0.9em;margin-bottom:8px;">Insertar línea después:</div>';
         
         var sel = document.createElement('select');
         sel.id = 'vcby-insert-char';
@@ -147,26 +148,42 @@
             var opt = document.createElement('option');
             opt.value = c.idp + '|' + c.name;
             opt.textContent = c.idp + ' — ' + c.name;
+            if (prevCue && c.idp === prevCue.idp) opt.selected = true;
             sel.appendChild(opt);
         });
         msgDiv.appendChild(sel);
         
-        // Input oculto, reutilizamos el existente
+        // Input de texto
         var input = document.getElementById('vcby-modal-input');
         input.style.display = '';
         input.value = '';
         input.type = 'text';
         input.placeholder = 'Texto de la línea...';
 
-        document.getElementById('vcby-modal-buttons').innerHTML =
-            '<button class="vcby-modal-btn vcby-modal-btn-ok" id="vcby-modal-ok">Insertar</button>' +
-            '<button class="vcby-modal-btn vcby-modal-btn-cancel" id="vcby-modal-cancel">Cancelar</button>';
+        // Botones: Duplicar (si hay prevCue) + Insertar + Cancelar
+        var btnsHtml = '';
+        if (prevCue && prevCue.text) {
+            btnsHtml += '<button class="vcby-modal-btn vcby-modal-btn-dup" id="vcby-modal-dup" title="Copiar personaje y texto de la línea anterior">📋 Duplicar</button>';
+        }
+        btnsHtml += '<button class="vcby-modal-btn vcby-modal-btn-ok" id="vcby-modal-ok">Insertar</button>';
+        btnsHtml += '<button class="vcby-modal-btn vcby-modal-btn-cancel" id="vcby-modal-cancel">Cancelar</button>';
+        document.getElementById('vcby-modal-buttons').innerHTML = btnsHtml;
 
         function getResult() {
             var selVal = sel.value.split('|');
             var text = input.value.trim();
             if (!text) return null;
             return { idp: selVal[0], character: selVal[1], text: text };
+        }
+
+        // Duplicar: pre-llena campos y hace foco en input para editar
+        if (prevCue && prevCue.text) {
+            document.getElementById('vcby-modal-dup').onclick = function() {
+                sel.value = prevCue.idp + '|' + prevCue.character;
+                input.value = prevCue.text.replace(/<[^>]*>/g, ''); // strip HTML
+                input.focus();
+                input.select();
+            };
         }
 
         document.getElementById('vcby-modal-ok').onclick = function() { closeModal(getResult()); };
