@@ -201,6 +201,51 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             return row;
         }
+
+        // Eliminar UNA línea de diálogo (🗑 chico, con confirmación)
+        function createDelLineBtn(cue) {
+            var btn = document.createElement('span');
+            btn.className = 'cue-delete-inline';
+            btn.innerHTML = '<button class="btn-delete-cue" title="Eliminar esta línea">🗑</button>';
+            btn.querySelector('.btn-delete-cue').addEventListener('click', function(e) {
+                e.stopPropagation();
+                var preview = (cue.text || '').replace(/<[^>]*>/g, '').substring(0, 40);
+                vcbyConfirm('¿Eliminar línea?\n"' + preview + '…"').then(function(ok) {
+                    if (!ok) return;
+                    var trackId = window.audioId.split('_')[0];
+                    var fd = new URLSearchParams();
+                    fd.append('track_id', trackId);
+                    fd.append('cue_index', cue._originalIndex);
+                    fd.append('field', '_delete');
+                    fd.append('value', '');
+                    postAndReload(fd);
+                });
+            });
+            return btn;
+        }
+
+        // Eliminar BURBUJA completa (🗑 en header, con confirmación)
+        function createDelGroupBtn(group) {
+            var btn = document.createElement('button');
+            btn.className = 'btn-delete-cue cue-delete-group';
+            btn.title = 'Eliminar burbuja (' + group.cues.length + ' líneas)';
+            btn.textContent = '🗑';
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                vcbyConfirm('¿Eliminar burbuja completa?\n' + group.character + ' (' + group.cues.length + ' líneas)').then(function(ok) {
+                    if (!ok) return;
+                    var trackId = window.audioId.split('_')[0];
+                    var indices = group.cues.map(function(c) { return c._originalIndex; });
+                    var fd = new URLSearchParams();
+                    fd.append('track_id', trackId);
+                    fd.append('cue_index', indices[0]);
+                    fd.append('field', '_delete_batch');
+                    fd.append('cue_indices', JSON.stringify(indices));
+                    postAndReload(fd);
+                });
+            });
+            return btn;
+        }
         
         // Paso 2: Renderizar grupos como burbujas
         groups.forEach(function(group) {
@@ -256,6 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
             headerDiv.innerHTML = '<span class="cue-time cue-time-range">' + gH + ':' + gM + ':' + gS +
                 ' (' + Math.floor(firstCue.startTime) + 's-' + Math.floor(lastCue.startTime) + 's)</span>' +
                 '<span class="cue-character">' + idpHtml + group.character + '</span>';
+            headerDiv.appendChild(createDelGroupBtn(group));
             groupDiv.appendChild(headerDiv);
             
             // Body: lineas como spans
@@ -349,11 +395,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 bodyDiv.appendChild(lineSpan);
                 
-                // Mini "+" entre líneas dentro del grupo (insert-mode)
+                // Mini "+" y "🗑" entre líneas dentro del grupo (insert-mode)
                 if (localIdx < group.cues.length - 1) {
                     bodyDiv.appendChild(document.createTextNode(' '));
                     bodyDiv.appendChild(createDupLineBtn(cue));
                 }
+                bodyDiv.appendChild(createDelLineBtn(cue));
             });
             
             groupDiv.appendChild(bodyDiv);

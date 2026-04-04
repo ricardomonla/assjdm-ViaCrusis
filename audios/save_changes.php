@@ -89,6 +89,31 @@ try {
         ]);
     }
 
+    // ===== Acción especial: Eliminar línea =====
+    if ($field === '_delete') {
+        deleteCue($trackId, $cueIndex);
+        jsonResponse([
+            'ok' => true,
+            'msg' => "Línea $cueIndex eliminada de track $trackId."
+        ]);
+    }
+
+    // ===== Acción especial: Eliminar grupo completo =====
+    if ($field === '_delete_batch') {
+        $indicesJson = $_POST['cue_indices'] ?? '[]';
+        $indices = json_decode($indicesJson, true);
+        if (!is_array($indices) || count($indices) === 0) {
+            jsonResponse(['ok' => false, 'msg' => 'Sin índices para eliminar.']);
+        }
+        
+        $count = deleteBatchCues($trackId, $indices);
+        jsonResponse([
+            'ok' => true,
+            'msg' => "Grupo eliminado: $count líneas borradas de track $trackId.",
+            'count' => $count
+        ]);
+    }
+
     // ===== Validar campo =====
     $allowedFields = ['text', 'character', 'startTime', 'endTime', 'idp'];
     if (!in_array($field, $allowedFields)) {

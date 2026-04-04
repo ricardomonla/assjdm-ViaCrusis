@@ -219,3 +219,60 @@ function insertBatchCues($trackId, $afterIndex, $cuesArray) {
     }
 }
 
+/**
+ * Eliminar un cue y reindexar los posteriores (-1)
+ */
+function deleteCue($trackId, $cueIndex) {
+    $db = getDB();
+    
+    $db->beginTransaction();
+    try {
+        // Eliminar
+        $stmt = $db->prepare("DELETE FROM cues WHERE track_id = ? AND cue_index = ?");
+        $stmt->execute([$trackId, $cueIndex]);
+        
+        if ($stmt->rowCount() === 0) throw new Exception("Cue $cueIndex no encontrado.");
+        
+        // Reindexar: negar posteriores, luego restaurar con -1
+        $db->exec("UPDATE cues SET cue_index = -(cue_index + 1) WHERE track_id = " . $db->quote($trackId) . " AND cue_index > $cueIndex");
+        $db->exec("UPDATE cues SET cue_index = (-cue_index) - 1 - 1 WHERE track_id = " . $db->quote($trackId) . " AND cue_index < 0");
+        
+        $db->commit();
+        return true;
+    } catch (Exception $e) {
+        $db->rollBack();
+        throw $e;
+    }
+}
+
+/**
+ * Eliminar múltiples cues consecutivos (para borrar burbuja completa)
+ */
+function deleteBatchCues($trackId, $cueIndices) {
+    $db = getDB();
+    $count = count($cueIndices);
+    if ($count === 0) return 0;
+    
+    sort($cueIndices);
+    $minIndex = $cueIndices[0];
+    
+    $db->beginTransaction();
+    try {
+        // Eliminar todos los cues indicados
+        $placeholders = implode(',', array_fill(0, $count, '?'));
+        $stmt = $db->prepare("DELETE FROM cues WHERE track_id = ? AND cue_index IN ($placeholders)");
+        $params = array_merge([$trackId], $cueIndices);
+        $stmt->execute($params);
+        
+        // Reindexar: negar posteriores al mínimo, restaurar con -count
+        $maxIndex = max($cueIndices);
+        $db->exec("UPDATE cues SET cue_index = -(cue_index + 1) WHERE track_id = " . $db->quote($trackId) . " AND cue_index > $maxIndex");
+        $db->exec("UPDATE cues SET cue_index = (-cue_index) - 1 - $count WHERE track_id = " . $db->quote($trackId) . " AND cue_index < 0");
+        
+        $db->commit();
+        return $count;
+    } catch (Exception $e) {
+        $db->rollBack();
+        throw $e;
+    }
+}

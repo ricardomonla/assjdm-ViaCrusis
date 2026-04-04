@@ -1008,6 +1008,37 @@ body.insert-mode .cue-insert-inline:hover {
     background: #5a7d6a;
 }
 
+/* Botones de eliminación (🗑) */
+.btn-delete-cue {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0 2px;
+    opacity: 0.3;
+    transition: all 0.2s ease;
+}
+
+.btn-delete-cue:hover {
+    opacity: 1;
+    transform: scale(1.3);
+    filter: saturate(2);
+}
+
+.cue-delete-inline, .cue-delete-group {
+    display: none !important;
+}
+
+body.insert-mode .cue-delete-inline {
+    display: inline !important;
+}
+
+body.insert-mode .cue-delete-group {
+    display: inline-block !important;
+    margin-left: 8px;
+    font-size: 14px;
+}
+
 /* ===== DIRECTOR: Live time counter ===== */
 .dtool-live-time {
     font-family: 'Courier New', monospace;
