@@ -177,3 +177,40 @@ function insertCue($trackId, $afterIndex, $cueData) {
         throw $e;
     }
 }
+
+/**
+ * Insertar múltiples cues de golpe (para duplicar burbujas completas)
+ */
+function insertBatchCues($trackId, $afterIndex, $cuesArray) {
+    $db = getDB();
+    $count = count($cuesArray);
+    if ($count === 0) return 0;
+    
+    $db->beginTransaction();
+    try {
+        // Hacer espacio: mover cues posteriores +N (dos pasos para evitar UNIQUE)
+        $db->exec("UPDATE cues SET cue_index = cue_index + 10000 WHERE track_id = " . $db->quote($trackId) . " AND cue_index > $afterIndex");
+        $db->exec("UPDATE cues SET cue_index = cue_index - " . (10000 - $count) . " WHERE track_id = " . $db->quote($trackId) . " AND cue_index > 10000");
+
+        // Insertar cada cue
+        $stmt = $db->prepare("INSERT INTO cues (track_id, cue_index, character, idp, start_time, end_time, text) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        for ($i = 0; $i < $count; $i++) {
+            $c = $cuesArray[$i];
+            $stmt->execute([
+                $trackId,
+                $afterIndex + 1 + $i,
+                $c['character'] ?? '',
+                $c['idp'] ?? 'P00',
+                $c['startTime'] ?? 0,
+                $c['endTime'] ?? 0,
+                $c['text'] ?? ''
+            ]);
+        }
+
+        $db->commit();
+        return $count;
+    } catch (Exception $e) {
+        $db->rollBack();
+        throw $e;
+    }
+}

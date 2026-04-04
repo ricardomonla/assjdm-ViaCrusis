@@ -72,6 +72,23 @@ try {
         ]);
     }
 
+    // ===== Acción especial: Duplicar grupo completo =====
+    if ($field === '_insert_batch') {
+        $cuesJson = $_POST['cues'] ?? '[]';
+        $cuesArray = json_decode($cuesJson, true);
+        if (!is_array($cuesArray) || count($cuesArray) === 0) {
+            jsonResponse(['ok' => false, 'msg' => 'Sin cues para insertar.']);
+        }
+        
+        $count = insertBatchCues($trackId, $cueIndex, $cuesArray);
+        
+        jsonResponse([
+            'ok' => true,
+            'msg' => "Grupo duplicado: $count líneas insertadas después de cue $cueIndex.",
+            'count' => $count
+        ]);
+    }
+
     // ===== Validar campo =====
     $allowedFields = ['text', 'character', 'startTime', 'endTime', 'idp'];
     if (!in_array($field, $allowedFields)) {

@@ -150,29 +150,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         if (currentGroup) groups.push(currentGroup);
         
-        // Helper: crear boton "+" de inserción (afterIdx = cue_index en DB, prevCue = datos del cue anterior para duplicar)
-        function createInsertBtn(afterIdx, prevCue) {
+        // Helper: enviar POST a save_changes.php y recargar
+        function postAndReload(fd) {
+            fetch((window.apiBase||'') + 'save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
+            .then(function(r) { return r.json(); })
+            .then(function(d) { if (d.ok) { location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
+            .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
+        }
+
+        // Duplicar UNA línea de diálogo (mini "+")
+        function createDupLineBtn(cue) {
             var row = document.createElement('div');
-            row.className = 'cue-insert-row';
-            row.innerHTML = '<button class="btn-insert-cue" title="Insertar después de esta línea">+</button>';
+            row.className = 'cue-insert-inline';
+            row.innerHTML = '<button class="btn-insert-cue" title="Duplicar esta línea">+</button>';
             row.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
                 e.stopPropagation();
-                var chars = window.__characters || [{idp:'P00',name:'Música / Ambiente'}];
-                vcbyInsertCue(chars, prevCue || null).then(function(result) {
-                    if (!result) return;
-                    var trackId = window.audioId.split('_')[0];
-                    var fd = new URLSearchParams();
-                    fd.append('track_id', trackId);
-                    fd.append('cue_index', afterIdx);
-                    fd.append('field', '_insert');
-                    fd.append('value', result.text);
-                    fd.append('character', result.character);
-                    fd.append('idp', result.idp);
-                    fetch((window.apiBase||'') + 'save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
-                    .then(function(r) { return r.json(); })
-                    .then(function(d) { if (d.ok) { location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
-                    .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
+                var trackId = window.audioId.split('_')[0];
+                var fd = new URLSearchParams();
+                fd.append('track_id', trackId);
+                fd.append('cue_index', cue._originalIndex);
+                fd.append('field', '_insert');
+                fd.append('value', cue.text || '');
+                fd.append('character', cue.character || '');
+                fd.append('idp', cue.idp || 'P00');
+                postAndReload(fd);
+            });
+            return row;
+        }
+
+        // Duplicar BURBUJA completa (grupo de líneas) — "+" grande
+        function createDupGroupBtn(group) {
+            var lastCue = group.cues[group.cues.length - 1];
+            var row = document.createElement('div');
+            row.className = 'cue-insert-row';
+            row.innerHTML = '<button class="btn-insert-cue" title="Duplicar esta burbuja (' + group.cues.length + ' líneas)">+</button>';
+            row.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
+                e.stopPropagation();
+                var trackId = window.audioId.split('_')[0];
+                var cuesData = group.cues.map(function(c) {
+                    return { character: c.character, idp: c.idp, startTime: c.startTime, endTime: c.endTime, text: c.text };
                 });
+                var fd = new URLSearchParams();
+                fd.append('track_id', trackId);
+                fd.append('cue_index', lastCue._originalIndex);
+                fd.append('field', '_insert_batch');
+                fd.append('cues', JSON.stringify(cuesData));
+                postAndReload(fd);
             });
             return row;
         }
@@ -327,9 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Mini "+" entre líneas dentro del grupo (insert-mode)
                 if (localIdx < group.cues.length - 1) {
                     bodyDiv.appendChild(document.createTextNode(' '));
-                    var miniBtn = createInsertBtn(cue._originalIndex, cue);
-                    miniBtn.className = 'cue-insert-inline';
-                    bodyDiv.appendChild(miniBtn);
+                    bodyDiv.appendChild(createDupLineBtn(cue));
                 }
             });
             
@@ -337,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
             scriptContainer.appendChild(groupDiv);
             
             // Director: boton "+" despues de cada grupo (visible solo en insert-mode)
-            scriptContainer.appendChild(createInsertBtn(lastCue._originalIndex, lastCue));
+            scriptContainer.appendChild(createDupGroupBtn(group));
         });
         
         audioPlayer.addEventListener('timeupdate', updateKaraoke);
