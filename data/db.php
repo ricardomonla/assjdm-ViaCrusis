@@ -153,8 +153,8 @@ function insertCue($trackId, $afterIndex, $cueData) {
     
     $db->beginTransaction();
     try {
-        // Reindexar: mover todos los cues posteriores +1
-        $stmt = $db->prepare("UPDATE cues SET cue_index = cue_index + 1 WHERE track_id = ? AND cue_index > ?");
+        // Reindexar: mover todos los cues posteriores +1 (DESC para evitar colisión UNIQUE)
+        $stmt = $db->prepare("UPDATE cues SET cue_index = cue_index + 1 WHERE track_id = ? AND cue_index > ? ORDER BY cue_index DESC");
         $stmt->execute([$trackId, $afterIndex]);
 
         // Insertar nuevo cue

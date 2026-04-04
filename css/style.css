@@ -956,12 +956,12 @@ body.director-mode .cue-line:hover {
     transition: opacity 0.2s ease;
 }
 
-body.director-mode.insert-mode .cue-insert-row {
+body.insert-mode .cue-insert-row {
     display: block !important;
     opacity: 0.4;
 }
 
-body.director-mode.insert-mode .cue-insert-row:hover {
+body.insert-mode .cue-insert-row:hover {
     opacity: 1;
 }
 

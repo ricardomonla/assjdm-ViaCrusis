@@ -89,6 +89,12 @@ include '../incs/header.php';
             </span>
             <span class="dtool-live-time" id="live-time-display" title="Tiempo actual del audio">00:00.0</span>
             <div class="dtool-actions">
+                <?php if ($prevAudio): ?>
+                <a class="dtool-btn" href="play.php?id=<?= htmlspecialchars($prevAudio['id']) ?>&v=<?= urlencode($latestVersion) ?>" title="Anterior">⏮</a>
+                <?php endif; ?>
+                <?php if ($nextAudio): ?>
+                <a class="dtool-btn" href="play.php?id=<?= htmlspecialchars($nextAudio['id']) ?>&v=<?= urlencode($latestVersion) ?>" title="Siguiente">⏭</a>
+                <?php endif; ?>
                 <button class="dtool-btn" id="btn-stamp-toggle" onclick="toggleStampMode()" title="Modo marcaje: tap en línea = fijar tiempo">🎯</button>
                 <button class="dtool-btn" id="btn-time-toggle" onclick="toggleTimeEdit()" title="Marcas de tiempo">⏱</button>
                 <button class="dtool-btn" id="btn-insert-toggle" onclick="toggleInsertMode()" title="Insertar burbujas">➕</button>

@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Helper: crear boton "+" de inserción
         function createInsertBtn(afterIdx) {
             var row = document.createElement('div');
-            row.className = 'cue-insert-row director-only';
+            row.className = 'cue-insert-row';
             row.innerHTML = '<button class="btn-insert-cue" title="Insertar burbuja aquí">+</button>';
             row.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
                 e.stopPropagation();
