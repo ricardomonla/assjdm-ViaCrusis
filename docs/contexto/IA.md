@@ -47,8 +47,12 @@ Aplicación web PHP para la gestión y reproducción de audios del Via Crucis de
 assjdm-ViaCrusis/
 ├── audios/            # Módulo de Reproducción
 │   ├── index.php      # Página principal — lista de audios
-│   ├── play.php       # Reproductor de audio individual
+│   ├── play.php       # Reproductor de audio individual (inyecta __cueData + __characters inline)
+│   ├── api_cues.php   # API REST: cues desde SQLite (fallback)
+│   ├── save_changes.php # Escritura SQLite: update/insert cues
 │   └── media/         # 34 archivos MP3 (000-403)
+├── data/
+│   └── db.php         # Capa CRUD SQLite (getCues, updateCue, insertCue)
 ├── serve.php          # Servidor de archivos MP3 (seguridad + range requests)
 ├── start_termux.sh    # Script nativo de Auto-arranque Android (Offline)
 ├── css/
@@ -63,9 +67,11 @@ assjdm-ViaCrusis/
 │   └── kerberos.php   # Protección de directorio
 ├── jss/
 │   ├── js.js          # JavaScript (autoplay, navegación)
-│   ├── karaoke.js     # Motor de karaoke (subtítulos sincronizados + IDP data-attrs)
+│   ├── karaoke.js     # Motor de karaoke (subtítulos sincronizados + Director tools)
+│   ├── modal.js       # Sistema de modales inline (vcbyAlert, vcbyPrompt, vcbyInsertCue)
 │   └── perfiles.js    # Gestión de perfiles Público/Director (localStorage + TTL)
 ├── tools/             # Scripts de mantenimiento e Inteligencia Artificial
+│   ├── migrate_to_sqlite.php # Migración JSON → SQLite
 │   ├── api_key_rotator/ # Gestor Ruby de encriptación (LLMs y candados)
 │   ├── compilar_json_v4.py # Compilador v4.0.md → guion_completo.json (con IDP)
 │   ├── etiquetar_personajes.py # IA local

@@ -80,10 +80,10 @@ La interfaz actual muestra un bloque separado por cada marca de tiempo, resultan
 
 ### Fase 7: Inserción de Burbujas (Cues por Personaje) ⏳
 Permitir al Director agregar nuevas líneas de diálogo/acotaciones antes o después de cualquier cue existente:
-- [ ] **7.1 UI Insertar**: Botón "+" visible entre burbujas en modo Director. Menú contextual con opciones: "Agregar antes" / "Agregar después".
-- [ ] **7.2 Selector de Personaje**: Al insertar, elegir personaje de la lista existente (P01-P26) o crear acotación escénica (P00).
-- [ ] **7.3 Persistencia SQLite**: Usar `insertCue()` de db.php para insertar con reindexación automática de cue_index.
-- [ ] **7.4 Recarga live**: Tras insertar, recargar los datos inline y re-renderizar sin recarga completa de página.
+- [x] **7.1 UI Insertar**: Toggle ➕ en toolbar Director. Botones "+" entre burbujas (y antes de la primera). Visible solo con toggle activo. ✅
+- [x] **7.2 Selector de Personaje**: Modal `vcbyInsertCue` con dropdown P00-P99 + campo de texto. ✅
+- [x] **7.3 Persistencia SQLite**: `save_changes.php` acepta character/idp, `insertCue()` reindexación automática. ✅
+- [ ] **7.4 Recarga live**: Tras insertar, recargar datos inline y re-renderizar sin recarga completa de página.
 
 ---
 **Nota para la IA y Operador H.I.T.L:** 
@@ -100,3 +100,4 @@ Cualquier avance en este plan se registrará actualizando estos `checkboxes` a m
 | v26.8.9 | 2026-04-03 | Director remoto: commit+push a GitHub desde la web. Edición desde cualquier dispositivo. |
 | v26.8.15 | 2026-04-03 | **ARQUITECTURA**: Backend migrado de JSON+git a SQLite. DB fuera del repo, datos inmunes a deploys. API REST (`api_cues.php`). |
 | v26.8.17 | 2026-04-04 | Datos inline: PHP inyecta cues de SQLite directo en HTML. Fallback a JSON si SQLite no disponible. Nota: VPN no actualiza caché, usar dominio directo. |
+| v26.8.18 | 2026-04-04 | **INSERTAR BURBUJAS**: Toggle ➕ en toolbar, selector de personaje P00-P99, botón + antes/después de cada grupo, persistencia SQLite. |
