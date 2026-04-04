@@ -1,5 +1,17 @@
 <?php
 $versionLogs = [
+    '26.8.21' => [
+        'date' => '2026-04-04',
+        'changes' => [
+            'CRUD COMPLETO: Duplicar (+), Eliminar (🗑), Editar (doble-click).',
+            'Cambiar personaje de burbuja: doble-click en nombre → selector → actualiza todo el grupo.',
+            'Pegado fuerza texto plano (sin HTML/estilos de otras páginas).',
+            'cue_index real de DB como referencia (no posición de array) — fix "cue no encontrado".',
+            'Audio preserva posición y estado play/pause tras operaciones CRUD.',
+            'Burbujas pasadas legibles (opacity 0.75-0.8, sin blur).',
+            'Limpieza DB: eliminados cues fantasma (idx>9999), reindexado secuencial.',
+        ]
+    ],
     '26.8.20' => [
         'date' => '2026-04-04',
         'changes' => [
@@ -7,7 +19,6 @@ $versionLogs = [
             'Batch insert backend (insertBatchCues) para duplicar grupos enteros.',
             'Reindex infalible con índices negativos temporales (sin colisiones UNIQUE).',
             'Agrupación inteligente: rompe grupo cuando tiempos retroceden.',
-            'Sin modal: duplicado instantáneo con un click.',
         ]
     ],
     '26.8.19' => [
