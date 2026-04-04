@@ -2,14 +2,14 @@
 
 > **Estado**: ⏳ En progreso
 > **Fecha**: 2026-04-02
-> **Ultima actualizacion**: 2026-04-03 19:57
+> **Ultima actualizacion**: 2026-04-03 21:54
 
 ---
 
 ## Progreso General
 
 ```text
-████████████████░░░░░░░░░░░░░░  55% - EN PROGRESO
+██████████████████░░░░░░░░░░░░  60% - EN PROGRESO
 ```
 
 | Fase | Descripción | Estado |
@@ -19,6 +19,7 @@
 | 3 | Acotaciones Escénicas y Descriptivas Intermedias | 📋 |
 | 4 | Sistema de Perfiles (Publico / Director) | ✅ |
 | 5 | Burbujas Agrupadas por Personaje (Karaoke UX) | ✅ |
+| 6 | Arquitectura de Datos (SQLite Backend) | ✅ |
 
 ---
 
@@ -69,6 +70,14 @@ La interfaz actual muestra un bloque separado por cada marca de tiempo, resultan
 - [x] **5.4 Toolbar Director**: Barra compacta superior con toggles (Tiempos/Notas/WhatsApp). ✅
 - [x] **5.5 Edicion de Tiempos**: Tags inline editables por frase, modelo offline-first con batch save al commitear. ✅
 
+### Fase 6: Arquitectura de Datos (SQLite Backend) ✅
+- [x] **6.1 SQLite DB**: Base de datos en `/var/www/vcby-data/vcby.db` (fuera del repo git). ACID, concurrencia segura.
+- [x] **6.2 Capa de acceso**: `data/db.php` con funciones CRUD: `getCues()`, `updateCue()`, `insertCue()`, `getAllCues()`.
+- [x] **6.3 API REST**: `audios/api_cues.php` sirve los cues como JSON desde SQLite (reemplaza lectura directa del JSON estático).
+- [x] **6.4 save_changes.php**: Reescrito para usar SQLite. Sin dependencia de git/commit/push. Escritura instantánea.
+- [x] **6.5 Migración**: `tools/migrate_to_sqlite.php` importa guion_completo.json → SQLite (24 tracks, 601 cues).
+- [x] **6.6 Independencia de deploy**: Los datos viven fuera del repo. Git push/pull no afectan los datos del Director.
+
 ---
 **Nota para la IA y Operador H.I.T.L:** 
 Cualquier avance en este plan se registrará actualizando estos `checkboxes` a marcado (`[x]`). Al cerrarse una iteración de pista/escena se comiteará la versión subsecuente (Ej: `v26.7.2`, `v26.7.3`, etc.).
@@ -82,3 +91,4 @@ Cualquier avance en este plan se registrará actualizando estos `checkboxes` a m
 | v26.8.7 | 2026-04-03 | Fase 2 herramientas: Modo Marcaje (🎯 stamp), Nudge ◂▸ ±0.1s, contador live en toolbar. applyTimeChange centralizado. |
 | v26.8.8 | 2026-04-03 | Modal inline (vcbyModal): reemplazo total de alert/prompt nativos. Director click sin auto-play. |
 | v26.8.9 | 2026-04-03 | Director remoto: commit+push a GitHub desde la web. Edición desde cualquier dispositivo. |
+| v26.8.15 | 2026-04-03 | **ARQUITECTURA**: Backend migrado de JSON+git a SQLite. DB fuera del repo, datos inmunes a deploys. API REST (`api_cues.php`). |

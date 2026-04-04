@@ -1,11 +1,11 @@
 # Contexto del Proyecto — ViaCrucis BY2026
 
-> Última actualización: 2026-04-02
+> Última actualización: 2026-04-03
 
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.8.9` (Director Remoto + Timing Refinement) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.8.15` (SQLite Backend + Director Tools) / `25.x` (Legacy audios)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -35,6 +35,8 @@ Aplicación web PHP para la gestión y reproducción de audios del Via Crucis de
 | **HTTPS** | Let's Encrypt (certbot), expira 2026-06-26 |
 | **SSH** | Puerto 7022, usuario root |
 | **Deploy** | Deploy key SSH desde GitHub |
+| **Base de Datos** | SQLite 3 (`/var/www/vcby-data/vcby.db`, fuera del repo) |
+| **PHP-SQLite** | `php8.2-sqlite3` + PDO |
 
 > Ficha completa del nodo en: `docs/hosting/srvv-nginx-rm.md`
 
