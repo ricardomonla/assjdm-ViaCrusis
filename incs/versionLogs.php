@@ -1,5 +1,18 @@
 <?php
 $versionLogs = [
+    '26.8.23' => [
+        'date' => '2026-04-04',
+        'changes' => [
+            'PERSONAJES: página pública de casting (/casting/) con postulación abierta.',
+            'Director habilita/deshabilita personajes para postulación (toggle ✅/⬜).',
+            'Teléfonos de actores privados: visible solo para Director.',
+            'Personajes listados desde SQLite (fuente de verdad), no del .md estático.',
+            'Synopsis de cada personaje visible en la tarjeta.',
+            'Link 🎭 Personajes en la lista de audios (centrado, paleta armónica).',
+            'Director detectado via localStorage (consistente con perfiles.js).',
+            'Fix desfasaje de resaltado: highlight usa cue_index de DB, no posición de array.',
+        ]
+    ],
     '26.8.22' => [
         'date' => '2026-04-04',
         'changes' => [
