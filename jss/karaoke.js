@@ -11,12 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let scriptData = [];
     let currentActiveIdx = -1;
 
-    // Formatear segundos a MM:SS.d
+    // Formatear segundos a HH:MM:SS
     function fmtTime(sec) {
-        var m = Math.floor(sec / 60).toString().padStart(2, '0');
+        var h = Math.floor(sec / 3600).toString().padStart(2, '0');
+        var m = Math.floor((sec % 3600) / 60).toString().padStart(2, '0');
         var s = Math.floor(sec % 60).toString().padStart(2, '0');
-        var d = Math.floor((sec % 1) * 10);
-        return m + ':' + s + '.' + d;
+        return h + ':' + m + ':' + s;
     }
     let isUserScrolling = false;
     let scrollTimeout;
