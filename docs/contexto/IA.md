@@ -1,11 +1,11 @@
 # Contexto del Proyecto — ViaCrucis BY2026
 
-> Última actualización: 2026-04-03
+> Última actualización: 2026-04-04
 
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.8.15` (SQLite Backend + Director Tools) / `25.x` (Legacy audios)
+**Versiones Actuales**: `26.8.18` (SQLite + Director Tools + Insertar Burbujas)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -125,157 +125,23 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Version Actual:** `26.8.9` (Director Remoto — Edición desde cualquier dispositivo)
-- **Ambiente:** Desarrollo Local (`srv-ns8`) sincronizado con Producción (`srv-pmox3`)
-- **Estado General:** Transcripcion H.I.T.L. Base COMPLETADA. Fases 4, 5 COMPLETADAS. Fase 2 herramientas LISTAS (auditoría pendiente).
+- **Versión:** `26.8.18` (Insertar Burbujas + SQLite Backend + Director Tools)
+- **Ambiente:** Desarrollo Local sincronizado con Producción (`srv-pmox3`)
+- **Estado:** Fases 4-7 completadas. Fase 1-2 pendientes de auditoría manual.
+- **Plan activo:** 👉 `docs/plan/08_plan-de-pulido.md`
 
-> **Version Actual:** `26.8.9`
+## Pendientes Globales
 
-## Roadmap v26.8 (Pulido Fino + Perfiles)
-
-El plan de trabajo e iteraciones activas para esta etapa (refinamiento de milisegundos, reordenamiento de IDs, acotaciones descriptivas, y **sistema de perfiles dual Público/Director**) ha sido mudado a su propio documento de control.
-**Revisar Plan Activo:** 👉 `docs/plan/08_plan-de-pulido.md`
-
-## Estado del Sitio (2026-04-02)
-
-| Aspecto | Estado |
-|:---|:---|
-| HTTPS activo | ✅ |
-| Lista de 34 audios | ✅ |
-| Compartir WhatsApp | ✅ |
-| Diseño responsive | ✅ |
-| PHP-FPM operativo | ✅ |
-| Redirect HTTP→HTTPS | ✅ |
-
-## Acceso al Servidor (Hallazgos)
-
-> **Importante**: SSH directo al LXC con password **no funciona** desde fuera del host Proxmox.
-
-| Método | Funciona | Comando |
-|:---|:---|:---|
-| SSH directo (password) | ❌ | `ssh -p 7022 root@190.114.205.17` — "Permission denied" |
-| SSH directo (LAN) | ❌ | `ssh -p 7022 root@10.0.10.117` — "Permission denied" |
-| Consola Proxmox (web) | ✅ | Desde la interfaz web de Proxmox, contraseña `UTNlarioja00WEB` |
-| **Relay vía srv-pmox3** | ✅ | `ssh root@10.0.10.203 'pct exec 116 -- bash -c "COMANDO"'` |
-
-**Método operativo recomendado (IA/scripts):**
-```bash
-# Acceso con clave pública a srv-pmox3, luego pct exec al LXC
-ssh root@10.0.10.203 'pct exec 116 -- bash -c "cd /var/www/vcby && COMANDO"'
-```
-
-> `srv-pmox3` (10.0.10.203) acepta clave pública SSH sin contraseña.
+- [x] Deploy automático (Webhook GitHub) → Plan 01 ✅
+- [x] Consistencia visual → Plan 02 ✅
+- [x] Mover Sitio a `/audios/` → Plan 05 ✅
+- [x] Entorno Android Offline → Plan 07 ✅
+- [ ] Pulido Fino Escénico → Plan 08 ⏳
+- [ ] Seguridad: fail2ban + headers NGINX
+- [ ] Backup: vzdump automático del LXC
 
 ## Deploy Automático
 
 - **Método**: GitHub Webhook → `deploy.php` → `git pull`
 - **Tiempo**: ~2 seg tras cada `git push` a `main`
-- **Log**: `/var/log/vcby-deploy.log` en el servidor
-- **Plan**: `docs/plan/01_webhook-deploy-automatico.md`
-
-## Pendientes
-
-- [x] ~~**Deploy automático**: Webhook GitHub~~ → Plan 01 ✅
-- [x] ~~**Consistencia visual**: Fix cross-browser + admin oculto~~ → Plan 02 ✅
-- [ ] **Guion Transcrito**: Identificar y formatear las transcripciones de 34 archivos → Plan 03 ⏳
-- [ ] **Seguridad**: Configurar fail2ban y headers de seguridad en NGINX
-- [ ] **Backup**: Configurar vzdump para respaldos automáticos del LXC
-- [ ] **Monitorización**: Integrar sistema de monitoreo
-- [ ] **Diseño**: Modernizar la estética del sitio
-- [x] **Mover Sitio de Audios**: Reubicar catálogo principal a `/audios/` → Plan 05 ✅
-- [ ] **Karaoke Subtítulos**: Sincronizar texto de diálogos a los audios estilo karaoke → Plan 06 📋
-- [x] **Entorno Android (Offline)**: Configurar sistema de trabajo móvil offline en Android → Plan 07 ✅
-- [ ] **Pulido Fino Escénico**: Refinamiento de tiempos, acotaciones y sincronía → Plan 08 ⏳
-
----
-
-## Plantilla de Planes
-
-Los planes se guardan en `docs/plan/NN_nombre-del-plan.md` donde `NN` es un número secuencial.
-
-### Estructura obligatoria:
-
-```markdown
-# Plan NN: Título del Plan
-
-> **Estado**: 📋 Planificado | ⏳ En progreso | ✅ Completado
-> **Fecha**: YYYY-MM-DD
-> **Servidor**: (si aplica)
-
----
-
-## Progreso General
-
-\```
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0% — PLANIFICADO
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░  50% — EN PROGRESO
-██████████████████████████████ 100% — COMPLETADO
-\```
-
-| Fase | Descripción | Estado |
-|:---|:---|:---|
-| 1 | Nombre de la fase | 📋 / ⏳ / ✅ |
-| 2 | Nombre de la fase | 📋 / ⏳ / ✅ |
-
----
-
-## Objetivo
-
-Descripción clara de qué se quiere lograr.
-
----
-
-## Fase 1: Nombre
-
-\```
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0%
-\```
-
-- [ ] Tarea 1
-- [ ] Tarea 2
-- [ ] Tarea 3
-
-**Notas/Hallazgos**: (documentar decisiones y descubrimientos)
-
----
-
-## Fase N: Nombre
-
-(repetir estructura por cada fase)
-
----
-
-## Resumen de archivos creados/modificados
-
-| Archivo | Ubicación | Estado |
-|:---|:---|:---|
-| `archivo` | Ruta | 📋 / ✅ |
-
-## Seguridad
-
-(si aplica — documentar medidas de seguridad)
-
-## Rollback
-
-(cómo revertir si algo sale mal)
-```
-
-### Convenciones:
-
-| Símbolo | Significado |
-|:---|:---|
-| `░░░` | No iniciado |
-| `▓▓▓` | En progreso |
-| `███` | Completado |
-| `📋` | Planificado |
-| `⏳` | En progreso |
-| `✅` | Completado |
-| `- [ ]` | Tarea pendiente |
-| `- [x]` | Tarea completada |
-
-### Reglas:
-
-1. **Al crear** un plan: estado `📋 Planificado`, barras en `░░░`, tareas `[ ]`
-2. **Al ejecutar** cada fase: actualizar barra a `▓▓▓`, tareas a `[x]` al completar
-3. **Al terminar**: estado `✅ Completado`, barras en `███`, documentar resultados reales
-4. **Siempre** documentar hallazgos, decisiones y problemas encontrados
+- **Log**: `/var/log/vcby-deploy.log`
