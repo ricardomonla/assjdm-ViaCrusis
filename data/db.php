@@ -54,7 +54,79 @@ function createSchema($db) {
 
         CREATE INDEX IF NOT EXISTS idx_cues_track ON cues(track_id);
         CREATE INDEX IF NOT EXISTS idx_cues_track_index ON cues(track_id, cue_index);
+
+        CREATE TABLE IF NOT EXISTS casting (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            idp TEXT NOT NULL,
+            character_name TEXT NOT NULL,
+            nombre TEXT NOT NULL,
+            apellido TEXT NOT NULL,
+            telefono TEXT NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+        CREATE INDEX IF NOT EXISTS idx_casting_idp ON casting(idp);
     ");
+}
+
+// Asegurar schema en DBs existentes (agrega tablas faltantes)
+function ensureSchema() {
+    $db = getDB();
+    $db->exec("
+        CREATE TABLE IF NOT EXISTS casting (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            idp TEXT NOT NULL,
+            character_name TEXT NOT NULL,
+            nombre TEXT NOT NULL,
+            apellido TEXT NOT NULL,
+            telefono TEXT NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+        CREATE INDEX IF NOT EXISTS idx_casting_idp ON casting(idp);
+    ");
+}
+
+/**
+ * Obtener personajes únicos de la DB (fuente de verdad)
+ */
+function getCharacters() {
+    $db = getDB();
+    $stmt = $db->query("SELECT DISTINCT idp, character FROM cues WHERE idp != '' ORDER BY idp");
+    return $stmt->fetchAll();
+}
+
+/**
+ * Obtener postulaciones de casting
+ */
+function getCastingList($includePhone = false) {
+    $db = getDB();
+    ensureSchema();
+    if ($includePhone) {
+        $stmt = $db->query("SELECT id, idp, character_name, nombre, apellido, telefono, created_at FROM casting ORDER BY idp, created_at");
+    } else {
+        $stmt = $db->query("SELECT id, idp, character_name, nombre, apellido, created_at FROM casting ORDER BY idp, created_at");
+    }
+    return $stmt->fetchAll();
+}
+
+/**
+ * Agregar postulación
+ */
+function addCasting($idp, $charName, $nombre, $apellido, $telefono) {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->prepare("INSERT INTO casting (idp, character_name, nombre, apellido, telefono) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([$idp, $charName, $nombre, $apellido, $telefono]);
+    return $db->lastInsertId();
+}
+
+/**
+ * Eliminar postulación (solo Director)
+ */
+function deleteCasting($id) {
+    $db = getDB();
+    $stmt = $db->prepare("DELETE FROM casting WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->rowCount();
 }
 
 /**
