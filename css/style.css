@@ -469,9 +469,7 @@ body.admin-mode .admin-only {
 }
 
 .cue-past {
-    opacity: 0.15;
-    filter: blur(0.5px);
-    transform: scale(0.98);
+    opacity: 0.8;
     background-color: transparent;
 }
 
@@ -667,7 +665,7 @@ body.director-mode .director-only-inline {
 }
 
 .cue-group-past {
-    opacity: 0.35;
+    opacity: 0.75;
 }
 
 .cue-group-upcoming {
@@ -718,8 +716,8 @@ body.director-mode .director-only-inline {
 }
 
 .cue-line-past {
-    opacity: 0.45;
-    color: #7a6b5a;
+    opacity: 0.8;
+    color: #5a4b3a;
 }
 
 .cue-line-upcoming {
