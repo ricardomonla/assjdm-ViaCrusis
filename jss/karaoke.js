@@ -330,8 +330,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 })(cue));
                 
                 bodyDiv.appendChild(lineSpan);
+                
+                // Mini "+" entre líneas dentro del grupo (insert-mode)
                 if (localIdx < group.cues.length - 1) {
                     bodyDiv.appendChild(document.createTextNode(' '));
+                    var miniBtn = createInsertBtn(cue._originalIndex);
+                    miniBtn.className = 'cue-insert-inline';
+                    bodyDiv.appendChild(miniBtn);
                 }
             });
             

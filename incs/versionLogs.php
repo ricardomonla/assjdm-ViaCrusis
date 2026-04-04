@@ -1,5 +1,14 @@
 <?php
 $versionLogs = [
+    '26.8.19' => [
+        'date' => '2026-04-04',
+        'changes' => [
+            'Inserción intralínea: mini "+" entre diálogos dentro de cada burbuja.',
+            'Play/Pause ▶⏸ en toolbar Director. Quita stamp 🎯 y nav ⏮⏭.',
+            'Fix UNIQUE constraint: reindex con offset temporal (+10000/-9999).',
+            'Toggles solo cambian color (sin checkmarks ✓).',
+        ]
+    ],
     '26.8.18' => [
         'date' => '2026-04-04',
         'changes' => [

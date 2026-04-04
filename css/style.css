@@ -984,6 +984,30 @@ body.insert-mode .cue-insert-row:hover {
     transform: scale(1.2);
 }
 
+/* Mini "+" inline entre líneas dentro de una burbuja */
+.cue-insert-inline {
+    display: none !important;
+    margin: 4px 0;
+}
+
+body.insert-mode .cue-insert-inline {
+    display: block !important;
+    text-align: center;
+    opacity: 0.3;
+}
+
+body.insert-mode .cue-insert-inline:hover {
+    opacity: 1;
+}
+
+.cue-insert-inline .btn-insert-cue {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    line-height: 18px;
+    background: #5a7d6a;
+}
+
 /* ===== DIRECTOR: Live time counter ===== */
 .dtool-live-time {
     font-family: 'Courier New', monospace;
