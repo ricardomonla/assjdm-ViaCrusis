@@ -141,7 +141,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             var cueIdp = cue.idp || '';
-            if (currentGroup && !currentGroup.isExternal && currentGroup.idp === cueIdp && currentGroup.character === cue.character) {
+            var lastCueInGroup = currentGroup ? currentGroup.cues[currentGroup.cues.length - 1] : null;
+            var timeGoesBack = lastCueInGroup && cue.startTime < lastCueInGroup.startTime;
+            if (currentGroup && !currentGroup.isExternal && currentGroup.idp === cueIdp && currentGroup.character === cue.character && !timeGoesBack) {
                 currentGroup.cues.push(cue);
             } else {
                 if (currentGroup) groups.push(currentGroup);
