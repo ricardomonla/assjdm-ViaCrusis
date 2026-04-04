@@ -17,6 +17,11 @@ git stash --include-untracked 2>/dev/null || true
 git pull --rebase origin main 2>&1 || true
 git stash pop 2>/dev/null || true
 
+# PASO CLAVE: Exportar SQLite → JSON antes de commitear
+# Así el guion_completo.json siempre refleja los últimos cambios del Director
+echo "📦 Sincronizando SQLite → JSON..."
+php "$REPO_DIR/tools/export_sqlite_to_json.php" 2>&1 || echo "⚠ Export falló, se commiteará el JSON existente"
+
 # Agregar solo archivos de subtítulos y guion
 git add audios/subs/*.md audios/subs/guion_completo.json 2>/dev/null || true
 
