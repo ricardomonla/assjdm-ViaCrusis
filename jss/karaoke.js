@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let scriptData = [];
     let currentActiveIdx = -1;
+
+    // Formatear segundos a MM:SS.d
+    function fmtTime(sec) {
+        var m = Math.floor(sec / 60).toString().padStart(2, '0');
+        var s = Math.floor(sec % 60).toString().padStart(2, '0');
+        var d = Math.floor((sec % 1) * 10);
+        return m + ':' + s + '.' + d;
+    }
     let isUserScrolling = false;
     let scrollTimeout;
 
@@ -354,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 var timeVal = document.createElement('span');
                 timeVal.className = 'time-val';
-                timeVal.textContent = cue.startTime.toFixed(1);
+                timeVal.textContent = fmtTime(cue.startTime);
                 timeVal.title = 'Click para editar valor';
                 timeVal.addEventListener('click', (function(c, tag, valEl) {
                     return function(e) {
@@ -374,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         function applyTime() {
                             var newTime = parseFloat(input.value);
                             if (isNaN(newTime) || newTime === oldTime) {
-                                valEl.textContent = c.startTime.toFixed(1);
+                                valEl.textContent = fmtTime(c.startTime);
                                 return;
                             }
                             applyTimeChange(c, newTime, valEl);
@@ -382,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         input.addEventListener('blur', applyTime);
                         input.addEventListener('keydown', function(ev) {
                             if (ev.key === 'Enter') { ev.preventDefault(); input.blur(); }
-                            if (ev.key === 'Escape') { valEl.textContent = c.startTime.toFixed(1); }
+                            if (ev.key === 'Escape') { valEl.textContent = fmtTime(c.startTime); }
                         });
                     };
                 })(cue, timeTag, timeVal));
@@ -589,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         if (displayEl) {
-            displayEl.textContent = newTime.toFixed(1);
+            displayEl.textContent = fmtTime(newTime);
             displayEl.classList.add('cue-time-saved');
             setTimeout(function() { displayEl.classList.remove('cue-time-saved'); }, 800);
         }
