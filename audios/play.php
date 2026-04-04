@@ -91,6 +91,7 @@ include '../incs/header.php';
             <div class="dtool-actions">
                 <button class="dtool-btn" id="btn-stamp-toggle" onclick="toggleStampMode()" title="Modo marcaje: tap en línea = fijar tiempo">🎯</button>
                 <button class="dtool-btn" id="btn-time-toggle" onclick="toggleTimeEdit()" title="Marcas de tiempo">⏱</button>
+                <button class="dtool-btn" id="btn-insert-toggle" onclick="toggleInsertMode()" title="Insertar burbujas">➕</button>
                 <button class="dtool-btn" onclick="toggleDirectorNotes()" title="Notas" id="btn-notes-toggle">📝</button>
                 <button class="dtool-btn" onclick="shareTrackWhatsApp()" title="WhatsApp">📲</button>
             </div>
@@ -176,6 +177,19 @@ include '../incs/header.php';
             }
             ?>
             window.__cueData = <?= !empty($inlineData) ? json_encode($inlineData, JSON_UNESCAPED_UNICODE) : 'null' ?>;
+            
+            // Lista de personajes para inserción
+            window.__characters = [
+                <?php
+                $pFile = __DIR__ . '/subs/00_Personajes.md';
+                if (file_exists($pFile)) {
+                    preg_match_all('/\|\s*(P\d+)\s*\|\s*([^|]+?)\s*\|/', file_get_contents($pFile), $pm);
+                    for ($i = 0; $i < count($pm[1]); $i++) {
+                        echo "{idp:'" . $pm[1][$i] . "',name:'" . addslashes(trim($pm[2][$i])) . "'},";
+                    }
+                }
+                ?>
+            ];
             
             document.addEventListener('DOMContentLoaded', function() {
                 var audio = document.getElementById('audioPlayer');

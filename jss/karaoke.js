@@ -304,26 +304,28 @@ document.addEventListener('DOMContentLoaded', function() {
             groupDiv.appendChild(bodyDiv);
             scriptContainer.appendChild(groupDiv);
             
-            // Director: boton "+" despues de cada grupo
+            // Director: boton "+" despues de cada grupo (visible solo en insert-mode)
             var insertBtn = document.createElement('div');
             insertBtn.className = 'cue-insert-row director-only';
-            insertBtn.style.display = 'none';
-            insertBtn.innerHTML = '<button class="btn-insert-cue" title="Insertar acotacion">+</button>';
+            insertBtn.innerHTML = '<button class="btn-insert-cue" title="Insertar burbuja aquí">+</button>';
             insertBtn.querySelector('.btn-insert-cue').addEventListener('click', (function(lastIdx) {
                 return function(e) {
                     e.stopPropagation();
-                    vcbyPrompt('Acotación escénica (P00):', '*(descripción de la escena)*', '🎭').then(function(text) {
-                        if (!text) return;
+                    var chars = window.__characters || [{idp:'P00',name:'Música / Ambiente'}];
+                    vcbyInsertCue(chars).then(function(result) {
+                        if (!result) return;
                         var trackId = window.audioId.split('_')[0];
                         var fd = new URLSearchParams();
                         fd.append('track_id', trackId);
                         fd.append('cue_index', lastIdx);
                         fd.append('field', '_insert');
-                        fd.append('value', text);
+                        fd.append('value', result.text);
+                        fd.append('character', result.character);
+                        fd.append('idp', result.idp);
                         fetch((window.apiBase||'') + 'save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
                         .then(function(r) { return r.json(); })
-                        .then(function(d) { if (d.ok) { showCommitButton(); location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
-                .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
+                        .then(function(d) { if (d.ok) { location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
+                        .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
                     });
                 };
             })(lastCue._originalIndex));
@@ -426,6 +428,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Al activar stamp, activar también time-edit-mode automáticamente
         if (window._stampMode && !document.body.classList.contains('time-edit-mode')) {
             window.toggleTimeEdit();
+        }
+    };
+
+    // ===== DIRECTOR: Toggle Insertar Burbujas =====
+    window.toggleInsertMode = function() {
+        document.body.classList.toggle('insert-mode');
+        var btn = document.getElementById('btn-insert-toggle');
+        if (btn) {
+            var active = document.body.classList.contains('insert-mode');
+            btn.classList.toggle('btn-active', active);
+            btn.textContent = active ? '➕✓' : '➕';
         }
     };
 

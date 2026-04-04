@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.8.18' => [
+        'date' => '2026-04-04',
+        'changes' => [
+            'INSERTAR BURBUJAS: Toggle ➕ en toolbar Director muestra/oculta botones de inserción.',
+            'Selector de personaje (P00-P26) al insertar nueva burbuja + texto.',
+            'Backend: save_changes.php acepta character/idp para inserción flexible.',
+        ]
+    ],
     '26.8.17' => [
         'date' => '2026-04-04',
         'changes' => [

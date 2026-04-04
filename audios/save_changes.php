@@ -47,6 +47,8 @@ try {
     // ===== Acción especial: Insertar cue =====
     if ($field === '_insert') {
         $text = $value ?? '*(acotación escénica)*';
+        $charName = $_POST['character'] ?? 'Música / Ambiente';
+        $charIdp = $_POST['idp'] ?? 'P00';
         
         // Calcular startTime
         $prevCue = getCueField($trackId, $cueIndex, 'startTime');
@@ -56,8 +58,8 @@ try {
         $newTime = round(($prevTime + $nextTime) / 2, 1);
         
         $newIndex = insertCue($trackId, $cueIndex, [
-            'character' => 'Música / Ambiente',
-            'idp' => 'P00',
+            'character' => $charName,
+            'idp' => $charIdp,
             'startTime' => $newTime,
             'endTime' => $newTime + 2.0,
             'text' => $text
@@ -65,7 +67,7 @@ try {
         
         jsonResponse([
             'ok' => true,
-            'msg' => "Acotación insertada después de cue $cueIndex en track $trackId.",
+            'msg' => "Burbuja $charIdp insertada después de cue $cueIndex en track $trackId.",
             'new_index' => $newIndex
         ]);
     }
