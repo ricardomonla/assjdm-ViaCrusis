@@ -308,6 +308,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 ' (' + Math.floor(firstCue.startTime) + 's-' + Math.floor(lastCue.startTime) + 's)</span>' +
                 '<span class="cue-character">' + idpHtml + group.character + '</span>';
             headerDiv.appendChild(createDelGroupBtn(group));
+            
+            // Doble-click en nombre de personaje → cambiar personaje de toda la burbuja
+            var charSpan = headerDiv.querySelector('.cue-character');
+            charSpan.style.cursor = 'pointer';
+            charSpan.title = 'Doble-click para cambiar personaje';
+            (function(grp, el) {
+                el.addEventListener('dblclick', function(e) {
+                    e.stopPropagation();
+                    if (!window.VCBYPerfiles || !window.VCBYPerfiles.isDirector()) return;
+                    var chars = window.__characters || [{idp:'P00',name:'Música / Ambiente'}];
+                    vcbySelectCharacter(chars, grp.idp).then(function(result) {
+                        if (!result || result.idp === grp.idp) return;
+                        var trackId = window.audioId.split('_')[0];
+                        var indices = grp.cues.map(function(c) { return c._originalIndex; });
+                        var fd = new URLSearchParams();
+                        fd.append('track_id', trackId);
+                        fd.append('cue_index', indices[0]);
+                        fd.append('field', '_update_group_character');
+                        fd.append('cue_indices', JSON.stringify(indices));
+                        fd.append('character', result.character);
+                        fd.append('idp', result.idp);
+                        postAndReload(fd);
+                    });
+                });
+            })(group, charSpan);
+            
             groupDiv.appendChild(headerDiv);
             
             // Body: lineas como spans

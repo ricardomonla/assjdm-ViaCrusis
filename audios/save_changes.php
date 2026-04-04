@@ -114,6 +114,29 @@ try {
         ]);
     }
 
+    // ===== Acción especial: Cambiar personaje de grupo completo =====
+    if ($field === '_update_group_character') {
+        $indicesJson = $_POST['cue_indices'] ?? '[]';
+        $indices = json_decode($indicesJson, true);
+        $newChar = $_POST['character'] ?? '';
+        $newIdp = $_POST['idp'] ?? '';
+        
+        if (!is_array($indices) || count($indices) === 0 || !$newChar) {
+            jsonResponse(['ok' => false, 'msg' => 'Datos incompletos.']);
+        }
+        
+        $db = getDB();
+        $placeholders = implode(',', array_fill(0, count($indices), '?'));
+        $stmt = $db->prepare("UPDATE cues SET character = ?, idp = ? WHERE track_id = ? AND cue_index IN ($placeholders)");
+        $params = array_merge([$newChar, $newIdp, $trackId], $indices);
+        $stmt->execute($params);
+        
+        jsonResponse([
+            'ok' => true,
+            'msg' => "Personaje actualizado a $newIdp ($newChar) en " . count($indices) . " líneas."
+        ]);
+    }
+
     // ===== Validar campo =====
     $allowedFields = ['text', 'character', 'startTime', 'endTime', 'idp'];
     if (!in_array($field, $allowedFields)) {

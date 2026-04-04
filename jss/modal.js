@@ -185,4 +185,57 @@
         return new Promise(function(resolve) { _resolve = resolve; });
     };
 
+
+    /**
+     * vcbySelectCharacter — Modal para cambiar personaje de burbuja
+     * @param {Array} characters - [{idp:'P01',name:'NARRADOR'}, ...]
+     * @param {string} currentIdp - IDP actual del grupo
+     * @returns {Promise<{idp,character}|null>}
+     */
+    window.vcbySelectCharacter = function(characters, currentIdp) {
+        var modal = document.getElementById('vcby-modal');
+        modal.className = 'vcby-modal vcby-modal-info';
+        document.getElementById('vcby-modal-icon').textContent = '🎭';
+        
+        var msgDiv = document.getElementById('vcby-modal-msg');
+        msgDiv.innerHTML = '<div style="text-align:left;font-size:0.9em;margin-bottom:8px;">Cambiar personaje:</div>';
+        
+        var sel = document.createElement('select');
+        sel.id = 'vcby-select-char';
+        sel.style.cssText = 'width:100%;padding:8px;margin-bottom:8px;border-radius:6px;border:1px solid #555;background:#2a2520;color:#e8dcc8;font-size:0.95em;';
+        (characters || []).forEach(function(c) {
+            var opt = document.createElement('option');
+            opt.value = c.idp + '|' + c.name;
+            opt.textContent = c.idp + ' — ' + c.name;
+            if (c.idp === currentIdp) opt.selected = true;
+            sel.appendChild(opt);
+        });
+        msgDiv.appendChild(sel);
+        
+        var input = document.getElementById('vcby-modal-input');
+        input.style.display = 'none';
+
+        document.getElementById('vcby-modal-buttons').innerHTML =
+            '<button class="vcby-modal-btn vcby-modal-btn-ok" id="vcby-modal-ok">Cambiar</button>' +
+            '<button class="vcby-modal-btn vcby-modal-btn-cancel" id="vcby-modal-cancel">Cancelar</button>';
+
+        function getResult() {
+            var selVal = sel.value.split('|');
+            return { idp: selVal[0], character: selVal[1] };
+        }
+
+        document.getElementById('vcby-modal-ok').onclick = function() { closeModal(getResult()); };
+        document.getElementById('vcby-modal-cancel').onclick = function() { closeModal(null); };
+        
+        sel.onkeydown = function(e) {
+            if (e.key === 'Enter') { e.preventDefault(); closeModal(getResult()); }
+            if (e.key === 'Escape') { closeModal(null); }
+        };
+
+        openModal();
+        setTimeout(function() { sel.focus(); }, 100);
+
+        return new Promise(function(resolve) { _resolve = resolve; });
+    };
+
 })();
