@@ -413,32 +413,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // ===== DIRECTOR: Play/Pause =====
+    window.togglePlayPause = function() {
+        var audio = document.getElementById('audioPlayer');
+        var btn = document.getElementById('btn-play-toggle');
+        if (!audio) return;
+        if (audio.paused) {
+            audio.play();
+            if (btn) { btn.textContent = '⏸'; btn.classList.add('btn-active'); }
+        } else {
+            audio.pause();
+            if (btn) { btn.textContent = '▶'; btn.classList.remove('btn-active'); }
+        }
+    };
+
+    // Sync button state with audio events
+    (function() {
+        var audio = document.getElementById('audioPlayer');
+        if (!audio) return;
+        audio.addEventListener('play', function() {
+            var btn = document.getElementById('btn-play-toggle');
+            if (btn) { btn.textContent = '⏸'; btn.classList.add('btn-active'); }
+        });
+        audio.addEventListener('pause', function() {
+            var btn = document.getElementById('btn-play-toggle');
+            if (btn) { btn.textContent = '▶'; btn.classList.remove('btn-active'); }
+        });
+    })();
+
     // ===== DIRECTOR: Toggle Marcas de Tiempo =====
     window.toggleTimeEdit = function() {
         document.body.classList.toggle('time-edit-mode');
         var btn = document.getElementById('btn-time-toggle');
         if (btn) {
-            var active = document.body.classList.contains('time-edit-mode');
-            btn.classList.toggle('btn-active', active);
-            btn.textContent = active ? '⏱✓' : '⏱';
+            btn.classList.toggle('btn-active', document.body.classList.contains('time-edit-mode'));
         }
     };
 
-    // ===== DIRECTOR: Stamp Mode (Modo Marcaje) =====
+    // ===== DIRECTOR: Stamp Mode (interno, sin UI) =====
     window._stampMode = false;
-
     window.toggleStampMode = function() {
         window._stampMode = !window._stampMode;
         document.body.classList.toggle('stamp-mode', window._stampMode);
-        var btn = document.getElementById('btn-stamp-toggle');
-        if (btn) {
-            btn.classList.toggle('btn-active', window._stampMode);
-            btn.textContent = window._stampMode ? '🎯✓' : '🎯';
-        }
-        // Al activar stamp, activar también time-edit-mode automáticamente
-        if (window._stampMode && !document.body.classList.contains('time-edit-mode')) {
-            window.toggleTimeEdit();
-        }
     };
 
     // ===== DIRECTOR: Toggle Insertar Burbujas =====
