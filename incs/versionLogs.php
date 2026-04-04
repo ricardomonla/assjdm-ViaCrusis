@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.8.14' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Fix: commit_cambios.sh ahora hace git pull --rebase antes de commit (evita sobreescritura por push desde PC).',
+            'Flujo: stash edits → pull rebase → pop edits → commit → push.',
+        ]
+    ],
     '26.8.13' => [
         'date' => '2026-04-03',
         'changes' => [

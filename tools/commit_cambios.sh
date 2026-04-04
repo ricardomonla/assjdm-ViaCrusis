@@ -11,6 +11,12 @@ cd "$REPO_DIR"
 MSG="${1:-Cambios del Director (auto-commit)}"
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 
+# IMPORTANTE: Sincronizar con GitHub antes de commitear
+# Esto evita que un push desde otra PC sobreescriba cambios del Director
+git stash --include-untracked 2>/dev/null || true
+git pull --rebase origin main 2>&1 || true
+git stash pop 2>/dev/null || true
+
 # Agregar solo archivos de subtítulos y guion
 git add audios/subs/*.md audios/subs/guion_completo.json 2>/dev/null || true
 
