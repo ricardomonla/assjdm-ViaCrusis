@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versiones Actuales**: `26.8.18` (SQLite + Director Tools + Insertar Burbujas)
+**Versiones Actuales**: `26.8.22` (Auto-Sync SQLite→JSON + Android Fix)
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -49,12 +49,12 @@ assjdm-ViaCrusis/
 │   ├── index.php      # Página principal — lista de audios
 │   ├── play.php       # Reproductor de audio individual (inyecta __cueData + __characters inline)
 │   ├── api_cues.php   # API REST: cues desde SQLite (fallback)
-│   ├── save_changes.php # Escritura SQLite: update/insert cues
+│   ├── save_changes.php # Escritura SQLite + auto-regenera guion_completo.json
 │   └── media/         # 34 archivos MP3 (000-403)
 ├── data/
 │   └── db.php         # Capa CRUD SQLite (getCues, updateCue, insertCue)
 ├── serve.php          # Servidor de archivos MP3 (seguridad + range requests)
-├── start_termux.sh    # Script nativo de Auto-arranque Android (Offline)
+├── start_termux.sh    # Auto-arranque Android: git pull + curl JSON + PHP server
 ├── css/
 │   ├── style.css      # Estilos principales (modo claro/oscuro, responsive)
 │   └── index.php      # Protección de directorio
@@ -71,7 +71,8 @@ assjdm-ViaCrusis/
 │   ├── modal.js       # Sistema de modales inline (vcbyAlert, vcbyPrompt, vcbyInsertCue)
 │   └── perfiles.js    # Gestión de perfiles Público/Director (localStorage + TTL)
 ├── tools/             # Scripts de mantenimiento e Inteligencia Artificial
-│   ├── migrate_to_sqlite.php # Migración JSON → SQLite
+│   ├── migrate_to_sqlite.php    # Migración JSON → SQLite
+│   ├── export_sqlite_to_json.php # Exportación SQLite → JSON (CLI + web)
 │   ├── api_key_rotator/ # Gestor Ruby de encriptación (LLMs y candados)
 │   ├── compilar_json_v4.py # Compilador v4.0.md → guion_completo.json (con IDP)
 │   ├── etiquetar_personajes.py # IA local
@@ -125,10 +126,16 @@ Para mantener la calidad y agilizar la integración de nuevas pistas de audio al
 
 ## Versión Actual
 
-- **Versión:** `26.8.18` (Insertar Burbujas + SQLite Backend + Director Tools)
+- **Versión:** `26.8.22` (Auto-Sync SQLite→JSON + Android/Termux Fix)
 - **Ambiente:** Desarrollo Local sincronizado con Producción (`srv-pmox3`)
 - **Estado:** Fases 4-7 completadas. Fase 1-2 pendientes de auditoría manual.
 - **Plan activo:** 👉 `docs/plan/08_plan-de-pulido.md`
+
+## Sincronización Offline (Android)
+
+- **Flujo automático**: Director edita → `save_changes.php` guarda en SQLite + regenera `guion_completo.json` → celular lo descarga al arrancar via `curl`
+- **Sin intervención manual**: No requiere commit/push para sincronizar el guion
+- **Fallback**: Si no hay internet, el celular usa la copia local del JSON
 
 ## Pendientes Globales
 

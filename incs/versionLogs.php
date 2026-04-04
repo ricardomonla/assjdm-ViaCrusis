@@ -1,5 +1,15 @@
 <?php
 $versionLogs = [
+    '26.8.22' => [
+        'date' => '2026-04-04',
+        'changes' => [
+            'Fix Android/Termux: try/catch en SQLite — fallback automático a JSON estático.',
+            'Fix JS: guard null en autoplayMessage (eliminado del HTML).',
+            'AUTO-SYNC: save_changes.php regenera guion_completo.json tras cada edición del Director.',
+            'start_termux.sh: descarga JSON fresco del servidor via curl al arrancar (sin depender de git push).',
+            'Nuevo tool: export_sqlite_to_json.php (CLI + web) para sincronizar SQLite → JSON.',
+        ]
+    ],
     '26.8.21' => [
         'date' => '2026-04-04',
         'changes' => [

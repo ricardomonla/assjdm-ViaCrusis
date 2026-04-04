@@ -1,7 +1,7 @@
 # Plan 07: Entorno de Trabajo Móvil (Android Offline)
 
 > **Estado**: ✅ Completado
-> **Fecha**: 2026-04-02
+> **Fecha**: 2026-04-02 (inicial) / 2026-04-04 (auto-sync)
 
 ---
 
@@ -16,6 +16,7 @@
 | 1 | Investigación de viabilidad Docker en Android | ✅ |
 | 2 | Configuración del entorno base | ✅ |
 | 3 | Sincronización offline y despliegue del sistema VCBY | ✅ |
+| 4 | Auto-sync SQLite→JSON y compatibilidad post-refactoring | ✅ |
 
 ---
 
@@ -75,8 +76,33 @@ Crear un entorno en el celular (sistema Android) que permita ejecutar y trabajar
 
 ---
 
+## Fase 4: Auto-sync SQLite→JSON y compatibilidad Android
+
+```text
+██████████████████████████████ 100%
+```
+
+- [x] Fix: `play.php` — try/catch en SQLite para fallback a JSON cuando la BD no está disponible (Termux).
+- [x] Fix: `js.js` — guard null en `autoplayMessage` (elemento removido del HTML).
+- [x] Auto-sync: `save_changes.php` regenera `guion_completo.json` automáticamente tras cada edición del Director.
+- [x] `start_termux.sh` descarga JSON fresco del servidor via `curl` al arrancar (independiente de git push).
+- [x] Nuevo tool: `export_sqlite_to_json.php` (CLI + web) para exportación manual bajo demanda.
+
+**Notas/Hallazgos**:
+- **Problema detectado**: Tras la migración a SQLite (v26.8.15), `data/db.php` hardcodeaba la ruta `/var/www/vcby-data/vcby.db`. En Termux esa ruta no existe → `getCues()` lanzaba excepción PDO sin catch → HTTP 500, página en blanco.
+- **Solución**: Try/catch permite fallback transparente al `guion_completo.json` estático.
+- **Flujo automático final**: Director edita → SQLite + JSON auto-update → celular descarga al iniciar → funciona offline.
+- **Sin intervención manual**: No requiere commit/push para sincronizar el guion al celular.
+
+---
+
 ## Resumen de archivos creados/modificados
 
 | Archivo | Ubicación | Estado |
 |:---|:---|:---|
 | `07_entorno-android.md` | `docs/plan/` | 📋 |
+| `start_termux.sh` | `/` | ✅ Actualizado (paso curl JSON) |
+| `play.php` | `audios/` | ✅ Fix try/catch SQLite |
+| `js.js` | `jss/` | ✅ Fix autoplayMessage guard |
+| `save_changes.php` | `audios/` | ✅ Auto-export JSON |
+| `export_sqlite_to_json.php` | `tools/` | 🆕 Nuevo |
