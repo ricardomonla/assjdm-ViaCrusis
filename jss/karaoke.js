@@ -22,9 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000); // Vuelve al auto-scroll tras 3s de inactividad de scroll
     });
 
-    // Carga paralela del guion maestro (SQLite API) y las duraciones
+    // Carga paralela del guion (SQLite API por track) y las duraciones
+    var _trackId = (window.audioId || '').split('_')[0];
     Promise.all([
-        fetch(`../audios/api_cues.php?v=${window.appVersion || Date.now()}`).then(res => {
+        fetch(`../audios/api_cues.php?track_id=${_trackId}&v=${window.appVersion || Date.now()}`).then(res => {
             if (!res.ok) throw new Error('API cues no disponible');
             return res.json();
         }).catch(() => {
