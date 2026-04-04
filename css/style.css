@@ -1258,21 +1258,24 @@ body.stamp-mode .cue-line-active {
 .personajes-link {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 16px;
-    margin-top: 16px;
-    background: linear-gradient(135deg, #f5f0e6, #ede6d6);
-    border: 1px solid rgba(196, 180, 148, 0.4);
-    border-radius: 10px;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 20px;
+    margin: 24px auto 0;
+    max-width: 320px;
+    background: linear-gradient(135deg, #8b0000, #a52a2a);
+    border: none;
+    border-radius: 12px;
     text-decoration: none;
-    color: #2d2418;
-    font-size: 1.05em;
+    color: #fff;
+    font-size: 1.15em;
     transition: all 0.2s ease;
+    box-shadow: 0 3px 10px rgba(139, 0, 0, 0.25);
 }
 .personajes-link:hover {
-    box-shadow: 0 3px 12px rgba(128, 109, 90, 0.2);
-    transform: translateY(-1px);
+    box-shadow: 0 5px 18px rgba(139, 0, 0, 0.35);
+    transform: translateY(-2px);
 }
-.personajes-icon { font-size: 1.4em; }
-.personajes-text { flex: 1; font-weight: 600; font-variant: small-caps; }
-.personajes-arrow { font-size: 1.5em; color: #b0a693; }
+.personajes-icon { font-size: 1.6em; }
+.personajes-text { font-weight: 700; font-variant: small-caps; letter-spacing: 1px; }
+.personajes-arrow { font-size: 1.5em; opacity: 0.7; }
