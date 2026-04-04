@@ -13,10 +13,32 @@
  *   commit_msg - (opcional) Mensaje de commit. Si se envía, se ejecuta git commit.
  */
 
+// Garantizar salida JSON limpia (sin warnings/notices HTML)
+error_reporting(0);
+ini_set('display_errors', '0');
 header('Content-Type: application/json');
 
+// Capturar cualquier output inesperado
+ob_start();
+
+// Handler de errores fatales
+register_shutdown_function(function() {
+    $error = error_get_last();
+    if ($error && in_array($error['type'], [E_ERROR, E_PARSE, E_COMPILE_ERROR])) {
+        ob_end_clean();
+        echo json_encode(['ok' => false, 'msg' => 'Error PHP: ' . $error['message']]);
+    }
+});
+
 // Validar que sea modo admin/director
-require '../incs/functions.php';
+@require '../incs/functions.php';
+
+// Helper: respuesta JSON limpia (descarta cualquier warning capturado)
+function jsonResponse($data) {
+    if (ob_get_level()) ob_end_clean();
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    exit;
+}
 
 $trackId   = $_POST['track_id'] ?? null;
 $cueIndex  = isset($_POST['cue_index']) ? intval($_POST['cue_index']) : null;
@@ -26,14 +48,12 @@ $commitMsg = $_POST['commit_msg'] ?? null;
 
 // ===== Validaciones =====
 if (!$trackId || $cueIndex === null || !$field) {
-    echo json_encode(['ok' => false, 'msg' => 'Parámetros incompletos.']);
-    exit;
+    jsonResponse(['ok' => false, 'msg' => 'Parámetros incompletos.']);
 }
 
 $jsonFile = __DIR__ . '/subs/guion_completo.json';
 if (!file_exists($jsonFile)) {
-    echo json_encode(['ok' => false, 'msg' => 'guion_completo.json no encontrado.']);
-    exit;
+    jsonResponse(['ok' => false, 'msg' => 'guion_completo.json no encontrado.']);
 }
 
 // ===== Leer JSON =====
@@ -41,8 +61,7 @@ $guion = json_decode(file_get_contents($jsonFile), true);
 // ===== Acción especial: Insertar cue (Acotación Escénica) =====
 if ($field === '_insert') {
     if (!isset($guion[$trackId])) {
-        echo json_encode(['ok' => false, 'msg' => "Track $trackId no encontrado."]);
-        exit;
+        jsonResponse(['ok' => false, 'msg' => "Track $trackId no encontrado."]);
     }
     
     $insertAfter = $cueIndex; // Insertar DESPUÉS de este índice
@@ -83,26 +102,23 @@ if ($field === '_insert') {
         }
     }
     
-    echo json_encode([
+    jsonResponse([
         'ok' => true,
         'msg' => "Acotación insertada después de cue $insertAfter en track $trackId.",
         'new_index' => $insertAfter + 1,
         'commit' => $commitResult
     ]);
-    exit;
 }
 
 // ===== Validación de cue existente =====
 if (!isset($guion[$trackId][$cueIndex])) {
-    echo json_encode(['ok' => false, 'msg' => "Track $trackId o cue $cueIndex no encontrado."]);
-    exit;
+    jsonResponse(['ok' => false, 'msg' => "Track $trackId o cue $cueIndex no encontrado."]);
 }
 
 // ===== Aplicar cambio =====
 $allowedFields = ['text', 'character', 'startTime', 'endTime', 'idp'];
 if (!in_array($field, $allowedFields)) {
-    echo json_encode(['ok' => false, 'msg' => "Campo '$field' no permitido."]);
-    exit;
+    jsonResponse(['ok' => false, 'msg' => "Campo '$field' no permitido."]);
 }
 
 $oldValue = $guion[$trackId][$cueIndex][$field] ?? null;
@@ -134,7 +150,7 @@ if ($commitMsg) {
     }
 }
 
-echo json_encode([
+jsonResponse([
     'ok' => true,
     'msg' => "Campo '$field' actualizado en track $trackId, cue $cueIndex.",
     'old_value' => $oldValue,

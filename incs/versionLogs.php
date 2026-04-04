@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.8.13' => [
+        'date' => '2026-04-03',
+        'changes' => [
+            'Fix: save_changes.php blindado — suprime warnings PHP, output buffer, jsonResponse() helper.',
+            'Garantiza respuesta JSON limpia sin importar errores internos de PHP.',
+        ]
+    ],
     '26.8.12' => [
         'date' => '2026-04-03',
         'changes' => [
