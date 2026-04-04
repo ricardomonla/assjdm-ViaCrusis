@@ -1,6 +1,7 @@
 <?php
 require '../incs/functions.php';
 require '../incs/versionLogs.php';
+@include '../data/db.php'; // SQLite (opcional, fallback a JSON)
 
 // Configuración inicial
 $dirMEDIA = 'media';
@@ -158,9 +159,23 @@ include '../incs/header.php';
             window.firstAudioId = '<?= htmlspecialchars($firstAudioId) ?>';
             window.appVersion = '<?= htmlspecialchars($latestVersion) ?>';
             window.audioId = '<?= htmlspecialchars($audio['id']) ?>';
-            window.apiBase = ''; // Relativo al host actual (override si es necesario)
+            window.apiBase = '';
             window.nextAudioId = '<?= $nextAudio ? htmlspecialchars($nextAudio['id']) : "" ?>';
             window.prevAudioId = '<?= $prevAudio ? htmlspecialchars($prevAudio['id']) : "" ?>';
+            
+            // Datos inyectados directo desde SQLite (sin fetch, sin caché)
+            <?php
+            $trackBase = explode('_', $audio['id'])[0];
+            $prevBase = $prevAudio ? explode('_', $prevAudio['id'])[0] : null;
+            $nextBase = $nextAudio ? explode('_', $nextAudio['id'])[0] : null;
+            $inlineData = [];
+            if (function_exists('getCues')) {
+                $inlineData[$trackBase] = getCues($trackBase);
+                if ($prevBase) $inlineData[$prevBase] = getCues($prevBase);
+                if ($nextBase) $inlineData[$nextBase] = getCues($nextBase);
+            }
+            ?>
+            window.__cueData = <?= !empty($inlineData) ? json_encode($inlineData, JSON_UNESCAPED_UNICODE) : 'null' ?>;
             
             document.addEventListener('DOMContentLoaded', function() {
                 var audio = document.getElementById('audioPlayer');
