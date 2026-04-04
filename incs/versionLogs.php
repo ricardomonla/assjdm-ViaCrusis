@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.8.17' => [
+        'date' => '2026-04-04',
+        'changes' => [
+            'ARQUITECTURA: Datos inline — PHP inyecta cues de SQLite directo en el HTML.',
+            'Eliminado fetch para carga inicial: datos viajan SQLite → PHP → HTML → JS.',
+            'Fallback a API y luego JSON estático si SQLite no disponible.',
+        ]
+    ],
     '26.8.16' => [
         'date' => '2026-04-03',
         'changes' => [
