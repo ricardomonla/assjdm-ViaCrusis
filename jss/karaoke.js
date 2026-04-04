@@ -45,14 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
     Promise.all([
         loadCueData(),
         fetch(`../audios/subs/audio_durations.json?v=${window.appVersion || Date.now()}`).then(res => {
-            if (!res.ok) return {}; // Falla silenciosa y devuelve duraciones vacías si no existe
+            if (!res.ok) return {};
             return res.json();
-        })
+        }).catch(() => ({})) // Fallback silencioso a vacío
     ])
     .then(([masterData, durationsData]) => {
         const currentAudioId = window.audioId.split('_')[0];
         const nextAudioId = window.nextAudioId ? window.nextAudioId.split('_')[0] : "";
         const prevAudioId = window.prevAudioId ? window.prevAudioId.split('_')[0] : "";
+        
+        console.log('[VCBY] audioId=' + currentAudioId, 'cues=' + (masterData[currentAudioId]||[]).length);
         
         // Sumamos absolutamente todos los delays anteriores filtrando por el prefijo, sin contar tracks 00X (Desfile)
         function getGlobalOffset(targetId) {
@@ -95,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
     .catch(error => {
-        scriptContainer.innerHTML = `<div class="script-placeholder">${error.message}</div>`;
+        console.error('[VCBY] Error cargando datos:', error);
+        scriptContainer.innerHTML = `<div class="script-placeholder">Error: ${error.message}</div>`;
     });
 
     let lastTap = 0;
