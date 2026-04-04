@@ -152,11 +152,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         if (currentGroup) groups.push(currentGroup);
         
-        // Helper: enviar POST a save_changes.php y recargar
+        // Helper: enviar POST a save_changes.php y recargar (preservando posición de audio)
         function postAndReload(fd) {
             fetch((window.apiBase||'') + 'save_changes.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() })
             .then(function(r) { return r.json(); })
-            .then(function(d) { if (d.ok) { location.reload(); } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); } })
+            .then(function(d) {
+                if (d.ok) {
+                    sessionStorage.setItem('vcby_audio_time', audioPlayer.currentTime);
+                    sessionStorage.setItem('vcby_audio_paused', audioPlayer.paused ? '1' : '0');
+                    location.reload();
+                } else { vcbyAlert('Error: ' + (d.msg || ''), 'error'); }
+            })
             .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
         }
 
@@ -411,6 +417,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         audioPlayer.addEventListener('timeupdate', updateKaraoke);
+        
+        // Restaurar posición de audio tras CRUD reload
+        var savedTime = sessionStorage.getItem('vcby_audio_time');
+        if (savedTime !== null) {
+            audioPlayer.currentTime = parseFloat(savedTime);
+            var wasPaused = sessionStorage.getItem('vcby_audio_paused');
+            if (wasPaused === '1') audioPlayer.pause();
+            sessionStorage.removeItem('vcby_audio_time');
+            sessionStorage.removeItem('vcby_audio_paused');
+        }
     }
     
     function updateKaraoke() {
