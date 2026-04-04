@@ -127,12 +127,53 @@ function getAllCastingEnabled() {
 }
 
 /**
- * Obtener personajes únicos de la DB (fuente de verdad)
+ * Synopsis de cada personaje
+ */
+function getCharacterSynopsis() {
+    return [
+        'P00' => 'Efectos de sonido o música de fondo',
+        'P01' => 'Voz omnisciente',
+        'P02' => 'Multitud, voces de la gente',
+        'P03' => 'Condenado, líder de rebeldes',
+        'P04' => 'Discípulo impulsivo',
+        'P05' => 'El Mesías',
+        'P06' => 'Jefe del Templo/Sacerdote conspirador',
+        'P07' => 'Discípulo traidor',
+        'P08' => 'Coro de varias voces de los apóstoles',
+        'P09' => 'Discípulo amado',
+        'P10' => 'Supremo Sacerdote del Templo',
+        'P11' => 'Miembro del Sanedrín, simpatizante de Jesús',
+        'P12' => 'Guardia Romano',
+        'P13' => 'Guardia Romano',
+        'P14' => 'Gobernador Romano',
+        'P15' => 'Esposa de Pilatos',
+        'P16' => 'Tetrarca de Galilea',
+        'P17' => 'Esposa de Herodes',
+        'P18' => 'Soldados romanos',
+        'P19' => 'Madre de Jesús',
+        'P20' => 'Ladrón crucificado, burlesco',
+        'P21' => 'Ladrón crucificado, humilde',
+        'P22' => 'Ser celestial en el sepulcro',
+        'P23' => 'Ser celestial en el sepulcro',
+        'P24' => 'Discípula en la tumba',
+        'P25' => 'Mujer que enjuga el rostro de Jesús',
+        'P26' => 'Mujeres de Jerusalén',
+        'P99' => 'Canción popular',
+    ];
+}
+
+/**
+ * Obtener personajes únicos de la DB (fuente de verdad) + synopsis
  */
 function getCharacters() {
     $db = getDB();
     $stmt = $db->query("SELECT DISTINCT idp, character FROM cues WHERE idp != '' ORDER BY idp");
-    return $stmt->fetchAll();
+    $rows = $stmt->fetchAll();
+    $synopsis = getCharacterSynopsis();
+    foreach ($rows as &$row) {
+        $row['synopsis'] = $synopsis[$row['idp']] ?? '';
+    }
+    return $rows;
 }
 
 /**

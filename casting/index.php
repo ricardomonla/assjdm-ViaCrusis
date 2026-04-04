@@ -46,6 +46,7 @@ $characters = getCharacters();
             padding: 2px 5px; border-radius: 4px; font-weight: bold;
         }
         .pj-name { font-weight: bold; font-variant: small-caps; font-size: 1em; color: #2d2418; }
+        .pj-synopsis { font-size: 0.75em; color: #a09080; font-style: italic; margin-left: 2px; }
         .pj-count { font-size: 0.7em; color: #b0a693; background: rgba(0,0,0,0.04); padding: 2px 6px; border-radius: 8px; }
         .pj-actions { display: flex; gap: 6px; align-items: center; }
         .pj-btn-add {
@@ -174,6 +175,7 @@ function renderPersonajes(characters, castings, enabled) {
         var ch = characters[i];
         var idp = ch.idp;
         var name = ch.character;
+        var synopsis = ch.synopsis || '';
         var isEnabled = enabled[idp] == 1;
         var posts = castings[idp] || [];
         var count = posts.length;
@@ -186,6 +188,7 @@ function renderPersonajes(characters, castings, enabled) {
         html += '<div class="pj-header"><div class="pj-info">';
         html += '<span class="pj-idp">' + idp + '</span>';
         html += '<span class="pj-name">' + escHtml(name) + '</span>';
+        if (synopsis) html += '<span class="pj-synopsis"> — ' + escHtml(synopsis) + '</span>';
         if (count > 0) html += '<span class="pj-count">' + count + '</span>';
         html += '</div><div class="pj-actions">';
         
