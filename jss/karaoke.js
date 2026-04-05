@@ -174,38 +174,41 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(function(err) { vcbyAlert('Error: ' + (err.message || err), 'error'); });
         }
 
-        // Duplicar UNA línea de diálogo (mini "+")
+        // Insertar NUEVA línea de diálogo genérica (mini "+")
         function createDupLineBtn(cue) {
             var row = document.createElement('div');
             row.className = 'cue-insert-inline';
-            row.innerHTML = '<button class="btn-insert-cue" title="Duplicar esta línea">+</button>';
+            row.innerHTML = '<button class="btn-insert-cue" title="Insertar nueva línea aquí">+</button>';
             row.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
                 e.stopPropagation();
                 var trackId = window.audioId.split('_')[0];
+                var newTime = parseFloat((cue.startTime + 0.5).toFixed(1));
                 var fd = new URLSearchParams();
                 fd.append('track_id', trackId);
                 fd.append('cue_index', cue._originalIndex);
                 fd.append('field', '_insert');
-                fd.append('value', cue.text || '');
+                fd.append('value', '(nuevo diálogo)');
                 fd.append('character', cue.character || '');
                 fd.append('idp', cue.idp || 'P00');
+                fd.append('startTime', newTime);
                 postAndReload(fd);
             });
             return row;
         }
 
-        // Duplicar BURBUJA completa (grupo de líneas) — "+" grande
+        // Insertar NUEVA burbuja genérica ("+") — personaje P00, texto placeholder
         function createDupGroupBtn(group) {
             var lastCue = group.cues[group.cues.length - 1];
             var row = document.createElement('div');
             row.className = 'cue-insert-row';
-            row.innerHTML = '<button class="btn-insert-cue" title="Duplicar esta burbuja (' + group.cues.length + ' líneas)">+</button>';
+            row.innerHTML = '<button class="btn-insert-cue" title="Insertar nueva burbuja aquí">+</button>';
             row.querySelector('.btn-insert-cue').addEventListener('click', function(e) {
                 e.stopPropagation();
                 var trackId = window.audioId.split('_')[0];
-                var cuesData = group.cues.map(function(c) {
-                    return { character: c.character, idp: c.idp, startTime: c.startTime, endTime: c.endTime, text: c.text };
-                });
+                var newTime = parseFloat((lastCue.startTime + 1.0).toFixed(1));
+                var cuesData = [
+                    { character: 'NUEVO PERSONAJE', idp: 'P00', startTime: newTime, endTime: 0, text: '(nuevo diálogo)' }
+                ];
                 var fd = new URLSearchParams();
                 fd.append('track_id', trackId);
                 fd.append('cue_index', lastCue._originalIndex);

@@ -83,12 +83,16 @@ try {
         $charName = $_POST['character'] ?? 'Música / Ambiente';
         $charIdp = $_POST['idp'] ?? 'P00';
         
-        // Calcular startTime
-        $prevCue = getCueField($trackId, $cueIndex, 'startTime');
-        $nextCue = getCueField($trackId, $cueIndex + 1, 'startTime');
-        $prevTime = $prevCue !== null ? (float)$prevCue : 0;
-        $nextTime = $nextCue !== null ? (float)$nextCue : $prevTime + 2;
-        $newTime = round(($prevTime + $nextTime) / 2, 1);
+        // Usar startTime del frontend si viene, sino calcular
+        if (!empty($_POST['startTime'])) {
+            $newTime = round((float)$_POST['startTime'], 1);
+        } else {
+            $prevCue = getCueField($trackId, $cueIndex, 'startTime');
+            $nextCue = getCueField($trackId, $cueIndex + 1, 'startTime');
+            $prevTime = $prevCue !== null ? (float)$prevCue : 0;
+            $nextTime = $nextCue !== null ? (float)$nextCue : $prevTime + 2;
+            $newTime = round(($prevTime + $nextTime) / 2, 1);
+        }
         
         $newIndex = insertCue($trackId, $cueIndex, [
             'character' => $charName,
