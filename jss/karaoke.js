@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var trackId = window.audioId.split('_')[0];
                 var newTime = parseFloat((lastCue.startTime + 1.0).toFixed(1));
                 var cuesData = [
-                    { character: 'NUEVO PERSONAJE', idp: 'P00', startTime: newTime, endTime: 0, text: '(nuevo diálogo)' }
+                    { character: 'ESCENA', idp: 'P90', startTime: newTime, endTime: 0, text: '(nota de escena)' }
                 ];
                 var fd = new URLSearchParams();
                 fd.append('track_id', trackId);

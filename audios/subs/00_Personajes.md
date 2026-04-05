@@ -31,4 +31,5 @@
 | P24 | MARÍA MAGDALENA | Discípula en la tumba |
 | P25 | VERÓNICA | Mujer que enjuga el rostro de Jesús |
 | P26 | MUJERES JERUSALEN | Mujeres de Jerusalén |
+| P90 | ESCENA | Notas de escena del Director |
 | P99 | MUSICA SAETA | Canción popular |

@@ -1,5 +1,13 @@
 <?php
 $versionLogs = [
+    '26.8.26' => [
+        'date' => '2026-04-05',
+        'changes' => [
+            'Nuevo personaje P90 ESCENA — notas de escena del Director como burbujas.',
+            'Botón + burbuja inserta ESCENA por defecto (antes NUEVO PERSONAJE).',
+            'P90 disponible en dropdown de cambio de personaje y en Personajes/Casting.',
+        ]
+    ],
     '26.8.25' => [
         'date' => '2026-04-05',
         'changes' => [

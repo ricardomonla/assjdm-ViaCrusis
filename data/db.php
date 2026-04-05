@@ -158,6 +158,7 @@ function getCharacterSynopsis() {
         'P24' => 'Discípula en la tumba',
         'P25' => 'Mujer que enjuga el rostro de Jesús',
         'P26' => 'Mujeres de Jerusalén',
+        'P90' => 'Notas de escena del Director',
         'P99' => 'Canción popular',
     ];
 }
