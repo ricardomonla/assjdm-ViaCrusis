@@ -1,5 +1,14 @@
 <?php
 $versionLogs = [
+    '26.8.24' => [
+        'date' => '2026-04-05',
+        'changes' => [
+            'Marcas de tiempo en formato HH:MM:SS en modo Director (antes segundos crudos).',
+            'Botón + inserta genérico: burbuja P00 "NUEVO PERSONAJE" / línea "(nuevo diálogo)".',
+            'Timestamp del nuevo cue auto-incrementado (+0.5s línea, +1.0s burbuja).',
+            'Ya no duplica el elemento anterior al insertar.',
+        ]
+    ],
     '26.8.23' => [
         'date' => '2026-04-04',
         'changes' => [
