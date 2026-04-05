@@ -2,7 +2,7 @@
 
 > **Estado**: ⏳ En progreso
 > **Fecha**: 2026-04-02
-> **Ultima actualizacion**: 2026-04-04 18:55
+> **Ultima actualizacion**: 2026-04-05 08:27
 
 ---
 
@@ -83,3 +83,4 @@ Multi-perfil Público/Director, IDP técnicos, colores por personaje, edición i
 | v26.8.21 | 2026-04-04 | **CRUD COMPLETO**: editar, cambiar personaje, paste plano, fix índices. |
 | v26.8.22 | 2026-04-04 | Android fallback, auto-sync JSON, export tool. |
 | v26.8.23 | 2026-04-04 | **PERSONAJES**: página casting, toggle Director, synopsis, link audios. |
+| v26.8.24 | 2026-04-05 | HH:MM:SS en Director, + inserta genérico (no duplica), reglas de deploy. |
