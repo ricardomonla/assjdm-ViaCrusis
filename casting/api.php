@@ -6,6 +6,8 @@
  * POST action=signup     → postulación pública
  * POST action=delete     → eliminar (requiere key)
  * POST action=toggle     → habilitar/deshabilitar (requiere key)
+ * 
+ * Fallback Android: si SQLite no está disponible, usa 00_Personajes.md
  */
 
 error_reporting(0);
@@ -21,25 +23,57 @@ function checkKey() {
     return ($_POST['key'] ?? '') === ADMIN_KEY;
 }
 
+/**
+ * Fallback: leer personajes de 00_Personajes.md si SQLite no está
+ */
+function getCharactersFallback() {
+    $file = __DIR__ . '/../audios/subs/00_Personajes.md';
+    $chars = [];
+    if (file_exists($file)) {
+        preg_match_all('/\|\s*(P\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|/', file_get_contents($file), $m);
+        for ($i = 0; $i < count($m[1]); $i++) {
+            $chars[] = [
+                'idp' => trim($m[1][$i]),
+                'character' => trim($m[2][$i]),
+                'synopsis' => trim($m[3][$i])
+            ];
+        }
+    }
+    return $chars;
+}
+
 $method = $_SERVER['REQUEST_METHOD'];
 
 try {
     if ($method === 'GET') {
         $showPhone = ($_GET['director'] ?? '0') === '1';
-        $characters = getCharacters();
-        $castings = getCastingList($showPhone);
-        $enabled = getAllCastingEnabled();
+        
+        // Intentar SQLite, fallback a archivo .md
+        $useFallback = false;
+        try {
+            $characters = getCharacters();
+            $castings = getCastingList($showPhone);
+            $enabled = getAllCastingEnabled();
+        } catch (Exception $e) {
+            $useFallback = true;
+            $characters = getCharactersFallback();
+            $castings = [];
+            $enabled = [];
+        }
         
         $byIdp = [];
-        foreach ($castings as $c) {
-            $byIdp[$c['idp']][] = $c;
+        if (!$useFallback) {
+            foreach ($castings as $c) {
+                $byIdp[$c['idp']][] = $c;
+            }
         }
         
         echo json_encode([
             'ok' => true,
             'characters' => $characters,
             'castings' => $byIdp,
-            'enabled' => $enabled
+            'enabled' => $enabled,
+            'readonly' => $useFallback
         ], JSON_UNESCAPED_UNICODE);
         
     } elseif ($method === 'POST') {

@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.8.27' => [
+        'date' => '2026-04-05',
+        'changes' => [
+            'Personajes funciona en Android/Termux: fallback a 00_Personajes.md si SQLite no existe.',
+            'Modo readonly: en Android se ve la lista completa sin botones de postulación.',
+        ]
+    ],
     '26.8.26' => [
         'date' => '2026-04-05',
         'changes' => [

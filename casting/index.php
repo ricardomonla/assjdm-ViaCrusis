@@ -147,6 +147,7 @@ $characters = getCharacters();
 <script src="../jss/perfiles.js"></script>
 <script>
 var isAdmin = false;
+var isReadonly = false;
 
 // Detectar Director desde localStorage (mismo sistema que el resto del sitio)
 (function() {
@@ -164,6 +165,7 @@ function loadPersonajes() {
         .then(function(r) { return r.json(); })
         .then(function(data) {
             if (!data.ok) { document.getElementById('pj-container').textContent = 'Error.'; return; }
+            isReadonly = data.readonly || false;
             renderPersonajes(data.characters, data.castings, data.enabled);
         })
         .catch(function() { document.getElementById('pj-container').textContent = 'Error de conexión.'; });
@@ -180,8 +182,8 @@ function renderPersonajes(characters, castings, enabled) {
         var posts = castings[idp] || [];
         var count = posts.length;
         
-        // Público: solo ver habilitados o con postulados
-        if (!isAdmin && !isEnabled && count === 0) continue;
+        // Readonly (Android): mostrar todos, sin filtro
+        if (!isReadonly && !isAdmin && !isEnabled && count === 0) continue;
         
         var disabledClass = (!isEnabled && isAdmin) ? ' pj-disabled' : '';
         html += '<div class="pj-card' + disabledClass + '" id="card-' + idp + '">';
@@ -197,7 +199,7 @@ function renderPersonajes(characters, castings, enabled) {
             html += isEnabled ? '✅ Abierto' : '⬜ Cerrado';
             html += '</button>';
         }
-        if (isEnabled || isAdmin) {
+        if (!isReadonly && (isEnabled || isAdmin)) {
             html += '<button class="pj-btn-add" onclick="openSignup(\'' + idp + '\',\'' + escAttr(name) + '\')" title="Postularme">+</button>';
         }
         html += '</div></div>';
