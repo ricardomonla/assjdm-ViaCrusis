@@ -8,8 +8,12 @@
  * Los datos se cargan via JS para que el Director vea todo.
  */
 require __DIR__ . '/../data/db.php';
-// Pre-cargar personajes para SSR (sin info de Director, eso va por JS)
-$characters = getCharacters();
+// Pre-cargar personajes para SSR (puede fallar en Android/Termux)
+try {
+    $characters = getCharacters();
+} catch (Exception $e) {
+    $characters = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">

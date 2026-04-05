@@ -5,6 +5,7 @@ $versionLogs = [
         'changes' => [
             'Personajes funciona en Android/Termux: fallback a 00_Personajes.md si SQLite no existe.',
             'Modo readonly: en Android se ve la lista completa sin botones de postulación.',
+            'Fix: try/catch en index.php para evitar crash PDO en Termux.',
         ]
     ],
     '26.8.26' => [
