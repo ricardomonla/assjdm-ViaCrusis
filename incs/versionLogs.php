@@ -3,8 +3,9 @@ $versionLogs = [
     '26.8.25' => [
         'date' => '2026-04-05',
         'changes' => [
-            'Edición de marcas de tiempo en formato HH:MM:SS (input + display consistente).',
-            'parseTime() acepta HH:MM:SS, MM:SS y segundos crudos como fallback.',
+            'Edición de marcas de tiempo en formato HH:MM:SS.d (input + display consistente).',
+            'parseTime() acepta HH:MM:SS.d, MM:SS y segundos crudos como fallback.',
+            'Fix nudge ◂▸: decimal visible para reflejar cambios ±0.1s.',
         ]
     ],
     '26.8.24' => [

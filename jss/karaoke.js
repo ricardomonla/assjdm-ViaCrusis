@@ -11,12 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let scriptData = [];
     let currentActiveIdx = -1;
 
-    // Formatear segundos a HH:MM:SS
+    // Formatear segundos a HH:MM:SS.d
     function fmtTime(sec) {
         var h = Math.floor(sec / 3600).toString().padStart(2, '0');
         var m = Math.floor((sec % 3600) / 60).toString().padStart(2, '0');
         var s = Math.floor(sec % 60).toString().padStart(2, '0');
-        return h + ':' + m + ':' + s;
+        var d = Math.floor((sec % 1) * 10);
+        return h + ':' + m + ':' + s + '.' + d;
     }
 
     // Parsear HH:MM:SS → segundos (acepta también segundos crudos como fallback)
