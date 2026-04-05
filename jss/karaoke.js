@@ -18,6 +18,18 @@ document.addEventListener('DOMContentLoaded', function() {
         var s = Math.floor(sec % 60).toString().padStart(2, '0');
         return h + ':' + m + ':' + s;
     }
+
+    // Parsear HH:MM:SS → segundos (acepta también segundos crudos como fallback)
+    function parseTime(str) {
+        str = (str || '').trim();
+        var parts = str.split(':');
+        if (parts.length === 3) {
+            return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseFloat(parts[2]);
+        } else if (parts.length === 2) {
+            return parseInt(parts[0]) * 60 + parseFloat(parts[1]);
+        }
+        return parseFloat(str);
+    }
     let isUserScrolling = false;
     let scrollTimeout;
 
@@ -373,17 +385,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (tag.querySelector('input')) return;
                         var oldTime = c.startTime;
                         var input = document.createElement('input');
-                        input.type = 'number';
-                        input.step = '0.1';
-                        input.value = c.startTime.toFixed(1);
+                        input.type = 'text';
+                        input.value = fmtTime(c.startTime);
                         input.className = 'cue-time-input';
+                        input.placeholder = 'HH:MM:SS';
                         valEl.textContent = '';
                         valEl.appendChild(input);
                         input.focus();
                         input.select();
                         
                         function applyTime() {
-                            var newTime = parseFloat(input.value);
+                            var newTime = parseTime(input.value);
                             if (isNaN(newTime) || newTime === oldTime) {
                                 valEl.textContent = fmtTime(c.startTime);
                                 return;
