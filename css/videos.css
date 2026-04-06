@@ -13,66 +13,85 @@ body {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   min-height: 100vh;
   color: #fff;
+  padding-top: 140px; /* Espacio para la barra fija */
 }
 
-.videos-container {
+/* ===== BARRA FIJA DE CONTROLES ===== */
+.controls-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  border-bottom: 2px solid rgba(240, 230, 140, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  padding: 10px 20px;
+}
+
+.controls-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Header */
-.videos-header {
-  text-align: center;
-  margin-bottom: 30px;
+/* Botones de grupos */
+.group-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.videos-header h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #f0e68c;
+.group-btn {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid rgba(240, 230, 140, 0.4);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.videos-header p {
-  color: #aaa;
-  font-size: 1rem;
+.group-btn:hover {
+  background: rgba(240, 230, 140, 0.2);
+  border-color: #f0e68c;
+}
+
+.group-btn.active {
+  background: rgba(240, 230, 140, 0.3);
+  border-color: #f0e68c;
+  box-shadow: 0 0 15px rgba(240, 230, 140, 0.4);
 }
 
 /* Selector de escenas */
-.scene-selector-container {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.scene-selector-container label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #f0e68c;
+.select-wrapper {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
 }
 
 #selector-escenas {
   width: 100%;
-  padding: 15px;
+  padding: 12px 15px;
   font-size: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(240, 230, 140, 0.4);
   border-radius: 8px;
   background: #1a1a2e;
   color: #fff;
   cursor: pointer;
-  transition: border-color 0.3s;
+  transition: all 0.2s ease;
 }
 
 #selector-escenas:focus {
   outline: none;
   border-color: #f0e68c;
-}
-
-#selector-escenas optgroup {
-  background: #16213e;
-  color: #fff;
+  box-shadow: 0 0 10px rgba(240, 230, 140, 0.3);
 }
 
 #selector-escenas option {
@@ -81,7 +100,13 @@ body {
   color: #fff;
 }
 
-/* Contenedor del video - Aspect Ratio 16:9 */
+/* ===== CONTENEDOR DEL VIDEO ===== */
+.video-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -100,48 +125,58 @@ body {
   height: 100%;
 }
 
-/* Info de la escena actual */
+/* ===== INFO DE ESCENA ===== */
 .scene-info {
   margin-top: 20px;
   padding: 15px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   border-left: 4px solid #f0e68c;
-}
-
-.scene-info h3 {
-  margin: 0 0 5px 0;
-  font-size: 1.1rem;
-  color: #f0e68c;
-}
-
-.scene-info p {
-  margin: 0;
+  text-align: center;
   color: #ccc;
-  font-size: 0.9rem;
 }
 
-/* Responsive */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .videos-container {
-    padding: 15px;
+  body {
+    padding-top: 120px;
   }
 
-  .videos-header h1 {
-    font-size: 1.5rem;
+  .controls-bar {
+    padding: 10px 15px;
   }
 
-  .scene-selector-container {
-    padding: 15px;
+  .controls-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .group-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .group-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .select-wrapper {
+    width: 100%;
+    max-width: none;
   }
 
   #selector-escenas {
     font-size: 0.95rem;
-    padding: 12px;
+    padding: 10px;
+  }
+
+  .video-container {
+    padding: 15px;
   }
 }
 
-/* Animación de carga */
+/* ===== ANIMACIÓN DE CARGA ===== */
 .video-wrapper::before {
   content: '';
   position: absolute;
@@ -162,7 +197,6 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Cuando el video está cargado, ocultar spinner */
 .video-wrapper.loaded::before {
   display: none;
 }

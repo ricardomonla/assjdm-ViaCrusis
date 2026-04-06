@@ -13,26 +13,30 @@
   <link rel="stylesheet" href="../css/videos.css">
 </head>
 <body>
-  <div class="videos-container">
-    <header class="videos-header">
-      <h1>🎬 VíaCrucis 2025 - Videos</h1>
-      <p>Selecciona una escena para ver el video en el minuto exacto</p>
-    </header>
+  <!-- Barra fija de controles -->
+  <div class="controls-bar">
+    <div class="controls-container">
+      <!-- Botones de grupos -->
+      <div class="group-buttons">
+        <button class="group-btn" data-grupo="0XX" title="Intro / Previa">🎬 0XX</button>
+        <button class="group-btn" data-grupo="1XX" title="Primera Parte">✝️ 1XX</button>
+        <button class="group-btn" data-grupo="2XX" title="Segunda Parte">🙏 2XX</button>
+        <button class="group-btn" data-grupo="3XX" title="Tercera Parte">🕊️ 3XX</button>
+      </div>
 
-    <div class="scene-selector-container">
-      <label for="selector-escenas">📍 Seleccionar Escena:</label>
-      <select id="selector-escenas">
-        <option value="">-- Elige una escena --</option>
-      </select>
+      <!-- Selector de escenas -->
+      <div class="select-wrapper">
+        <select id="selector-escenas">
+          <option value="">-- Selecciona un grupo primero --</option>
+        </select>
+      </div>
     </div>
+  </div>
 
+  <!-- Contenedor del video -->
+  <div class="video-container">
     <div class="video-wrapper">
       <div id="youtube-player"></div>
-    </div>
-
-    <div class="scene-info">
-      <h3>ℹ️ Cómo usar</h3>
-      <p>Selecciona una escena del menú desplegable y el video se cargará automáticamente en el momento exacto.</p>
     </div>
   </div>
 
