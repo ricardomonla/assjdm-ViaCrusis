@@ -1,5 +1,14 @@
 <?php
 $versionLogs = [
+    '26.8.29' => [
+        'date' => '2026-04-05',
+        'changes' => [
+            'Director: edición inline en Personajes (doble-click en nombre, synopsis, datos de actor).',
+            'Tabla character_meta: overrides persistentes de nombre y synopsis por personaje.',
+            'API: update_character y update_casting para edición en vivo.',
+            'Eliminar actores con 🗑 (ya existía).',
+        ]
+    ],
     '26.8.28' => [
         'date' => '2026-04-05',
         'changes' => [

@@ -87,6 +87,13 @@ function ensureSchema() {
             idp TEXT PRIMARY KEY,
             enabled INTEGER DEFAULT 0
         );
+
+        CREATE TABLE IF NOT EXISTS character_meta (
+            idp TEXT PRIMARY KEY,
+            name TEXT DEFAULT '',
+            synopsis TEXT DEFAULT '',
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
     ");
 }
 
@@ -171,8 +178,18 @@ function getCharacters() {
     $stmt = $db->query("SELECT DISTINCT idp, character FROM cues WHERE idp != '' ORDER BY idp");
     $rows = $stmt->fetchAll();
     $synopsis = getCharacterSynopsis();
+    $meta = getCharacterMeta();
     foreach ($rows as &$row) {
-        $row['synopsis'] = $synopsis[$row['idp']] ?? '';
+        $idp = $row['idp'];
+        // Overrides de character_meta tienen prioridad
+        if (isset($meta[$idp]['name']) && $meta[$idp]['name'] !== '') {
+            $row['character'] = $meta[$idp]['name'];
+        }
+        if (isset($meta[$idp]['synopsis']) && $meta[$idp]['synopsis'] !== '') {
+            $row['synopsis'] = $meta[$idp]['synopsis'];
+        } else {
+            $row['synopsis'] = $synopsis[$idp] ?? '';
+        }
     }
     return $rows;
 }
@@ -209,6 +226,45 @@ function deleteCasting($id) {
     $db = getDB();
     $stmt = $db->prepare("DELETE FROM casting WHERE id = ?");
     $stmt->execute([$id]);
+    return $stmt->rowCount();
+}
+
+/**
+ * Actualizar metadatos de personaje (nombre, synopsis)
+ */
+function updateCharacterMeta($idp, $field, $value) {
+    $db = getDB();
+    ensureSchema();
+    $allowed = ['name', 'synopsis'];
+    if (!in_array($field, $allowed)) return false;
+    $stmt = $db->prepare("INSERT INTO character_meta (idp, $field) VALUES (?, ?) ON CONFLICT(idp) DO UPDATE SET $field = ?, updated_at = CURRENT_TIMESTAMP");
+    $stmt->execute([$idp, $value, $value]);
+    return true;
+}
+
+/**
+ * Obtener overrides de character_meta
+ */
+function getCharacterMeta() {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->query("SELECT idp, name, synopsis FROM character_meta");
+    $result = [];
+    foreach ($stmt->fetchAll() as $row) {
+        $result[$row['idp']] = $row;
+    }
+    return $result;
+}
+
+/**
+ * Actualizar datos de postulación (solo Director)
+ */
+function updateCasting($id, $field, $value) {
+    $db = getDB();
+    $allowed = ['nombre', 'apellido', 'telefono'];
+    if (!in_array($field, $allowed)) return false;
+    $stmt = $db->prepare("UPDATE casting SET $field = ? WHERE id = ?");
+    $stmt->execute([$value, $id]);
     return $stmt->rowCount();
 }
 

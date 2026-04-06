@@ -53,6 +53,15 @@ try {
         .pj-synopsis { font-size: 0.85em; color: #6b5d4f; font-style: italic; margin-left: 2px; }
         .pj-count { font-size: 0.7em; color: #b0a693; background: rgba(0,0,0,0.04); padding: 2px 6px; border-radius: 8px; }
         .pj-actions { display: flex; gap: 6px; align-items: center; }
+        .pj-editable:hover { background: rgba(139, 115, 85, 0.12); border-radius: 4px; padding: 1px 3px; cursor: pointer; }
+        .pj-inline-input {
+            font-size: inherit; font-family: inherit; border: 1px solid #c4b494;
+            border-radius: 4px; padding: 2px 6px; background: #fff;
+            outline: none; min-width: 60px; max-width: 100%;
+        }
+        .pj-inline-input:focus { border-color: #8b7355; box-shadow: 0 0 4px rgba(139,115,85,0.3); }
+        .pj-person-actions { display: inline-flex; gap: 4px; align-items: center; margin-left: 8px; }
+        .pj-person-apellido { font-weight: bold; }
         .pj-btn-add {
             background: #4a8c3f; color: white; border: none;
             border-radius: 50%; width: 28px; height: 28px;
@@ -193,8 +202,15 @@ function renderPersonajes(characters, castings, enabled) {
         html += '<div class="pj-card' + disabledClass + '" id="card-' + idp + '">';
         html += '<div class="pj-header"><div class="pj-info">';
         html += '<span class="pj-idp">' + idp + '</span>';
-        html += '<span class="pj-name">' + escHtml(name) + '</span>';
-        if (synopsis) html += '<span class="pj-synopsis"> — ' + escHtml(synopsis) + '</span>';
+        if (isAdmin) {
+            html += '<span class="pj-name pj-editable" data-edit-type="character" data-idp="' + idp + '" data-field="name" title="Doble-click para editar">' + escHtml(name) + '</span>';
+            html += synopsis 
+                ? '<span class="pj-synopsis pj-editable" data-edit-type="character" data-idp="' + idp + '" data-field="synopsis" title="Doble-click para editar"> — ' + escHtml(synopsis) + '</span>'
+                : '<span class="pj-synopsis pj-editable" data-edit-type="character" data-idp="' + idp + '" data-field="synopsis" title="Doble-click para agregar synopsis"> — (sin synopsis)</span>';
+        } else {
+            html += '<span class="pj-name">' + escHtml(name) + '</span>';
+            if (synopsis) html += '<span class="pj-synopsis"> — ' + escHtml(synopsis) + '</span>';
+        }
         if (count > 0) html += '<span class="pj-count">' + count + '</span>';
         html += '</div><div class="pj-actions">';
         
@@ -214,15 +230,21 @@ function renderPersonajes(characters, castings, enabled) {
         } else {
             for (var j = 0; j < posts.length; j++) {
                 var p = posts[j];
-                html += '<div class="pj-person">';
-                html += '<span class="pj-person-name">' + fmtNombre(p.nombre) + ' ' + escHtml(p.apellido).toUpperCase() + '</span><span>';
-                if (isAdmin && p.telefono) {
-                    html += '<a href="tel:' + escAttr(p.telefono) + '" class="pj-person-phone">📞 ' + escHtml(p.telefono) + '</a> ';
-                }
+                html += '<div class="pj-person" data-person-id="' + p.id + '">';
                 if (isAdmin) {
+                    html += '<span class="pj-person-name pj-editable" data-edit-type="casting" data-id="' + p.id + '" data-field="nombre" title="Doble-click para editar">' + fmtNombre(p.nombre) + '</span>';
+                    html += ' <span class="pj-person-apellido pj-editable" data-edit-type="casting" data-id="' + p.id + '" data-field="apellido" title="Doble-click para editar">' + escHtml(p.apellido).toUpperCase() + '</span>';
+                    html += '<span class="pj-person-actions">';
+                    if (p.telefono) {
+                        html += '<span class="pj-person-phone pj-editable" data-edit-type="casting" data-id="' + p.id + '" data-field="telefono" title="Doble-click para editar">📞 ' + escHtml(p.telefono) + '</span> ';
+                    }
                     html += '<button class="pj-person-del" onclick="deleteSignup(' + p.id + ')" title="Eliminar">🗑</button>';
+                    html += '</span>';
+                } else {
+                    html += '<span class="pj-person-name">' + fmtNombre(p.nombre) + '</span>';
+                    html += ' <span class="pj-person-apellido">' + escHtml(p.apellido).toUpperCase() + '</span>';
                 }
-                html += '</span></div>';
+                html += '</div>';
             }
         }
         html += '</div></div>';
@@ -230,11 +252,61 @@ function renderPersonajes(characters, castings, enabled) {
     
     if (!html) html = '<div class="pj-empty">No hay personajes disponibles aún.</div>';
     document.getElementById('pj-container').innerHTML = html;
+    
+    // Activar doble-click para edición en modo Director
+    if (isAdmin) {
+        document.querySelectorAll('.pj-editable').forEach(function(el) {
+            el.style.cursor = 'pointer';
+            el.addEventListener('dblclick', function(e) {
+                e.stopPropagation();
+                startInlineEdit(el);
+            });
+        });
+    }
 }
 
 function escHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 function escAttr(s) { return s.replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
 function fmtNombre(s) { return escHtml(s).replace(/\b\w/g, function(c) { return c.toUpperCase(); }); }
+
+function startInlineEdit(el) {
+    if (el.querySelector('input')) return;
+    var raw = el.textContent.replace(/^[\s—📞]+/, '').trim();
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.value = raw;
+    input.className = 'pj-inline-input';
+    el.textContent = '';
+    el.appendChild(input);
+    input.focus();
+    input.select();
+    
+    function save() {
+        var val = input.value.trim();
+        if (!val || val === raw) { loadData(); return; }
+        var editType = el.dataset.editType;
+        var fd = new URLSearchParams();
+        fd.append('key', 'VCBY2026');
+        fd.append('value', val);
+        fd.append('field', el.dataset.field);
+        if (editType === 'character') {
+            fd.append('action', 'update_character');
+            fd.append('idp', el.dataset.idp);
+        } else {
+            fd.append('action', 'update_casting');
+            fd.append('id', el.dataset.id);
+        }
+        fetch('api.php', { method: 'POST', body: fd })
+            .then(function(r) { return r.json(); })
+            .then(function(d) { if (d.ok) loadData(); else alert(d.msg); })
+            .catch(function() { loadData(); });
+    }
+    input.addEventListener('blur', save);
+    input.addEventListener('keydown', function(ev) {
+        if (ev.key === 'Enter') { ev.preventDefault(); input.blur(); }
+        if (ev.key === 'Escape') { loadData(); }
+    });
+}
 
 function openSignup(idp, name) {
     document.getElementById('s-idp').value = idp;

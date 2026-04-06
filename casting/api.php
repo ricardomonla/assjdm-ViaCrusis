@@ -113,6 +113,36 @@ try {
             toggleCastingEnabled($idp, $enabled);
             echo json_encode(['ok' => true, 'msg' => $enabled ? 'Habilitado' : 'Deshabilitado']);
             
+        } elseif ($action === 'update_character') {
+            if (!checkKey()) {
+                echo json_encode(['ok' => false, 'msg' => 'No autorizado.']);
+                exit;
+            }
+            $idp = trim($_POST['idp'] ?? '');
+            $field = trim($_POST['field'] ?? '');
+            $value = trim($_POST['value'] ?? '');
+            if (!$idp || !$field) {
+                echo json_encode(['ok' => false, 'msg' => 'Datos incompletos.']);
+                exit;
+            }
+            updateCharacterMeta($idp, $field, $value);
+            echo json_encode(['ok' => true, 'msg' => 'Personaje actualizado.']);
+            
+        } elseif ($action === 'update_casting') {
+            if (!checkKey()) {
+                echo json_encode(['ok' => false, 'msg' => 'No autorizado.']);
+                exit;
+            }
+            $id = intval($_POST['id'] ?? 0);
+            $field = trim($_POST['field'] ?? '');
+            $value = trim($_POST['value'] ?? '');
+            if (!$id || !$field) {
+                echo json_encode(['ok' => false, 'msg' => 'Datos incompletos.']);
+                exit;
+            }
+            updateCasting($id, $field, $value);
+            echo json_encode(['ok' => true, 'msg' => 'Datos actualizados.']);
+            
         } else {
             echo json_encode(['ok' => false, 'msg' => 'Acción desconocida.']);
         }
