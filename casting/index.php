@@ -50,7 +50,7 @@ try {
             padding: 2px 5px; border-radius: 4px; font-weight: bold;
         }
         .pj-name { font-weight: bold; font-variant: small-caps; font-size: 1em; color: #2d2418; }
-        .pj-synopsis { font-size: 0.75em; color: #a09080; font-style: italic; margin-left: 2px; }
+        .pj-synopsis { font-size: 0.85em; color: #6b5d4f; font-style: italic; margin-left: 2px; }
         .pj-count { font-size: 0.7em; color: #b0a693; background: rgba(0,0,0,0.04); padding: 2px 6px; border-radius: 8px; }
         .pj-actions { display: flex; gap: 6px; align-items: center; }
         .pj-btn-add {
@@ -215,7 +215,7 @@ function renderPersonajes(characters, castings, enabled) {
             for (var j = 0; j < posts.length; j++) {
                 var p = posts[j];
                 html += '<div class="pj-person">';
-                html += '<span class="pj-person-name">' + escHtml(p.nombre + ' ' + p.apellido) + '</span><span>';
+                html += '<span class="pj-person-name">' + fmtNombre(p.nombre) + ' ' + escHtml(p.apellido).toUpperCase() + '</span><span>';
                 if (isAdmin && p.telefono) {
                     html += '<a href="tel:' + escAttr(p.telefono) + '" class="pj-person-phone">📞 ' + escHtml(p.telefono) + '</a> ';
                 }
@@ -234,6 +234,7 @@ function renderPersonajes(characters, castings, enabled) {
 
 function escHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 function escAttr(s) { return s.replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
+function fmtNombre(s) { return escHtml(s).replace(/\b\w/g, function(c) { return c.toUpperCase(); }); }
 
 function openSignup(idp, name) {
     document.getElementById('s-idp').value = idp;

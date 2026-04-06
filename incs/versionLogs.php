@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.8.28' => [
+        'date' => '2026-04-05',
+        'changes' => [
+            'Nombres de postulados: nombre en Title Case, apellido en MAYÚSCULAS.',
+            'Synopsis de personajes más visible: fuente más grande y color más oscuro.',
+        ]
+    ],
     '26.8.27' => [
         'date' => '2026-04-05',
         'changes' => [
