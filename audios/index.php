@@ -55,6 +55,13 @@ include '../incs/header.php';
             <span class="personajes-text">Personajes</span>
             <span class="personajes-arrow">›</span>
         </a>
+
+        <!-- Link a Videos -->
+        <a href="../videos/" class="personajes-link" style="margin-top: 10px;">
+            <span class="personajes-icon">🎬</span>
+            <span class="personajes-text">Videos YouTube</span>
+            <span class="personajes-arrow">›</span>
+        </a>
     </section>
 </main>
 
