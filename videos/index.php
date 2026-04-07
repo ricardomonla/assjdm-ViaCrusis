@@ -16,6 +16,11 @@
   <!-- Barra fija de controles -->
   <div class="controls-bar">
     <div class="controls-container">
+      <!-- Botón volver a audios -->
+      <a href="../audios/" class="btn-back-audios" title="Volver a Audios">
+        🔙 Audios
+      </a>
+
       <!-- Botones de grupos -->
       <div class="group-buttons">
         <button class="group-btn" data-grupo="0XX" title="Intro / Previa">🎬 0XX</button>
