@@ -1,5 +1,14 @@
 <?php
 $versionLogs = [
+    '26.10.1' => [
+        'date' => '2026-04-10',
+        'changes' => [
+            'PLAN 10 COMPLETADO: Unificación de datos usando Base de Datos SQLite como SSOT dinámico.',
+            'Nuevas tablas scene_groups y scenes integradas en data/db.php con script de siembra automático.',
+            'El visor de videos y sus selectores ahora se construyen al 100% interactuando con SQLite (eliminado JS hardcodeado).',
+            'La aplicación es ahora dinámicamente actualizable desde los endpoints para las metadata del VíaCrucis.'
+        ]
+    ],
     '26.9.2' => [
         'date' => '2026-04-10',
         'changes' => [

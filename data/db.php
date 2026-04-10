@@ -65,6 +65,27 @@ function createSchema($db) {
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         );
         CREATE INDEX IF NOT EXISTS idx_casting_idp ON casting(idp);
+
+        CREATE TABLE IF NOT EXISTS scene_groups (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL,
+            icon TEXT,
+            order_index INTEGER DEFAULT 0
+        );
+
+        CREATE TABLE IF NOT EXISTS scenes (
+            id TEXT PRIMARY KEY,
+            group_id TEXT NOT NULL,
+            order_index INTEGER DEFAULT 0,
+            version TEXT DEFAULT '',
+            title TEXT NOT NULL,
+            display_name TEXT DEFAULT '',
+            filename_audio TEXT DEFAULT '',
+            youtube_video_id TEXT DEFAULT '',
+            youtube_timestamp INTEGER DEFAULT 0,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (group_id) REFERENCES scene_groups(id)
+        );
     ");
 }
 
@@ -93,6 +114,27 @@ function ensureSchema() {
             name TEXT DEFAULT '',
             synopsis TEXT DEFAULT '',
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+
+        CREATE TABLE IF NOT EXISTS scene_groups (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL,
+            icon TEXT,
+            order_index INTEGER DEFAULT 0
+        );
+
+        CREATE TABLE IF NOT EXISTS scenes (
+            id TEXT PRIMARY KEY,
+            group_id TEXT NOT NULL,
+            order_index INTEGER DEFAULT 0,
+            version TEXT DEFAULT '',
+            title TEXT NOT NULL,
+            display_name TEXT DEFAULT '',
+            filename_audio TEXT DEFAULT '',
+            youtube_video_id TEXT DEFAULT '',
+            youtube_timestamp INTEGER DEFAULT 0,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (group_id) REFERENCES scene_groups(id)
         );
     ");
 }
@@ -487,4 +529,57 @@ function deleteBatchCues($trackId, $cueIndices) {
         $db->rollBack();
         throw $e;
     }
+}
+
+/**
+ * Obtener la estructura SSOT agrupada desde la base de datos (reemplaza a getMediaGroupsStructure)
+ */
+function getScenesGrouped() {
+    $db = getDB();
+    ensureSchema();
+
+    $stmt = $db->query("SELECT id, name, icon, order_index FROM scene_groups ORDER BY order_index ASC");
+    $groups = $stmt->fetchAll();
+
+    if (empty($groups)) {
+        // Fallback: Si no hay grupos, ejecutar la migración al vuelo para no romper producción
+        require_once dirname(__DIR__) . '/tools/migrate_scenes_to_db.php';
+        run_ssot_migration();
+        $stmt = $db->query("SELECT id, name, icon, order_index FROM scene_groups ORDER BY order_index ASC");
+        $groups = $stmt->fetchAll();
+    }
+
+    $result = [];
+    foreach ($groups as $group) {
+        $gid = $group['id'];
+        $cleanId = (string)$group['order_index'];
+        
+        $result[$cleanId] = [
+            'group_id' => $gid,
+            'name' => $group['name'],
+            'icon' => $group['icon'],
+            'audios' => []
+        ];
+
+        // Obtener escenas de este grupo
+        $stmt2 = $db->prepare("SELECT * FROM scenes WHERE group_id = ? ORDER BY order_index ASC");
+        $stmt2->execute([$gid]);
+        $scenes = $stmt2->fetchAll();
+
+        foreach ($scenes as $scene) {
+            $result[$cleanId]['audios'][] = [
+                'id' => $scene['id'] . '_v' . $scene['version'], // para retrocompatibilidad play.php?id=101_v2503
+                'scene_id' => $scene['id'],
+                'order' => $scene['id'],
+                'version' => $scene['version'],
+                'title' => $scene['title'],
+                'display_name' => $scene['display_name'],
+                'filename' => $scene['filename_audio'],
+                'youtube_video_id' => $scene['youtube_video_id'],
+                'youtube_timestamp' => (int) $scene['youtube_timestamp']
+            ];
+        }
+    }
+
+    return $result;
 }

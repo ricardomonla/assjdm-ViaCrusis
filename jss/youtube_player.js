@@ -10,6 +10,23 @@
   let currentVideoId = null;
   let grupoActivo = null;
 
+  // Aplanar la base de datos inyectada al formato legacy esperado
+  let ESCENAS_YOUTUBE = [];
+  if (typeof window.VCBY_SCENES_DB !== 'undefined') {
+    window.VCBY_SCENES_DB.forEach(group => {
+      group.audios.forEach(audio => {
+        if (audio.youtube_video_id) {
+            ESCENAS_YOUTUBE.push({
+                id: String(audio.scene_id),
+                nombre: audio.title,
+                videoId: audio.youtube_video_id,
+                timestamp: audio.youtube_timestamp
+            });
+        }
+      });
+    });
+  }
+
   /**
    * Inicializa el reproductor de YouTube
    */

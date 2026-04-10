@@ -4,6 +4,8 @@
  * Permite seleccionar escenas y navegar al minuto exacto en YouTube
  */
 require_once '../incs/versionLogs.php';
+require_once '../data/db.php';
+$escenas_db = getScenesGrouped();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,10 +28,11 @@ require_once '../incs/versionLogs.php';
       <div class="select-wrapper">
         <select id="selector-grupos">
           <option value="">-- Selecciona un grupo --</option>
-          <option value="0XX">🎭 Desfile</option>
-          <option value="1XX">⛪ La Pasión</option>
-          <option value="2XX">✝️ Calvario</option>
-          <option value="3XX">🕊️ Crucifixión</option>
+          <?php foreach ($escenas_db as $group): ?>
+            <option value="<?= htmlspecialchars($group['group_id']) ?>">
+                <?= htmlspecialchars($group['icon'] . ' ' . $group['name']) ?>
+            </option>
+          <?php endforeach; ?>
         </select>
       </div>
 
@@ -53,9 +56,13 @@ require_once '../incs/versionLogs.php';
     </div>
   </div>
 
-  <!-- Configuración de escenas -->
-  <script src="../jss/youtube_config.js"></script>
+  <!-- Configuración de escenas Inyectada Dinámicamente desde SQLite -->
+  <script>
+    window.VCBY_SCENES_DB = <?= json_encode(array_values($escenas_db), JSON_UNESCAPED_UNICODE) ?>;
+  </script>
+  <!-- <script src="../jss/youtube_config.js"></script> YA NO SE USA -->
+  
   <!-- Reproductor de YouTube -->
-  <script src="../jss/youtube_player.js"></script>
+  <script src="../jss/youtube_player.js?v=<?= urlencode($latestVersion ?? '1.0') ?>"></script>
 </body>
 </html>

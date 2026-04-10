@@ -10,7 +10,8 @@ function getBaseURL() {
 
 function getAudioFiles($dirMEDIA = 'media') {
     $files = [];
-    $groups = getMediaGroupsStructure();
+    require_once dirname(__DIR__) . '/data/db.php';
+    $groups = getScenesGrouped();
     
     foreach ($groups as $group) {
         foreach ($group['audios'] as $audio) {
@@ -24,7 +25,7 @@ function getAudioFiles($dirMEDIA = 'media') {
 
 function getAudioById($id, $audioFiles) {
     foreach ($audioFiles as $audio) {
-        if ($audio['id'] == $id) {
+        if ($audio['id'] == $id || $audio['scene_id'] == $id) {
             return $audio;
         }
     }
@@ -32,6 +33,6 @@ function getAudioById($id, $audioFiles) {
 }
 
 function getAudioGroups($audioFiles = null) {
-    // La estructura base ahora trae los audios predefinidos
-    return getMediaGroupsStructure();
+    require_once dirname(__DIR__) . '/data/db.php';
+    return getScenesGrouped();
 }
