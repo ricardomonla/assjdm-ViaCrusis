@@ -21,12 +21,15 @@
         🔙 Audios
       </a>
 
-      <!-- Botones de grupos -->
-      <div class="group-buttons">
-        <button class="group-btn" data-grupo="0XX" title="Intro / Previa">🎬 0XX</button>
-        <button class="group-btn" data-grupo="1XX" title="Primera Parte">✝️ 1XX</button>
-        <button class="group-btn" data-grupo="2XX" title="Segunda Parte">🙏 2XX</button>
-        <button class="group-btn" data-grupo="3XX" title="Tercera Parte">🕊️ 3XX</button>
+      <!-- Selector de Grupos -->
+      <div class="select-wrapper">
+        <select id="selector-grupos">
+          <option value="">-- Selecciona un grupo --</option>
+          <option value="0XX">🎭 Desfile</option>
+          <option value="1XX">⛪ La Pasión</option>
+          <option value="2XX">✝️ Calvario</option>
+          <option value="3XX">🕊️ Crucifixión</option>
+        </select>
       </div>
 
       <!-- Selector de escenas -->

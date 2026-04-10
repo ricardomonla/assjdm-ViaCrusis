@@ -95,7 +95,7 @@ body {
   max-width: 400px;
 }
 
-#selector-escenas {
+#selector-escenas, #selector-grupos {
   width: 100%;
   padding: 12px 15px;
   font-size: 1rem;
@@ -107,13 +107,13 @@ body {
   transition: all 0.2s ease;
 }
 
-#selector-escenas:focus {
+#selector-escenas:focus, #selector-grupos:focus {
   outline: none;
   border-color: #f0e68c;
   box-shadow: 0 0 10px rgba(240, 230, 140, 0.3);
 }
 
-#selector-escenas option {
+#selector-escenas option, #selector-grupos option {
   padding: 8px;
   background: #1a1a2e;
   color: #fff;
@@ -185,7 +185,7 @@ body {
     max-width: none;
   }
 
-  #selector-escenas {
+  #selector-escenas, #selector-grupos {
     font-size: 0.95rem;
     padding: 10px;
   }

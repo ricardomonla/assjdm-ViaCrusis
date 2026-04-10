@@ -43,8 +43,8 @@
       }
     });
 
-    // Configurar botones de grupos
-    setupGroupButtons();
+    // Configurar selector de grupos
+    setupGroupSelector();
 
     // Cargar escena desde hash si existe
     loadSceneFromHash();
@@ -70,23 +70,15 @@
   }
 
   /**
-   * Configura los botones de grupos
+   * Configura el selector de grupos
    */
-  function setupGroupButtons() {
-    const buttons = document.querySelectorAll('.group-btn');
+  function setupGroupSelector() {
+    const selector = document.getElementById('selector-grupos');
+    if (!selector) return;
 
-    buttons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        // Remover clase active de todos
-        buttons.forEach(b => b.classList.remove('active'));
-
-        // Activar este botón
-        this.classList.add('active');
-
-        // Cargar escenas de este grupo
-        grupoActivo = this.dataset.grupo;
-        populateSceneSelector(grupoActivo);
-      });
+    selector.addEventListener('change', function() {
+      grupoActivo = this.value;
+      populateSceneSelector(grupoActivo);
     });
   }
 
@@ -180,20 +172,20 @@
     // Actualizar URL con hash para compartir
     window.location.hash = 'escena-' + escenaId;
 
-    // Activar botón del grupo correspondiente
-    activateGroupButton(getGrupoFromId(escenaId));
+    // Seleccionar grupo correspondiente en el dropdown
+    activateGroupSelector(getGrupoFromId(escenaId));
 
     console.log('Cargada escena', escenaId, 'en', escena.timestamp + 's');
   }
 
   /**
-   * Activa el botón del grupo especificado
+   * Activa el grupo en el selector
    */
-  function activateGroupButton(grupo) {
-    const buttons = document.querySelectorAll('.group-btn');
-    buttons.forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.grupo === grupo);
-    });
+  function activateGroupSelector(grupo) {
+    const selector = document.getElementById('selector-grupos');
+    if (selector) {
+      selector.value = grupo;
+    }
   }
 
   /**
@@ -237,7 +229,7 @@
       if (escena) {
         // Activar el grupo correspondiente primero
         const grupo = getGrupoFromId(escenaId);
-        activateGroupButton(grupo);
+        activateGroupSelector(grupo);
         populateSceneSelector(grupo);
 
         // Esperar a que el player esté listo y cargar
