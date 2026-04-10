@@ -3,6 +3,7 @@
  * Visor de Videos - VíaCrucis 2025
  * Permite seleccionar escenas y navegar al minuto exacto en YouTube
  */
+require_once '../incs/versionLogs.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Videos VíaCrucis 2025</title>
-  <link rel="stylesheet" href="../css/videos.css">
+  <link rel="stylesheet" href="../css/videos.css?v=<?= urlencode($latestVersion ?? '1.0') ?>">
 </head>
 <body>
   <!-- Barra fija de controles -->
