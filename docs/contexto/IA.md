@@ -5,7 +5,7 @@
 ## Descripción
 **Proyecto**: Sistema de Audios Vía Crucis del Barrio Yacampiz (VCBY)
 **Año**: 2026
-**Versión Actual**: `26.8.24`
+**Versión Actual**: `26.9.1`
 Aplicación web PHP para la gestión y reproducción de audios del Via Crucis del Barrio Yacampiz (2026). Permite listar, reproducir y compartir por WhatsApp los tracks de audio de la representación. Desplegada en un servidor NGINX propio con HTTPS.
 
 ## URL Pública
@@ -79,7 +79,11 @@ assjdm-ViaCrusis/
 │   ├── js.js          # JavaScript (autoplay, navegación)
 │   ├── karaoke.js     # Motor de karaoke (subtítulos sincronizados + Director tools)
 │   ├── modal.js       # Sistema de modales inline (vcbyAlert, vcbyPrompt, vcbyInsertCue)
-│   └── perfiles.js    # Gestión de perfiles Público/Director (localStorage + TTL)
+│   ├── perfiles.js    # Gestión de perfiles Público/Director (localStorage + TTL)
+│   ├── youtube_config.js # Configuración del reproductor de YouTube
+│   └── youtube_player.js # Lógica del visor de videos de YouTube
+├── videos/            # Módulo de Reproducción de Videos (Plan 09)
+│   └── index.php      # Visor HTML de iframe de YouTube
 ├── tools/             # Scripts de mantenimiento e IA
 │   ├── migrate_to_sqlite.php
 │   ├── export_sqlite_to_json.php
@@ -131,10 +135,10 @@ assjdm-ViaCrusis/
 
 ## Versión Actual
 
-- **Versión:** `26.8.24`
+- **Versión:** `26.9.1`
 - **Ambiente:** Desarrollo Local sincronizado con Producción (`srv-pmox3`)
 - **Estado:** Fases 4-9 completadas. Fase 1-2 pendientes de auditoría manual.
-- **Plan activo:** 👉 `docs/plan/08_plan-de-pulido.md`
+- **Plan activo:** 👉 `docs/plan/09_visores-youtube-escenas.md` (Completado)
 
 ## Pendientes Globales
 
@@ -142,7 +146,8 @@ assjdm-ViaCrusis/
 - [x] Consistencia visual → Plan 02 ✅
 - [x] Mover Sitio a `/audios/` → Plan 05 ✅
 - [x] Entorno Android Offline → Plan 07 ✅
-- [ ] Pulido Fino Escénico → Plan 08 ⏳ (85%)
+- [x] Pulido Fino Escénico → Plan 08 ✅
+- [x] Visores YouTube → Plan 09 ✅
 - [ ] Seguridad: fail2ban + headers NGINX
 - [ ] Backup: vzdump automático del LXC
 

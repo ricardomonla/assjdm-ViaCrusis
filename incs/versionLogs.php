@@ -1,5 +1,20 @@
 <?php
 $versionLogs = [
+    '26.9.2' => [
+        'date' => '2026-04-10',
+        'changes' => [
+            'Fix YouTube Player: Carga de video predeterminada al ingresar sin URL limpia, evitando estado en blanco.',
+        ]
+    ],
+    '26.9.1' => [
+        'date' => '2026-04-10',
+        'changes' => [
+            'NUEVO MÓDULO: Visor de Videos de YouTube integrado al proyecto (/videos/).',
+            'Configuración centralizada de escenas y tiempos en youtube_config.js.',
+            'Reproductor sincronizado para salto automático por escena (youtube_player.js).',
+            'Agregado enlace de acceso a la botonera principal de la aplicación.',
+        ]
+    ],
     '26.8.29' => [
         'date' => '2026-04-05',
         'changes' => [

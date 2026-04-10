@@ -57,7 +57,7 @@ Ejemplo: `https://www.youtube.com/embed/dQw4w9WgXcQ?start=120`
 - [x] Crear `jss/youtube_config.js` con el mapeo
 - [x] Crear `videos/index.php` con la estructura HTML
 - [x] Crear `jss/youtube_player.js` con la lógica del player
-- [ ] Integrar en navegación principal (agregar enlace "Videos")
+- [x] Integrar en navegación principal (agregar enlace "Videos")
 
 ## URLs de YouTube
 

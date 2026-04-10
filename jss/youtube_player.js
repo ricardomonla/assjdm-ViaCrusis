@@ -31,7 +31,7 @@
     player = new YT.Player('youtube-player', {
       height: '100%',
       width: '100%',
-      videoId: '',
+      videoId: typeof ESCENAS_YOUTUBE !== 'undefined' && ESCENAS_YOUTUBE.length > 0 ? ESCENAS_YOUTUBE[0].videoId : '',
       playerVars: {
         'playsinline': 1,
         'rel': 0,
@@ -46,8 +46,8 @@
     // Configurar botones de grupos
     setupGroupButtons();
 
-    // Cargar escena desde hash si existe
-    loadSceneFromHash();
+    // Cargar escena desde hash si existe o por defecto inicial
+    loadSceneFromHashOrDefault();
   };
 
   /**
@@ -216,9 +216,9 @@
   }
 
   /**
-   * Carga escena desde URL hash (para compartir enlaces)
+   * Carga escena desde URL hash (para compartir enlaces) o inicializa
    */
-  function loadSceneFromHash() {
+  function loadSceneFromHashOrDefault() {
     const hash = window.location.hash;
     if (hash && hash.startsWith('#escena-')) {
       const escenaId = hash.substring(8);
@@ -232,7 +232,23 @@
 
         // Esperar a que el player esté listo y cargar
         setTimeout(() => loadScene(escenaId), 500);
+        return;
       }
+    }
+
+    // Configuración por defecto: primer grupo y video pre-cargado
+    if (typeof ESCENAS_YOUTUBE !== 'undefined' && ESCENAS_YOUTUBE.length > 0) {
+      const primeraEscena = ESCENAS_YOUTUBE[0];
+      const grupo = getGrupoFromId(primeraEscena.id);
+      activateGroupButton(grupo);
+      populateSceneSelector(grupo);
+      
+      setTimeout(() => {
+        const selector = document.getElementById('selector-escenas');
+        if (selector) selector.value = primeraEscena.id;
+      }, 100);
+      
+      currentVideoId = primeraEscena.videoId;
     }
   }
 
