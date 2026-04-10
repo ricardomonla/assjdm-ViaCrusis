@@ -31,7 +31,7 @@ const ESCENAS_YOUTUBE = [
   // === GRUPO 2XX - Segunda Parte ===
   // Video: https://youtu.be/GPZE-uxt0LQ
   { id: "201", nombre: "Primera Caída", videoId: "GPZE-uxt0LQ", timestamp: 0 },
-  { id: "202", nombre: "Encuentro con la Virgen", videoId: "GPZE-uxt0LQ", timestamp: 548 },
+  { id: "202", nombre: "Encuentro con la Virgen", videoId: "GPZE-uxt0LQ", timestamp: 546 },
   { id: "203", nombre: "Encuentro con Verónica", videoId: "GPZE-uxt0LQ", timestamp: 885 },
   { id: "204", nombre: "Segunda Caída", videoId: "GPZE-uxt0LQ", timestamp: 1267 },
   { id: "205", nombre: "Encuentro con las Mujeres de Jerusalén", videoId: "GPZE-uxt0LQ", timestamp: 1464 },
