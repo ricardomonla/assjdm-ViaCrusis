@@ -46,8 +46,8 @@
     // Configurar botones de grupos
     setupGroupButtons();
 
-    // Cargar escena desde hash si existe o por defecto inicial
-    loadSceneFromHashOrDefault();
+    // Cargar escena desde hash si existe
+    loadSceneFromHash();
   };
 
   /**
@@ -63,6 +63,9 @@
   function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
       updateSceneSelectorFromTime();
+      // Remover circulo de carga cuando el video comienza a reproducirse
+      const wrapper = document.getElementById('video-wrapper');
+      if (wrapper) wrapper.classList.add('loaded');
     }
   }
 
@@ -154,8 +157,15 @@
       return;
     }
 
+    // Mostrar el contenedor de video y ocultar el mensaje de bienvenida
+    const wrapper = document.getElementById('video-wrapper');
+    const welcome = document.getElementById('welcome-message');
+    if (wrapper) wrapper.style.display = 'block';
+    if (welcome) welcome.style.display = 'none';
+
     // Cambiar de video si es necesario
     if (currentVideoId !== escena.videoId) {
+      if (wrapper) wrapper.classList.remove('loaded'); // Mostrar spinner
       currentVideoId = escena.videoId;
       player.loadVideoById({
         videoId: escena.videoId,
@@ -216,9 +226,9 @@
   }
 
   /**
-   * Carga escena desde URL hash (para compartir enlaces) o inicializa
+   * Carga escena desde URL hash (para compartir enlaces)
    */
-  function loadSceneFromHashOrDefault() {
+  function loadSceneFromHash() {
     const hash = window.location.hash;
     if (hash && hash.startsWith('#escena-')) {
       const escenaId = hash.substring(8);
@@ -232,23 +242,7 @@
 
         // Esperar a que el player esté listo y cargar
         setTimeout(() => loadScene(escenaId), 500);
-        return;
       }
-    }
-
-    // Configuración por defecto: primer grupo y video pre-cargado
-    if (typeof ESCENAS_YOUTUBE !== 'undefined' && ESCENAS_YOUTUBE.length > 0) {
-      const primeraEscena = ESCENAS_YOUTUBE[0];
-      const grupo = getGrupoFromId(primeraEscena.id);
-      activateGroupButton(grupo);
-      populateSceneSelector(grupo);
-      
-      setTimeout(() => {
-        const selector = document.getElementById('selector-escenas');
-        if (selector) selector.value = primeraEscena.id;
-      }, 100);
-      
-      currentVideoId = primeraEscena.videoId;
     }
   }
 

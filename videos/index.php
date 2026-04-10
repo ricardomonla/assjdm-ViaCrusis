@@ -40,7 +40,11 @@
 
   <!-- Contenedor del video -->
   <div class="video-container">
-    <div class="video-wrapper">
+    <div id="welcome-message" style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 2px dashed rgba(240, 230, 140, 0.3);">
+      <h2 style="color: #f0e68c; margin-bottom: 15px;">🎬 Selecciona una escena</h2>
+      <p style="color: #ccc; font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">Utiliza los botones de la barra superior para elegir una parte del Via Crucis y luego selecciona la escena que deseas visualizar.</p>
+    </div>
+    <div class="video-wrapper" id="video-wrapper" style="display: none;">
       <div id="youtube-player"></div>
     </div>
   </div>
