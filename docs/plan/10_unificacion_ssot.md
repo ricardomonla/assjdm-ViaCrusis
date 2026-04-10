@@ -12,6 +12,7 @@
 ██████████████████████████████ 100% — FASE 2 (Migración de Datos)
 ██████████████████████████████ 100% — FASE 3 (Refactorización Backend)
 ██████████████████████████████ 100% — FASE 4 (Refactorización Frontend y Limpieza)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0% — FASE 5 (Pruebas de Iteración en Modo Director)
 ```
 
 | Fase | Descripción | Estado |
@@ -20,6 +21,7 @@
 | 2 | Script Híbrido de Migración (`tools/`) | ✅ Completado |
 | 3 | Refactor del Backend (PHP + API) | ✅ Completado |
 | 4 | Refactor Adaptativo del Frontend y Limpieza | ✅ Completado |
+| 5 | Interfaz y Pruebas Clínicas (Testing Tool) | 🔄 En progreso |
 
 ---
 
@@ -80,3 +82,12 @@ Crearemos un script de migración temporal PHP. El mismo leerá el array histór
 3. Modificar `data/db.php` para integrar los métodos de lectura centralizados.
 4. Conectar estas funciones PHP con `incs/functions.php`.
 5. Transformar y limpiar el frontend.
+
+---
+
+### Fase 5: Pruebas Clínicas (Testing Tool)
+Incorporada por sugerencia para asegurar un entorno productivo estable. El equipo de Dirección necesita iterar sin tocar código para probar y corregir los puntos de origen del video (`youtube_timestamp`) y corregir las URLs (`youtube_video_id`).
+- Agregar un Panel Dinámico Director (🎬) arriba del reproductor en `videos/index.php`.
+- Vincular el perfil local `vcby_perfil` = `director` para visibilidad de esta botonera.
+- Crear endpoints en `videos/api_scenes.php` que ejecuten `UPDATE scenes` al instante en SQLite y refresquen o realicen *Nudge* para comprobación de la marca.
+- Pruebas in-situ para certificar el cierre de la migración completa.
