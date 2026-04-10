@@ -78,14 +78,14 @@
 
     selector.addEventListener('change', function() {
       grupoActivo = this.value;
-      populateSceneSelector(grupoActivo);
+      populateSceneSelector(grupoActivo, true);
     });
   }
 
   /**
    * Llena el selector con las escenas del grupo seleccionado
    */
-  function populateSceneSelector(grupo) {
+  function populateSceneSelector(grupo, autoLoadFirst = false) {
     const selector = document.getElementById('selector-escenas');
     if (!selector) return;
 
@@ -100,19 +100,19 @@
       return;
     }
 
-    // Agregar opción por defecto
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.textContent = '-- Selecciona una escena --';
-    selector.appendChild(defaultOption);
-
-    // Agregar escenas
+    // Agregar escenas sin opción por defecto en blanco para forzar la primera
     escenasDelGrupo.forEach(escena => {
       const option = document.createElement('option');
       option.value = escena.id;
       option.textContent = `Escena ${escena.id} - ${escena.nombre}`;
       selector.appendChild(option);
     });
+
+    // Auto cargar la primera escena si fue gatillado por un cambio manual del usuario en el combo
+    if (autoLoadFirst && escenasDelGrupo.length > 0) {
+      selector.value = escenasDelGrupo[0].id;
+      setTimeout(() => loadScene(escenasDelGrupo[0].id), 200);
+    }
 
     // Mantener evento de cambio (solo se configura una vez)
     if (!selector.dataset.configured) {
@@ -227,12 +227,13 @@
       const escena = ESCENAS_YOUTUBE.find(e => e.id === escenaId);
 
       if (escena) {
-        // Activar el grupo correspondiente primero
+        // Activar el grupo correspondiente primero, pero evitar autoloader porque la ruta hash manda
         const grupo = getGrupoFromId(escenaId);
         activateGroupSelector(grupo);
-        populateSceneSelector(grupo);
+        populateSceneSelector(grupo, false);
 
         // Esperar a que el player esté listo y cargar
+
         setTimeout(() => loadScene(escenaId), 500);
       }
     }
