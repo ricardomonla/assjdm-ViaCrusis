@@ -136,12 +136,13 @@ body {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-.video-wrapper #youtube-player {
-  position: absolute;
+.video-wrapper #youtube-player,
+.video-wrapper iframe {
+  position: absolute !important;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* ===== INFO DE ESCENA ===== */
