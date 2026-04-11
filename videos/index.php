@@ -63,12 +63,14 @@ $escenas_db = getScenesGrouped();
         </div>
     </div>
 
-    <div id="welcome-message" style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 2px dashed rgba(240, 230, 140, 0.3);">
-      <h2 style="color: #f0e68c; margin-bottom: 15px;">🎬 Selecciona una escena</h2>
-      <p style="color: #ccc; font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">Utiliza los botones de la barra superior para elegir una parte del Via Crucis y luego selecciona la escena que deseas visualizar.</p>
-    </div>
-    <div class="video-wrapper" id="video-wrapper" style="display: none;">
-      <div id="youtube-player"></div>
+    <div style="position: relative;">
+      <div id="welcome-message" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 12px; border: 2px dashed rgba(240, 230, 140, 0.3);">
+        <h2 style="color: #f0e68c; margin-bottom: 15px;">🎬 Selecciona una escena</h2>
+        <p style="color: #ccc; font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">Utiliza los botones de la barra superior para elegir una parte del Via Crucis y luego selecciona la escena que deseas visualizar.</p>
+      </div>
+      <div class="video-wrapper" id="video-wrapper">
+        <div id="youtube-player"></div>
+      </div>
     </div>
   </div>
 

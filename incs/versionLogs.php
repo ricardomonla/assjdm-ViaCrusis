@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.10.8' => [
+        'date' => '2026-04-11',
+        'changes' => [
+            'Fix: Video wrapper ya no usa display:none (causa bug de YouTube IFrame API con dimensiones 0x0). Ahora el welcome-message es un overlay absoluto sobre el video siempre visible.'
+        ]
+    ],
     '26.10.7' => [
         'date' => '2026-04-11',
         'changes' => [

@@ -169,14 +169,13 @@
       return;
     }
 
-    // Mostrar el contenedor de video y ocultar el mensaje de bienvenida
-    const wrapper = document.getElementById('video-wrapper');
+    // Ocultar el mensaje de bienvenida (overlay) para revelar el video debajo
     const welcome = document.getElementById('welcome-message');
-    if (wrapper) wrapper.style.display = 'block';
     if (welcome) welcome.style.display = 'none';
 
     // Cambiar de video si es necesario
     if (currentVideoId !== escena.videoId) {
+      const wrapper = document.getElementById('video-wrapper');
       if (wrapper) wrapper.classList.remove('loaded'); // Mostrar spinner
       currentVideoId = escena.videoId;
       player.loadVideoById({
