@@ -7,8 +7,10 @@
   'use strict';
 
   let player = null;
+  let playerReady = false;
   let currentVideoId = null;
   let grupoActivo = null;
+  let pendingScene = null; // escena esperando a que el player esté listo
 
   // Aplanar la base de datos inyectada al formato legacy esperado
   let ESCENAS_YOUTUBE = [];
@@ -27,11 +29,18 @@
     });
   }
 
+  // Exponer globalmente para el Director inline
+  window.ESCENAS_YOUTUBE = ESCENAS_YOUTUBE;
+
   /**
-   * Inicializa el reproductor de YouTube
+   * Carga la API de YouTube (solo el script, no crea el player todavía)
    */
-  function initPlayer() {
-    // Cargar API de YouTube
+  let apiLoaded = false;
+  let apiReady = false;
+
+  function loadYouTubeAPI() {
+    if (apiLoaded) return;
+    apiLoaded = true;
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -42,23 +51,8 @@
    * Callback llamado por la API de YouTube cuando está lista
    */
   window.onYouTubeIframeAPIReady = function() {
-    const playerContainer = document.getElementById('youtube-player');
-    if (!playerContainer) return;
-
-    player = new YT.Player('youtube-player', {
-      height: '100%',
-      width: '100%',
-      videoId: typeof ESCENAS_YOUTUBE !== 'undefined' && ESCENAS_YOUTUBE.length > 0 ? ESCENAS_YOUTUBE[0].videoId : '',
-      playerVars: {
-        'playsinline': 1,
-        'rel': 0,
-        'modestbranding': 1
-      },
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
+    apiReady = true;
+    console.log('YouTube API lista');
 
     // Configurar selector de grupos
     setupGroupSelector();
@@ -68,10 +62,54 @@
   };
 
   /**
+   * Crea el reproductor de YouTube sobre el div visible
+   */
+  function createPlayer(videoId, startSeconds) {
+    if (player) {
+      // Player ya existe, usarlo directamente
+      if (currentVideoId !== videoId) {
+        currentVideoId = videoId;
+        player.loadVideoById({ videoId: videoId, startSeconds: startSeconds });
+      } else {
+        player.seekTo(startSeconds, true);
+        player.playVideo();
+      }
+      return;
+    }
+
+    currentVideoId = videoId;
+    pendingScene = { videoId, startSeconds };
+
+    player = new YT.Player('youtube-player', {
+      height: '100%',
+      width: '100%',
+      videoId: videoId,
+      playerVars: {
+        'playsinline': 1,
+        'rel': 0,
+        'modestbranding': 1,
+        'start': startSeconds
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  /**
    * Cuando el reproductor está listo
    */
   function onPlayerReady(event) {
+    playerReady = true;
     console.log('Reproductor listo');
+
+    // Si hay una escena pendiente, cargarla
+    if (pendingScene) {
+      event.target.seekTo(pendingScene.startSeconds, true);
+      event.target.playVideo();
+      pendingScene = null;
+    }
   }
 
   /**
@@ -161,30 +199,22 @@
       return;
     }
 
-    if (!player || !player.loadVideoById) {
-      console.error('Reproductor no listo');
-      return;
-    }
-
     // Mostrar el contenedor de video y ocultar el mensaje de bienvenida
     const wrapper = document.getElementById('video-wrapper');
     const welcome = document.getElementById('welcome-message');
-    if (wrapper) wrapper.style.display = 'block';
+    if (wrapper) {
+      wrapper.style.display = 'block';
+      wrapper.classList.remove('loaded'); // Mostrar spinner
+    }
     if (welcome) welcome.style.display = 'none';
 
-    // Cambiar de video si es necesario
-    if (currentVideoId !== escena.videoId) {
-      if (wrapper) wrapper.classList.remove('loaded'); // Mostrar spinner
-      currentVideoId = escena.videoId;
-      player.loadVideoById({
-        videoId: escena.videoId,
-        startSeconds: escena.timestamp
-      });
-    } else {
-      // Mismo video, solo saltar al timestamp
-      player.seekTo(escena.timestamp, true);
-      player.playVideo();
+    if (!apiReady) {
+      console.error('API de YouTube no está lista todavía');
+      return;
     }
+
+    // Crear o reutilizar el player
+    createPlayer(escena.videoId, escena.timestamp);
 
     // Actualizar URL con hash para compartir
     window.location.hash = 'escena-' + escenaId;
@@ -209,7 +239,7 @@
    * Actualiza el selector basado en el tiempo actual del video
    */
   function updateSceneSelectorFromTime() {
-    if (!player || !player.getCurrentTime) return;
+    if (!player || !playerReady || !player.getCurrentTime) return;
 
     const currentTime = player.getCurrentTime();
     const currentVideo = player.getVideoData().video_id;
@@ -256,14 +286,15 @@
     }
   }
 
-  // Inicializar cuando el DOM esté listo
+  // Inicializar cuando el DOM esté listo (solo carga API, no crea player)
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPlayer);
+    document.addEventListener('DOMContentLoaded', loadYouTubeAPI);
   } else {
-    initPlayer();
+    loadYouTubeAPI();
   }
 
-  // Exponer función global para carga manual
+  // Exponer funciones globales para el Director y carga manual
   window.loadScene = loadScene;
+  window.vcbyGetPlayer = function() { return player; };
 
 })();

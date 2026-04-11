@@ -107,7 +107,7 @@ $escenas_db = getScenesGrouped();
                 if(data.success) {
                     document.getElementById('save-status').innerText = '✅ Guardado';
                     // Actualizar en el array global
-                    const target = ESCENAS_YOUTUBE.find(x => x.id === sceneId);
+                    const target = window.ESCENAS_YOUTUBE.find(x => x.id === sceneId);
                     if (target) {
                         target.videoId = videoid;
                         target.timestamp = parseInt(ts);
@@ -122,28 +122,30 @@ $escenas_db = getScenesGrouped();
         },
         setStamp: function() {
             const sceneId = this.getActScene();
-            if(!sceneId || typeof player === 'undefined' || !player.getCurrentTime) return vcbyAlert('No hay escena o player listo.', 'error');
-            const target = ESCENAS_YOUTUBE.find(x => x.id === sceneId);
+            const p = window.vcbyGetPlayer ? window.vcbyGetPlayer() : null;
+            if(!sceneId || !p || !p.getCurrentTime) return vcbyAlert('No hay escena o player listo.', 'error');
+            const target = window.ESCENAS_YOUTUBE.find(x => x.id === sceneId);
             if(!target) return;
-            const currentTime = Math.floor(player.getCurrentTime());
+            const currentTime = Math.floor(p.getCurrentTime());
             this.saveConfig(sceneId, target.videoId, currentTime);
         },
         nudge: function(secs) {
             const sceneId = this.getActScene();
             if(!sceneId) return;
-            const target = ESCENAS_YOUTUBE.find(x => x.id === sceneId);
+            const target = window.ESCENAS_YOUTUBE.find(x => x.id === sceneId);
             if(!target) return;
             let newTs = (target.timestamp || 0) + secs;
             if(newTs < 0) newTs = 0;
             this.saveConfig(sceneId, target.videoId, newTs);
-            if (typeof player !== 'undefined' && player.seekTo) {
-                player.seekTo(newTs, true);
+            const p = window.vcbyGetPlayer ? window.vcbyGetPlayer() : null;
+            if (p && p.seekTo) {
+                p.seekTo(newTs, true);
             }
         },
         editId: async function() {
             const sceneId = this.getActScene();
             if(!sceneId) return;
-            const target = ESCENAS_YOUTUBE.find(x => x.id === sceneId);
+            const target = window.ESCENAS_YOUTUBE.find(x => x.id === sceneId);
             if(!target) return;
             const newId = await vcbyPrompt('YouTube Video ID (ej: ktDtijJMfbo):', target.videoId);
             if(newId !== null && newId.trim() !== '') {

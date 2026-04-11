@@ -1,5 +1,15 @@
 <?php
 $versionLogs = [
+    '26.10.6' => [
+        'date' => '2026-04-11',
+        'changes' => [
+            'Fix: Reproductor de videos refactorizado con inicialización lazy — el iframe de YouTube se crea solo cuando el usuario selecciona una escena, evitando problemas de dimensiones 0x0.',
+            'Fix: Director de Videos ahora accede correctamente al player y ESCENAS_YOUTUBE via API global expuesta.',
+            'SSOT: Eliminado Ultimate Fallback hardcodeado de db.php. El respaldo es ahora SQLite -> JSON (scenes_backup.json).',
+            'SSOT: Generado scenes_backup.json de semilla en el repositorio para garantizar fallback funcional en Android/Termux.',
+            'Tool: Agregado tools/generate_json_seed.php para regenerar el backup JSON desde los datos base.'
+        ]
+    ],
     '26.10.5' => [
         'date' => '2026-04-10',
         'changes' => [
