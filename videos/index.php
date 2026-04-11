@@ -14,7 +14,6 @@ $escenas_db = getScenesGrouped();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Videos VíaCrucis 2025</title>
   <link rel="stylesheet" href="../css/videos.css?v=<?= urlencode($latestVersion ?? '1.0') ?>">
-  <link rel="stylesheet" href="../css/style.css?v=<?= urlencode($latestVersion ?? '1.0') ?>">
 </head>
 <body>
   <!-- Barra fija de controles -->

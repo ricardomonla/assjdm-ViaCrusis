@@ -220,3 +220,155 @@ body {
 .video-wrapper.loaded::before {
   display: none;
 }
+
+/* ===== DIRECTOR/ADMIN MODE (desde style.css) ===== */
+.director-only {
+  display: none !important;
+}
+
+body.director-mode .director-only {
+  display: flex !important;
+}
+
+.admin-only {
+  display: none !important;
+}
+
+body.admin-mode .admin-only {
+  display: flex !important;
+}
+
+/* Director toolbar */
+.director-toolbar {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 0;
+}
+
+.dtool-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  flex-wrap: wrap;
+}
+
+.dtool-btn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(240, 230, 140, 0.4);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dtool-btn:hover {
+  background: rgba(240, 230, 140, 0.2);
+  border-color: #f0e68c;
+}
+
+/* ===== MODAL (para perfiles.js) ===== */
+.admin-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-modal-overlay.active {
+  display: flex;
+}
+
+.admin-modal {
+  background: #1a1a2e;
+  border: 2px solid rgba(240, 230, 140, 0.4);
+  border-radius: 12px;
+  padding: 25px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+.admin-modal h3 {
+  margin: 0 0 15px;
+  color: #f0e68c;
+}
+
+.admin-modal input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid rgba(240, 230, 140, 0.4);
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.admin-modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.admin-modal-buttons button {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(240, 230, 140, 0.4);
+  font-size: 13px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.admin-logout {
+  display: none;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+body.admin-mode .admin-logout,
+body.director-mode .admin-logout {
+  display: inline-block;
+}
+
+.perfil-indicator {
+  font-size: 0.8em;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+/* Alert/Prompt custom modals */
+.vcby-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vcby-modal-box {
+  background: #1a1a2e;
+  border: 2px solid rgba(240, 230, 140, 0.4);
+  border-radius: 12px;
+  padding: 25px;
+  max-width: 400px;
+  width: 90%;
+  color: #fff;
+  text-align: center;
+}
