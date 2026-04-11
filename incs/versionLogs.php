@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.10.3' => [
+        'date' => '2026-04-10',
+        'changes' => [
+            'Sincronización forzada de repositorio para forzar actualización de despliegue en servidor web.'
+        ]
+    ],
     '26.10.2' => [
         'date' => '2026-04-10',
         'changes' => [
