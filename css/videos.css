@@ -357,9 +357,13 @@ body.director-mode .admin-logout {
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.5);
   z-index: 2000;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
+}
+
+.vcby-modal-overlay.active {
+  display: flex;
 }
 
 .vcby-modal-box {
