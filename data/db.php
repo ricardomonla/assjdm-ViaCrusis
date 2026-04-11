@@ -617,6 +617,69 @@ function getScenesGrouped() {
             }
             return $result;
         }
-        return [];
+        
+        // Ultimate Fallback - Si no hay JSON y no hay SQLite, cargamos del PHP estático hardcoded
+        require_once dirname(__DIR__) . '/incs/elementos.php';
+        $groups = getMediaGroupsStructure();
+        $ytt_scenes = [
+            "000" => ["videoId" => "0nxVUTRmb_w", "timestamp" => 0],
+            "001" => ["videoId" => "0nxVUTRmb_w", "timestamp" => 175],
+            "002" => ["videoId" => "0nxVUTRmb_w", "timestamp" => 368],
+            "003" => ["videoId" => "0nxVUTRmb_w", "timestamp" => 596],
+            "004" => ["videoId" => "0nxVUTRmb_w", "timestamp" => 859],
+            "005" => ["videoId" => "0nxVUTRmb_w", "timestamp" => 956],
+            "006" => ["videoId" => "0nxVUTRmb_w", "timestamp" => 1266],
+            "101" => ["videoId" => "ktDtijJMfbo", "timestamp" => 0],
+            "102" => ["videoId" => "ktDtijJMfbo", "timestamp" => 182],
+            "103" => ["videoId" => "ktDtijJMfbo", "timestamp" => 289],
+            "104" => ["videoId" => "ktDtijJMfbo", "timestamp" => 873],
+            "105" => ["videoId" => "ktDtijJMfbo", "timestamp" => 1193],
+            "106" => ["videoId" => "ktDtijJMfbo", "timestamp" => 1273],
+            "107" => ["videoId" => "ktDtijJMfbo", "timestamp" => 1333],
+            "108" => ["videoId" => "ktDtijJMfbo", "timestamp" => 1546],
+            "109" => ["videoId" => "ktDtijJMfbo", "timestamp" => 1709],
+            "110" => ["videoId" => "ktDtijJMfbo", "timestamp" => 2007],
+            "111" => ["videoId" => "ktDtijJMfbo", "timestamp" => 2422],
+            "201" => ["videoId" => "GPZE-uxt0LQ", "timestamp" => 0],
+            "202" => ["videoId" => "GPZE-uxt0LQ", "timestamp" => 546],
+            "203" => ["videoId" => "GPZE-uxt0LQ", "timestamp" => 885],
+            "204" => ["videoId" => "GPZE-uxt0LQ", "timestamp" => 1267],
+            "205" => ["videoId" => "GPZE-uxt0LQ", "timestamp" => 1464],
+            "206" => ["videoId" => "GPZE-uxt0LQ", "timestamp" => 1772],
+            "207" => ["videoId" => "GPZE-uxt0LQ", "timestamp" => 1952],
+            "301" => ["videoId" => "a0LB3VWQstw", "timestamp" => 0],
+            "302" => ["videoId" => "a0LB3VWQstw", "timestamp" => 131],
+            "303" => ["videoId" => "a0LB3VWQstw", "timestamp" => 173],
+            "304" => ["videoId" => "a0LB3VWQstw", "timestamp" => 728],
+            "305" => ["videoId" => "a0LB3VWQstw", "timestamp" => 814],
+            "306" => ["videoId" => "a0LB3VWQstw", "timestamp" => 923]
+        ];
+
+        $result = [];
+        foreach ($groups as $groupId => $group) {
+            $cleanId = (string)$groupId;
+            $result[$cleanId] = [
+                'group_id' => $groupId . 'XX',
+                'name' => $group['name'],
+                'icon' => $group['icon'] ?? '',
+                'audios' => []
+            ];
+            foreach ($group['audios'] as $scene) {
+                $sceneId = $scene['order'];
+                $yt = $ytt_scenes[$sceneId] ?? null;
+                $result[$cleanId]['audios'][] = [
+                    'id' => $scene['id'], 
+                    'scene_id' => $sceneId,
+                    'order' => $sceneId,
+                    'version' => $scene['version'],
+                    'title' => $scene['title'],
+                    'display_name' => $scene['display_name'],
+                    'filename' => $scene['filename'],
+                    'youtube_video_id' => $yt ? $yt['videoId'] : '',
+                    'youtube_timestamp' => $yt ? (int)$yt['timestamp'] : 0
+                ];
+            }
+        }
+        return $result;
     }
 }

@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.10.5' => [
+        'date' => '2026-04-10',
+        'changes' => [
+            'Fix: Ultimate Fallback implementado en rutinas de base de datos para Termux/Android offline.',
+            'Si SQLite y scenes_backup.json están ausentes (repositorio recién clonado), carga los datos pre-migración hardcodeados evitando pantallazo blanco en listados.'
+        ]
+    ],
     '26.10.4' => [
         'date' => '2026-04-10',
         'changes' => [
