@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.10.7' => [
+        'date' => '2026-04-11',
+        'changes' => [
+            'Fix: Revertido reproductor de YouTube al flujo original (player creado al iniciar) que estaba probado funcionando.',
+            'Fix: CSS del iframe de YouTube reforzado con !important para sobreescribir estilos inline de la API.'
+        ]
+    ],
     '26.10.6' => [
         'date' => '2026-04-11',
         'changes' => [
