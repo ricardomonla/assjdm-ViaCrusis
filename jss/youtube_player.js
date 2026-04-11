@@ -7,6 +7,8 @@
   'use strict';
 
   let player = null;
+  let playerReady = false;
+  let apiReady = false;
   let currentVideoId = null;
   let grupoActivo = null;
 
@@ -31,10 +33,9 @@
   window.ESCENAS_YOUTUBE = ESCENAS_YOUTUBE;
 
   /**
-   * Inicializa el reproductor de YouTube
+   * Inicializa la carga de la API de YouTube
    */
   function initPlayer() {
-    // Cargar API de YouTube
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -45,25 +46,10 @@
    * Callback llamado por la API de YouTube cuando está lista
    */
   window.onYouTubeIframeAPIReady = function() {
-    const playerContainer = document.getElementById('youtube-player');
-    if (!playerContainer) return;
+    apiReady = true;
+    console.log('YouTube API lista');
 
-    player = new YT.Player('youtube-player', {
-      height: '360',
-      width: '640',
-      videoId: ESCENAS_YOUTUBE.length > 0 ? ESCENAS_YOUTUBE[0].videoId : '',
-      playerVars: {
-        'playsinline': 1,
-        'rel': 0,
-        'modestbranding': 1
-      },
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-
-    // Configurar selector de grupos
+    // Configurar selector de grupos (no necesita player)
     setupGroupSelector();
 
     // Cargar escena desde hash si existe
@@ -71,9 +57,50 @@
   };
 
   /**
+   * Crea el player. Solo se llama cuando el wrapper es visible.
+   */
+  function ensurePlayer(videoId, startSeconds) {
+    if (player && playerReady) {
+      // Ya existe, cargar video
+      if (currentVideoId !== videoId) {
+        currentVideoId = videoId;
+        player.loadVideoById({ videoId: videoId, startSeconds: startSeconds });
+      } else {
+        player.seekTo(startSeconds, true);
+        player.playVideo();
+      }
+      return;
+    }
+
+    if (player && !playerReady) {
+      // Player creándose, esperar
+      return;
+    }
+
+    // Crear player por primera vez (wrapper ya visible)
+    currentVideoId = videoId;
+    player = new YT.Player('youtube-player', {
+      height: '360',
+      width: '640',
+      videoId: videoId,
+      playerVars: {
+        'playsinline': 1,
+        'rel': 0,
+        'modestbranding': 1,
+        'start': startSeconds
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  /**
    * Cuando el reproductor está listo
    */
   function onPlayerReady(event) {
+    playerReady = true;
     console.log('Reproductor listo');
   }
 
@@ -83,7 +110,6 @@
   function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
       updateSceneSelectorFromTime();
-      // Remover circulo de carga cuando el video comienza a reproducirse
       const wrapper = document.getElementById('video-wrapper');
       if (wrapper) wrapper.classList.add('loaded');
     }
@@ -105,14 +131,12 @@
   /**
    * Llena el selector con las escenas del grupo seleccionado
    */
-  function populateSceneSelector(grupo, autoLoadFirst = false) {
+  function populateSceneSelector(grupo, autoLoadFirst) {
     const selector = document.getElementById('selector-escenas');
     if (!selector) return;
 
-    // Limpiar opciones existentes
     selector.innerHTML = '';
 
-    // Filtrar escenas del grupo activo
     const escenasDelGrupo = ESCENAS_YOUTUBE.filter(e => getGrupoFromId(e.id) === grupo);
 
     if (escenasDelGrupo.length === 0) {
@@ -120,7 +144,6 @@
       return;
     }
 
-    // Agregar escenas sin opción por defecto en blanco para forzar la primera
     escenasDelGrupo.forEach(escena => {
       const option = document.createElement('option');
       option.value = escena.id;
@@ -128,19 +151,14 @@
       selector.appendChild(option);
     });
 
-    // Auto cargar la primera escena si fue gatillado por un cambio manual del usuario en el combo
     if (autoLoadFirst && escenasDelGrupo.length > 0) {
       selector.value = escenasDelGrupo[0].id;
       setTimeout(() => loadScene(escenasDelGrupo[0].id), 200);
     }
 
-    // Mantener evento de cambio (solo se configura una vez)
     if (!selector.dataset.configured) {
       selector.addEventListener('change', function() {
-        const escenaId = this.value;
-        if (escenaId) {
-          loadScene(escenaId);
-        }
+        if (this.value) loadScene(this.value);
       });
       selector.dataset.configured = 'true';
     }
@@ -150,8 +168,7 @@
    * Obtiene el grupo (0XX, 1XX, etc.) desde el ID de escena
    */
   function getGrupoFromId(escenaId) {
-    const primerDigito = escenaId.charAt(0);
-    return primerDigito + 'XX';
+    return escenaId.charAt(0) + 'XX';
   }
 
   /**
@@ -164,36 +181,28 @@
       return;
     }
 
-    if (!player || !player.loadVideoById) {
-      console.error('Reproductor no listo');
+    if (!apiReady) {
+      console.error('API de YouTube no lista');
       return;
     }
 
-    // Ocultar el mensaje de bienvenida (overlay) para revelar el video debajo
+    // 1. Ocultar welcome, mostrar wrapper
     const welcome = document.getElementById('welcome-message');
+    const wrapper = document.getElementById('video-wrapper');
     if (welcome) welcome.style.display = 'none';
-
-    // Cambiar de video si es necesario
-    if (currentVideoId !== escena.videoId) {
-      const wrapper = document.getElementById('video-wrapper');
-      if (wrapper) wrapper.classList.remove('loaded'); // Mostrar spinner
-      currentVideoId = escena.videoId;
-      player.loadVideoById({
-        videoId: escena.videoId,
-        startSeconds: escena.timestamp
-      });
-    } else {
-      // Mismo video, solo saltar al timestamp
-      player.seekTo(escena.timestamp, true);
-      player.playVideo();
+    if (wrapper) {
+      wrapper.style.display = 'block';
+      wrapper.classList.remove('loaded');
     }
 
-    // Actualizar URL con hash para compartir
+    // 2. Crear o usar el player (wrapper ya visible)
+    setTimeout(() => {
+      ensurePlayer(escena.videoId, escena.timestamp);
+    }, 100);
+
+    // 3. Actualizar UI
     window.location.hash = 'escena-' + escenaId;
-
-    // Seleccionar grupo correspondiente en el dropdown
     activateGroupSelector(getGrupoFromId(escenaId));
-
     console.log('Cargada escena', escenaId, 'en', escena.timestamp + 's');
   }
 
@@ -202,30 +211,23 @@
    */
   function activateGroupSelector(grupo) {
     const selector = document.getElementById('selector-grupos');
-    if (selector) {
-      selector.value = grupo;
-    }
+    if (selector) selector.value = grupo;
   }
 
   /**
    * Actualiza el selector basado en el tiempo actual del video
    */
   function updateSceneSelectorFromTime() {
-    if (!player || !player.getCurrentTime) return;
+    if (!player || !playerReady || !player.getCurrentTime) return;
 
     const currentTime = player.getCurrentTime();
     const currentVideo = player.getVideoData().video_id;
-
-    // Encontrar la escena actual
     const escenasDelVideo = ESCENAS_YOUTUBE.filter(e => e.videoId === currentVideo);
     let escenaActual = null;
 
     for (const escena of escenasDelVideo) {
-      if (currentTime >= escena.timestamp) {
-        escenaActual = escena;
-      } else {
-        break;
-      }
+      if (currentTime >= escena.timestamp) escenaActual = escena;
+      else break;
     }
 
     if (escenaActual) {
@@ -237,34 +239,30 @@
   }
 
   /**
-   * Carga escena desde URL hash (para compartir enlaces)
+   * Carga escena desde URL hash
    */
   function loadSceneFromHash() {
     const hash = window.location.hash;
     if (hash && hash.startsWith('#escena-')) {
       const escenaId = hash.substring(8);
       const escena = ESCENAS_YOUTUBE.find(e => e.id === escenaId);
-
       if (escena) {
-        // Activar el grupo correspondiente primero, pero evitar autoloader porque la ruta hash manda
         const grupo = getGrupoFromId(escenaId);
         activateGroupSelector(grupo);
         populateSceneSelector(grupo, false);
-
-        // Esperar a que el player esté listo y cargar
         setTimeout(() => loadScene(escenaId), 500);
       }
     }
   }
 
-  // Inicializar cuando el DOM esté listo
+  // Inicializar
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initPlayer);
   } else {
     initPlayer();
   }
 
-  // Exponer funciones globales para el Director y carga manual
+  // Exponer globales para Director
   window.loadScene = loadScene;
   window.vcbyGetPlayer = function() { return player; };
 
