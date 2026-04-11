@@ -535,51 +535,88 @@ function deleteBatchCues($trackId, $cueIndices) {
  * Obtener la estructura SSOT agrupada desde la base de datos (reemplaza a getMediaGroupsStructure)
  */
 function getScenesGrouped() {
-    $db = getDB();
-    ensureSchema();
+    try {
+        $db = getDB();
+        ensureSchema();
 
-    $stmt = $db->query("SELECT id, name, icon, order_index FROM scene_groups ORDER BY order_index ASC");
-    $groups = $stmt->fetchAll();
-
-    if (empty($groups)) {
-        // Fallback: Si no hay grupos, ejecutar la migración al vuelo para no romper producción
-        require_once dirname(__DIR__) . '/tools/migrate_scenes_to_db.php';
-        run_ssot_migration();
         $stmt = $db->query("SELECT id, name, icon, order_index FROM scene_groups ORDER BY order_index ASC");
         $groups = $stmt->fetchAll();
-    }
 
-    $result = [];
-    foreach ($groups as $group) {
-        $gid = $group['id'];
-        $cleanId = (string)$group['order_index'];
-        
-        $result[$cleanId] = [
-            'group_id' => $gid,
-            'name' => $group['name'],
-            'icon' => $group['icon'],
-            'audios' => []
-        ];
-
-        // Obtener escenas de este grupo
-        $stmt2 = $db->prepare("SELECT * FROM scenes WHERE group_id = ? ORDER BY order_index ASC");
-        $stmt2->execute([$gid]);
-        $scenes = $stmt2->fetchAll();
-
-        foreach ($scenes as $scene) {
-            $result[$cleanId]['audios'][] = [
-                'id' => $scene['id'] . '_v' . $scene['version'], // para retrocompatibilidad play.php?id=101_v2503
-                'scene_id' => $scene['id'],
-                'order' => $scene['id'],
-                'version' => $scene['version'],
-                'title' => $scene['title'],
-                'display_name' => $scene['display_name'],
-                'filename' => $scene['filename_audio'],
-                'youtube_video_id' => $scene['youtube_video_id'],
-                'youtube_timestamp' => (int) $scene['youtube_timestamp']
-            ];
+        if (empty($groups)) {
+            // Fallback: Si no hay grupos, ejecutar la migración al vuelo para no romper producción
+            require_once dirname(__DIR__) . '/tools/migrate_scenes_to_db.php';
+            run_ssot_migration();
+            $stmt = $db->query("SELECT id, name, icon, order_index FROM scene_groups ORDER BY order_index ASC");
+            $groups = $stmt->fetchAll();
         }
-    }
 
-    return $result;
+        $result = [];
+        foreach ($groups as $group) {
+            $gid = $group['id'];
+            $cleanId = (string)$group['order_index'];
+            
+            $result[$cleanId] = [
+                'group_id' => $gid,
+                'name' => $group['name'],
+                'icon' => $group['icon'],
+                'audios' => []
+            ];
+
+            // Obtener escenas de este grupo
+            $stmt2 = $db->prepare("SELECT * FROM scenes WHERE group_id = ? ORDER BY order_index ASC");
+            $stmt2->execute([$gid]);
+            $scenes = $stmt2->fetchAll();
+
+            foreach ($scenes as $scene) {
+                $result[$cleanId]['audios'][] = [
+                    'id' => $scene['id'] . '_v' . $scene['version'],
+                    'scene_id' => $scene['id'],
+                    'order' => $scene['id'],
+                    'version' => $scene['version'],
+                    'title' => $scene['title'],
+                    'display_name' => $scene['display_name'],
+                    'filename' => $scene['filename_audio'],
+                    'youtube_video_id' => $scene['youtube_video_id'],
+                    'youtube_timestamp' => (int) $scene['youtube_timestamp']
+                ];
+            }
+        }
+
+        return $result;
+    } catch (Exception $e) {
+        // Fallback a JSON para entornos sin soporte SQLite (ej. Android/Termux)
+        $jsonFile = dirname(__DIR__) . '/data/scenes_backup.json';
+        if (file_exists($jsonFile)) {
+            $data = json_decode(file_get_contents($jsonFile), true);
+            $result = [];
+            foreach ($data['groups'] as $group) {
+                $gid = $group['id'];
+                $cleanId = (string)$group['order_index'];
+                $result[$cleanId] = [
+                    'group_id' => $gid,
+                    'name' => $group['name'],
+                    'icon' => $group['icon'],
+                    'audios' => []
+                ];
+                
+                // Filtrar escenas de este grupo
+                $groupScenes = array_filter($data['scenes'], function($s) use ($gid) { return $s['group_id'] === $gid; });
+                foreach ($groupScenes as $scene) {
+                    $result[$cleanId]['audios'][] = [
+                        'id' => $scene['id'] . '_v' . $scene['version'],
+                        'scene_id' => $scene['id'],
+                        'order' => $scene['id'],
+                        'version' => $scene['version'],
+                        'title' => $scene['title'],
+                        'display_name' => $scene['display_name'],
+                        'filename' => $scene['filename_audio'],
+                        'youtube_video_id' => $scene['youtube_video_id'],
+                        'youtube_timestamp' => (int) $scene['youtube_timestamp']
+                    ];
+                }
+            }
+            return $result;
+        }
+        return [];
+    }
 }

@@ -1,5 +1,11 @@
 <?php
 $versionLogs = [
+    '26.10.4' => [
+        'date' => '2026-04-10',
+        'changes' => [
+            'Fix: Se implementó un fallback en getScenesGrouped() para Android/Termux leyendo "scenes_backup.json" en caso de que SQLite no lo admita.'
+        ]
+    ],
     '26.10.3' => [
         'date' => '2026-04-10',
         'changes' => [
