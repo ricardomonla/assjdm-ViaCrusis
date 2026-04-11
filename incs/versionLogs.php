@@ -1,5 +1,12 @@
 <?php
 $versionLogs = [
+    '26.10.2' => [
+        'date' => '2026-04-10',
+        'changes' => [
+            'Ajustes finos manuales y calibración en las marcas de tiempo de los audios (cues) realizados por Dirección.',
+            'Preparativos finales del Plan 10 en entorno de producción.'
+        ]
+    ],
     '26.10.1' => [
         'date' => '2026-04-10',
         'changes' => [
