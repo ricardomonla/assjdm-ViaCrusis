@@ -71,6 +71,20 @@ $cueIndex  = isset($_POST['cue_index']) ? intval($_POST['cue_index']) : null;
 $field     = $_POST['field'] ?? null;
 $value     = $_POST['value'] ?? null;
 
+// ===== Acción especial: Toggle fade-out per-track (Director) =====
+if (($field ?? '') === '_fade_out') {
+    if (!$trackId) {
+        jsonResponse(['ok' => false, 'msg' => 'track_id requerido.']);
+    }
+    $enabled = intval($value ?? 0);
+    setTrackFadeOut($trackId, $enabled);
+    jsonResponse([
+        'ok' => true,
+        'msg' => "Fade-out " . ($enabled ? 'activado' : 'desactivado') . " para track $trackId.",
+        'fade_out' => $enabled
+    ]);
+}
+
 // ===== Validaciones =====
 if (!$trackId || $cueIndex === null || !$field) {
     jsonResponse(['ok' => false, 'msg' => 'Parámetros incompletos.']);

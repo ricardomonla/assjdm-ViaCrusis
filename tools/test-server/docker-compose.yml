@@ -1,0 +1,27 @@
+# Servidor de testeo local — ViaCrucis
+# Levanta PHP+SQLite en Docker para probar cambios antes de deploy.
+#
+# Uso:
+#   docker compose up -d
+#   Abrir: http://localhost:8080/audios/play.php?id=000_v2502
+#
+# Parar:
+#   docker compose down
+
+services:
+  vcby-test:
+    image: php:8.3-cli
+    container_name: vcby-test
+    working_dir: /app
+    volumes:
+      - ../../:/app
+      - /var/www/vcby-data:/var/www/vcby-data
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "
+        docker-php-ext-install pdo_sqlite > /dev/null 2>&1 || true;
+        echo '✅ http://localhost:8080/audios/play.php?id=000_v2502';
+        php -S 0.0.0.0:8080 -t /app
+      "
+    restart: unless-stopped

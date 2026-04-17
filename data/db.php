@@ -136,7 +136,34 @@ function ensureSchema() {
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (group_id) REFERENCES scene_groups(id)
         );
+        CREATE TABLE IF NOT EXISTS track_config (
+            track_id TEXT PRIMARY KEY,
+            fade_out INTEGER DEFAULT 0
+        );
     ");
+}
+
+/**
+ * Obtener configuración fade_out de un track (0=off, 1=on)
+ */
+function getTrackFadeOut($trackId) {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->prepare("SELECT fade_out FROM track_config WHERE track_id = ?");
+    $stmt->execute([$trackId]);
+    $row = $stmt->fetch();
+    return $row ? (int)$row['fade_out'] : 0; // Default: sin fade
+}
+
+/**
+ * Setear configuración fade_out de un track
+ */
+function setTrackFadeOut($trackId, $enabled) {
+    $db = getDB();
+    ensureSchema();
+    $val = $enabled ? 1 : 0;
+    $stmt = $db->prepare("INSERT INTO track_config (track_id, fade_out) VALUES (?, ?) ON CONFLICT(track_id) DO UPDATE SET fade_out = ?");
+    $stmt->execute([$trackId, $val, $val]);
 }
 
 /**

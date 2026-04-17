@@ -3,3 +3,4 @@ tools/api_key_rotator/temp/
 tools/api_key_rotator/.secret.key
 tools/api_key_rotator/.candado.key
 *.log
+tools/test-server/vcby-data/

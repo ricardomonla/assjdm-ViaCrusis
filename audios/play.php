@@ -37,11 +37,34 @@ $audio_title = htmlspecialchars($audio['display_name']);
 $audio_file = htmlspecialchars($audio['filename']);
 
 include '../incs/header.php';
+
+// Precargar el audio siguiente para transición imperceptible
+if ($nextAudio && !empty($nextAudio['filename'])) {
+    echo '<link rel="prefetch" href="../serve.php?file=' . htmlspecialchars($nextAudio['filename']) . '" as="audio">' . "\n";
+}
 ?>
 
 <main class="main-content">
     <section class="playlist">
+        <?php
+        // Selector de escena: filtrar audios del mismo grupo (mismo prefijo 0XX, 1XX, etc.)
+        $currentPrefix = substr($audio['id'], 0, 1); // '0', '1', '2', '3'
+        $groupAudios = array_filter($audioFiles, function($a) use ($currentPrefix) {
+            return substr($a['id'], 0, 1) === $currentPrefix;
+        });
+        
+        if (count($groupAudios) > 1): ?>
+        <select id="sceneSelector" class="audio-title scene-selector">
+            <?php foreach ($groupAudios as $ga): ?>
+            <option value="<?= htmlspecialchars($ga['id']) ?>"
+                <?= $ga['id'] === $audio['id'] ? 'selected' : '' ?>>
+                <?= htmlspecialchars($ga['display_name']) ?>
+            </option>
+            <?php endforeach; ?>
+        </select>
+        <?php else: ?>
         <h2 class="audio-title"><?= $audio_title ?></h2>
+        <?php endif; ?>
         <div class="audio-player-container">
             <audio id="audioPlayer" controls controlsList="nodownload">
                 <source src="../serve.php?file=<?= $audio_file ?>" type="audio/mpeg">
@@ -52,6 +75,12 @@ include '../incs/header.php';
                 <a href="index.php" class="nav-button back-button" title="Volver a la lista completa">
                     ☰
                 </a>
+                
+                <!-- Fade-Out Toggle -->
+                <div class="fadeout-toggle" id="fadeout-toggle" title="Desvanecimiento al cambiar de escena">
+                    <span class="fadeout-toggle-track"></span>
+                    <span class="fadeout-toggle-label">Fade</span>
+                </div>
                 
                 <!-- Controles de navegación -->
                 <div class="navigation-group">
@@ -164,6 +193,14 @@ include '../incs/header.php';
             window.nextAudioId = '<?= $nextAudio ? htmlspecialchars($nextAudio['id']) : "" ?>';
             window.prevAudioId = '<?= $prevAudio ? htmlspecialchars($prevAudio['id']) : "" ?>';
             
+            // Fade-out config per-track desde SQLite
+            <?php
+            $fadeOut = 0;
+            if (function_exists('getTrackFadeOut')) {
+                try { $fadeOut = getTrackFadeOut(explode('_', $audio['id'])[0]); } catch (Exception $e) {}
+            }
+            ?>
+            window.__trackFadeOut = <?= $fadeOut ?>;
             // Datos inyectados directo desde SQLite (sin fetch, sin caché)
             <?php
             $trackBase = explode('_', $audio['id'])[0];
@@ -204,8 +241,11 @@ include '../incs/header.php';
                 audio.volume = savedVol !== null ? parseFloat(savedVol) : 1.0;
                 
                 // Escuchar cambios de volumen y persistirlos
+                // (ignora cambios durante fade-out para no guardar volumen 0)
                 audio.addEventListener('volumechange', function() {
-                    localStorage.setItem('vcby_vol', audio.volume);
+                    if (!window._fadeInProgress) {
+                        localStorage.setItem('vcby_vol', audio.volume);
+                    }
                 });
             });
         </script>

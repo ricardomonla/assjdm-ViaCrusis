@@ -1278,3 +1278,90 @@ body.stamp-mode .cue-line-active {
 .personajes-icon { font-size: 1.4em; }
 .personajes-text { font-weight: 600; font-variant: small-caps; letter-spacing: 0.5px; }
 .personajes-arrow { font-size: 1.3em; opacity: 0.5; }
+
+/* ===== SCENE SELECTOR (select como título) ===== */
+.scene-selector {
+    display: block;
+    width: 100%;
+    font-size: 1.4em;
+    font-weight: 700;
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(128, 109, 90, 0.2);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23806d5a' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 28px;
+    transition: border-color 0.3s ease;
+}
+.scene-selector:focus {
+    outline: none;
+    border-bottom-color: #806d5a;
+}
+.scene-selector option {
+    background: #f9f4ef;
+    color: #2d2418;
+    font-size: 0.85em;
+    padding: 6px;
+}
+
+/* ===== FADE-OUT SWITCH TOGGLE ===== */
+.fadeout-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fadeout-toggle-track {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    background: #c4b494;
+    border-radius: 11px;
+    transition: background 0.3s ease;
+    border: 1px solid rgba(128, 109, 90, 0.3);
+    flex-shrink: 0;
+}
+
+.fadeout-toggle-track::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.fadeout-toggle.active .fadeout-toggle-track {
+    background: #806d5a;
+}
+
+.fadeout-toggle.active .fadeout-toggle-track::after {
+    transform: translateX(18px);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.fadeout-toggle-label {
+    font-size: 0.75em;
+    color: #806d5a;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.fadeout-toggle.active .fadeout-toggle-label {
+    color: #4a3e31;
+    font-weight: 600;
+}
