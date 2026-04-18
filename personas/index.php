@@ -594,7 +594,7 @@ document.getElementById('persona-form').addEventListener('submit', function(e) {
 });
 
 // ── Editar persona (inline) ──
-function editPersona(id, nombre, apellido, dni, telefono, rolesJson) {
+function toggleEditForm(id, nombre, apellido, dni, telefono, rolesJson) {
     const form = document.getElementById(`form-${id}`);
     if (!form) return;
 
