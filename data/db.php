@@ -340,6 +340,15 @@ function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [
     // Verificar que los roles existan en la tabla roles
     $validRoles = $db->query("SELECT id FROM roles")->fetchAll(PDO::FETCH_COLUMN);
 
+    // Mapear roles del frontend a IDs reales de la DB
+    $roleMap = [
+        'actor' => 'actor',
+        'staff' => 'staff',
+        'donador' => 'donante',
+        'colaborador' => 'donante',
+        'otro' => 'otro'
+    ];
+
     // Borrar roles existentes
     $db->prepare("DELETE FROM persona_roles WHERE persona_id = ?")->execute([$personaId]);
 
@@ -372,12 +381,14 @@ function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [
         }
     }
 
-    // Donador y Colaborador: un registro cada uno (sin personaje)
-    if (in_array('donador', $roles) && in_array('donador', $validRoles)) {
-        $stmt->execute([$personaId, 'donador', '']);
+    // Donador: mapear a 'donante'
+    if (in_array('donador', $roles) && in_array('donante', $validRoles)) {
+        $stmt->execute([$personaId, 'donante', '']);
     }
-    if (in_array('colaborador', $roles) && in_array('colaborador', $validRoles)) {
-        $stmt->execute([$personaId, 'colaborador', '']);
+
+    // Colaborador: mapear a 'donante' (mismo rol)
+    if (in_array('colaborador', $roles) && in_array('donante', $validRoles)) {
+        $stmt->execute([$personaId, 'donante', '']);
     }
 }
 
