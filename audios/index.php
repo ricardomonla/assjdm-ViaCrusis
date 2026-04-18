@@ -49,10 +49,10 @@ include '../incs/header.php';
         </details>
         <?php endforeach; ?>
 
-        <!-- Link a Personajes -->
-        <a href="../casting/" class="personajes-link">
-            <span class="personajes-icon">🎭</span>
-            <span class="personajes-text">Personajes</span>
+        <!-- Link a Personas -->
+        <a href="../personas/" class="personajes-link">
+            <span class="personajes-icon">👤</span>
+            <span class="personajes-text">Personas</span>
             <span class="personajes-arrow">›</span>
         </a>
 

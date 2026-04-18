@@ -140,7 +140,214 @@ function ensureSchema() {
             track_id TEXT PRIMARY KEY,
             fade_out INTEGER DEFAULT 0
         );
+
+        CREATE TABLE IF NOT EXISTS personas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL,
+            apellido TEXT DEFAULT '',
+            dni TEXT DEFAULT '',
+            telefono TEXT DEFAULT '',
+            enabled INTEGER DEFAULT 1,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE(nombre, apellido)
+        );
+
+        CREATE TABLE IF NOT EXISTS roles (
+            id TEXT PRIMARY KEY,
+            nombre TEXT NOT NULL,
+            icono TEXT DEFAULT ''
+        );
+
+        CREATE TABLE IF NOT EXISTS persona_roles (
+            persona_id INTEGER NOT NULL,
+            rol_id TEXT NOT NULL,
+            personaje TEXT DEFAULT '',
+            PRIMARY KEY (persona_id, rol_id),
+            FOREIGN KEY (persona_id) REFERENCES personas(id) ON DELETE CASCADE,
+            FOREIGN KEY (rol_id) REFERENCES roles(id)
+        );
     ");
+
+    // Migración: agregar columna personaje si no existe
+    $cols = $db->query("PRAGMA table_info(persona_roles)")->fetchAll();
+    $hasPersonaje = false;
+    foreach ($cols as $col) { if ($col['name'] === 'personaje') $hasPersonaje = true; }
+    if (!$hasPersonaje) {
+        $db->exec("ALTER TABLE persona_roles ADD COLUMN personaje TEXT DEFAULT ''");
+    }
+
+    // Migración: agregar columna enabled a personas si no existe
+    $colsP = $db->query("PRAGMA table_info(personas)")->fetchAll();
+    $hasEnabled = false;
+    foreach ($colsP as $col) { if ($col['name'] === 'enabled') $hasEnabled = true; }
+    if (!$hasEnabled) {
+        $db->exec("ALTER TABLE personas ADD COLUMN enabled INTEGER DEFAULT 1");
+    }
+
+    // Siembra de roles si tabla está vacía
+    $count = $db->query("SELECT COUNT(*) FROM roles")->fetchColumn();
+    if ($count == 0) {
+        $db->exec("
+            INSERT INTO roles (id, nombre, icono) VALUES
+            ('actor',     'Actor/Actriz',          '🎭'),
+            ('staff',     'Staff',                 '🔧'),
+            ('sonido',    'Sonido/Técnica',        '🎵'),
+            ('donante',   'Donante/Colaborador',   '🤝'),
+            ('logistica', 'Logística',             '🚚'),
+            ('otro',      'Otro',                  '⭐')
+        ");
+    }
+
+    // F4: Siembra automática — personajes del guion → personas placeholder
+    $personasCount = $db->query("SELECT COUNT(*) FROM personas")->fetchColumn();
+    if ($personasCount == 0) {
+        $cuesExist = $db->query("SELECT COUNT(*) FROM sqlite_master WHERE name='cues'")->fetchColumn();
+        if ($cuesExist) {
+            $chars = $db->query("
+                SELECT DISTINCT idp, character FROM cues 
+                WHERE character != '' AND idp != 'P00' 
+                ORDER BY idp
+            ")->fetchAll(PDO::FETCH_ASSOC);
+            
+            $stmtP = $db->prepare("INSERT OR IGNORE INTO personas (nombre) VALUES (?)");
+            $stmtR = $db->prepare("INSERT OR IGNORE INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, 'actor', ?)");
+            foreach ($chars as $c) {
+                $stmtP->execute([$c['character']]);
+                $id = $db->lastInsertId();
+                if ($id) $stmtR->execute([$id, $c['character']]);
+            }
+        }
+    }
+}
+
+// =====================================================
+// PERSONAS — CRUD
+// =====================================================
+
+/**
+ * Agregar persona nueva. Devuelve el ID.
+ */
+function addPersona($nombre, $apellido = '', $dni = '', $telefono = '') {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->prepare("INSERT INTO personas (nombre, apellido, dni, telefono) VALUES (?, ?, ?, ?)");
+    $stmt->execute([trim($nombre), trim($apellido), trim($dni), trim($telefono)]);
+    return $db->lastInsertId();
+}
+
+/**
+ * Obtener todas las personas con sus roles.
+ * @param bool $onlyEnabled — true = solo enabled (público), false = todas (director)
+ */
+function getPersonas($onlyEnabled = true) {
+    $db = getDB();
+    ensureSchema();
+    $sql = "SELECT * FROM personas";
+    if ($onlyEnabled) $sql .= " WHERE enabled = 1";
+    $sql .= " ORDER BY (apellido = '' OR apellido IS NULL), apellido, nombre";
+    $personas = $db->query($sql)->fetchAll();
+    foreach ($personas as &$p) {
+        $stmt = $db->prepare("
+            SELECT r.id, r.nombre, r.icono, pr.personaje 
+            FROM persona_roles pr JOIN roles r ON pr.rol_id = r.id 
+            WHERE pr.persona_id = ? ORDER BY r.nombre
+        ");
+        $stmt->execute([$p['id']]);
+        $p['roles'] = $stmt->fetchAll();
+    }
+    return $personas;
+}
+
+/**
+ * Toggle enabled/disabled para una persona.
+ */
+function togglePersonaEnabled($id) {
+    $db = getDB();
+    ensureSchema();
+    $db->prepare("UPDATE personas SET enabled = CASE WHEN enabled = 1 THEN 0 ELSE 1 END WHERE id = ?")->execute([$id]);
+    $stmt = $db->prepare("SELECT enabled FROM personas WHERE id = ?");
+    $stmt->execute([$id]);
+    return (int)$stmt->fetchColumn();
+}
+
+/**
+ * Obtener persona por ID con roles.
+ */
+function getPersonaById($id) {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->prepare("SELECT * FROM personas WHERE id = ?");
+    $stmt->execute([$id]);
+    $persona = $stmt->fetch();
+    if ($persona) {
+        $stmt2 = $db->prepare("
+            SELECT r.id, r.nombre, r.icono, pr.personaje 
+            FROM persona_roles pr JOIN roles r ON pr.rol_id = r.id 
+            WHERE pr.persona_id = ?
+        ");
+        $stmt2->execute([$id]);
+        $persona['roles'] = $stmt2->fetchAll();
+    }
+    return $persona;
+}
+
+/**
+ * Actualizar persona.
+ */
+function updatePersona($id, $nombre, $apellido = '', $dni = '', $telefono = '') {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->prepare("UPDATE personas SET nombre = ?, apellido = ?, dni = ?, telefono = ? WHERE id = ?");
+    $stmt->execute([trim($nombre), trim($apellido), trim($dni), trim($telefono), $id]);
+}
+
+/**
+ * Eliminar persona y sus roles (CASCADE).
+ */
+function deletePersona($id) {
+    $db = getDB();
+    ensureSchema();
+    $stmt = $db->prepare("DELETE FROM personas WHERE id = ?");
+    $stmt->execute([$id]);
+}
+
+/**
+ * Agregar rol a persona (ignora duplicados).
+ */
+function addPersonaRol($personaId, $rolId) {
+    $db = getDB();
+    $stmt = $db->prepare("INSERT OR IGNORE INTO persona_roles (persona_id, rol_id) VALUES (?, ?)");
+    $stmt->execute([$personaId, trim($rolId)]);
+}
+
+/**
+ * Reemplazar todos los roles de una persona.
+ */
+function setPersonaRoles($personaId, $roles) {
+    $db = getDB();
+    // Preservar personaje existente antes de borrar
+    $existing = $db->prepare("SELECT rol_id, personaje FROM persona_roles WHERE persona_id = ?");
+    $existing->execute([$personaId]);
+    $personajeMap = [];
+    foreach ($existing->fetchAll() as $row) {
+        if (!empty($row['personaje'])) $personajeMap[$row['rol_id']] = $row['personaje'];
+    }
+    
+    $db->prepare("DELETE FROM persona_roles WHERE persona_id = ?")->execute([$personaId]);
+    $stmt = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, ?, ?)");
+    foreach ($roles as $rolId) {
+        $pj = $personajeMap[trim($rolId)] ?? '';
+        $stmt->execute([$personaId, trim($rolId), $pj]);
+    }
+}
+
+/**
+ * Obtener catálogo de roles disponibles.
+ */
+function getRoles() {
+    $db = getDB();
+    ensureSchema();
+    return $db->query("SELECT * FROM roles ORDER BY nombre")->fetchAll();
 }
 
 /**

@@ -1365,3 +1365,322 @@ body.stamp-mode .cue-line-active {
     color: #4a3e31;
     font-weight: 600;
 }
+
+/* ===== PERSONAS MODULE ===== */
+.personas-main {
+    padding: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.personas-form-section,
+.personas-list-section {
+    background: rgba(255, 250, 235, 0.9);
+    border: 1px solid #c4a97d;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.personas-form-section h2,
+.personas-list-section h2 {
+    font-family: 'Georgia', serif;
+    color: #4a3e31;
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    border-bottom: 2px solid #c4a97d;
+    padding-bottom: 8px;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85em;
+    color: #806d5a;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #c4a97d;
+    border-radius: 6px;
+    background: #fff;
+    color: #2d2418;
+    font-family: 'Georgia', serif;
+    font-size: 0.95em;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #806d5a;
+    box-shadow: 0 0 0 2px rgba(128, 109, 90, 0.2);
+}
+
+.roles-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.rol-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border: 1px solid #c4a97d;
+    border-radius: 20px;
+    background: #fff;
+    transition: all 0.2s ease;
+    font-size: 0.85em;
+}
+
+.rol-checkbox:has(input:checked) {
+    background: #806d5a;
+    color: #fff;
+    border-color: #806d5a;
+}
+
+.rol-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.rol-label {
+    white-space: nowrap;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.btn-registrar {
+    flex: 1;
+    padding: 12px;
+    background: #806d5a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-registrar:hover {
+    background: #4a3e31;
+}
+
+.btn-registrar:active {
+    transform: scale(0.98);
+}
+
+.btn-cancelar {
+    padding: 12px 20px;
+    background: #c4a97d;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.btn-cancelar:hover {
+    background: #a0876a;
+}
+
+.form-message {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.form-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Lista de participantes */
+.personas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.persona-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #fff;
+    border: 1px solid #e0d5c3;
+    border-radius: 8px;
+    transition: box-shadow 0.2s;
+}
+
+.persona-card:hover {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.persona-card.persona-incompleta {
+    border-left: 3px solid #e6a817;
+    background: #fffbf0;
+}
+
+.persona-card.persona-disabled {
+    opacity: 0.5;
+    background: #f0ece4;
+    border-left: 3px solid #999;
+}
+
+.persona-card.persona-disabled .persona-name {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.btn-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.btn-toggle:hover {
+    opacity: 1;
+}
+
+.persona-header-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge-incompleto {
+    font-size: 0.85em;
+}
+
+.persona-faltantes {
+    margin-top: 4px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.falta-item {
+    font-size: 0.7em;
+    padding: 1px 6px;
+    background: #fff3cd;
+    color: #856404;
+    border-radius: 8px;
+    border: 1px solid #ffc107;
+}
+
+.persona-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.persona-name {
+    display: block;
+    color: #2d2418;
+    font-size: 0.95em;
+    margin-bottom: 4px;
+}
+
+.persona-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.rol-badge {
+    display: inline-block;
+    font-size: 0.75em;
+    padding: 2px 8px;
+    background: #f0e8d8;
+    border-radius: 12px;
+    color: #4a3e31;
+    white-space: nowrap;
+}
+
+.rol-badge.rol-none {
+    background: #e8e0d0;
+    color: #999;
+    font-style: italic;
+}
+
+.persona-actions {
+    display: flex;
+    gap: 5px;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.persona-actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.persona-actions .btn-edit:hover {
+    background: #e8e0d0;
+}
+
+.persona-actions .btn-delete:hover {
+    background: #f8d7da;
+}
+
+.empty-message {
+    text-align: center;
+    color: #806d5a;
+    font-style: italic;
+    padding: 20px;
+}
+
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .personas-main {
+        padding: 10px;
+    }
+}

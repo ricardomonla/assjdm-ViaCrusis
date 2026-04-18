@@ -16,6 +16,17 @@
  */
 
 $versionLogs = [
+    '26.12' => [
+        'date' => '2026-04-17',
+        'changes' => [
+            'NUEVO MÓDULO: Personas — registro público de participantes (/personas/).',
+            'Backend SQLite: tablas personas, roles, persona_roles con CRUD completo.',
+            'Siembra automática: personajes del guion → personas placeholder (Feature 4).',
+            'Gestión Director: editar, eliminar, toggle enabled/disabled por persona.',
+            'Visibilidad pública: filtro enabled=1, badge ⚠️ para datos incompletos.',
+            'Integración: link "Personas" en audios/index.php reemplaza a "Personajes".',
+        ]
+    ],
     '26.11' => [
         'date' => '2026-04-17',
         'changes' => [
