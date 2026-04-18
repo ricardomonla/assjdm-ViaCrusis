@@ -298,15 +298,23 @@ function updatePersona($id, $nombre, $apellido = '', $dni = '', $telefono = '') 
     $db = getDB();
     ensureSchema();
 
+    // Debug log
+    error_log("[db] Update id=$id nombre=$nombre apellido=$apellido");
+
     // Verificar unicidad (excluyendo el registro actual)
     $stmt = $db->prepare("SELECT COUNT(*) FROM personas WHERE nombre = ? AND apellido = ? AND id != ?");
     $stmt->execute([trim($nombre), trim($apellido), $id]);
-    if ($stmt->fetchColumn() > 0) {
+    $count = $stmt->fetchColumn();
+    error_log("[db] Unicidad check: count=$count para nombre=$nombre apellido=$apellido id=$id");
+
+    if ($count > 0) {
+        error_log("[db] Rechazado por unicidad");
         throw new PDOException('Ya existe otra persona con ese nombre y apellido');
     }
 
     $stmt = $db->prepare("UPDATE personas SET nombre = ?, apellido = ?, dni = ?, telefono = ? WHERE id = ?");
     $stmt->execute([trim($nombre), trim($apellido), trim($dni), trim($telefono), $id]);
+    error_log("[db] Update OK id=$id");
 }
 
 /**
