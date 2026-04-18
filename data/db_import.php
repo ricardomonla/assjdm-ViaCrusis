@@ -39,10 +39,10 @@ if (!empty($export['tables']['roles'])) {
     $imported['roles'] = $count;
 }
 
-// 2. Importar personas (INSERT OR IGNORE - unique nombre,apellido)
+// 2. Importar personas (INSERT OR REPLACE - sobrescribe IDs existentes)
 if (!empty($export['tables']['personas'])) {
     $stmt = $db->prepare("
-        INSERT OR IGNORE INTO personas (id, nombre, apellido, dni, telefono, enabled, created_at)
+        INSERT OR REPLACE INTO personas (id, nombre, apellido, dni, telefono, enabled, created_at)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
     $count = 0;
