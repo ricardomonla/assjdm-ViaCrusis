@@ -153,6 +153,8 @@ if ($method === 'POST') {
         $personajes = $input['personajes'] ?? [];
         $staffValores = $input['staffValores'] ?? [];
         $otroValores = $input['otroValores'] ?? [];
+        $donadorValor = $input['donadorValor'] ?? [];
+        $colaboradorValor = $input['colaboradorValor'] ?? [];
 
         if (!$id || empty($nombre)) {
             http_response_code(400);
@@ -160,13 +162,12 @@ if ($method === 'POST') {
             exit;
         }
 
-        // Debug log
-        error_log('[personas/api] Update id=' . $id . ' nombre=' . $nombre . ' roles=' . json_encode($roles));
+        error_log('[personas/api] Update id=' . $id . ' nombre=' . $nombre . ' roles=' . json_encode($roles) . ' donador=' . json_encode($donadorValor) . ' colaborador=' . json_encode($colaboradorValor));
 
         try {
             updatePersona($id, $nombre, $apellido, $dni, $telefono);
             if (is_array($roles)) {
-                setPersonaRoles($id, $roles, $personajes, $staffValores, $otroValores);
+                setPersonaRoles($id, $roles, $personajes, $staffValores, $otroValores, $donadorValor, $colaboradorValor);
             }
             $persona = getPersonaById($id);
             error_log('[personas/api] Update OK id=' . $id);

@@ -341,7 +341,7 @@ function addPersonaRol($personaId, $rolId) {
  * @param array $roles Lista de role IDs
  * @param array $personajes Lista de nombres de personajes (solo para rol 'actor')
  */
-function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [], $otroValores = []) {
+function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [], $otroValores = [], $donadorValor = [], $colaboradorValor = []) {
     $db = getDB();
     ensureSchema();
 
@@ -389,14 +389,14 @@ function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [
         }
     }
 
-    // Donador: mapear a 'donante'
-    if (in_array('donador', $roles) && in_array('donante', $validRoles)) {
-        $stmt->execute([$personaId, 'donante', '']);
+    // Donador: insertar como entrada separada (usando personaje para diferenciar)
+    if (!empty($donadorValor) && in_array('donante', $validRoles)) {
+        $stmt->execute([$personaId, 'donante', 'Donador']);
     }
 
-    // Colaborador: mapear a 'donante' (mismo rol)
-    if (in_array('colaborador', $roles) && in_array('donante', $validRoles)) {
-        $stmt->execute([$personaId, 'donante', '']);
+    // Colaborador: insertar como entrada separada (usando personaje para diferenciar)
+    if (!empty($colaboradorValor) && in_array('donante', $validRoles)) {
+        $stmt->execute([$personaId, 'donante', 'Colaborador']);
     }
 }
 
