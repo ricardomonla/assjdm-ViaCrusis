@@ -738,12 +738,18 @@ function saveInlineEdit(id) {
     .then(data => {
         if (data.ok) {
             showInlineMessage(form, '✅ Datos actualizados', 'success');
-            setTimeout(() => { loadPersonas(); cancelInlineEdit(id); }, 1000);
+            setTimeout(() => {
+                cancelInlineEdit(id);
+                loadPersonas();
+            }, 800);
         } else {
             showInlineMessage(form, '❌ ' + (data.error || 'Error desconocido'), 'error');
         }
     })
-    .catch(() => showInlineMessage(form, '❌ Error de conexión', 'error'));
+    .catch(err => {
+        console.error('Error:', err);
+        showInlineMessage(form, '❌ Error de conexión', 'error');
+    });
 }
 
 // ── Cancelar edición inline ──
