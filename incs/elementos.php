@@ -254,12 +254,12 @@ function getMediaGroupsStructure() {
                     'filename' => '303_v2503.mp3'
                 ],
                 [
-                    'id' => '304_v2505',
+                    'id' => '304_v2601',
                     'order' => '304',
-                    'version' => '2505',
+                    'version' => '2601',
                     'title' => '12ºE Jesús muere en la cruz',
                     'display_name' => '304 12ºE Jesús muere en la cruz',
-                    'filename' => '304_v2505.mp3'
+                    'filename' => '304_v2601.mp3'
                 ],
                 [
                     'id' => '305_v2503',
