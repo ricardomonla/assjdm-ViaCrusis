@@ -34,13 +34,18 @@ if ($signature) {
     }
 }
 
-// Ejecutar git pull
+// Ejecutar git pull con fix de permisos
 $repoDir = dirname(__FILE__);
 $output = [];
 $returnCode = 0;
 
 chdir($repoDir);
-exec('git pull origin main 2>&1', $output, $returnCode);
+
+// Intentar arreglar permisos antes de git pull
+exec('sudo chown -R www-data:www-data /var/www/vcby/.git 2>&1', $permOutput, $permCode);
+
+// Git pull
+exec('git -C /var/www/vcby pull origin main 2>&1', $output, $returnCode);
 
 // Log
 $log = date('Y-m-d H:i:s') . " | code=$returnCode | " . implode(' ', $output) . "\n";
@@ -51,7 +56,7 @@ if ($returnCode === 0) {
     $migrateOutput = [];
     $migrateCode = 0;
     chdir($repoDir);
-    exec('php data/db_import.php 2>&1', $migrateOutput, $migrateCode);
+    exec('sudo -u www-data php data/db_import.php 2>&1', $migrateOutput, $migrateCode);
 
     if ($migrateCode === 0 && !empty($migrateOutput)) {
         $migrateLog = date('Y-m-d H:i:s') . " | DB import: " . implode(' ', $migrateOutput) . "\n";
