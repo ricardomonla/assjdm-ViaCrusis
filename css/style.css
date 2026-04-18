@@ -1752,3 +1752,124 @@ body.stamp-mode .cue-line-active {
 .persona-card.card-editing .btn-actualizar {
     display: none;
 }
+
+/* ===== Formulario inline ===== */
+.inline-form {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff8f0;
+    border: 1px solid #e8dcc0;
+    border-radius: 8px;
+}
+
+.inline-form h4 {
+    margin: 0 0 12px 0;
+    color: #8b7355;
+    font-size: 1rem;
+}
+
+.inline-form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.inline-form-row input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #c9b896;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.inline-roles-section {
+    margin: 12px 0;
+}
+
+.inline-roles-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #8b7355;
+    font-size: 0.9rem;
+}
+
+.inline-roles-asignados {
+    min-height: 30px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #e8dcc0;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.inline-roles-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.inline-rol-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.inline-rol-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.inline-rol-checkbox input {
+    width: 16px;
+    height: 16px;
+}
+
+.inline-selector {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border: 1px solid #c9b896;
+    border-radius: 4px;
+    background: #fff;
+    min-width: 140px;
+}
+
+.inline-form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.btn-save-inline,
+.btn-cancel-inline {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-save-inline {
+    background: linear-gradient(135deg, #806d5a, #6b5a4a);
+    color: #fff;
+}
+
+.btn-cancel-inline {
+    background: #e0d5c0;
+    color: #2d2418;
+}
+
+.btn-save-inline:hover {
+    background: linear-gradient(135deg, #6b5a4a, #5a4a3a);
+}
+
+.btn-cancel-inline:hover {
+    background: #d0c5b0;
+}

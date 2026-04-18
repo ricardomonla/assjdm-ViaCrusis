@@ -54,7 +54,7 @@ $latestVersion = $latestVersion ?? '26.12';
                             <?php endif; ?>
                         </div>
                         <div class="persona-roles">
-                            <?php foreach ($p['roles'] as $r): 
+                            <?php foreach ($p['roles'] as $r):
                                 $rolLabel = $r['nombre'];
                                 if (!empty($r['personaje'])) $rolLabel = 'Actor-' . $r['personaje'];
                             ?>
@@ -73,8 +73,52 @@ $latestVersion = $latestVersion ?? '26.12';
                         <?php endif; ?>
                     </div>
                     <div class="persona-buttons">
-                        <button class="btn-actualizar" onclick="editPersona(<?= $p['id'] ?>)" title="Actualizar datos">📝</button>
+                        <button class="btn-actualizar" onclick="toggleEditForm(<?= $p['id'] ?>, '<?= htmlspecialchars($p['nombre'], ENT_QUOTES) ?>', '<?= htmlspecialchars($p['apellido'] ?? '', ENT_QUOTES) ?>', '<?= htmlspecialchars($p['dni'] ?? '', ENT_QUOTES) ?>', '<?= htmlspecialchars($p['telefono'] ?? '', ENT_QUOTES) ?>', '<?= htmlspecialchars(json_encode($p['roles']), ENT_QUOTES) ?>')" title="Actualizar datos">📝</button>
                         <button class="btn-delete director-only" onclick="deletePersona(<?= $p['id'] ?>, '<?= htmlspecialchars(addslashes($p['nombre'])) ?>')" title="Eliminar" style="display:none;">🗑️</button>
+                    </div>
+                    <!-- Formulario inline (oculto por defecto) -->
+                    <div class="inline-form" id="form-<?= $p['id'] ?>" style="display:none;">
+                        <h4>📝 Editar datos</h4>
+                        <input type="hidden" class="inline-id" value="<?= $p['id'] ?>">
+                        <div class="inline-form-row">
+                            <input type="text" class="inline-nombre" placeholder="Nombre" value="<?= htmlspecialchars($p['nombre']) ?>">
+                            <input type="text" class="inline-apellido" placeholder="Apellido" value="<?= htmlspecialchars($p['apellido'] ?? '') ?>">
+                        </div>
+                        <div class="inline-form-row">
+                            <input type="text" class="inline-dni" placeholder="DNI" value="<?= htmlspecialchars($p['dni'] ?? '') ?>">
+                            <input type="tel" class="inline-telefono" placeholder="Teléfono" value="<?= htmlspecialchars($p['telefono'] ?? '') ?>">
+                        </div>
+                        <div class="inline-roles-section">
+                            <label>Roles:</label>
+                            <div class="inline-roles-asignados"></div>
+                            <div class="inline-roles-container">
+                                <?php foreach ($roles as $rol): ?>
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="<?= htmlspecialchars($rol['id']) ?>" onchange="toggleInlineSelector(this, '<?= htmlspecialchars($rol['id']) ?>')">
+                                        <span><?= $rol['icono'] ?> <?= htmlspecialchars($rol['nombre']) ?></span>
+                                    </label>
+                                    <select class="inline-selector" data-rol="<?= htmlspecialchars($rol['id']) ?>" style="display:none;" onchange="addInlineRol(this)">
+                                        <option value="">-- Seleccionar --</option>
+                                        <?php if ($rol['id'] === 'actor'): foreach ($personajesDisponibles as $pj): ?>
+                                        <option value="<?= htmlspecialchars($pj['nombre']) ?>"><?= htmlspecialchars($pj['nombre']) ?></option>
+                                        <?php endforeach; elseif ($rol['id'] === 'staff'): ?>
+                                        <option value="Sonido">Sonido</option>
+                                        <option value="Logística">Logística</option>
+                                        <option value="Vestuario">Vestuario</option>
+                                        <option value="Escenografía">Escenografía</option>
+                                        <?php else: ?>
+                                        <option value="<?= htmlspecialchars($rol['nombre']) ?>"><?= htmlspecialchars($rol['nombre']) ?></option>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="inline-form-actions">
+                            <button type="button" class="btn-save-inline" onclick="saveInlineEdit(<?= $p['id'] ?>)">💾 Guardar</button>
+                            <button type="button" class="btn-cancel-inline" onclick="cancelInlineEdit(<?= $p['id'] ?>)">❌ Cancelar</button>
+                        </div>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -386,46 +430,157 @@ document.getElementById('persona-form').addEventListener('submit', function(e) {
     .catch(() => showMessage('❌ Error de conexión', 'error'));
 });
 
-// ── Editar persona (inline en la card) ──
-function editPersona(id) {
-    const card = document.querySelector(`.persona-card[data-id="${id}"]`);
-    if (!card) return;
+// ── Toggle formulario inline ──
+function toggleEditForm(id, nombre, apellido, dni, telefono, rolesJson) {
+    const form = document.getElementById(`form-${id}`);
+    const isVisible = form.style.display !== 'none';
 
-    card.classList.add('card-editing');
+    // Cerrar todos los formularios
+    document.querySelectorAll('.inline-form').forEach(f => f.style.display = 'none');
 
-    fetch(API + '?action=list')
-        .then(r => r.json())
-        .then(data => {
-            const p = data.personas.find(x => x.id == id);
-            if (!p) return;
+    if (!isVisible) {
+        // Abrir este formulario
+        form.style.display = 'block';
 
-            document.getElementById('persona-id').value = p.id;
-            document.getElementById('persona-nombre').value = p.nombre;
-            document.getElementById('persona-apellido').value = p.apellido || '';
-            document.getElementById('persona-dni').value = p.dni || '';
-            document.getElementById('persona-telefono').value = p.telefono || '';
+        // Cargar datos
+        form.querySelector('.inline-nombre').value = nombre;
+        form.querySelector('.inline-apellido').value = apellido;
+        form.querySelector('.inline-dni').value = dni;
+        form.querySelector('.inline-telefono').value = telefono;
 
-            // Cargar roles como tags
-            rolesAsignados = [];
-            if (p.roles && p.roles.length > 0) {
-                p.roles.forEach(r => {
-                    if (r.personaje) {
-                        rolesAsignados.push({ rol: 'actor', valor: r.personaje, icono: '🎭' });
-                    } else if (r.id === 'staff' && r.nombre !== 'Staff') {
-                        rolesAsignados.push({ rol: 'staff', valor: r.nombre.replace('Staff-', ''), icono: '🔧' });
-                    } else if (r.id === 'sonido' && r.nombre !== 'Sonido') {
-                        rolesAsignados.push({ rol: 'sonido', valor: r.nombre.replace('Sonido-', ''), icono: '🎵' });
-                    }
-                });
-            }
-            renderRolesAsignados();
+        // Cargar roles
+        const roles = JSON.parse(rolesJson.replace(/&quot;/g, '"'));
+        const inlineRoles = [];
+        if (roles && roles.length > 0) {
+            roles.forEach(r => {
+                if (r.personaje) {
+                    inlineRoles.push({ rol: 'actor', valor: r.personaje, icono: '🎭' });
+                } else if (r.id === 'staff' && r.nombre !== 'Staff') {
+                    inlineRoles.push({ rol: 'staff', valor: r.nombre.replace('Staff-', ''), icono: '🔧' });
+                } else if (r.id === 'sonido' && r.nombre !== 'Sonido') {
+                    inlineRoles.push({ rol: 'sonido', valor: r.nombre.replace('Sonido-', ''), icono: '🎵' });
+                }
+            });
+        }
 
-            document.getElementById('form-title').textContent = '📝 Actualizar datos de ' + p.nombre;
-            document.getElementById('btn-submit').textContent = '💾 GUARDAR CAMBIOS';
-            document.getElementById('btn-cancel').style.display = '';
+        // Guardar roles en el form
+        form.dataset.roles = JSON.stringify(inlineRoles);
+        renderInlineRoles(form, inlineRoles);
 
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+// ── Toggle selector inline ──
+function toggleInlineSelector(checkbox, rolId) {
+    const selector = checkbox.closest('.inline-rol-row').querySelector('.inline-selector');
+    if (selector) {
+        selector.style.display = checkbox.checked ? 'inline-block' : 'none';
+        if (!checkbox.checked) selector.value = '';
+    }
+}
+
+// ── Agregar rol inline ──
+function addInlineRol(select) {
+    const valor = select.value;
+    if (!valor) return;
+
+    const rolId = select.dataset.rol;
+    const form = select.closest('.inline-form');
+    const roles = JSON.parse(form.dataset.roles || '[]');
+
+    // Verificar duplicados
+    const yaExiste = roles.some(r => r.rol === rolId && r.valor === valor);
+    if (yaExiste) {
+        alert('Ya agregaste este rol');
+        select.value = '';
+        return;
+    }
+
+    const iconos = { actor: '🎭', staff: '🔧', sonido: '🎵', donante: '🤝', logistica: '🚚', otro: '⭐' };
+    roles.push({ rol: rolId, valor: valor, icono: iconos[rolId] || '⭐' });
+    form.dataset.roles = JSON.stringify(roles);
+    renderInlineRoles(form, roles);
+    select.value = '';
+}
+
+// ── Renderizar roles inline ──
+function renderInlineRoles(form, roles) {
+    const container = form.querySelector('.inline-roles-asignados');
+    if (!container) return;
+
+    if (roles.length === 0) {
+        container.innerHTML = '<span style="color:#8b7355;font-size:0.85rem;">Seleccioná un rol</span>';
+        return;
+    }
+
+    container.innerHTML = roles.map((r, i) => `
+        <span class="rol-tag" style="margin:2px;">
+            ${r.icono} ${r.rol === 'actor' ? 'Actor-' + r.valor : r.valor}
+            <span class="remove-tag" onclick="removeInlineRol(this, ${i})">&times;</span>
+        </span>
+    `).join('');
+}
+
+// ── Eliminar rol inline ──
+function removeInlineRol(span, index) {
+    const form = span.closest('.inline-form');
+    const roles = JSON.parse(form.dataset.roles || '[]');
+    roles.splice(index, 1);
+    form.dataset.roles = JSON.stringify(roles);
+    renderInlineRoles(form, roles);
+}
+
+// ── Guardar edición inline ──
+function saveInlineEdit(id) {
+    const form = document.getElementById(`form-${id}`);
+    const nombre = form.querySelector('.inline-nombre').value.trim();
+    const apellido = form.querySelector('.inline-apellido').value.trim();
+    const dni = form.querySelector('.inline-dni').value.trim();
+    const telefono = form.querySelector('.inline-telefono').value.trim();
+    const roles = JSON.parse(form.dataset.roles || '[]');
+
+    if (!nombre) {
+        alert('El nombre es obligatorio');
+        return;
+    }
+
+    if (roles.length === 0) {
+        alert('Seleccioná al menos un rol');
+        return;
+    }
+
+    fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            action: 'update',
+            id: id,
+            nombre,
+            apellido,
+            dni,
+            telefono,
+            roles: roles.map(r => r.rol),
+            personajes: roles.filter(r => r.rol === 'actor').map(r => r.valor)
+        })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.ok) {
+            alert('✅ Datos actualizados');
+            loadPersonas();
+            cancelInlineEdit(id);
+        } else {
+            alert('❌ ' + (data.error || 'Error desconocido'));
+        }
+    })
+    .catch(() => alert('❌ Error de conexión'));
+}
+
+// ── Cancelar edición inline ──
+function cancelInlineEdit(id) {
+    const form = document.getElementById(`form-${id}`);
+    if (form) form.style.display = 'none';
 }
 
 // ── Eliminar persona (solo Director) ──
