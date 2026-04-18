@@ -325,49 +325,48 @@ function addPersonaRol($personaId, $rolId) {
  * @param array $roles Lista de role IDs
  * @param array $personajes Lista de nombres de personajes (solo para rol 'actor')
  */
-function setPersonaRoles($personaId, $roles, $personajes = []) {
+function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [], $otroValores = []) {
     $db = getDB();
     ensureSchema();
 
-    // Preservar personaje existente antes de borrar
-    $existing = $db->prepare("SELECT rol_id, personaje FROM persona_roles WHERE persona_id = ?");
-    $existing->execute([$personaId]);
-    $personajeMap = [];
-    foreach ($existing->fetchAll() as $row) {
-        if (!empty($row['personaje'])) $personajeMap[$row['rol_id']] = $row['personaje'];
-    }
-
+    // Borrar roles existentes
     $db->prepare("DELETE FROM persona_roles WHERE persona_id = ?")->execute([$personaId]);
 
-    // Si es actor y vienen personajes, crear múltiples entradas
+    $stmt = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, ?, ?)");
+
+    // Actor: un registro por personaje
     if (in_array('actor', $roles) && !empty($personajes)) {
-        // Para cada personaje, crear entrada actor
-        $stmt = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, 'actor', ?)");
         foreach ($personajes as $pj) {
             if (!empty($pj)) {
-                $stmt->execute([$personaId, trim($pj)]);
+                $stmt->execute([$personaId, 'actor', trim($pj)]);
             }
         }
-        // Agregar otros roles (no actor) sin personaje
-        $stmtOther = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, ?, '')");
-        foreach ($roles as $rolId) {
-            if ($rolId !== 'actor') {
-                $stmtOther->execute([$personaId, trim($rolId)]);
+    }
+
+    // Staff: un registro por función (Logística, Sonido, Vestuario, Escenografía)
+    if (in_array('staff', $roles) && !empty($staffValores)) {
+        foreach ($staffValores as $funcion) {
+            if (!empty($funcion)) {
+                $stmt->execute([$personaId, 'staff', trim($funcion)]);
             }
         }
-    } else {
-        // Comportamiento original: un rol = una entrada
-        $stmt = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, ?, ?)");
-        foreach ($roles as $rolId) {
-            $pj = '';
-            // Si es actor, usar personaje mapeado o el primero de la lista
-            if ($rolId === 'actor' && !empty($personajes)) {
-                $pj = $personajes[0] ?? '';
-            } elseif (isset($personajeMap[trim($rolId)])) {
-                $pj = $personajeMap[trim($rolId)];
+    }
+
+    // Otro: un registro por cada valor de texto libre
+    if (in_array('otro', $roles) && !empty($otroValores)) {
+        foreach ($otroValores as $valor) {
+            if (!empty($valor)) {
+                $stmt->execute([$personaId, 'otro', trim($valor)]);
             }
-            $stmt->execute([$personaId, trim($rolId), $pj]);
         }
+    }
+
+    // Donador y Colaborador: un registro cada uno (sin personaje)
+    if (in_array('donador', $roles)) {
+        $stmt->execute([$personaId, 'donador', '']);
+    }
+    if (in_array('colaborador', $roles)) {
+        $stmt->execute([$personaId, 'colaborador', '']);
     }
 }
 

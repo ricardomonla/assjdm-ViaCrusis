@@ -114,6 +114,8 @@ if ($method === 'POST') {
         $telefono = trim($input['telefono'] ?? '');
         $roles = $input['roles'] ?? [];
         $personajes = $input['personajes'] ?? [];
+        $staffValores = $input['staffValores'] ?? [];
+        $otroValores = $input['otroValores'] ?? [];
 
         if (empty($nombre)) {
             http_response_code(400);
@@ -124,7 +126,7 @@ if ($method === 'POST') {
         try {
             $id = addPersona($nombre, $apellido, $dni, $telefono);
             if (!empty($roles) && is_array($roles)) {
-                setPersonaRoles($id, $roles, $personajes);
+                setPersonaRoles($id, $roles, $personajes, $staffValores, $otroValores);
             }
             $persona = getPersonaById($id);
             echo json_encode(['ok' => true, 'persona' => $persona]);
@@ -149,6 +151,8 @@ if ($method === 'POST') {
         $telefono = trim($input['telefono'] ?? '');
         $roles = $input['roles'] ?? [];
         $personajes = $input['personajes'] ?? [];
+        $staffValores = $input['staffValores'] ?? [];
+        $otroValores = $input['otroValores'] ?? [];
 
         if (!$id || empty($nombre)) {
             http_response_code(400);
@@ -159,7 +163,7 @@ if ($method === 'POST') {
         try {
             updatePersona($id, $nombre, $apellido, $dni, $telefono);
             if (is_array($roles)) {
-                setPersonaRoles($id, $roles, $personajes);
+                setPersonaRoles($id, $roles, $personajes, $staffValores, $otroValores);
             }
             $persona = getPersonaById($id);
             echo json_encode(['ok' => true, 'persona' => $persona]);

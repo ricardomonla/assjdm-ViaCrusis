@@ -486,7 +486,9 @@ document.getElementById('persona-form').addEventListener('submit', function(e) {
         dni,
         telefono,
         roles: rolesAsignados.map(r => r.rol),
-        personajes: rolesAsignados.filter(r => r.rol === 'actor').map(r => r.valor)
+        personajes: rolesAsignados.filter(r => r.rol === 'actor').map(r => r.valor),
+        staffValores: rolesAsignados.filter(r => r.rol === 'staff').map(r => r.valor),
+        otroValores: rolesAsignados.filter(r => r.rol === 'otro').map(r => r.valor)
     };
     if (id) body.id = parseInt(id);
 
@@ -712,7 +714,9 @@ function saveInlineEdit(id) {
             dni,
             telefono,
             roles: roles.map(r => r.rol),
-            personajes: roles.filter(r => r.rol === 'actor').map(r => r.valor)
+            personajes: roles.filter(r => r.rol === 'actor').map(r => r.valor),
+            staffValores: roles.filter(r => r.rol === 'staff').map(r => r.valor),
+            otroValores: roles.filter(r => r.rol === 'otro').map(r => r.valor)
         })
     })
     .then(r => r.json())
