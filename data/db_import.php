@@ -81,5 +81,5 @@ file_put_contents(__DIR__ . '/import.log', $log, FILE_APPEND | LOCK_EX);
 
 echo "[db_import] Migración completada: " . json_encode($imported) . "\n";
 
-// Mover archivo para no re-importar en下一个 deploy
-rename($jsonPath, $jsonPath . '.imported');
+// NOTA: No se renombra el archivo para permitir migraciones idempotentes.
+// INSERT OR IGNORE evita duplicados en ejecuciones futuras.
