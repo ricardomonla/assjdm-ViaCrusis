@@ -92,27 +92,56 @@ $latestVersion = $latestVersion ?? '26.12';
                             <label>Roles:</label>
                             <div class="inline-roles-asignados"></div>
                             <div class="inline-roles-container">
-                                <?php foreach ($roles as $rol): ?>
+                                <!-- Donador -->
                                 <div class="inline-rol-row">
                                     <label class="inline-rol-checkbox">
-                                        <input type="checkbox" value="<?= htmlspecialchars($rol['id']) ?>" onchange="toggleInlineSelector(this, '<?= htmlspecialchars($rol['id']) ?>')">
-                                        <span><?= $rol['icono'] ?> <?= htmlspecialchars($rol['nombre']) ?></span>
+                                        <input type="checkbox" value="donador" onchange="toggleInlineSelector(this, 'donador')">
+                                        <span>🤝 Donador</span>
                                     </label>
-                                    <select class="inline-selector" data-rol="<?= htmlspecialchars($rol['id']) ?>" style="display:none;" onchange="addInlineRol(this)">
-                                        <option value="">-- Seleccionar --</option>
-                                        <?php if ($rol['id'] === 'actor'): foreach ($personajesDisponibles as $pj): ?>
+                                </div>
+                                <!-- Colaborador -->
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="colaborador" onchange="toggleInlineSelector(this, 'colaborador')">
+                                        <span>🤝 Colaborador</span>
+                                    </label>
+                                </div>
+                                <!-- Actor -->
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="actor" onchange="toggleInlineSelector(this, 'actor')">
+                                        <span>🎭 Actor</span>
+                                    </label>
+                                    <select class="inline-selector" data-rol="actor" style="display:none;" onchange="addInlineRol(this)">
+                                        <option value="">-- Personaje --</option>
+                                        <?php foreach ($personajesDisponibles as $pj): ?>
                                         <option value="<?= htmlspecialchars($pj['nombre']) ?>"><?= htmlspecialchars($pj['nombre']) ?></option>
-                                        <?php endforeach; elseif ($rol['id'] === 'staff'): ?>
-                                        <option value="Sonido">Sonido</option>
-                                        <option value="Logística">Logística</option>
-                                        <option value="Vestuario">Vestuario</option>
-                                        <option value="Escenografía">Escenografía</option>
-                                        <?php else: ?>
-                                        <option value="<?= htmlspecialchars($rol['nombre']) ?>"><?= htmlspecialchars($rol['nombre']) ?></option>
-                                        <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <?php endforeach; ?>
+                                <!-- Staff -->
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="staff" onchange="toggleInlineSelector(this, 'staff')">
+                                        <span>🔧 Staff</span>
+                                    </label>
+                                    <select class="inline-selector" data-rol="staff" style="display:none;" onchange="addInlineRol(this)">
+                                        <option value="">-- Función --</option>
+                                        <option value="Logística">Logística</option>
+                                        <option value="Sonido">Sonido</option>
+                                        <option value="Vestuario">Vestuario</option>
+                                        <option value="Escenografía">Escenografía</option>
+                                    </select>
+                                </div>
+                                <!-- Otro -->
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="otro" onchange="toggleInlineSelector(this, 'otro')">
+                                        <span>⭐ Otro</span>
+                                    </label>
+                                    <input type="text" class="inline-input-otro" placeholder="Escribí el rol..." style="display:none;padding:6px 10px;border:1px solid #c9b896;border-radius:4px;font-size:0.85rem;">
+                                    <button type="button" class="btn-add-otro" style="display:none;padding:6px 12px;background:#806d5a;color:#fff;border:none;border-radius:4px;cursor:pointer;" onclick="addInlineRolOtro(this)">Agregar</button>
+                                </div>
                             </div>
                         </div>
                         <div class="inline-form-actions">
@@ -161,46 +190,67 @@ $latestVersion = $latestVersion ?? '26.12';
                 <!-- Lista de roles asignados (tags/badges) -->
                 <div id="roles-asignados" class="roles-asignados">
                     <p class="empty-hint" style="color:#8b7355;font-size:0.9rem;">
-                        Marcá un rol y seleccioná personaje/función para agregarlo a tu participación.
+                        Seleccioná un rol para agregarlo a tu participación.
                     </p>
                 </div>
 
                 <div class="roles-checkboxes" id="roles-container" style="margin-top:15px;">
-                    <?php foreach ($roles as $rol): ?>
+                    <!-- Donador -->
                     <div class="rol-checkbox-row">
                         <label class="rol-checkbox">
-                            <input type="checkbox" name="roles_check[]" value="<?= htmlspecialchars($rol['id']) ?>"
-                                   onchange="toggleSelector('<?= htmlspecialchars($rol['id']) ?>')">
-                            <span class="rol-label"><?= $rol['icono'] ?> <?= htmlspecialchars($rol['nombre']) ?></span>
+                            <input type="checkbox" value="donador" onchange="toggleSelector('donador')">
+                            <span class="rol-label">🤝 Donador</span>
                         </label>
-                        <!-- Selector inline -->
-                        <div class="personaje-inline" id="selector-<?= htmlspecialchars($rol['id']) ?>" style="display:none;">
-                            <select id="select-<?= htmlspecialchars($rol['id']) ?>" onchange="agregarRol('<?= htmlspecialchars($rol['id']) ?>', this)">
-                                <option value="">-- Seleccionar --</option>
-                                <?php
-                                // Opciones según rol
-                                if ($rol['id'] === 'actor') {
-                                    foreach ($personajesDisponibles as $pj) {
-                                        echo '<option value="'.htmlspecialchars($pj['nombre']).'">'.htmlspecialchars($pj['nombre']).'</option>';
-                                    }
-                                } elseif ($rol['id'] === 'staff') {
-                                    echo '<option value="Sonido">Sonido</option>';
-                                    echo '<option value="Logística">Logística</option>';
-                                    echo '<option value="Vestuario">Vestuario</option>';
-                                    echo '<option value="Escenografía">Escenografía</option>';
-                                } elseif ($rol['id'] === 'sonido') {
-                                    echo '<option value="Técnica">Técnica</option>';
-                                    echo '<option value="Música">Música</option>';
-                                } elseif ($rol['id'] === 'donante') {
-                                    echo '<option value="Colaborador">Colaborador</option>';
-                                } else {
-                                    echo '<option value="'.htmlspecialchars($rol['nombre']).'">'.htmlspecialchars($rol['nombre']).'</option>';
-                                }
-                                ?>
+                    </div>
+                    <!-- Colaborador -->
+                    <div class="rol-checkbox-row">
+                        <label class="rol-checkbox">
+                            <input type="checkbox" value="colaborador" onchange="toggleSelector('colaborador')">
+                            <span class="rol-label">🤝 Colaborador</span>
+                        </label>
+                    </div>
+                    <!-- Actor -->
+                    <div class="rol-checkbox-row">
+                        <label class="rol-checkbox">
+                            <input type="checkbox" value="actor" onchange="toggleSelector('actor')">
+                            <span class="rol-label">🎭 Actor</span>
+                        </label>
+                        <div class="personaje-inline" id="selector-actor" style="display:none;">
+                            <select id="select-actor" onchange="agregarRol('actor', this)">
+                                <option value="">-- Personaje --</option>
+                                <?php foreach ($personajesDisponibles as $pj): ?>
+                                <option value="<?= htmlspecialchars($pj['nombre']) ?>"><?= htmlspecialchars($pj['nombre']) ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
-                    <?php endforeach; ?>
+                    <!-- Staff -->
+                    <div class="rol-checkbox-row">
+                        <label class="rol-checkbox">
+                            <input type="checkbox" value="staff" onchange="toggleSelector('staff')">
+                            <span class="rol-label">🔧 Staff</span>
+                        </label>
+                        <div class="personaje-inline" id="selector-staff" style="display:none;">
+                            <select id="select-staff" onchange="agregarRol('staff', this)">
+                                <option value="">-- Función --</option>
+                                <option value="Logística">Logística</option>
+                                <option value="Sonido">Sonido</option>
+                                <option value="Vestuario">Vestuario</option>
+                                <option value="Escenografía">Escenografía</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Otro -->
+                    <div class="rol-checkbox-row">
+                        <label class="rol-checkbox">
+                            <input type="checkbox" value="otro" onchange="toggleSelector('otro')">
+                            <span class="rol-label">⭐ Otro</span>
+                        </label>
+                        <div class="personaje-inline" id="selector-otro" style="display:none;">
+                            <input type="text" id="input-otro" placeholder="Escribí el rol..." style="padding:6px 10px;border:1px solid #c9b896;border-radius:4px;font-size:0.9rem;">
+                            <button type="button" onclick="agregarRolOtro()" style="padding:6px 12px;background:#806d5a;color:#fff;border:none;border-radius:4px;cursor:pointer;">Agregar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -225,30 +275,46 @@ let rolesAsignados = [];
 
 // Toggle selector por rol
 function toggleSelector(rolId) {
-    const checkbox = document.querySelector(`input[name="roles_check[]"][value="${rolId}"]`);
+    const checkbox = document.querySelector(`input[value="${rolId}"]`);
     const selector = document.getElementById(`selector-${rolId}`);
 
     if (checkbox && selector) {
         selector.style.display = checkbox.checked ? 'flex' : 'none';
+
+        // Donador y Colaborador se agregan directo
+        if (checkbox.checked && (rolId === 'donador' || rolId === 'colaborador')) {
+            agregarRolDirecto(rolId);
+        }
+
         if (!checkbox.checked) {
-            // Limpiar select
+            // Limpiar selects/inputs
             const select = document.getElementById(`select-${rolId}`);
             if (select) select.value = '';
+            const input = document.getElementById(`input-${rolId}`);
+            if (input) input.value = '';
         }
     }
 }
 
-// Agregar rol como tag
+// Agregar rol directo (Donador/Colaborador)
+function agregarRolDirecto(rolId) {
+    const iconos = { donador: '🤝', colaborador: '🤝' };
+    const label = rolId.charAt(0).toUpperCase() + rolId.slice(1);
+
+    const yaExiste = rolesAsignados.some(r => r.rol === rolId);
+    if (yaExiste) {
+        showMessage('Ya agregaste ' + label, 'error');
+        return;
+    }
+
+    rolesAsignados.push({ rol: rolId, valor: label, icono: iconos[rolId] });
+    renderRolesAsignados();
+}
+
+// Agregar rol como tag (Actor/Staff)
 function agregarRol(rolId, selectEl) {
     const valor = selectEl.value;
     if (!valor) return;
-
-    const checkbox = document.querySelector(`input[name="roles_check[]"][value="${rolId}"]`);
-    if (!checkbox?.checked) {
-        showMessage(`Marcá "${rolId}" primero`, 'error');
-        selectEl.value = '';
-        return;
-    }
 
     // Verificar duplicados
     const yaExiste = rolesAsignados.some(r => r.rol === rolId && r.valor === valor);
@@ -258,25 +324,33 @@ function agregarRol(rolId, selectEl) {
         return;
     }
 
-    // Agregar a la lista
-    rolesAsignados.push({ rol: rolId, valor: valor, icono: getIcono(rolId) });
+    const iconos = { actor: '🎭', staff: '🔧' };
+    const label = rolId === 'actor' ? 'Actor-' + valor : valor;
+    rolesAsignados.push({ rol: rolId, valor: valor, icono: iconos[rolId] });
     renderRolesAsignados();
 
-    // Limpiar select y mantener foco
     selectEl.value = '';
 }
 
-// Obtener icono por rol
-function getIcono(rolId) {
-    const iconos = {
-        'actor': '🎭',
-        'staff': '🔧',
-        'sonido': '🎵',
-        'donante': '🤝',
-        'logistica': '🚚',
-        'otro': '⭐'
-    };
-    return iconos[rolId] || '⭐';
+// Agregar rol Otro (texto libre)
+function agregarRolOtro() {
+    const input = document.getElementById('input-otro');
+    const valor = input.value.trim();
+    if (!valor) {
+        showMessage('Escribí un rol', 'error');
+        return;
+    }
+
+    const yaExiste = rolesAsignados.some(r => r.rol === 'otro' && r.valor === valor);
+    if (yaExiste) {
+        showMessage('Ya agregaste este rol', 'error');
+        input.value = '';
+        return;
+    }
+
+    rolesAsignados.push({ rol: 'otro', valor: valor, icono: '⭐' });
+    renderRolesAsignados();
+    input.value = '';
 }
 
 // Renderizar tags
@@ -285,16 +359,20 @@ function renderRolesAsignados() {
     if (!container) return;
 
     if (rolesAsignados.length === 0) {
-        container.innerHTML = '<p class="empty-hint" style="color:#8b7355;font-size:0.9rem;">Marcá un rol y seleccioná personaje/función para agregarlo a tu participación.</p>';
+        container.innerHTML = '<p class="empty-hint" style="color:#8b7355;font-size:0.9rem;">Seleccioná un rol para agregarlo a tu participación.</p>';
         return;
     }
 
-    container.innerHTML = rolesAsignados.map((r, i) => `
+    container.innerHTML = rolesAsignados.map((r, i) => {
+        let label = r.valor;
+        if (r.rol === 'actor') label = 'Actor-' + r.valor;
+        if (r.rol === 'donador' || r.rol === 'colaborador') label = r.valor;
+        return `
         <span class="rol-tag">
-            ${r.icono} ${r.rol === 'actor' ? 'Actor-' + r.valor : r.valor}
+            ${r.icono} ${label}
             <span class="remove-tag" onclick="eliminarRol(${i})">&times;</span>
         </span>
-    `).join('');
+    `}).join('');
 }
 
 // Eliminar rol
@@ -455,10 +533,15 @@ function toggleEditForm(id, nombre, apellido, dni, telefono, rolesJson) {
             roles.forEach(r => {
                 if (r.personaje) {
                     inlineRoles.push({ rol: 'actor', valor: r.personaje, icono: '🎭' });
-                } else if (r.id === 'staff' && r.nombre !== 'Staff') {
-                    inlineRoles.push({ rol: 'staff', valor: r.nombre.replace('Staff-', ''), icono: '🔧' });
-                } else if (r.id === 'sonido' && r.nombre !== 'Sonido') {
-                    inlineRoles.push({ rol: 'sonido', valor: r.nombre.replace('Sonido-', ''), icono: '🎵' });
+                } else if (r.id === 'staff') {
+                    const valor = r.nombre.replace('Staff-', '').replace('Staff', '');
+                    if (valor) inlineRoles.push({ rol: 'staff', valor: valor, icono: '🔧' });
+                } else if (r.id === 'donador') {
+                    inlineRoles.push({ rol: 'donador', valor: 'Donador', icono: '🤝' });
+                } else if (r.id === 'colaborador') {
+                    inlineRoles.push({ rol: 'colaborador', valor: 'Colaborador', icono: '🤝' });
+                } else if (r.id === 'otro') {
+                    inlineRoles.push({ rol: 'otro', valor: r.nombre, icono: '⭐' });
                 }
             });
         }
@@ -473,11 +556,49 @@ function toggleEditForm(id, nombre, apellido, dni, telefono, rolesJson) {
 
 // ── Toggle selector inline ──
 function toggleInlineSelector(checkbox, rolId) {
-    const selector = checkbox.closest('.inline-rol-row').querySelector('.inline-selector');
+    const row = checkbox.closest('.inline-rol-row');
+    const selector = row.querySelector('.inline-selector');
+    const inputOtro = row.querySelector('.inline-input-otro');
+    const btnAddOtro = row.querySelector('.btn-add-otro');
+
+    if (rolId === 'donador' || rolId === 'colaborador') {
+        // Se agregan directo al check
+        if (checkbox.checked) {
+            addInlineRolDirecto(checkbox, rolId);
+        }
+        return;
+    }
+
     if (selector) {
         selector.style.display = checkbox.checked ? 'inline-block' : 'none';
         if (!checkbox.checked) selector.value = '';
     }
+    if (inputOtro) {
+        inputOtro.style.display = checkbox.checked ? 'inline-block' : 'none';
+        if (!checkbox.checked) inputOtro.value = '';
+    }
+    if (btnAddOtro) {
+        btnAddOtro.style.display = checkbox.checked ? 'inline-block' : 'none';
+    }
+}
+
+// ── Agregar rol directo inline (Donador/Colaborador) ──
+function addInlineRolDirecto(checkbox, rolId) {
+    const form = checkbox.closest('.inline-form');
+    const roles = JSON.parse(form.dataset.roles || '[]');
+    const iconos = { donador: '🤝', colaborador: '🤝' };
+    const label = rolId.charAt(0).toUpperCase() + rolId.slice(1);
+
+    const yaExiste = roles.some(r => r.rol === rolId);
+    if (yaExiste) {
+        alert('Ya agregaste ' + label);
+        checkbox.checked = false;
+        return;
+    }
+
+    roles.push({ rol: rolId, valor: label, icono: iconos[rolId] });
+    form.dataset.roles = JSON.stringify(roles);
+    renderInlineRoles(form, roles);
 }
 
 // ── Agregar rol inline ──
@@ -504,6 +625,33 @@ function addInlineRol(select) {
     select.value = '';
 }
 
+// ── Agregar rol Otro inline ──
+function addInlineRolOtro(btn) {
+    const row = btn.closest('.inline-rol-row');
+    const input = row.querySelector('.inline-input-otro');
+    const valor = input.value.trim();
+
+    if (!valor) {
+        alert('Escribí un rol');
+        return;
+    }
+
+    const form = btn.closest('.inline-form');
+    const roles = JSON.parse(form.dataset.roles || '[]');
+
+    const yaExiste = roles.some(r => r.rol === 'otro' && r.valor === valor);
+    if (yaExiste) {
+        alert('Ya agregaste este rol');
+        input.value = '';
+        return;
+    }
+
+    roles.push({ rol: 'otro', valor: valor, icono: '⭐' });
+    form.dataset.roles = JSON.stringify(roles);
+    renderInlineRoles(form, roles);
+    input.value = '';
+}
+
 // ── Renderizar roles inline ──
 function renderInlineRoles(form, roles) {
     const container = form.querySelector('.inline-roles-asignados');
@@ -514,12 +662,15 @@ function renderInlineRoles(form, roles) {
         return;
     }
 
-    container.innerHTML = roles.map((r, i) => `
+    container.innerHTML = roles.map((r, i) => {
+        let label = r.valor;
+        if (r.rol === 'actor') label = 'Actor-' + r.valor;
+        return `
         <span class="rol-tag" style="margin:2px;">
-            ${r.icono} ${r.rol === 'actor' ? 'Actor-' + r.valor : r.valor}
+            ${r.icono} ${label}
             <span class="remove-tag" onclick="removeInlineRol(this, ${i})">&times;</span>
         </span>
-    `).join('');
+    `}).join('');
 }
 
 // ── Eliminar rol inline ──
