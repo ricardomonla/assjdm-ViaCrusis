@@ -1,0 +1,420 @@
+{
+    "version": "26.12",
+    "date": "2026-04-18 00:44:42",
+    "tables": {
+        "roles": [
+            {
+                "id": "actor",
+                "nombre": "Actor\/Actriz",
+                "icono": "🎭"
+            },
+            {
+                "id": "donante",
+                "nombre": "Donante\/Colaborador",
+                "icono": "🤝"
+            },
+            {
+                "id": "logistica",
+                "nombre": "Logística",
+                "icono": "🚚"
+            },
+            {
+                "id": "otro",
+                "nombre": "Otro",
+                "icono": "⭐"
+            },
+            {
+                "id": "sonido",
+                "nombre": "Sonido\/Técnica",
+                "icono": "🎵"
+            },
+            {
+                "id": "staff",
+                "nombre": "Staff",
+                "icono": "🔧"
+            }
+        ],
+        "personas": [
+            {
+                "id": 1,
+                "nombre": "NARRADOR",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 2,
+                "nombre": "PUEBLO",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 3,
+                "nombre": "Marcelo",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 4,
+                "nombre": "Hugo",
+                "apellido": "Luna",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 5,
+                "nombre": "Ricardo",
+                "apellido": "Monla",
+                "dni": "25550903",
+                "telefono": "3804988870",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 6,
+                "nombre": "Diego",
+                "apellido": "Montiel",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 7,
+                "nombre": "Ian",
+                "apellido": "MONLA",
+                "dni": "50579325",
+                "telefono": "3804986479",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 8,
+                "nombre": "DISCÍPULOS",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 0
+            },
+            {
+                "id": 9,
+                "nombre": "Jose",
+                "apellido": "Aciar",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 10,
+                "nombre": "Páblo",
+                "apellido": "CHANQUÍA",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 11,
+                "nombre": "Carlos",
+                "apellido": "Burgos",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 12,
+                "nombre": "SOLDADO",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 13,
+                "nombre": "Sandalio",
+                "apellido": "Juarez",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 14,
+                "nombre": "Luís",
+                "apellido": "Dominguez",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 15,
+                "nombre": "CLAUDIA",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 16,
+                "nombre": "Fabian",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 17,
+                "nombre": "Paula",
+                "apellido": "Mercado",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 18,
+                "nombre": "SOLDADOS",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 19,
+                "nombre": "Yolanda",
+                "apellido": "Narvaez",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 20,
+                "nombre": "OTRO LADRÓN",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 21,
+                "nombre": "Ramiro",
+                "apellido": "Monla",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 22,
+                "nombre": "Yesica",
+                "apellido": "Altamirano",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 23,
+                "nombre": "Belen",
+                "apellido": "Burgo",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 24,
+                "nombre": "Mabel",
+                "apellido": "Breck",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 25,
+                "nombre": "Mirta",
+                "apellido": "Mercado",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 26,
+                "nombre": "MUJERES JERUSALEN",
+                "apellido": "",
+                "dni": "",
+                "telefono": "",
+                "created_at": "2026-04-17 23:04:01",
+                "enabled": 1
+            },
+            {
+                "id": 27,
+                "nombre": "Marcela",
+                "apellido": "Salva",
+                "dni": "27042999",
+                "telefono": "3804750413",
+                "created_at": "2026-04-18 00:22:02",
+                "enabled": 1
+            }
+        ],
+        "persona_roles": [
+            {
+                "persona_id": 1,
+                "rol_id": "actor",
+                "personaje": "NARRADOR"
+            },
+            {
+                "persona_id": 2,
+                "rol_id": "actor",
+                "personaje": "PUEBLO"
+            },
+            {
+                "persona_id": 3,
+                "rol_id": "actor",
+                "personaje": "BARRABÁS"
+            },
+            {
+                "persona_id": 4,
+                "rol_id": "actor",
+                "personaje": "PEDRO"
+            },
+            {
+                "persona_id": 5,
+                "rol_id": "sonido",
+                "personaje": ""
+            },
+            {
+                "persona_id": 6,
+                "rol_id": "actor",
+                "personaje": "ZÉRA"
+            },
+            {
+                "persona_id": 7,
+                "rol_id": "actor",
+                "personaje": "JUDAS"
+            },
+            {
+                "persona_id": 8,
+                "rol_id": "actor",
+                "personaje": "DISCÍPULOS"
+            },
+            {
+                "persona_id": 9,
+                "rol_id": "actor",
+                "personaje": "JUAN"
+            },
+            {
+                "persona_id": 10,
+                "rol_id": "actor",
+                "personaje": "CAIFÁS"
+            },
+            {
+                "persona_id": 11,
+                "rol_id": "actor",
+                "personaje": "NICODEMO"
+            },
+            {
+                "persona_id": 12,
+                "rol_id": "actor",
+                "personaje": "SOLDADO"
+            },
+            {
+                "persona_id": 13,
+                "rol_id": "actor",
+                "personaje": "CENTURIÓN"
+            },
+            {
+                "persona_id": 14,
+                "rol_id": "actor",
+                "personaje": "PILATOS"
+            },
+            {
+                "persona_id": 15,
+                "rol_id": "actor",
+                "personaje": "CLAUDIA"
+            },
+            {
+                "persona_id": 16,
+                "rol_id": "actor",
+                "personaje": "HERODES"
+            },
+            {
+                "persona_id": 17,
+                "rol_id": "actor",
+                "personaje": "HERODÍAS"
+            },
+            {
+                "persona_id": 18,
+                "rol_id": "actor",
+                "personaje": "SOLDADOS"
+            },
+            {
+                "persona_id": 19,
+                "rol_id": "actor",
+                "personaje": "MARÍA"
+            },
+            {
+                "persona_id": 20,
+                "rol_id": "actor",
+                "personaje": "OTRO LADRÓN"
+            },
+            {
+                "persona_id": 21,
+                "rol_id": "actor",
+                "personaje": "LADRÓN ARREPENTIDO"
+            },
+            {
+                "persona_id": 22,
+                "rol_id": "actor",
+                "personaje": "ÁNGEL 1"
+            },
+            {
+                "persona_id": 23,
+                "rol_id": "actor",
+                "personaje": "ÁNGEL 2"
+            },
+            {
+                "persona_id": 24,
+                "rol_id": "actor",
+                "personaje": "MARÍA MAGDALENA"
+            },
+            {
+                "persona_id": 25,
+                "rol_id": "actor",
+                "personaje": "VERÓNICA"
+            },
+            {
+                "persona_id": 26,
+                "rol_id": "actor",
+                "personaje": "MUJERES JERUSALEN"
+            },
+            {
+                "persona_id": 27,
+                "rol_id": "staff",
+                "personaje": ""
+            }
+        ]
+    }
+}
