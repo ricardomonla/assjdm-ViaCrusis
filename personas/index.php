@@ -385,7 +385,23 @@ function eliminarRol(index) {
 function loadPersonas() {
     const isDir = window.VCBYPerfiles && window.VCBYPerfiles.isDirector();
     const url = isDir ? API + '?action=list&director=1' : API + '?action=list';
-    
+
+    // Cargar personajes disponibles si no están cargados
+    if (!window.personajesDisponibles) {
+        fetch(API + '?action=personajes')
+            .then(r => r.json())
+            .then(data => {
+                if (data.ok) {
+                    window.personajesDisponibles = data.personajes;
+                    loadPersonasList(url);
+                }
+            });
+    } else {
+        loadPersonasList(url);
+    }
+}
+
+function loadPersonasList(url) {
     fetch(url)
         .then(r => r.json())
         .then(data => {
@@ -438,6 +454,7 @@ function loadPersonas() {
                 const cardClass = disabled ? 'persona-card persona-disabled' : 
                     (incompleto ? 'persona-card persona-incompleta' : 'persona-card');
                 
+                const rolesJson = JSON.stringify(p.roles).replace(/"/g, '&quot;');
                 return `<div class="${cardClass}" data-id="${p.id}">
                     <div class="persona-info">
                         <div class="persona-header-row">
@@ -449,9 +466,75 @@ function loadPersonas() {
                         ${faltantesHtml}
                     </div>
                     <div class="persona-buttons">
-                        ${!disabled ? `<button class="btn-actualizar" onclick="editPersona(${p.id})" title="Actualizar datos">📝</button>` : ''}
+                        ${!disabled ? `<button class="btn-actualizar" onclick="editPersona(${p.id}, '${escHtml(p.nombre)}', '${escHtml(p.apellido || '')}', '${escHtml(p.dni || '')}', '${escHtml(p.telefono || '')}', '${rolesJson}')" title="Actualizar datos">📝</button>` : ''}
                         ${toggleBtn}
                         ${deleteBtn}
+                    </div>
+                    <!-- Formulario inline (oculto por defecto) -->
+                    <div class="inline-form" id="form-${p.id}" style="display:none;">
+                        <h4>📝 Editar datos</h4>
+                        <input type="hidden" class="inline-id" value="${p.id}">
+                        <div class="inline-form-row">
+                            <input type="text" class="inline-nombre" placeholder="Nombre" value="${escHtml(p.nombre)}">
+                            <input type="text" class="inline-apellido" placeholder="Apellido" value="${escHtml(p.apellido || '')}">
+                        </div>
+                        <div class="inline-form-row">
+                            <input type="text" class="inline-dni" placeholder="DNI" value="${escHtml(p.dni || '')}">
+                            <input type="tel" class="inline-telefono" placeholder="Teléfono" value="${escHtml(p.telefono || '')}">
+                        </div>
+                        <div class="inline-roles-section">
+                            <label>Roles:</label>
+                            <div class="inline-roles-asignados"></div>
+                            <div class="inline-roles-container">
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="donador" onchange="toggleInlineSelector(this, 'donador')">
+                                        <span>🤝 Donador</span>
+                                    </label>
+                                </div>
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="colaborador" onchange="toggleInlineSelector(this, 'colaborador')">
+                                        <span>🤝 Colaborador</span>
+                                    </label>
+                                </div>
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="actor" onchange="toggleInlineSelector(this, 'actor')">
+                                        <span>🎭 Actor</span>
+                                    </label>
+                                    <select class="inline-selector" data-rol="actor" style="display:none;" onchange="addInlineRol(this)">
+                                        <option value="">-- Personaje --</option>
+                                        ${window.personajesDisponibles ? window.personajesDisponibles.map(pj => `<option value="${escHtml(pj.nombre)}">${escHtml(pj.nombre)}</option>`).join('') : ''}
+                                    </select>
+                                </div>
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="staff" onchange="toggleInlineSelector(this, 'staff')">
+                                        <span>🔧 Staff</span>
+                                    </label>
+                                    <select class="inline-selector" data-rol="staff" style="display:none;" onchange="addInlineRol(this)">
+                                        <option value="">-- Función --</option>
+                                        <option value="Logística">Logística</option>
+                                        <option value="Sonido">Sonido</option>
+                                        <option value="Vestuario">Vestuario</option>
+                                        <option value="Escenografía">Escenografía</option>
+                                    </select>
+                                </div>
+                                <div class="inline-rol-row">
+                                    <label class="inline-rol-checkbox">
+                                        <input type="checkbox" value="otro" onchange="toggleInlineSelector(this, 'otro')">
+                                        <span>⭐ Otro</span>
+                                    </label>
+                                    <input type="text" class="inline-input-otro" placeholder="Escribí el rol..." style="display:none;padding:6px 10px;border:1px solid #c9b896;border-radius:4px;font-size:0.85rem;">
+                                    <button type="button" class="btn-add-otro" style="display:none;padding:6px 12px;background:#806d5a;color:#fff;border:none;border-radius:4px;cursor:pointer;" onclick="addInlineRolOtro(this)">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline-form-actions">
+                            <button type="button" class="btn-save-inline" onclick="saveInlineEdit(${p.id})">💾 Guardar</button>
+                            <button type="button" class="btn-cancel-inline" onclick="cancelInlineEdit(${p.id})">❌ Cancelar</button>
+                        </div>
                     </div>
                 </div>`;
             }).join('');
@@ -510,50 +593,46 @@ document.getElementById('persona-form').addEventListener('submit', function(e) {
     .catch(() => showMessage('❌ Error de conexión', 'error'));
 });
 
-// ── Toggle formulario inline ──
-function toggleEditForm(id, nombre, apellido, dni, telefono, rolesJson) {
+// ── Editar persona (inline) ──
+function editPersona(id, nombre, apellido, dni, telefono, rolesJson) {
     const form = document.getElementById(`form-${id}`);
-    const isVisible = form.style.display !== 'none';
+    if (!form) return;
 
     // Cerrar todos los formularios
     document.querySelectorAll('.inline-form').forEach(f => f.style.display = 'none');
 
-    if (!isVisible) {
-        // Abrir este formulario
-        form.style.display = 'block';
+    // Abrir este formulario
+    form.style.display = 'block';
 
-        // Cargar datos
-        form.querySelector('.inline-nombre').value = nombre;
-        form.querySelector('.inline-apellido').value = apellido;
-        form.querySelector('.inline-dni').value = dni;
-        form.querySelector('.inline-telefono').value = telefono;
+    // Cargar datos
+    form.querySelector('.inline-nombre').value = nombre;
+    form.querySelector('.inline-apellido').value = apellido;
+    form.querySelector('.inline-dni').value = dni;
+    form.querySelector('.inline-telefono').value = telefono;
 
-        // Cargar roles
-        const roles = JSON.parse(rolesJson.replace(/&quot;/g, '"'));
-        const inlineRoles = [];
-        if (roles && roles.length > 0) {
-            roles.forEach(r => {
-                if (r.personaje) {
-                    inlineRoles.push({ rol: 'actor', valor: r.personaje, icono: '🎭' });
-                } else if (r.id === 'staff') {
-                    const valor = r.nombre.replace('Staff-', '').replace('Staff', '');
-                    if (valor) inlineRoles.push({ rol: 'staff', valor: valor, icono: '🔧' });
-                } else if (r.id === 'donador') {
-                    inlineRoles.push({ rol: 'donador', valor: 'Donador', icono: '🤝' });
-                } else if (r.id === 'colaborador') {
-                    inlineRoles.push({ rol: 'colaborador', valor: 'Colaborador', icono: '🤝' });
-                } else if (r.id === 'otro') {
-                    inlineRoles.push({ rol: 'otro', valor: r.nombre, icono: '⭐' });
-                }
-            });
-        }
-
-        // Guardar roles en el form
-        form.dataset.roles = JSON.stringify(inlineRoles);
-        renderInlineRoles(form, inlineRoles);
-
-        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Cargar roles
+    const roles = JSON.parse(rolesJson.replace(/&quot;/g, '"'));
+    const inlineRoles = [];
+    if (roles && roles.length > 0) {
+        roles.forEach(r => {
+            if (r.personaje) {
+                inlineRoles.push({ rol: 'actor', valor: r.personaje, icono: '🎭' });
+            } else if (r.id === 'staff') {
+                const valor = r.nombre.replace('Staff-', '').replace('Staff', '');
+                if (valor) inlineRoles.push({ rol: 'staff', valor: valor, icono: '🔧' });
+            } else if (r.id === 'donante') {
+                inlineRoles.push({ rol: 'donador', valor: 'Donador', icono: '🤝' });
+            } else if (r.id === 'otro') {
+                inlineRoles.push({ rol: 'otro', valor: r.nombre, icono: '⭐' });
+            }
+        });
     }
+
+    // Guardar roles en el form
+    form.dataset.roles = JSON.stringify(inlineRoles);
+    renderInlineRoles(form, inlineRoles);
+
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 // ── Toggle selector inline ──
@@ -736,12 +815,17 @@ function saveInlineEdit(id) {
     })
     .then(r => r.json())
     .then(data => {
+        console.log('Response data:', data);
         if (data.ok) {
             showInlineMessage(form, '✅ Datos actualizados', 'success');
+            console.log('Cerrando form y recargando lista...');
             // Cerrar formulario primero
             cancelInlineEdit(id);
-            // Recargar lista después de 300ms
-            setTimeout(() => loadPersonas(), 300);
+            // Recargar lista después de 500ms
+            setTimeout(() => {
+                console.log('Ejecutando loadPersonas...');
+                loadPersonas();
+            }, 500);
         } else {
             showInlineMessage(form, '❌ ' + (data.error || 'Error desconocido'), 'error');
         }
