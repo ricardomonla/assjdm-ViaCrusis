@@ -154,12 +154,12 @@ function getMediaGroupsStructure() {
                     'filename' => '110_v2504.mp3'
                 ],
                 [
-                    'id' => '111_v2503',
+                    'id' => '111_v2601',
                     'order' => '111',
-                    'version' => '2503',
+                    'version' => '2601',
                     'title' => '1ºE Jesús es condenado a muerte',
                     'display_name' => '111 1ºE Jesús es condenado a muerte',
-                    'filename' => '111_v2503.mp3'
+                    'filename' => '111_v2601.mp3'
                 ],
             ]
         ],

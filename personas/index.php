@@ -4,11 +4,17 @@
  */
 require_once __DIR__ . '/../data/db.php';
 require_once __DIR__ . '/../incs/versionLogs.php';
-ensureSchema();
-
-$roles = getRoles();
-$personas = getPersonas(true);
-$personajesDisponibles = getPersonajesDisponibles();
+try {
+    ensureSchema();
+    $roles = getRoles();
+    $personas = getPersonas(true);
+    $personajesDisponibles = getPersonajesDisponibles();
+} catch (Exception $e) {
+    $roles = [];
+    $personas = [];
+    $personajesDisponibles = [];
+    $dbError = true;
+}
 $latestVersion = $latestVersion ?? '26.12';
 ?>
 <?php include __DIR__ . '/../incs/header.php'; ?>

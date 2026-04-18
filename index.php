@@ -93,8 +93,13 @@ $latestVersion = $latestVersion ?? '26.12';
         <div class="version-info">
             Versión: <?= $latestVersion ?> |
             <?php
-            $db = getDB();
-            $personasCount = (int)$db->query("SELECT COUNT(*) FROM personas")->fetchColumn();
+            $personasCount = 0;
+            try {
+                $db = getDB();
+                $personasCount = (int)$db->query("SELECT COUNT(*) FROM personas")->fetchColumn();
+            } catch (Exception $e) {
+                // Fallback para modo offline (Termux)
+            }
             ?>
             Personas registradas: <?= $personasCount ?>
         </div>

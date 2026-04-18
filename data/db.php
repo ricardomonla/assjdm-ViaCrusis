@@ -91,7 +91,11 @@ function createSchema($db) {
 
 // Asegurar schema en DBs existentes (agrega tablas faltantes)
 function ensureSchema() {
-    $db = getDB();
+    try {
+        $db = getDB();
+    } catch (Exception $e) {
+        return; // Fallback para entornos sin SQLite como Termux
+    }
     $db->exec("
         CREATE TABLE IF NOT EXISTS casting (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
