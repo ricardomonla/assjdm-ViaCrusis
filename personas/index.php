@@ -115,31 +115,28 @@ $latestVersion = $latestVersion ?? '26.12';
                 <label>¿En qué participás?</label>
                 <div class="roles-checkboxes" id="roles-container">
                     <?php foreach ($roles as $rol): ?>
-                    <label class="rol-checkbox">
-                        <input type="checkbox" name="roles[]" value="<?= htmlspecialchars($rol['id']) ?>" data-rol="<?= htmlspecialchars($rol['id']) ?>">
-                        <span class="rol-label"><?= $rol['icono'] ?> <?= htmlspecialchars($rol['nombre']) ?></span>
-                    </label>
+                    <div class="rol-checkbox-row">
+                        <label class="rol-checkbox">
+                            <input type="checkbox" name="roles[]" value="<?= htmlspecialchars($rol['id']) ?>" data-rol="<?= htmlspecialchars($rol['id']) ?>">
+                            <span class="rol-label"><?= $rol['icono'] ?> <?= htmlspecialchars($rol['nombre']) ?></span>
+                        </label>
+                        <?php if ($rol['id'] === 'actor'): ?>
+                        <!-- Selector inline para Actor -->
+                        <div class="personaje-inline" id="personaje-inline" style="display:none; margin-left: 15px;">
+                            <select id="personaje-select">
+                                <option value="">-- Personaje --</option>
+                                <?php foreach ($personajesDisponibles as $pj): ?>
+                                <option value="<?= htmlspecialchars($pj['nombre']) ?>"
+                                        <?= ($personajeSeleccionado === $pj['nombre']) ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($pj['nombre']) ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="button" class="btn-add-personaje" onclick="addPersonajeField()" title="Agregar otro personaje">➕</button>
+                        </div>
+                        <?php endif; ?>
+                    </div>
                     <?php endforeach; ?>
-                </div>
-            </div>
-
-            <!-- Selector de personaje (solo si es Actor) -->
-            <div class="form-group" id="personaje-group" style="display:none;">
-                <label for="personaje-select">🎭 Personaje (opcional)</label>
-                <select id="personaje-select">
-                    <option value="">-- Sin personaje asignado --</option>
-                    <?php foreach ($personajesDisponibles as $pj): ?>
-                    <option value="<?= htmlspecialchars($pj['nombre']) ?>"
-                            <?= ($personajeSeleccionado === $pj['nombre']) ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($pj['nombre']) ?>
-                    </option>
-                    <?php endforeach; ?>
-                </select>
-                <small class="form-help">Si el personaje ya existe como placeholder, se completarán sus datos automáticamente.</small>
-
-                <!-- Múltiples personajes -->
-                <div id="personajes-multiples" style="margin-top: 10px;">
-                    <button type="button" class="btn-add-personaje" onclick="addPersonajeField()">➕ Agregar otro personaje</button>
                 </div>
             </div>
 
@@ -164,12 +161,12 @@ const API = 'api.php';
 // Mostrar/ocultar selector de personajes según rol Actor
 function updatePersonajeSelector() {
     const esActor = document.querySelector('input[name="roles[]"][value="actor"]')?.checked;
-    const grupo = document.getElementById('personaje-group');
+    const inline = document.getElementById('personaje-inline');
 
-    if (esActor) {
-        grupo.style.display = 'block';
-    } else {
-        grupo.style.display = 'none';
+    if (esActor && inline) {
+        inline.style.display = 'flex';
+    } else if (inline) {
+        inline.style.display = 'none';
     }
 }
 
