@@ -51,14 +51,21 @@ exec('git -C /var/www/vcby pull origin main 2>&1', $output, $returnCode);
 $log = date('Y-m-d H:i:s') . " | code=$returnCode | " . implode(' ', $output) . "\n";
 file_put_contents(__DIR__ . '/deploy.log', $log, FILE_APPEND | LOCK_EX);
 
-// Si git pull fue exitoso, ejecutar migración de DB
+// Si git pull fue exitoso, forzar migración de DB
 if ($returnCode === 0) {
+    // IMPORTANTE: Forzar checkout del JSON desde el repo (sobrescribe local)
+    $checkoutOutput = [];
+    $checkoutCode = 0;
+    exec('git -C /var/www/vcby checkout origin/main -- data/migration_personas.json 2>&1', $checkoutOutput, $checkoutCode);
+
+    // Ejecutar migración (idempotente: INSERT OR IGNORE)
     $migrateOutput = [];
     $migrateCode = 0;
     chdir($repoDir);
     exec('sudo -u www-data php data/db_import.php 2>&1', $migrateOutput, $migrateCode);
 
-    if ($migrateCode === 0 && !empty($migrateOutput)) {
+    // Log de migración
+    if (!empty($migrateOutput)) {
         $migrateLog = date('Y-m-d H:i:s') . " | DB import: " . implode(' ', $migrateOutput) . "\n";
         file_put_contents(__DIR__ . '/deploy.log', $migrateLog, FILE_APPEND | LOCK_EX);
     }
