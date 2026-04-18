@@ -1,0 +1,621 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+#
+# groq - CLI unificado para consumir Groq API inteligentemente
+#
+# Uso:
+#   groq models                     # Lista modelos disponibles
+#   groq suggest "<tu tarea>"       # Sugiere modelo según tarea
+#   groq ask "<tu pregunta>"        # Ejecuta con modelo auto-seleccionado
+#   groq ask "<pregunta>" --model <nombre>  # Ejecuta con modelo manual
+#   groq improve "<archivo>"        # Mejora un archivo usando IA
+#
+
+require_relative '../lib/model_router'
+require_relative '../client/groq_unified_client'
+require 'optparse'
+require 'fileutils'
+
+$stdout.sync = true
+
+class GroqCLI
+  def initialize
+    @client = GroqUnifiedClient.new
+    @router = ModelRouter
+  end
+
+  def run(args)
+    command = args.shift
+
+    case command
+    when 'models'
+      list_models
+    when 'suggest'
+      suggest(args.join(' '))
+    when 'ask'
+      ask(args.join(' '), parse_options(args))
+    when 'improve'
+      improve(args.first)
+    when 'edit'
+      file_path = args.shift
+      prompt = args.join(' ')
+      edit(file_path, prompt)
+    when 'chat'
+      chat_mode
+    when nil, 'help', '-h', '--help'
+      show_help
+    else
+      puts "❌ Comando desconocido: #{command}"
+      puts "Usá: groq help"
+      exit 1
+    end
+  rescue => e
+    puts "❌ Error: #{e.message}"
+    puts "\n💡 Tip: Usá groq suggest \"#{args.join(' ')}\" para ver qué modelo usar."
+    exit 1
+  end
+
+  private
+
+  def list_models
+    puts "\n🤖 MODELOS DISPONIBLES EN GROQ API\n"
+    puts "=" * 60
+
+    ModelRouter::TASK_PROFILES.each do |task, profile|
+      puts "\n📌 #{task.to_s.upcase}"
+      puts "   Modelo: #{profile[:model]}"
+      puts "   Endpoint: #{profile[:endpoint]}"
+      puts "   Temperatura: #{profile[:params][:temperature] || 'default'}"
+      puts "   Uso: #{profile[:description]}"
+    end
+
+    puts "\n" + "=" * 60
+    puts "\n💡 Usá: groq suggest \"<tu tarea>\" para que elija automáticamente"
+  end
+
+  def suggest(task_description)
+    if task_description.nil? || task_description.strip.empty?
+      puts "❌ Por favor describí tu tarea. Ej: groq suggest \"resumir un texto largo\""
+      return
+    end
+
+    task_type = @router.suggest_task(task_description)
+    profile = ModelRouter::TASK_PROFILES[task_type]
+
+    puts "\n🎯 TAREA DETECTADA: #{task_type.to_s.upcase}"
+    puts "\n🤖 MODELO RECOMENDADO: #{profile[:model]}"
+    puts "\n📊 CONFIGURACIÓN:"
+    puts "   Endpoint: #{profile[:endpoint]}"
+    puts "   Temperatura: #{profile[:params][:temperature] || 'default'}"
+    puts "   Max Tokens: #{profile[:params][:max_tokens] || 'auto'}"
+    puts "\n📝 USO: #{profile[:description]}"
+    puts "\n💡 Para ejecutar ahora:"
+    puts "   groq ask \"#{task_description}\" --model #{profile[:model]}"
+  end
+
+  def ask(question, options = {})
+    if question.nil? || question.strip.empty?
+      puts "❌ Por favor hacé una pregunta. Ej: groq ask \"¿Qué modelo usar para resumir?\""
+      return
+    end
+
+    # Determinar tipo de tarea y modelo
+    task_type = @router.suggest_task(question)
+    profile = ModelRouter::TASK_PROFILES[task_type]
+
+    # Override si el usuario especificó modelo
+    if options[:model]
+      profile[:model] = options[:model]
+      puts "📌 Usando modelo manual: #{options[:model]}"
+    else
+      puts "🎯 Tarea detectada: #{task_type}"
+      puts "🤖 Modelo seleccionado: #{profile[:model]}"
+    end
+
+    puts "⏱️  Procesando..."
+    puts "-" * 60
+
+    # System prompt según tarea
+    system_prompt = build_system_prompt(task_type)
+
+    # Ejecutar
+    response = @client.chat(
+      model: profile[:model],
+      system_prompt: system_prompt,
+      user_prompt: question,
+      temperature: profile[:params][:temperature] || 0.5
+    )
+
+    puts "-" * 60
+    puts "\n✅ RESPUESTA:\n"
+    puts response
+  end
+
+  def improve(file_path)
+    unless file_path && File.exist?(file_path)
+      puts "❌ Archivo no encontrado: #{file_path}"
+      puts "\n💡 Uso: groq improve <archivo>"
+      exit 1
+    end
+
+    content = File.read(file_path)
+    ext = File.extname(file_path).downcase
+    file_size_kb = (content.bytesize / 1024.0).round(1)
+
+    task_type, system_prompt, _user_prompt = build_improve_context(file_path, ext, content)
+    profile = ModelRouter::TASK_PROFILES[task_type]
+
+    puts "\n📄 Archivo: #{file_path} (#{file_size_kb} KB, #{content.lines.count} líneas)"
+    puts "🎯 Modo: #{task_type}"
+    puts "🤖 Modelo: #{profile[:model]}"
+    puts "📏 Max tokens: #{profile[:params][:max_tokens] || 'auto'}"
+
+    instruction = <<~INSTR
+      Mejorá esta SECCIÓN de un documento Markdown más grande.
+      Devolvé SOLO la sección mejorada en Markdown válido, sin explicaciones.
+      Conservá toda la información pero mejorá estructura, redacción y formato.
+    INSTR
+
+    max_input_chars = 3000 * 4
+    if content.bytesize > max_input_chars && ext == '.md'
+      response = process_by_chunks(content, system_prompt, instruction, profile)
+    else
+      puts "⏱️  Generando versión mejorada completa..."
+      puts "-" * 60
+
+      response = @client.chat(
+        model: profile[:model],
+        system_prompt: system_prompt,
+        user_prompt: "#{instruction}\n\n---DOCUMENTO---\n#{content}\n---FIN DOCUMENTO---",
+        temperature: profile[:params][:temperature] || 0.3,
+        max_tokens: profile[:params][:max_tokens]
+      )
+    end
+
+    puts "-" * 60
+    puts "\n✅ VERSIÓN MEJORADA GENERADA\n"
+
+    output_file = next_version_path(file_path)
+    File.write(output_file, response)
+    puts "💾 Guardado en: #{output_file}"
+    puts "   Original:  #{content.lines.count} líneas (#{file_size_kb} KB)"
+    puts "   Mejorado:  #{response.lines.count} líneas (#{(response.bytesize / 1024.0).round(1)} KB)"
+
+    interactive_file_resolution(file_path, output_file, response, content)
+  end
+
+  def edit(file_path, prompt)
+    unless file_path && File.exist?(file_path)
+      puts "❌ Archivo no encontrado: #{file_path}"
+      puts "\n💡 Uso: groq edit <archivo> \"<tu instrucción aquí>\""
+      exit 1
+    end
+
+    if prompt.to_s.strip.empty?
+      puts "❌ Faltan las instrucciones."
+      puts "\n💡 Uso: groq edit <archivo> \"<tu instrucción aquí>\""
+      exit 1
+    end
+
+    content = File.read(file_path)
+    ext = File.extname(file_path).downcase
+    file_size_kb = (content.bytesize / 1024.0).round(1)
+
+    task_type, system_prompt, _ = build_improve_context(file_path, ext, content)
+    profile = ModelRouter::TASK_PROFILES[task_type] || ModelRouter::TASK_PROFILES[:creative_write]
+
+    puts "\n📄 Archivo: #{file_path} (#{file_size_kb} KB, #{content.lines.count} líneas)"
+    puts "🎯 Modo: edit_doc"
+    puts "🤖 Modelo: #{profile[:model]}"
+    puts "🧠 Instrucción: \"#{prompt}\""
+
+    custom_instruction = <<~INSTR
+      Aplicá las siguientes instrucciones específicas a esta SECCIÓN de un texto más grande:
+      INSTRUCCIONES DEL USUARIO: #{prompt}
+
+      Devolvé SOLO la sección editada en Markdown válido, sin explicaciones iniciales ni finales.
+      Conservá todo el contenido original excepto lo explícitamente alterado por la instrucción.
+    INSTR
+
+    max_input_chars = 3000 * 4
+    if content.bytesize > max_input_chars && ext == '.md'
+      response = process_by_chunks(content, system_prompt, custom_instruction, profile)
+    else
+      puts "⏱️  Procesando en bloque único..."
+      response = @client.chat(
+        model: profile[:model],
+        system_prompt: system_prompt,
+        user_prompt: "#{custom_instruction}\n\n---SECCIÓN---\n#{content}\n---FIN SECCIÓN---",
+        temperature: profile[:params][:temperature] || 0.3,
+        max_tokens: profile[:params][:max_tokens]
+      )
+    end
+
+    puts "-" * 60
+    puts "\n✅ VERSIÓN EDITADA GENERADA\n"
+
+    output_file = next_version_path(file_path)
+    File.write(output_file, response)
+    puts "💾 Guardado en: #{output_file}"
+    puts "   Original:  #{content.lines.count} líneas (#{file_size_kb} KB)"
+    puts "   Editado:   #{response.lines.count} líneas (#{(response.bytesize / 1024.0).round(1)} KB)"
+
+    interactive_file_resolution(file_path, output_file, response, content)
+  end
+
+  def interactive_file_resolution(file_path, output_file, response, content)
+    if STDIN.tty?
+      puts "\n" + "-" * 60
+      puts "¿Qué querés hacer?"
+      puts "  [1] 👀 Ver diferencias (primeras 40 líneas)"
+      puts "  [2] ✅ Reemplazar original (backup en .bak)"
+      puts "  [3] 📂 Mantener ambos archivos"
+      puts "  [4] 🗑️  Descartar modificación"
+      print "\nOpción [3]: "
+      choice = gets&.chomp&.strip
+
+      case choice
+      when '1'
+        puts "\n" + "=" * 60
+        puts "📝 PREVISUALIZACIÓN DE CAMBIOS"
+        puts "=" * 60
+        system("diff -U 3 #{file_path} #{output_file} | head -n 40")
+        puts "=" * 60
+        print "\n¿Reemplazar original? (s/N): "
+        if gets&.chomp&.strip&.downcase == 's'
+          replace_original(file_path, output_file)
+        else
+          puts "📂 Ambos archivos mantenidos."
+        end
+      when '2'
+        replace_original(file_path, output_file)
+      when '4'
+        File.delete(output_file)
+        puts "🗑️  Modificación descartada."
+      else
+        puts "📂 Ambos archivos mantenidos."
+        puts "   📄 Original: #{file_path}"
+        puts "   ✨ Resultante: #{output_file}"
+      end
+    end
+  end
+
+  def replace_original(file_path, output_file)
+    FileUtils.cp(file_path, file_path + '.bak')
+    FileUtils.mv(output_file, file_path)
+    puts "\n✅ Archivo original reemplazado exitosamente."
+    puts "   (Backup original guardado en: #{file_path}.bak)"
+  end
+
+  # Divide el documento en secciones y procesa cada una
+  def process_by_chunks(content, system_prompt, item_instruction, profile)
+    chunks = split_markdown_sections(content)
+
+    puts "📦 Archivo grande detectado — procesando en #{chunks.length} secciones..."
+    puts "-" * 60
+
+    improved_parts = []
+    chunks.each_with_index do |chunk, idx|
+      chunk_kb = (chunk.bytesize / 1024.0).round(1)
+      puts "  🔄 Sección #{idx + 1}/#{chunks.length} (#{chunk_kb} KB)..."
+
+      user_prompt = <<~PROMPT
+        #{item_instruction}
+
+        ---SECCIÓN---
+        #{chunk}
+        ---FIN SECCIÓN---
+      PROMPT
+
+      # El ApiRotator ya maneja los rate limits de manera interna
+      part = @client.chat(
+        model: profile[:model],
+        system_prompt: system_prompt,
+        user_prompt: user_prompt,
+        temperature: profile[:params][:temperature] || 0.3,
+        max_tokens: profile[:params][:max_tokens]
+      )
+      improved_parts << part
+      puts "  ✅ Sección #{idx + 1} completada."
+
+      sleep(5) if idx < chunks.length - 1
+    end
+
+    improved_parts.join("\n\n")
+  end
+
+  # Divide un documento Markdown por headers de nivel 2 (##)
+  def split_markdown_sections(content)
+    lines = content.lines
+    sections = []
+    current_section = []
+
+    lines.each do |line|
+      if line.match?(/^## /) && !current_section.empty?
+        sections << current_section.join
+        current_section = [line]
+      else
+        current_section << line
+      end
+    end
+
+    sections << current_section.join unless current_section.empty?
+
+    # Si alguna sección es aún muy grande, subdividir por ### headers
+    max_chunk_chars = 3000 * 4
+    final_sections = []
+    sections.each do |section|
+      if section.bytesize > max_chunk_chars
+        sub_sections = split_by_subheaders(section)
+        final_sections.concat(sub_sections)
+      else
+        final_sections << section
+      end
+    end
+
+    final_sections
+  end
+
+  # Subdivide por headers ### si la sección ## es muy grande
+  def split_by_subheaders(section)
+    lines = section.lines
+    parts = []
+    current = []
+
+    lines.each do |line|
+      if line.match?(/^### /) && !current.empty?
+        parts << current.join
+        current = [line]
+      else
+        current << line
+      end
+    end
+
+    parts << current.join unless current.empty?
+    parts
+  end
+
+  # Calcula la siguiente versión disponible: archivo.md → archivo.v2.md → archivo.v3.md
+  # Si el input ya es archivo.v2.md, genera archivo.v3.md (no archivo.v2.v2.md)
+  def next_version_path(file_path)
+    dir = File.dirname(file_path)
+    ext = File.extname(file_path)
+    base = File.basename(file_path, ext)
+
+    # Strip .vN existente del nombre base (ej: "archivo.v2" → "archivo")
+    base = base.sub(/\.v\d+$/, '')
+
+    # Buscar versiones existentes
+    existing = Dir.glob(File.join(dir, "#{base}.v*#{ext}"))
+    if existing.empty?
+      version = 2
+    else
+      # Extraer números de versión existentes
+      versions = existing.filter_map do |f|
+        if File.basename(f, ext).match(/\.v(\d+)$/)
+          $1.to_i
+        end
+      end
+      version = (versions.max || 1) + 1
+    end
+
+    File.join(dir, "#{base}.v#{version}#{ext}")
+  end
+
+  def build_improve_context(file_path, ext, content)
+    case ext
+    when '.md'
+      task_type = :improve_doc
+      system_prompt = <<~PROMPT
+        Sos un arquitecto de software y redactor técnico senior.
+
+        Tu tarea es REESCRIBIR COMPLETAMENTE el documento Markdown que recibís,
+        generando una VERSIÓN MEJORADA COMPLETA del mismo.
+
+        Reglas estrictas:
+        - Devolvé SOLO el documento mejorado en Markdown válido
+        - NO agregues comentarios meta como "aquí va el documento mejorado"
+        - NO pongas bloques de código wrapping todo el documento
+        - Conservá toda la información del original, pero mejorada
+        - Mejorá: estructura, redacción, formato, tablas, ejemplos de código
+        - Agregá secciones faltantes si detectás vacíos
+        - Usá emojis con criterio para mejorar la legibilidad
+        - Corregí errores técnicos si los encontrás
+        - Mantené el idioma original del documento
+      PROMPT
+
+      user_prompt = <<~PROMPT
+        Reescribí y mejorá completamente este documento:
+
+        ---INICIO DEL DOCUMENTO---
+        #{content}
+        ---FIN DEL DOCUMENTO---
+
+        Devolvé la versión mejorada completa, sin explicaciones adicionales.
+      PROMPT
+
+    when '.rb'
+      task_type = :analyze_code
+      system_prompt = <<~PROMPT
+        Sos un desarrollador Ruby senior experto en clean code y refactorización.
+
+        Tu tarea es REESCRIBIR el archivo Ruby completo, aplicando:
+        - Principios SOLID y clean code
+        - Mejor manejo de errores (begin/rescue con tipos específicos)
+        - Frozen string literals y buenas prácticas Ruby
+        - Documentación con comentarios YARD
+        - Eliminación de código duplicado
+        - Nombres descriptivos en español donde corresponda
+
+        Devolvé SOLO el código Ruby mejorado, sin explicaciones.
+      PROMPT
+
+      user_prompt = <<~PROMPT
+        Refactorizá completamente este archivo Ruby:
+
+        # Archivo: #{File.basename(file_path)}
+        #{content}
+
+        Devolvé SOLO el código mejorado, listo para guardar como .rb
+      PROMPT
+
+    when '.yml', '.yaml'
+      task_type = :improve_doc
+      system_prompt = <<~PROMPT
+        Sos experto en configuración de sistemas. Mejorá este archivo YAML:
+        - Mejorá la estructura y organización
+        - Agregá comentarios explicativos donde falten
+        - Corregí errores de formato o sintaxis
+        - Devolvé SOLO el YAML mejorado
+      PROMPT
+
+      user_prompt = "Mejorá este archivo YAML:\n\n#{content}"
+
+    when '.json'
+      task_type = :improve_doc
+      system_prompt = <<~PROMPT
+        Sos experto en estructuras de datos. Mejorá este archivo JSON:
+        - Mejorá la estructura y organización
+        - Validá la sintaxis
+        - Devolvé SOLO el JSON mejorado y formateado
+      PROMPT
+
+      user_prompt = "Mejorá este archivo JSON:\n\n#{content}"
+
+    else
+      task_type = :improve_doc
+      system_prompt = <<~PROMPT
+        Sos un experto técnico. Mejorá este archivo manteniendo su formato original.
+        Devolvé SOLO el contenido mejorado, sin explicaciones.
+      PROMPT
+
+      user_prompt = "Mejorá este archivo (#{ext}):\n\n#{content}"
+    end
+
+    [task_type, system_prompt, user_prompt]
+  end
+
+  def replace_original(file_path, improved_file)
+    backup = file_path + '.bak'
+    FileUtils.cp(file_path, backup)
+    FileUtils.mv(improved_file, file_path)
+    puts "✅ Original reemplazado."
+    puts "   🔄 Backup en: #{backup}"
+    puts "   ✨ Nuevo:     #{file_path}"
+  end
+
+  def show_diff_preview(original, improved)
+    orig_lines = File.readlines(original)
+    impr_lines = File.readlines(improved)
+
+    puts "\n📊 COMPARACIÓN (primeras 40 líneas):\n"
+    puts "--- ORIGINAL ---"
+    orig_lines.first(20).each_with_index { |l, i| puts "  #{(i+1).to_s.rjust(3)}│ #{l}" }
+    puts "  ..." if orig_lines.length > 20
+
+    puts "\n+++ MEJORADO +++"
+    impr_lines.first(20).each_with_index { |l, i| puts "  #{(i+1).to_s.rjust(3)}│ #{l}" }
+    puts "  ..." if impr_lines.length > 20
+  end
+
+  def chat_mode
+    puts "💬 Modo chat interactivo (escribí 'salir' para terminar)"
+    puts "El modelo se auto-selecciona según cada mensaje.\n\n"
+
+    task_type = :summarize
+    profile = ModelRouter::TASK_PROFILES[task_type]
+
+    loop do
+      print "👤 Vos: "
+      input = gets&.chomp
+      break if input.nil? || input.downcase == 'salir'
+      next if input.strip.empty?
+
+      # Re-detectar tarea en cada mensaje
+      task_type = @router.suggest_task(input)
+      profile = ModelRouter::TASK_PROFILES[task_type]
+
+      print "🤖 IA (#{profile[:model]}): "
+      $stdout.flush
+
+      response = @client.chat(
+        model: profile[:model],
+        system_prompt: "Sos un asistente útil y conciso.",
+        user_prompt: input,
+        temperature: profile[:params][:temperature] || 0.5,
+        stream: true
+      )
+
+      puts response
+      puts
+    end
+  end
+
+  def parse_options(args)
+    options = {}
+    parser = OptionParser.new do |opts|
+      opts.on('--model MODEL', String, 'Modelo específico a usar') do |m|
+        options[:model] = m
+      end
+    end
+    parser.parse!(args)
+    options
+  end
+
+  def build_system_prompt(task_type)
+    case task_type
+    when :transcribe
+      "Sos un transcriptor experto. Devolvé el texto exacto sin agregar nada."
+    when :summarize
+      "Sos un analista experto. Sé conciso, ve al grano, priorizá información accionable."
+    when :creative_write
+      "Sos un escritor creativo. Usá un tono natural, variado, humano."
+    when :analyze_code
+      "Sos un desarrollador senior. Sé directo, técnico, priorizá mejores prácticas."
+    else
+      "Sos un asistente útil y knowledgeable."
+    end
+  end
+
+  def show_help
+    puts <<~HELP
+
+      🤖 GROQ CLI - Orquestador Inteligente de Modelos LLM
+
+      USO:
+        groq <comando> [argumentos] [opciones]
+
+      COMANDOS:
+        models                    Lista todos los modelos disponibles
+        suggest "<tarea>"         Sugiere modelo según tu tarea
+        ask "<pregunta>"          Pregunta con modelo auto-seleccionado
+        improve <archivo>         Mejora redacción y formato de un archivo
+        edit <archivo> "<cmd>"    Aplica instrucciones customizadas al archivo
+        chat                      Modo interactivo de chat
+
+      OPCIONES:
+        --model <nombre>          Override del modelo automático
+
+      EJEMPLOS:
+        groq suggest "transcribir un audio"
+        groq ask "¿Qué modelo es mejor para código?"
+        groq ask "Resume esto" --model llama-3.3-70b-versatile
+        groq improve mi_script.rb
+        groq chat
+
+      MODELOS DISPONIBLES:
+        llama-3.3-70b-versatile   → Razonamiento complejo, análisis
+        llama-3.1-8b-instant      → Tareas rápidas, escritura creativa
+        mixtral-8x7b-32768        → Contexto largo (32K tokens)
+        codellama-34b-instruct    → Código y debugging
+        whisper-large-v3          → Transcripción de audio
+
+      HELP
+  end
+end
+
+# Punto de entrada
+if __FILE__ == $0
+  cli = GroqCLI.new
+  cli.run(ARGV)
+end

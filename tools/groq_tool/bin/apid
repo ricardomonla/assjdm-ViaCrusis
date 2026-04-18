@@ -1,0 +1,189 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+#
+# apid - Tu asistente personal IA
+#
+# Uso:
+#   apid "tu mensaje"              # Pregunta y obtené respuesta directa
+#   apid "tu mensaje" --stream     # Modo streaming (respuesta letra por letra)
+#   apid                           # Modo chat interactivo
+#
+
+require_relative '../client/groq_unified_client'
+require 'optparse'
+
+$stdout.sync = true
+
+class APid
+  def initialize
+    @client = GroqUnifiedClient.new
+    @model = "llama-3.3-70b-versatile"
+    @contexto = []
+  end
+
+  def run(args)
+    options = parse_options(args)
+
+    # Detectar si hay contenido por STDIN (ej: cat archivo | apid)
+    stdin_content = STDIN.read unless STDIN.tty?
+
+    if options[:stream]
+      stream_mode(stdin_content || args.join(' '))
+    elsif stdin_content && !stdin_content.strip.empty?
+      # Modo STDIN: el contenido del archivo es el input
+      process_stdin(stdin_content, args)
+    elsif args.empty?
+      chat_mode
+    else
+      ask(args.join(' '))
+    end
+  rescue => e
+    puts "❌ Error: #{e.message}"
+    exit 1
+  end
+
+  private
+
+  def process_stdin(contenido, args)
+    # Si hay argumentos adicionales, los usa como instrucción
+    instruccion = args.empty? ? "Corregí y mejorá este archivo" : args.join(' ')
+
+    sistema = "Sos APid, un asistente personal útil, conciso y amigable. Respondés en español de forma directa y práctica."
+
+    prompt = <<~PROMPT
+      #{instruccion}
+
+      CONTENIDO DEL ARCHIVO:
+      #{contenido}
+    PROMPT
+
+    response = @client.chat(
+      model: @model,
+      system_prompt: sistema,
+      user_prompt: prompt,
+      temperature: 0.5
+    )
+
+    puts response
+  end
+
+  def ask(mensaje)
+    sistema = "Sos APid, un asistente personal útil, conciso y amigable. Respondés en español de forma directa y práctica."
+
+    response = @client.chat(
+      model: @model,
+      system_prompt: sistema,
+      user_prompt: mensaje,
+      temperature: 0.7
+    )
+
+    puts response
+  end
+
+  def stream_mode(mensaje)
+    sistema = "Sos APid, un asistente personal útil, conciso y amigable. Respondés en español de forma directa y práctica."
+
+    uri = URI("https://api.groq.com/openai/v1/chat/completions")
+
+    data = ApiRotator.execute_with_rotation do |key|
+      req = Net::HTTP::Post.new(uri)
+      req["Authorization"] = "Bearer #{key}"
+      req["Content-Type"] = "application/json"
+      req.body = {
+        model: @model,
+        messages: [
+          { role: "system", content: sistema },
+          { role: "user", content: mensaje }
+        ],
+        temperature: 0.7,
+        stream: true
+      }.to_json
+
+      Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+        http.read_timeout = 180
+        response = http.request(req)
+
+        if response.code == "200"
+          # Procesar stream SSE
+          response.body.each_line do |line|
+            next unless line.start_with?("data: ")
+            data = line.sub("data: ", "").strip
+            next if data == "[DONE]"
+
+            begin
+              chunk = JSON.parse(data)
+              delta = chunk.dig("choices", 0, "delta", "content")
+              print delta if delta
+              $stdout.flush
+            rescue JSON::ParserError
+              next
+            end
+          end
+          {} # Retornar hash vacío para evitar errores
+        else
+          OpenStruct.new(code: response.code, body: response.body)
+        end
+      end
+    end
+
+    puts
+  end
+
+  def chat_mode
+    puts "💬 APid - Tu asistente personal (escribí 'salir' para terminar)"
+    puts
+
+    sistema = "Sos APid, un asistente personal útil, conciso y amigable. Respondés en español de forma directa y práctica."
+
+    loop do
+      print "👤 Vos: "
+      input = gets&.chomp
+      break if input.nil? || input.downcase == 'salir'
+      next if input.strip.empty?
+
+      # Agregar al contexto
+      @contexto << { role: "user", content: input }
+
+      # Mantener contexto limitado (últimos 10 mensajes)
+      @contexto = @contexto.last(10)
+
+      print "🤖 APid: "
+      $stdout.flush
+
+      begin
+        response = @client.chat(
+          model: @model,
+          system_prompt: sistema,
+          user_prompt: input,
+          temperature: 0.7
+        )
+
+        puts response
+        puts
+
+        # Agregar respuesta al contexto
+        @contexto << { role: "assistant", content: response }
+      rescue => e
+        puts "❌ Error: #{e.message}"
+        puts
+      end
+    end
+  end
+
+  def parse_options(args)
+    options = {}
+    parser = OptionParser.new do |opts|
+      opts.on('--stream', 'Respuesta en tiempo real (streaming)') do
+        options[:stream] = true
+      end
+    end
+    parser.parse!(args)
+    options
+  end
+end
+
+# Punto de entrada
+if __FILE__ == $0
+  apid = APid.new
+  apid.run(ARGV)
+end
