@@ -598,11 +598,25 @@ function toggleEditForm(id, nombre, apellido, dni, telefono, rolesJson) {
     const form = document.getElementById(`form-${id}`);
     if (!form) return;
 
+    const isVisible = form.style.display !== 'none';
+
     // Cerrar todos los formularios
     document.querySelectorAll('.inline-form').forEach(f => f.style.display = 'none');
 
+    // Si ya estaba visible, solo cerrar
+    if (isVisible) return;
+
     // Abrir este formulario
     form.style.display = 'block';
+
+    // Resetear checkboxes
+    form.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    form.querySelectorAll('.inline-selector').forEach(sel => sel.style.display = 'none');
+    form.querySelectorAll('.inline-input-otro').forEach(inp => {
+        inp.style.display = 'none';
+        inp.value = '';
+    });
+    form.querySelectorAll('.btn-add-otro').forEach(btn => btn.style.display = 'none');
 
     // Cargar datos
     form.querySelector('.inline-nombre').value = nombre;
