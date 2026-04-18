@@ -160,12 +160,16 @@ if ($method === 'POST') {
             exit;
         }
 
+        // Debug log
+        error_log('[personas/api] Update id=' . $id . ' nombre=' . $nombre . ' roles=' . json_encode($roles));
+
         try {
             updatePersona($id, $nombre, $apellido, $dni, $telefono);
             if (is_array($roles)) {
                 setPersonaRoles($id, $roles, $personajes, $staffValores, $otroValores);
             }
             $persona = getPersonaById($id);
+            error_log('[personas/api] Update OK id=' . $id);
             echo json_encode(['ok' => true, 'persona' => $persona]);
         } catch (PDOException $e) {
             if (strpos($e->getMessage(), 'UNIQUE') !== false) {
