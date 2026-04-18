@@ -593,7 +593,7 @@ function addInlineRolDirecto(checkbox, rolId) {
 
     const yaExiste = roles.some(r => r.rol === rolId);
     if (yaExiste) {
-        alert('Ya agregaste ' + label);
+        showInlineMessage(form, 'Ya agregaste ' + label, 'error');
         checkbox.checked = false;
         return;
     }
@@ -615,7 +615,7 @@ function addInlineRol(select) {
     // Verificar duplicados
     const yaExiste = roles.some(r => r.rol === rolId && r.valor === valor);
     if (yaExiste) {
-        alert('Ya agregaste este rol');
+        showInlineMessage(form, 'Ya agregaste este rol', 'error');
         select.value = '';
         return;
     }
@@ -634,7 +634,8 @@ function addInlineRolOtro(btn) {
     const valor = input.value.trim();
 
     if (!valor) {
-        alert('Escribí un rol');
+        const form = btn.closest('.inline-form');
+        showInlineMessage(form, 'Escribí un rol', 'error');
         return;
     }
 
@@ -643,7 +644,7 @@ function addInlineRolOtro(btn) {
 
     const yaExiste = roles.some(r => r.rol === 'otro' && r.valor === valor);
     if (yaExiste) {
-        alert('Ya agregaste este rol');
+        showInlineMessage(form, 'Ya agregaste este rol', 'error');
         input.value = '';
         return;
     }
@@ -684,6 +685,20 @@ function removeInlineRol(span, index) {
     renderInlineRoles(form, roles);
 }
 
+// ── Mensaje inline ──
+function showInlineMessage(form, msg, type) {
+    let msgEl = form.querySelector('.inline-message');
+    if (!msgEl) {
+        msgEl = document.createElement('div');
+        msgEl.className = 'inline-message';
+        form.querySelector('.inline-form-actions').before(msgEl);
+    }
+    msgEl.textContent = msg;
+    msgEl.className = 'inline-message ' + type;
+    msgEl.style.display = 'block';
+    setTimeout(() => { msgEl.style.display = 'none'; }, 4000);
+}
+
 // ── Guardar edición inline ──
 function saveInlineEdit(id) {
     const form = document.getElementById(`form-${id}`);
@@ -694,12 +709,12 @@ function saveInlineEdit(id) {
     const roles = JSON.parse(form.dataset.roles || '[]');
 
     if (!nombre) {
-        alert('El nombre es obligatorio');
+        showInlineMessage(form, 'El nombre es obligatorio', 'error');
         return;
     }
 
     if (roles.length === 0) {
-        alert('Seleccioná al menos un rol');
+        showInlineMessage(form, 'Seleccioná al menos un rol', 'error');
         return;
     }
 
@@ -722,14 +737,13 @@ function saveInlineEdit(id) {
     .then(r => r.json())
     .then(data => {
         if (data.ok) {
-            alert('✅ Datos actualizados');
-            loadPersonas();
-            cancelInlineEdit(id);
+            showInlineMessage(form, '✅ Datos actualizados', 'success');
+            setTimeout(() => { loadPersonas(); cancelInlineEdit(id); }, 1000);
         } else {
-            alert('❌ ' + (data.error || 'Error desconocido'));
+            showInlineMessage(form, '❌ ' + (data.error || 'Error desconocido'), 'error');
         }
     })
-    .catch(() => alert('❌ Error de conexión'));
+    .catch(() => showInlineMessage(form, '❌ Error de conexión', 'error'));
 }
 
 // ── Cancelar edición inline ──
