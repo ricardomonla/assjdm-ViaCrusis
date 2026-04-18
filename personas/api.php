@@ -172,8 +172,9 @@ if ($method === 'POST') {
                 http_response_code(409);
                 echo json_encode(['ok' => false, 'error' => 'Ya existe otra persona con ese nombre y apellido']);
             } else {
+                error_log('[personas/api] Error update: ' . $e->getMessage());
                 http_response_code(500);
-                echo json_encode(['ok' => false, 'error' => 'Error al actualizar']);
+                echo json_encode(['ok' => false, 'error' => 'Error al actualizar: ' . $e->getMessage()]);
             }
         }
         exit;
