@@ -337,13 +337,16 @@ function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [
     $db = getDB();
     ensureSchema();
 
+    // Verificar que los roles existan en la tabla roles
+    $validRoles = $db->query("SELECT id FROM roles")->fetchAll(PDO::FETCH_COLUMN);
+
     // Borrar roles existentes
     $db->prepare("DELETE FROM persona_roles WHERE persona_id = ?")->execute([$personaId]);
 
     $stmt = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, ?, ?)");
 
     // Actor: un registro por personaje
-    if (in_array('actor', $roles) && !empty($personajes)) {
+    if (in_array('actor', $roles) && in_array('actor', $validRoles) && !empty($personajes)) {
         foreach ($personajes as $pj) {
             if (!empty($pj)) {
                 $stmt->execute([$personaId, 'actor', trim($pj)]);
@@ -352,7 +355,7 @@ function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [
     }
 
     // Staff: un registro por función (Logística, Sonido, Vestuario, Escenografía)
-    if (in_array('staff', $roles) && !empty($staffValores)) {
+    if (in_array('staff', $roles) && in_array('staff', $validRoles) && !empty($staffValores)) {
         foreach ($staffValores as $funcion) {
             if (!empty($funcion)) {
                 $stmt->execute([$personaId, 'staff', trim($funcion)]);
@@ -361,7 +364,7 @@ function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [
     }
 
     // Otro: un registro por cada valor de texto libre
-    if (in_array('otro', $roles) && !empty($otroValores)) {
+    if (in_array('otro', $roles) && in_array('otro', $validRoles) && !empty($otroValores)) {
         foreach ($otroValores as $valor) {
             if (!empty($valor)) {
                 $stmt->execute([$personaId, 'otro', trim($valor)]);
@@ -370,10 +373,10 @@ function setPersonaRoles($personaId, $roles, $personajes = [], $staffValores = [
     }
 
     // Donador y Colaborador: un registro cada uno (sin personaje)
-    if (in_array('donador', $roles)) {
+    if (in_array('donador', $roles) && in_array('donador', $validRoles)) {
         $stmt->execute([$personaId, 'donador', '']);
     }
-    if (in_array('colaborador', $roles)) {
+    if (in_array('colaborador', $roles) && in_array('colaborador', $validRoles)) {
         $stmt->execute([$personaId, 'colaborador', '']);
     }
 }
