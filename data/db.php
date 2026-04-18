@@ -297,6 +297,14 @@ function getPersonaById($id) {
 function updatePersona($id, $nombre, $apellido = '', $dni = '', $telefono = '') {
     $db = getDB();
     ensureSchema();
+
+    // Verificar unicidad (excluyendo el registro actual)
+    $stmt = $db->prepare("SELECT COUNT(*) FROM personas WHERE nombre = ? AND apellido = ? AND id != ?");
+    $stmt->execute([trim($nombre), trim($apellido), $id]);
+    if ($stmt->fetchColumn() > 0) {
+        throw new PDOException('Ya existe otra persona con ese nombre y apellido');
+    }
+
     $stmt = $db->prepare("UPDATE personas SET nombre = ?, apellido = ?, dni = ?, telefono = ? WHERE id = ?");
     $stmt->execute([trim($nombre), trim($apellido), trim($dni), trim($telefono), $id]);
 }
