@@ -738,10 +738,10 @@ function saveInlineEdit(id) {
     .then(data => {
         if (data.ok) {
             showInlineMessage(form, '✅ Datos actualizados', 'success');
-            setTimeout(() => {
-                cancelInlineEdit(id);
-                loadPersonas();
-            }, 800);
+            // Cerrar formulario primero
+            cancelInlineEdit(id);
+            // Recargar lista después de 300ms
+            setTimeout(() => loadPersonas(), 300);
         } else {
             showInlineMessage(form, '❌ ' + (data.error || 'Error desconocido'), 'error');
         }
