@@ -1,6 +1,10 @@
 <?php
 /**
  * personas/index.php — Registro público de participantes del ViaCrucis
+ *
+ * Feature: Selector de personajes para actores
+ * - Si viene de personaje placeholder → precarga datos
+ * - Si se registra como actor → muestra selector de personajes disponibles
  */
 require_once __DIR__ . '/../data/db.php';
 require_once __DIR__ . '/../incs/versionLogs.php';
@@ -8,7 +12,16 @@ ensureSchema();
 
 $roles = getRoles();
 $personas = getPersonas(true); // Solo enabled para render inicial
-$latestVersion = $latestVersion ?? '1.0';
+$personajesDisponibles = getPersonajesDisponibles();
+
+// Verificar si viene con personaje preseleccionado (de URL)
+$personajeSeleccionado = $_GET['personaje'] ?? '';
+$placeholderData = null;
+if ($personajeSeleccionado) {
+    $placeholderData = getPlaceholderByPersonaje($personajeSeleccionado);
+}
+
+$latestVersion = $latestVersion ?? '26.12';
 ?>
 <?php include __DIR__ . '/../incs/header.php'; ?>
 
@@ -74,7 +87,8 @@ $latestVersion = $latestVersion ?? '1.0';
         <h2 id="form-title">👤 Nuevo Participante</h2>
         <form id="persona-form" class="personas-form">
             <input type="hidden" id="persona-id" value="">
-            
+            <input type="hidden" id="personaje-oculto" value="<?= htmlspecialchars($personajeSeleccionado) ?>">
+
             <div class="form-row">
                 <div class="form-group">
                     <label for="persona-nombre">Nombre *</label>
@@ -85,7 +99,7 @@ $latestVersion = $latestVersion ?? '1.0';
                     <input type="text" id="persona-apellido" placeholder="Tu apellido">
                 </div>
             </div>
-            
+
             <div class="form-row">
                 <div class="form-group">
                     <label for="persona-dni">DNI</label>
@@ -96,24 +110,44 @@ $latestVersion = $latestVersion ?? '1.0';
                     <input type="tel" id="persona-telefono" placeholder="Ej: 3833-000000">
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label>¿En qué participás?</label>
                 <div class="roles-checkboxes" id="roles-container">
                     <?php foreach ($roles as $rol): ?>
                     <label class="rol-checkbox">
-                        <input type="checkbox" name="roles[]" value="<?= htmlspecialchars($rol['id']) ?>">
+                        <input type="checkbox" name="roles[]" value="<?= htmlspecialchars($rol['id']) ?>" data-rol="<?= htmlspecialchars($rol['id']) ?>">
                         <span class="rol-label"><?= $rol['icono'] ?> <?= htmlspecialchars($rol['nombre']) ?></span>
                     </label>
                     <?php endforeach; ?>
                 </div>
             </div>
-            
+
+            <!-- Selector de personaje (solo si es Actor) -->
+            <div class="form-group" id="personaje-group" style="display:none;">
+                <label for="personaje-select">🎭 Personaje (opcional)</label>
+                <select id="personaje-select">
+                    <option value="">-- Sin personaje asignado --</option>
+                    <?php foreach ($personajesDisponibles as $pj): ?>
+                    <option value="<?= htmlspecialchars($pj['nombre']) ?>"
+                            <?= ($personajeSeleccionado === $pj['nombre']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($pj['nombre']) ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+                <small class="form-help">Si el personaje ya existe como placeholder, se completarán sus datos automáticamente.</small>
+
+                <!-- Múltiples personajes -->
+                <div id="personajes-multiples" style="margin-top: 10px;">
+                    <button type="button" class="btn-add-personaje" onclick="addPersonajeField()">➕ Agregar otro personaje</button>
+                </div>
+            </div>
+
             <div class="form-actions">
                 <button type="submit" class="btn-registrar" id="btn-submit">✅ REGISTRARME</button>
                 <button type="button" class="btn-cancelar" id="btn-cancel" style="display:none;" onclick="cancelEdit()">❌ Cancelar</button>
             </div>
-            
+
             <div id="form-message" class="form-message"></div>
         </form>
     </section>
@@ -124,6 +158,76 @@ $latestVersion = $latestVersion ?? '1.0';
 // ===== PERSONAS MODULE =====
 
 const API = 'api.php';
+
+// ===== SELECTOR DE PERSONAJES =====
+
+// Mostrar/ocultar selector de personajes según rol Actor
+function updatePersonajeSelector() {
+    const esActor = document.querySelector('input[name="roles[]"][value="actor"]')?.checked;
+    const grupo = document.getElementById('personaje-group');
+
+    if (esActor) {
+        grupo.style.display = 'block';
+    } else {
+        grupo.style.display = 'none';
+    }
+}
+
+// Agregar campo de personaje adicional
+function addPersonajeField() {
+    const container = document.getElementById('personajes-multiples');
+    const select = document.getElementById('personaje-select');
+    const opcionesDisponibles = Array.from(select.options).filter(o => o.value && !o.disabled);
+
+    if (opcionesDisponibles.length === 0) {
+        showMessage('No hay más personajes disponibles', 'error');
+        return;
+    }
+
+    const nuevoSelect = select.cloneNode(true);
+    nuevoSelect.id = 'personaje-select-' + Date.now();
+    nuevoSelect.name = 'personajes[]';
+    nuevoSelect.className = 'personaje-select-multiple';
+    nuevoSelect.value = '';
+
+    container.appendChild(nuevoSelect);
+}
+
+// Verificar si viene con personaje de URL y precargar placeholder
+async function checkPersonajeFromURL() {
+    const personajeUrl = document.getElementById('personaje-oculto')?.value;
+    if (!personajeUrl) return;
+
+    // Seleccionar el personaje en el combo
+    const select = document.getElementById('personaje-select');
+    if (select) {
+        select.value = personajeUrl;
+        select.dispatchEvent(new Event('change'));
+    }
+
+    // Verificar si existe placeholder
+    try {
+        const res = await fetch(API + '?action=placeholder&personaje=' + encodeURIComponent(personajeUrl));
+        const data = await res.json();
+
+        if (data.ok && data.placeholder) {
+            // Es placeholder → completar datos automáticamente
+            document.getElementById('persona-nombre').value = data.placeholder.nombre;
+            document.getElementById('persona-apellido').value = data.placeholder.apellido || '';
+            document.getElementById('persona-dni').value = data.placeholder.dni || '';
+            document.getElementById('persona-telefono').value = data.placeholder.telefono || '';
+            document.getElementById('persona-id').value = data.placeholder.id;
+
+            document.getElementById('form-title').textContent = '📝 Completar datos de ' + personajeUrl;
+            document.getElementById('btn-submit').textContent = '💾 GUARDAR CAMBIOS';
+            document.getElementById('btn-cancel').style.display = '';
+
+            showMessage('✅ Placeholder encontrado - completá los datos del actor', 'success');
+        }
+    } catch (e) {
+        console.error('Error checking placeholder:', e);
+    }
+}
 
 // ── Cargar lista (AJAX) ──
 function loadPersonas() {
@@ -205,23 +309,33 @@ function loadPersonas() {
 // ── Enviar formulario ──
 document.getElementById('persona-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     const id = document.getElementById('persona-id').value;
     const nombre = document.getElementById('persona-nombre').value.trim();
     const apellido = document.getElementById('persona-apellido').value.trim();
     const dni = document.getElementById('persona-dni').value.trim();
     const telefono = document.getElementById('persona-telefono').value.trim();
     const roles = Array.from(document.querySelectorAll('input[name="roles[]"]:checked')).map(cb => cb.value);
-    
+
+    // Obtener personajes seleccionados (puede haber múltiples)
+    const personajes = [];
+    const selectPrincipal = document.getElementById('personaje-select');
+    if (selectPrincipal && selectPrincipal.value) {
+        personajes.push(selectPrincipal.value);
+    }
+    document.querySelectorAll('.personaje-select-multiple').forEach(sel => {
+        if (sel.value) personajes.push(sel.value);
+    });
+
     if (!nombre) {
         showMessage('El nombre es obligatorio', 'error');
         return;
     }
-    
+
     const action = id ? 'update' : 'add';
-    const body = { action, nombre, apellido, dni, telefono, roles };
+    const body = { action, nombre, apellido, dni, telefono, roles, personajes };
     if (id) body.id = parseInt(id);
-    
+
     fetch(API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -240,29 +354,52 @@ document.getElementById('persona-form').addEventListener('submit', function(e) {
     .catch(() => showMessage('❌ Error de conexión', 'error'));
 });
 
-// ── Editar persona (todos pueden actualizar sus datos) ──
+// ── Editar persona (inline en la card) ──
 function editPersona(id) {
+    const card = document.querySelector(`.persona-card[data-id="${id}"]`);
+    if (!card) return;
+
+    // Marcar card como editando
+    document.querySelectorAll('.card-editing').forEach(c => c.classList.remove('card-editing'));
+    card.classList.add('card-editing');
+
     fetch(API + '?action=list')
         .then(r => r.json())
         .then(data => {
             const p = data.personas.find(x => x.id == id);
             if (!p) return;
-            
+
             document.getElementById('persona-id').value = p.id;
             document.getElementById('persona-nombre').value = p.nombre;
             document.getElementById('persona-apellido').value = p.apellido || '';
             document.getElementById('persona-dni').value = p.dni || '';
             document.getElementById('persona-telefono').value = p.telefono || '';
-            
+
             document.querySelectorAll('input[name="roles[]"]').forEach(cb => {
                 cb.checked = p.roles.some(r => r.id === cb.value);
             });
-            
+
+            // Cargar personajes si es actor
+            const personajes = p.roles.filter(r => r.personaje).map(r => r.personaje);
+            const selectPrincipal = document.getElementById('personaje-select');
+            if (selectPrincipal && personajes.length > 0) {
+                selectPrincipal.value = personajes[0];
+                // Agregar selects adicionales para más personajes
+                for (let i = 1; i < personajes.length; i++) {
+                    addPersonajeField();
+                    const nuevosSelects = document.querySelectorAll('.personaje-select-multiple');
+                    if (nuevosSelects[i-1]) {
+                        nuevosSelects[i-1].value = personajes[i];
+                    }
+                }
+            }
+
             document.getElementById('form-title').textContent = '📝 Actualizar datos de ' + p.nombre;
             document.getElementById('btn-submit').textContent = '💾 GUARDAR CAMBIOS';
             document.getElementById('btn-cancel').style.display = '';
-            
-            document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' });
+
+            // Scroll suave hasta la card (no hasta el form)
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 }
 
@@ -337,6 +474,17 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.director-only').forEach(el => el.style.display = '');
         }
     }, 200);
+
+    // Escuchar cambios en roles para mostrar selector de personaje
+    document.querySelectorAll('input[name="roles[]"]').forEach(cb => {
+        cb.addEventListener('change', updatePersonajeSelector);
+    });
+
+    // Inicializar selector
+    updatePersonajeSelector();
+
+    // Verificar si viene personaje de URL
+    checkPersonajeFromURL();
 });
 </script>
 

@@ -322,9 +322,13 @@ function addPersonaRol($personaId, $rolId) {
 
 /**
  * Reemplazar todos los roles de una persona.
+ * @param array $roles Lista de role IDs
+ * @param array $personajes Lista de nombres de personajes (solo para rol 'actor')
  */
-function setPersonaRoles($personaId, $roles) {
+function setPersonaRoles($personaId, $roles, $personajes = []) {
     $db = getDB();
+    ensureSchema();
+
     // Preservar personaje existente antes de borrar
     $existing = $db->prepare("SELECT rol_id, personaje FROM persona_roles WHERE persona_id = ?");
     $existing->execute([$personaId]);
@@ -332,12 +336,38 @@ function setPersonaRoles($personaId, $roles) {
     foreach ($existing->fetchAll() as $row) {
         if (!empty($row['personaje'])) $personajeMap[$row['rol_id']] = $row['personaje'];
     }
-    
+
     $db->prepare("DELETE FROM persona_roles WHERE persona_id = ?")->execute([$personaId]);
-    $stmt = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, ?, ?)");
-    foreach ($roles as $rolId) {
-        $pj = $personajeMap[trim($rolId)] ?? '';
-        $stmt->execute([$personaId, trim($rolId), $pj]);
+
+    // Si es actor y vienen personajes, crear múltiples entradas
+    if (in_array('actor', $roles) && !empty($personajes)) {
+        // Para cada personaje, crear entrada actor
+        $stmt = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, 'actor', ?)");
+        foreach ($personajes as $pj) {
+            if (!empty($pj)) {
+                $stmt->execute([$personaId, trim($pj)]);
+            }
+        }
+        // Agregar otros roles (no actor) sin personaje
+        $stmtOther = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, ?, '')");
+        foreach ($roles as $rolId) {
+            if ($rolId !== 'actor') {
+                $stmtOther->execute([$personaId, trim($rolId)]);
+            }
+        }
+    } else {
+        // Comportamiento original: un rol = una entrada
+        $stmt = $db->prepare("INSERT INTO persona_roles (persona_id, rol_id, personaje) VALUES (?, ?, ?)");
+        foreach ($roles as $rolId) {
+            $pj = '';
+            // Si es actor, usar personaje mapeado o el primero de la lista
+            if ($rolId === 'actor' && !empty($personajes)) {
+                $pj = $personajes[0] ?? '';
+            } elseif (isset($personajeMap[trim($rolId)])) {
+                $pj = $personajeMap[trim($rolId)];
+            }
+            $stmt->execute([$personaId, trim($rolId), $pj]);
+        }
     }
 }
 
@@ -348,6 +378,59 @@ function getRoles() {
     $db = getDB();
     ensureSchema();
     return $db->query("SELECT * FROM roles ORDER BY nombre")->fetchAll();
+}
+
+/**
+ * Obtener personajes disponibles desde cues (placeholders sin datos reales)
+ * Retorna personajes que aún no tienen una persona real asignada.
+ */
+function getPersonajesDisponibles() {
+    $db = getDB();
+    ensureSchema();
+
+    // Obtener todos los personajes únicos de cues (excluyendo P00)
+    $placeholders = $db->query("
+        SELECT DISTINCT character as nombre, idp as codigo
+        FROM cues
+        WHERE character != '' AND idp != 'P00'
+        ORDER BY character
+    ")->fetchAll();
+
+    // Obtener personajes que ya tienen persona real (nombre != personaje)
+    $ocupados = $db->query("
+        SELECT DISTINCT pr.personaje
+        FROM persona_roles pr
+        JOIN personas p ON pr.persona_id = p.id
+        WHERE pr.personaje != '' AND (p.nombre != pr.personaje OR p.apellido != '')
+    ")->fetchAll(PDO::FETCH_COLUMN);
+
+    // Filtrar solo los disponibles
+    $disponibles = [];
+    foreach ($placeholders as $pj) {
+        if (!in_array($pj['nombre'], $ocupados)) {
+            $disponibles[] = $pj;
+        }
+    }
+
+    return $disponibles;
+}
+
+/**
+ * Buscar placeholder por nombre exacto del personaje
+ */
+function getPlaceholderByPersonaje($personaje) {
+    $db = getDB();
+    ensureSchema();
+
+    // Buscar persona que sea placeholder de ese personaje
+    $stmt = $db->prepare("
+        SELECT p.*, pr.personaje, pr.rol_id
+        FROM personas p
+        JOIN persona_roles pr ON p.id = pr.persona_id
+        WHERE p.nombre = ? AND p.apellido = '' AND pr.personaje = ?
+    ");
+    $stmt->execute([$personaje, $personaje]);
+    return $stmt->fetch();
 }
 
 /**

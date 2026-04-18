@@ -71,6 +71,27 @@ if ($method === 'GET') {
         exit;
     }
 
+    if ($action === 'personajes') {
+        echo json_encode(['ok' => true, 'personajes' => getPersonajesDisponibles()]);
+        exit;
+    }
+
+    if ($action === 'placeholder') {
+        $personaje = $_GET['personaje'] ?? '';
+        if (empty($personaje)) {
+            http_response_code(400);
+            echo json_encode(['ok' => false, 'error' => 'Personaje requerido']);
+            exit;
+        }
+        $placeholder = getPlaceholderByPersonaje($personaje);
+        if ($placeholder) {
+            echo json_encode(['ok' => true, 'placeholder' => $placeholder]);
+        } else {
+            echo json_encode(['ok' => true, 'placeholder' => null]);
+        }
+        exit;
+    }
+
     http_response_code(400);
     echo json_encode(['ok' => false, 'error' => 'Acción no válida']);
     exit;
@@ -92,6 +113,7 @@ if ($method === 'POST') {
         $dni = trim($input['dni'] ?? '');
         $telefono = trim($input['telefono'] ?? '');
         $roles = $input['roles'] ?? [];
+        $personajes = $input['personajes'] ?? [];
 
         if (empty($nombre)) {
             http_response_code(400);
@@ -102,7 +124,7 @@ if ($method === 'POST') {
         try {
             $id = addPersona($nombre, $apellido, $dni, $telefono);
             if (!empty($roles) && is_array($roles)) {
-                setPersonaRoles($id, $roles);
+                setPersonaRoles($id, $roles, $personajes);
             }
             $persona = getPersonaById($id);
             echo json_encode(['ok' => true, 'persona' => $persona]);
@@ -126,6 +148,7 @@ if ($method === 'POST') {
         $dni = trim($input['dni'] ?? '');
         $telefono = trim($input['telefono'] ?? '');
         $roles = $input['roles'] ?? [];
+        $personajes = $input['personajes'] ?? [];
 
         if (!$id || empty($nombre)) {
             http_response_code(400);
@@ -136,7 +159,7 @@ if ($method === 'POST') {
         try {
             updatePersona($id, $nombre, $apellido, $dni, $telefono);
             if (is_array($roles)) {
-                setPersonaRoles($id, $roles);
+                setPersonaRoles($id, $roles, $personajes);
             }
             $persona = getPersonaById($id);
             echo json_encode(['ok' => true, 'persona' => $persona]);

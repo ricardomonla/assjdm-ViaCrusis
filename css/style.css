@@ -1684,3 +1684,57 @@ body.stamp-mode .cue-line-active {
         padding: 10px;
     }
 }
+
+/* ===== Selector de personajes ===== */
+#personaje-group {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff8f0;
+    border-radius: 8px;
+    border: 1px solid #e8dcc0;
+}
+
+#personaje-select,
+.personaje-select-multiple {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #c9b896;
+    border-radius: 6px;
+    background: #fff;
+    margin-top: 5px;
+}
+
+.form-help {
+    display: block;
+    margin-top: 8px;
+    color: #8b7355;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.btn-add-personaje {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: #f5e6d3;
+    border: 1px dashed #c9b896;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #5c4d3c;
+}
+
+.btn-add-personaje:hover {
+    background: #e8dcc0;
+}
+
+/* Card en modo edición */
+.persona-card.card-editing {
+    outline: 2px solid #8b7355;
+    background: #fff8f0;
+}
+
+.persona-card.card-editing .btn-actualizar {
+    display: none;
+}
